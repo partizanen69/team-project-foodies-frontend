@@ -6,7 +6,7 @@ import s from './MainPage.module.scss';
 
 const MainPage = () => {
   return (
-      <Container className={s.container}>
+      <Container>
         <div className={s.title_container}>
             <p className={s.title}>MAIN PAGE</p>
           </div>
