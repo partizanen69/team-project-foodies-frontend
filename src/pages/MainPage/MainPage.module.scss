@@ -1,0 +1,10 @@
+@import "../../assets/sass/utils/mixin";
+
+.title_container{
+   @include flex-center;
+   height: 100%;
+}
+
+.title{
+    @include font-styles(36px,800); 
+}

@@ -1,3 +1,9 @@
+import { React, lazy, Suspense, useState, useContext, useEffect } from 'react';
+import { Routes, Route } from "react-router-dom";
+import Loader from './Loader/Loader'
+
+const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
+
 export const App = () => {
   return (
     <div
@@ -6,11 +12,14 @@ export const App = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
       }}
     >
-      React homework template
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<MainPage />}/> 
+          <Route path="*" element={<MainPage />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };
