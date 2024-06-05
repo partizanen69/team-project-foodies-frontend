@@ -1,0 +1,107 @@
+@import "../../assets/sass/utils/mixin";
+@import "../../assets/sass/utils/variables";
+
+.header_container{
+    @include flex-center(space-between);
+    position: absolute;
+    top: 24px;
+    left: 16px;
+    width: 100%;
+    max-width: 343px;
+    height: 38px;
+    background-color: $dark-text;
+    // background-color:white;
+    color: $bg-primary-color;
+    z-index: 10;
+
+    @media screen and (min-width: 768px) {
+        top: 36px;
+        left: 32px;
+        width: 704px;
+        max-width: 704px;
+        height: 50px;
+    }
+     
+    @media screen and (min-width: 1440px) {
+        top: 40px;
+        left: 80px;
+        width: 1280px;
+        max-width: 1280px;
+        // padding-right: 60px;
+        // padding-left: 60px;
+    }
+}
+
+.header_container__light{
+    @extend.header_container;
+    background-color: $bg-primary-color;
+}
+
+.logo{
+    @include font-styles(20px, 800, 1.2);
+    color: $bg-primary-color;
+    letter-spacing: -0.4px;
+
+    @media screen and (min-width: 768px) {
+        @include font-styles(24px, 800, 1.16);
+        letter-spacing: -0.48px;
+    }
+}
+
+.profile_bar_wrapper{
+    @include flex-center;
+}
+
+.profile_bar{ 
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+    width: 122px;
+    height: 32px;
+    border-radius: 30px;
+    background-color: $dark-text;
+}
+
+.profile_bar_unauthenticated{ 
+    @extend .profile_bar;
+    height: 38px;
+    background-color: $bg-primary-color;
+}
+
+.profile_bar__light{ 
+    @extend .profile_bar;
+    background-color: $bg-primary-color;
+}
+
+.avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.profile_bar_name{
+    margin-left: 6px;
+    margin-right: 4px;
+}
+
+.profile_bar_name__dark{
+    @extend .profile_bar_name;
+    color: $dark-text;
+}
+
+.sign_in_block{
+    @include font-styles(12px, 700, 1.5);
+    @include flex-center;
+    width: 76px;
+    height: 38px;
+    background-color: $bg-primary-color;
+    border-radius: 30px;
+    color: $dark-text;
+}
+
+.sign_up_block{
+    @extend .sign_in_block;
+    background-color: $dark-text;
+    color: $bg-primary-color;
+    border: 1px solid #E8E8E8;
+}

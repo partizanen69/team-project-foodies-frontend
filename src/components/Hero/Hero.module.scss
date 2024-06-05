@@ -1,0 +1,28 @@
+@import "../../assets/sass/utils/mixin";
+@import "../../assets/sass/utils/variables";
+
+.hero_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 796px;
+    width: 100%;
+    background-color: $dark-text;
+    border-radius: 20px;
+    color: $bg-primary-color;
+		padding-left: 16px;
+		padding-right: 16px;
+
+      @media screen and (min-width: 768px) {
+        padding-right: 32px;
+        padding-left: 32px;
+				height: 992px;
+      }
+    
+      @media screen and (min-width: 1440px) {
+        padding-left: 20px;
+				padding-right: 20px;
+				height: 970px;
+      }
+
+}
