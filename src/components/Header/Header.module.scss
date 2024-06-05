@@ -5,9 +5,9 @@
     @include flex-center(space-between);
     position: absolute;
     top: 24px;
-    left: 16px;
+    left: 24px;
     width: 100%;
-    max-width: 343px;
+    max-width: 327px;
     height: 38px;
     background-color: $dark-text;
     // background-color:white;
@@ -66,6 +66,7 @@
     @extend .profile_bar;
     height: 38px;
     background-color: $bg-primary-color;
+    margin-right: 0;
 }
 
 .profile_bar__light{ 
