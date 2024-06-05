@@ -1,16 +1,25 @@
 import { React, useEffect, useState } from 'react';
-
+import { ReactComponent as Burger } from '../../assets/icons/burger-bar.svg';
+import { NavLink } from 'react-router-dom';
+import Navigation from '../Navigation/Navigation'
 import s from './Header.module.scss';
 
 const Header = () => {
 	const [isLoggedIn, setisLoggedIn] = useState(false);
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-	const logIn = () => {
-    setisLoggedIn(true);  
+	const closeSidebar = () => {
+    setIsSidebarOpen(false);
   };
+
+	const openSidebar = () => {
+		setIsSidebarOpen(true);
+	}
+
 	return (
+		
 		<div className={s.header_container}>
-			<p className={s.logo}>foodies</p>
+			<NavLink to="/" className={s.logo}>foodies</NavLink>
 
 			{isLoggedIn ? (
 				// Render this when isLoggedIn is true
@@ -22,22 +31,26 @@ const Header = () => {
 							<path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 						</svg>
 					</div>
-					<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M24.5 11.6665H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-						<path d="M24.5 7H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-						<path d="M24.5 16.3335H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-						<path d="M24.5 21H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-					</svg>
+					<button type='button' onClick={openSidebar} className={s.header_btn}>
+						<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M24.5 11.6665H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+							<path d="M24.5 7H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+							<path d="M24.5 16.3335H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+							<path d="M24.5 21H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+						</svg>
+					</button>
+					{/* <Burger className={s.burger}/> */}
 				</div>
 			) : (
 				// Render this when isLoggedIn is false
 				<div className={s.profile_bar_wrapper}>
 					<div className={s.profile_bar_unauthenticated}>
-						<span onClick={logIn} className={s.sign_in_block}>SIGN IN</span>
-						<span className={s.sign_up_block}>SIGN UP</span>
+						<button type='button' onClick={() => setisLoggedIn(true)} className={s.sign_in_block}>SIGN IN</button>
+						<button className={s.sign_up_block}>SIGN UP</button>
 					</div>
 				</div>
 			)}
+			 {isSidebarOpen && <Navigation isSidebarOpen={isSidebarOpen} closeSidebar={closeSidebar} />}
 		</div>
 	);
 };

@@ -12,7 +12,6 @@ const Container = lazy(() => import('./Container/Container'));
 export const App = () => {
   return (
     <Container className={s.main_container}>
-      <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
