@@ -1,7 +1,7 @@
 @import "../assets/sass/utils/mixin";
 @import "../assets/sass/utils/variables";
 
-.main_container{
+.app_container{
     @include flex-center;
     position: relative;
     height: 100vh;

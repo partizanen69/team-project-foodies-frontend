@@ -1,33 +1,36 @@
-@import "../../assets/sass/utils/mixin";
-@import "../../assets/sass/utils/variables";
+@import '../../assets/sass/utils/mixin';
+@import '../../assets/sass/utils/variables';
 
+// Загальні стилі
 .navigation {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(0, 0, 0);
-    transform: translateX(100%);
-    transition: right 0.5s ease;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  transform: translateX(100%);
+  transition: right 0.5s ease;
+  background-image: url('../../../public/hero-food1.png');
+  background-repeat: no-repeat;
+  background-position: 200px 600px;
+
+  &.navigation_open {
+    right: 100%;
   }
-  
-  .navigation_open {
-    right: 100%; 
-  }
-  
-  .navigation_close {
+
+  &.navigation_close {
     transform: translateX(-100%);
   }
-  
-  .nav_header_wrapper{
+
+  .nav_header_wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px 24px 0;
   }
-  
-  .nav__link_wrapper{
+
+  .nav__link_wrapper {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -41,132 +44,78 @@
     color: $bg-primary-color;
     text-decoration: none;
   }
-  
+
   .nav__link:hover {
     background-color: #f0f0f0;
   }
 
-.header_container{
-    @include flex-center(space-between);
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    width: 100%;
-    max-width: 327px;
-    height: 38px;
-    background-color: $dark-text;
-    // background-color:white;
-    color: $bg-primary-color;
-    z-index: 10;
-
-    @media screen and (min-width: 768px) {
-        top: 36px;
-        left: 32px;
-        width: 704px;
-        max-width: 704px;
-        height: 50px;
-    }
-     
-    @media screen and (min-width: 1440px) {
-        top: 40px;
-        left: 80px;
-        width: 1280px;
-        max-width: 1280px;
-    }
-}
-
-.header_container__light{
-    @extend.header_container;
-    background-color: $bg-primary-color;
-}
-
-.header_btn{
+  .header_btn {
     margin: 0;
     padding: 0;
     background-color: transparent;
     border: none;
     width: 28px;
-    height: 28px
-}
+    height: 28px;
+  }
 
-.logo{
+  .logo {
     @include font-styles(20px, 800, 1.2);
     color: $bg-primary-color;
     letter-spacing: -0.4px;
 
     @media screen and (min-width: 768px) {
-        @include font-styles(24px, 800, 1.16);
-        letter-spacing: -0.48px;
+      @include font-styles(24px, 800, 1.16);
+      letter-spacing: -0.48px;
     }
+  }
 }
 
-.profile_bar_wrapper{
-    @include flex-center;
-}
+// Стилі для десктопної версії
+.header_navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $dark-text;
 
-.profile_bar{ 
+  .logo {
+    color: $bg-primary-color;
+  }
+
+  .header_nav {
     display: flex;
     align-items: center;
-    margin-right: 4px;
-    width: 122px;
-    height: 32px;
-    border-radius: 30px;
-    background-color: $dark-text;
-}
 
-.profile_bar_unauthenticated{ 
-    @extend .profile_bar;
-    height: 38px;
-    background-color: $bg-primary-color;
-    margin-right: 0;
-}
+  }
 
-.profile_bar__light{ 
-    @extend .profile_bar;
-    background-color: $bg-primary-color;
-}
+	.nav__link {
+		@include font-styles(14px, 700, 1.5);
+		margin-left: 20px;
+		color: $bg-primary-color;
+		text-decoration: none;
 
-.avatar{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
-.profile_bar_name{
-    @include font-styles(12px, 700, 1.5);
-    margin-left: 6px;
-    margin-right: 4px;
-    text-transform: uppercase;
-}
+	@media screen and (min-width: 768px) {
+		.nav__link {
+			@include font-styles(12px, 700, 1.5);
+		}
 
-.profile_bar_name__dark{
-    @extend .profile_bar_name;
-    color: $dark-text;
-}
-
-.burger{
-    width: 20px;
-    height: 20px;
-}
-
-.header_btn{
+		.nav__link:not(:first-child) {
+			border-radius: 30px;
+			border: 1px solid $light-dark-text;	
+			padding: 14px;
+		}
 
 }
 
-.sign_in_block{
-    @include font-styles(12px, 700, 1.5);
-    @include flex-center;
-    @extend .header_btn;
-    width: 76px;
-    height: 38px;
-    background-color: $bg-primary-color;
-    border-radius: 30px;
-    color: $dark-text;
+@media screen and (max-width: 767px) {
+  .header_navigation {
+    display: none;
+  }
 }
 
-.sign_up_block{
-    @extend .sign_in_block;
-    background-color: $dark-text;
-    color: $bg-primary-color;
-    border: 1px solid #E8E8E8;
+
 }

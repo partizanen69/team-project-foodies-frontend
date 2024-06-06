@@ -6,12 +6,11 @@ import s from './App.module.scss'
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const Loader = lazy(() => import('./Loader/Loader'));
-const Header = lazy(() => import('./Header/Header'));
 const Container = lazy(() => import('./Container/Container'));
 
 export const App = () => {
   return (
-    <Container className={s.main_container}>
+    <Container className={s.app_container}>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>

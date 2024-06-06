@@ -1,127 +1,148 @@
 @import "../../assets/sass/utils/mixin";
 @import "../../assets/sass/utils/variables";
 
-.header_container{
-    @include flex-center(space-between);
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    width: 100%;
-    max-width: 327px;
-    height: 38px;
-    background-color: $dark-text;
-    // background-color:white;
-    color: $bg-primary-color;
-    z-index: 10;
-
-    @media screen and (min-width: 768px) {
-        top: 36px;
-        left: 32px;
-        width: 704px;
-        max-width: 704px;
-        height: 50px;
-    }
-     
-    @media screen and (min-width: 1440px) {
-        top: 40px;
-        left: 80px;
-        width: 1280px;
-        max-width: 1280px;
-    }
+.header_container {
+	@include flex-center(space-between);
+	position: absolute;
+	top: 24px;
+	left: 24px;
+	width: 100%;
+	max-width: 327px;
+	height: 38px;
+	background-color: $dark-text;
+	// background-color:white;
+	color: $bg-primary-color;
+	z-index: 10;
 }
 
-.header_container__light{
-    @extend.header_container;
-    background-color: $bg-primary-color;
+.header_container__light {
+	@extend.header_container;
+	background-color: $bg-primary-color;
 }
 
-.header_btn{
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    width: 28px;
-    height: 28px
+.burger_btn {
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	width: 28px;
+	height: 28px;
+	cursor: pointer;
 }
 
-.logo{
-    @include font-styles(20px, 800, 1.2);
-    color: $bg-primary-color;
-    letter-spacing: -0.4px;
-
-    @media screen and (min-width: 768px) {
-        @include font-styles(24px, 800, 1.16);
-        letter-spacing: -0.48px;
-    }
+.logo {
+	@include font-styles(20px, 800, 1.2);
+	color: $bg-primary-color;
+	letter-spacing: -0.4px;
 }
 
-.profile_bar_wrapper{
-    @include flex-center;
+.profile_bar_wrapper {
+	@include flex-center;
 }
 
-.profile_bar{ 
-    display: flex;
-    align-items: center;
-    margin-right: 4px;
-    width: 122px;
-    height: 32px;
-    border-radius: 30px;
-    background-color: $dark-text;
+.profile_bar {
+	display: flex;
+	align-items: center;
+	margin-right: 4px;
+	width: 122px;
+	height: 32px;
+	border-radius: 30px;
+	background-color: $dark-text;
 }
 
-.profile_bar_unauthenticated{ 
-    @extend .profile_bar;
-    height: 38px;
-    background-color: $bg-primary-color;
-    margin-right: 0;
+.profile_bar_unauthenticated {
+	@extend .profile_bar;
+	height: 38px;
+	background-color: $bg-primary-color;
+	margin-right: 0;
 }
 
-.profile_bar__light{ 
-    @extend .profile_bar;
-    background-color: $bg-primary-color;
+.profile_bar__light {
+	@extend .profile_bar;
+	background-color: $bg-primary-color;
 }
 
-.avatar{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+.avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
 }
 
-.profile_bar_name{
-    @include font-styles(12px, 700, 1.5);
-    margin-left: 6px;
-    margin-right: 4px;
-    text-transform: uppercase;
+.profile_bar_name {
+	@include font-styles(12px, 700, 1.5);
+	margin-left: 6px;
+	margin-right: 4px;
+	text-transform: uppercase;
 }
 
-.profile_bar_name__dark{
-    @extend .profile_bar_name;
-    color: $dark-text;
+.profile_bar_name__dark {
+	@extend .profile_bar_name;
+	color: $dark-text;
 }
 
-.burger{
-    width: 20px;
-    height: 20px;
+.burger {
+	width: 20px;
+	height: 20px;
 }
 
-.header_btn{
-
+.sign_in_block {
+	@include font-styles(12px, 700, 1.5);
+	@include flex-center;
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	width: 76px;
+	height: 38px;
+	background-color: $bg-primary-color;
+	border-radius: 30px;
+	color: $dark-text;
+	cursor: pointer;
 }
 
-.sign_in_block{
-    @include font-styles(12px, 700, 1.5);
-    @include flex-center;
-    @extend .header_btn;
-    width: 76px;
-    height: 38px;
-    background-color: $bg-primary-color;
-    border-radius: 30px;
-    color: $dark-text;
+.sign_in_block:hover{
+	background-color: rgba(255, 136, 0, 0.793);
+	color: $bg-primary-color;
 }
 
-.sign_up_block{
-    @extend .sign_in_block;
-    background-color: $dark-text;
-    color: $bg-primary-color;
-    border: 1px solid #E8E8E8;
+.sign_up_block {
+	@extend .sign_in_block;
+	background-color: $dark-text;
+	color: $bg-primary-color;
+	border: 1px solid #E8E8E8;
+	cursor: pointer;
+}
+
+.sign_up_block:hover{
+	background-color: rgba(255, 136, 0, 0.793);
+	color: $dark-text;
+}
+
+@media screen and (min-width: 768px) {
+	
+	.header_container {
+		top: 36px;
+		left: 32px;
+		width: 704px;
+		max-width: 704px;
+		height: 50px;
+	}
+
+	.logo{
+		@include font-styles(24px, 800, 1.16);
+		letter-spacing: -0.48px;
+	}
+
+	.burger_btn{
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.header_container {
+		top: 40px;
+		left: 80px;
+		width: 1280px;
+		max-width: 1280px;
+	}
 }
