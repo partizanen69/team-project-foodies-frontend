@@ -1,11 +1,10 @@
-@import "../../assets/sass/utils/mixin";
-@import "../../assets/sass/utils/variables";
-
+@import '../../assets/sass/utils/mixin';
+@import '../../assets/sass/utils/variables';
 
 .hero_container {
   display: flex;
   flex-direction: column;
-	padding-top: 194px;
+  padding-top: 194px;
   align-items: center;
   height: 796px;
   width: 100%;
@@ -17,23 +16,17 @@
   position: relative;
 }
 
-.hero_title{
-	@include font-styles(40px, 800, 1);
-	letter-spacing: -0.8px;
-	margin-bottom: 20px;
+.hero_title {
+  @include font-styles(40px, 800, 1);
+  letter-spacing: -0.8px;
+  margin-bottom: 20px;
 }
 
-.hero_text{
-	@include font-styles(14px, 500, 1.42);
-	letter-spacing: -0.28px;
-	color: $gray-text-lighter;
-	margin-bottom: 20px;
-
-	@media screen and (min-width: 768px) {
-	}
-
-	@media screen and (min-width: 1440px) {
-	}
+.hero_text {
+  @include font-styles(14px, 500, 1.42);
+  letter-spacing: -0.28px;
+  color: $gray-text-lighter;
+  margin-bottom: 20px;
 }
 
 .profile_menu {
@@ -74,72 +67,203 @@
 
 .hero_content {
   text-align: center;
+}
 
-  .add_recipe_button {
-		@include font-styles(14px, 700, 1.42);
-		letter-spacing: -0.28px;
-		text-transform: uppercase;
-    background-color: $dark-text ;
-    color: $bg-primary-color;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 30px;
-		border: 1px solid $gray-text;
-    cursor: pointer;
+.images {
+  position: relative;
+  height: 205px;
+  margin-top: 30px;
+}
 
-    &:hover {
-      background-color: lighten($bg-primary-color, 10%);
-			color: $dark-text ;
-    }
+.image_main {
+  position: absolute;
+  top: -6px;
+  right: 0px;
+  background-image: url('../../assets/images/hero-food-mobile.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 222px;
+  height: 209px;
+}
+
+.image_secondary {
+  position: absolute;
+  bottom: 31px;
+  left: 10px;
+  background-image: url('../../assets/images/hero-desert-mobile.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 84px;
+}
+
+@media screen and (min-resolution: 192dpi) and (max-width: 767px),
+  screen and (min-resolution: 2dppx) and (max-width: 767px),
+  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+  .image_main {
+    background-image: url('../../assets/images/hero-food-mobile@2x.png');
   }
-
-  .images {
-    position: relative;
-		height: 205px;
-    margin-top: 30px;
-
-    .image_main {
-			position: absolute;
-      top: -6px;
-      right: 0px;
-    }
-
-    .image_secondary {
-      position: absolute;
-      bottom: 31px;
-      left: 10px;
-
-    }
+  .image_secondary {
+    background-image: url('../../assets/images/hero-desert-mobile@2x.png');
   }
 }
 
+@media screen and (min-resolution: 288dpi) and (max-width: 767px),
+  screen and (min-resolution: 3dppx) and (max-width: 767px),
+  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+  .image_main {
+    background-image: url('../../assets/images/hero-food-mobile@3x.png');
+  }
+  .image_secondary {
+    background-image: url('../../assets/images/hero-desert-mobile@3x.png');
+  }
+}
+
+.hero_button {
+  @include font-styles(14px, 700, 1.42);
+  letter-spacing: -0.28px;
+  text-transform: uppercase;
+  background-color: $dark-text;
+  color: $bg-primary-color;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: 1px solid $gray-text;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($bg-primary-color, 10%);
+    color: $dark-text;
+  }
+}
+
+.break {
+  display: none;
+}
 
 @media screen and (min-width: 768px) {
-	.hero_container {
-		padding-right: 32px;
-		padding-left: 32px;
-		height: 992px;
+  .hero_container {
+    padding-right: 32px;
+    padding-left: 32px;
+    height: 992px;
+  }
+
+  .hero_title {
+    @include font-styles(70px, 800, 1);
+    letter-spacing: -1.5px;
+    margin-bottom: 40px;
+  }
+
+  .break {
+    display: none;
+  }
+
+  .hero_text {
+    @include font-styles(16px, 500, 1.5);
+    padding: 0 48px 0 47px;
+    letter-spacing: -0.28px;
+    color: $gray-text-lighter;
+    margin-bottom: 40px;
+  }
+
+  .hero_button {
+    @include font-styles(16px, 700, 1.5);
+    letter-spacing: -0.32px;
+    text-transform: uppercase;
+    background-color: $dark-text;
+    color: $bg-primary-color;
+    padding: 16px 32px;
+  }
+
+	.images {
+		height: 300px;
 	}
 
-	.hero_title{
-		@include font-styles(70px, 800, 1);
-		letter-spacing: -1.5px;
-	}
+  .image_main {
+    top: -6px;
+    right: 84px;
+    background-image: url('../../assets/images/hero-food-tablet.png');
+    width: 353px;
+    height: 331px;
+  }
 
-	.break{
-		display: none;
-	}
+  .image_secondary {
+    bottom: 31px;
+    left: 84px;
+    background-image: url('../../assets/images/hero-desert-tablet.png');
+    width: 149px;
+    height: 139px;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 768px),
+    screen and (min-resolution: 2dppx) and (min-width: 768px),
+    screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+    .image_main {
+      background-image: url('../../assets/images/hero-food-tablet@2x.png');
+    }
+    .image_secondary {
+      background-image: url('../../assets/images/hero-desert-tablet@2x.png');
+    }
+  }
+
+  @media screen and (min-resolution: 288dpi) and (min-width: 768px),
+    screen and (min-resolution: 3dppx) and (min-width: 768px),
+    screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+    .image_main {
+      background-image: url('../../assets/images/hero-food-tablet@3x.png');
+    }
+    .image_secondary {
+      background-image: url('../../assets/images/hero-desert-tablet@3x.png');
+    }
+  }
 }
 
 @media screen and (min-width: 1440px) {
-	.hero_container {
-	padding-left: 20px;
-	padding-right: 20px;
-	height: 970px;
+  .hero_container {
+    padding-left: 0;
+    padding-right: 0;
+    height: 970px;
+  }
+
+  .hero_title {
+    @include font-styles(90px, 800, 1);
+    letter-spacing: -1.8px;
+  }
+
+  .break {
+    display: block;
+  }
+
+  .hero_text {
+    padding: 0 412px 0 411px;
+  }
+
+
+  .hero_button {
+    @include font-styles(16px, 700, 1.5);
+    letter-spacing: -0.32px;
+    text-transform: uppercase;
+    background-color: $dark-text;
+    color: $bg-primary-color;
+    padding: 16px 32px;
+  }
+
+	.images {
+		height: 300px;
+		margin-top: 40px;
+
 	}
 
-	.hero_title{
-		@include font-styles(90px, 800, 1);
-		letter-spacing: -1.8px;
-	}
+  .image_main {
+    position: absolute;
+    top: -6px;
+    right: 448px;
+  }
+
+  .image_secondary {
+    bottom: 29px;
+    left: 448px;
+    background-image: url('../../assets/images/hero-desert-tablet.png');
+    width: 149px;
+    height: 139px;
+  }
 }
