@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+// ---- usege example -------
 // import Icon from './Icon';
 
 // const App = () => (

@@ -79,7 +79,7 @@
   position: absolute;
   top: -6px;
   right: 0px;
-  background-image: url('../../assets/images/hero-food-mobile.png');
+  background-image: url('../../assets/images/hero-food.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 222px;
@@ -90,7 +90,7 @@
   position: absolute;
   bottom: 31px;
   left: 10px;
-  background-image: url('../../assets/images/hero-desert-mobile.png');
+  background-image: url('../../assets/images/hero-desert.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 90px;
@@ -101,10 +101,10 @@
   screen and (min-resolution: 2dppx) and (max-width: 767px),
   screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .image_main {
-    background-image: url('../../assets/images/hero-food-mobile@2x.png');
+    background-image: url('../../assets/images/hero-food@2x.png');
   }
   .image_secondary {
-    background-image: url('../../assets/images/hero-desert-mobile@2x.png');
+    background-image: url('../../assets/images/hero-desert@2x.png');
   }
 }
 
@@ -112,10 +112,10 @@
   screen and (min-resolution: 3dppx) and (max-width: 767px),
   screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .image_main {
-    background-image: url('../../assets/images/hero-food-mobile@3x.png');
+    background-image: url('../../assets/images/hero-food@3x.png');
   }
   .image_secondary {
-    background-image: url('../../assets/images/hero-desert-mobile@3x.png');
+    background-image: url('../../assets/images/hero-desert@3x.png');
   }
 }
 
@@ -181,7 +181,7 @@
   .image_main {
     top: -6px;
     right: 84px;
-    background-image: url('../../assets/images/hero-food-tablet.png');
+    background-image: url('../../assets/images/hero-food.png');
     width: 353px;
     height: 331px;
   }
@@ -189,7 +189,7 @@
   .image_secondary {
     bottom: 31px;
     left: 84px;
-    background-image: url('../../assets/images/hero-desert-tablet.png');
+    background-image: url('../../assets/images/hero-desert.png');
     width: 149px;
     height: 139px;
   }
@@ -198,10 +198,10 @@
     screen and (min-resolution: 2dppx) and (min-width: 768px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
     .image_main {
-      background-image: url('../../assets/images/hero-food-tablet@2x.png');
+      background-image: url('../../assets/images/hero-food@2x.png');
     }
     .image_secondary {
-      background-image: url('../../assets/images/hero-desert-tablet@2x.png');
+      background-image: url('../../assets/images/hero-desert@2x.png');
     }
   }
 
@@ -209,10 +209,10 @@
     screen and (min-resolution: 3dppx) and (min-width: 768px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
     .image_main {
-      background-image: url('../../assets/images/hero-food-tablet@3x.png');
+      background-image: url('../../assets/images/hero-food@3x.png');
     }
     .image_secondary {
-      background-image: url('../../assets/images/hero-desert-tablet@3x.png');
+      background-image: url('../../assets/images/hero-desert@3x.png');
     }
   }
 }
@@ -254,7 +254,6 @@
 	}
 
   .image_main {
-    position: absolute;
     top: -6px;
     right: 448px;
   }
@@ -262,8 +261,5 @@
   .image_secondary {
     bottom: 29px;
     left: 448px;
-    background-image: url('../../assets/images/hero-desert-tablet.png');
-    width: 149px;
-    height: 139px;
   }
 }
