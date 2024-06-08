@@ -1,15 +1,13 @@
 import {React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from 'components/Container/Container';
-
+import Hero from 'components/Hero/Hero';
 import s from './MainPage.module.scss';
 
 const MainPage = () => {
   return (
-      <Container>
-        <div className={s.title_container}>
-            <p className={s.title}>MAIN PAGE</p>
-          </div>
+      <Container className={s.main_container}>
+        <Hero/>
       </Container>
   );
 };

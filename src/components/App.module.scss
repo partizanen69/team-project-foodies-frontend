@@ -1,0 +1,28 @@
+@import "../assets/sass/utils/mixin";
+@import "../assets/sass/utils/variables";
+
+.app_container{
+    @include flex-center;
+    position: relative;
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+    max-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 8px 16px;
+    background-color: $bg-primary-color;
+    color: $main-text;
+
+    @media screen and (min-width: 768px) {
+      width: 768px;
+      max-width: 768px;
+      padding: 16px 16px 32px;
+    }
+  
+    @media screen and (min-width: 1440px) {
+      width: 1440px;
+      max-width: 1440px;
+      padding:20px 20px 72px;
+    }
+}
