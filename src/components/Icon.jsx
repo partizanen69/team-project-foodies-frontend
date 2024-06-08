@@ -1,4 +1,5 @@
 import React from 'react';
+import icons from '../assets/icons/icons.svg';
 
 // ---- usege example -------
 // import Icon from './Icon';
@@ -10,12 +11,10 @@ import React from 'react';
 //   </div>
 // );
 
-
-const Icon = ({ name, width = 32, height = 32 }) => (
-  <svg width={width} height={height}>
-    <use xlinkHref={`${process.env.PUBLIC_URL}/icons.svg#${name}`} />
+const Icon = ({ name, width = 32, height = 32, className = '' }) => (
+  <svg width={width} height={height} className={className}>
+    <use xlinkHref={`${icons}#${name}`} />
   </svg>
 );
 
 export default Icon;
-
