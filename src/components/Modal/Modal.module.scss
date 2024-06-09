@@ -16,19 +16,38 @@
   
   .modal_content {
     background: $bg-primary-color;
-    padding: 80px;
-    border-radius: 30px;
+    padding: 60px 30px;
+    border-radius: 20px;
     position: relative;
-    width: 560px;
+    width: 343px;
   }
   
   .modal_close {
     padding: 0;
     position: absolute;
-    top: 5px;
-    right: 18px;
+    top: 13px;
+    right: 16px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
   }
+
+@media screen and (min-width: 768px) {
+	
+    .modal_content {
+        padding: 80px;
+        width: 560px;
+      }
+      
+      .modal_close {
+        top: 17px;
+        right: 20px;
+        font-size: 24px;
+      }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+}
