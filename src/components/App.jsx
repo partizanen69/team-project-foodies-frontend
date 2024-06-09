@@ -22,11 +22,12 @@ axios.interceptors.request.use(config => {
 });
 
 export const App = () => {
-  useEffect(() => {
-    getRecipes().then(recipes => {
-      console.log('recipes', recipes);
-    });
-  }, []);
+  // this is an example of doing http requests
+  // useEffect(() => {
+  //   getRecipes().then(recipes => {
+  //     console.log('recipes', recipes);
+  //   });
+  // }, []);
   return (
     <Container className={s.app_container}>
       <Suspense fallback={<Loader />}>
