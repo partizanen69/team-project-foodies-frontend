@@ -9,16 +9,16 @@ import s from './Header.module.scss';
 const Modal = lazy(() => import('../Modal/Modal'));
 
 const Header = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isDropDownShown, setIsDropDownShown] = useState(false);
-  const [hasAvatar, setHasAvatar] = useState(false);
+  const [hasAvatar] = useState(false);
   const [isModalSignInOpen, setIsModalSignInOpen] = useState(false);
   const [isModalSignUpOpen, setIsModalSignUpOpen] = useState(false);
   const [passwordValue, setPasswordValue] = useState('');
-  const [nameValue, setNameValue] = useState('');
-  const [emailValue, setEmailValue] = useState('');
+  const [setNameValue] = useState('');
+  const [setEmailValue] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const openModal = (action) => {
