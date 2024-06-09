@@ -18,6 +18,7 @@ const Header = () => {
   const [isModalSignUpOpen, setIsModalSignUpOpen] = useState(false);
   const [passwordValue, setPasswordValue] = useState('');
   const [nameValue, setNameValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const openModal = (action) => {
@@ -131,7 +132,13 @@ const Header = () => {
 										onChange={(e) => setNameValue(e.target.value)}
 									/>
                 )}
-                <input className={s.modal_input} type="email" name="email" placeholder='Email*' />
+                <input 
+									className={s.modal_input} 
+									type="email" 
+									name="email" 
+									placeholder='Email*'
+									onChange={(e) => setEmailValue(e.target.value)}
+								/>
                 <div className={s.password_input_wrapper}>
                   <input
                     className={s.modal_input}
