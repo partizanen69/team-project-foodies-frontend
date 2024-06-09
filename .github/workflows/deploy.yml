@@ -15,6 +15,7 @@ jobs:
         run: |
           npm ci
           npm run lint:js
+          source -a .env.production
           npm run build
 
       - name: Deploy 🚀
