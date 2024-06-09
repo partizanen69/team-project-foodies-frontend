@@ -18,6 +18,7 @@ jobs:
           npm run build
 
   success:
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo This command should pass for status check to pass
