@@ -1,5 +1,4 @@
-import {React, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {React} from 'react';
 import Container from 'components/Container/Container';
 import Hero from 'components/Hero/Hero';
 import s from './MainPage.module.scss';
