@@ -20,4 +20,4 @@ jobs:
   success:
     steps:
       - run: |
-        echo This command should pass for status check to pass
+          echo This command should pass for status check to pass
