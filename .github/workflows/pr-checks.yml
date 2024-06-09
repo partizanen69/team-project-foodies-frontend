@@ -16,3 +16,8 @@ jobs:
           npm ci
           npm run lint:js
           npm run build
+
+  success:
+    steps:
+      run: |
+        echo This command should pass for status check to pass
