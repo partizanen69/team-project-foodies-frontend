@@ -1,11 +1,12 @@
-import { React, lazy, Suspense} from 'react';
-import { Routes, Route } from "react-router-dom";
-import { SharedLayout } from "./SharedLayout";
+import { React, lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout';
 
 import s from './App.module.scss';
 import axios from 'axios';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
+const UserPage = lazy(() => import('../pages/MainPage/UserPage/UserPage'));
 const Loader = lazy(() => import('./Loader/Loader'));
 const Container = lazy(() => import('./Container/Container'));
 
@@ -34,6 +35,7 @@ export const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<MainPage />} />
             <Route path="*" element={<MainPage />} />
+            <Route path="/user/:id" element={<UserPage />} />
           </Route>
         </Routes>
       </Suspense>
