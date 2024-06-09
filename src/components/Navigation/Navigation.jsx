@@ -35,6 +35,10 @@ const Navigation = ({ isSidebarOpen, closeSidebar }) => {
           <div className={s.nav__link_wrapper}>
             <NavLink onClick={closeSidebar} className={s.nav__link} to="/">HOME</NavLink>
             <NavLink onClick={closeSidebar} className={s.nav__link} to="/add">ADD RECIPE</NavLink>
+						<div className={s.images}>
+							<div className={s.image_main}></div>
+							<div className={s.image_secondary}></div>
+						</div>
           </div>
         </nav>
       ) : (
