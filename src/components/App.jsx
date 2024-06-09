@@ -1,6 +1,6 @@
-import { React, lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { SharedLayout } from './SharedLayout';
+import { React, lazy, Suspense} from 'react';
+import { Routes, Route } from "react-router-dom";
+import { SharedLayout } from "./SharedLayout";
 
 import s from './App.module.scss';
 import axios from 'axios';
