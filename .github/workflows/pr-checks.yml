@@ -19,6 +19,7 @@ jobs:
 
   success:
     runs-on: ubuntu-latest
+    needs: build-and-check
     steps:
       - run: |
           echo This command should pass for status check to pass
