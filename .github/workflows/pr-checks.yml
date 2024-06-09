@@ -19,5 +19,5 @@ jobs:
 
   success:
     steps:
-      run: |
+      - run: |
         echo This command should pass for status check to pass
