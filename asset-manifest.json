@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-foodies-frontend/static/css/main.970ac8af.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.b7b8ba38.js",
+    "main.js": "/team-project-foodies-frontend/static/js/main.b343dc25.js",
     "static/css/371.529e9177.chunk.css": "/team-project-foodies-frontend/static/css/371.529e9177.chunk.css",
     "static/js/371.199d1584.chunk.js": "/team-project-foodies-frontend/static/js/371.199d1584.chunk.js",
     "static/css/938.a915e18b.chunk.css": "/team-project-foodies-frontend/static/css/938.a915e18b.chunk.css",
@@ -16,7 +16,7 @@
     "static/media/hero-desert.png": "/team-project-foodies-frontend/static/media/hero-desert.d0295535aca7f8a13dcb.png",
     "index.html": "/team-project-foodies-frontend/index.html",
     "main.970ac8af.css.map": "/team-project-foodies-frontend/static/css/main.970ac8af.css.map",
-    "main.b7b8ba38.js.map": "/team-project-foodies-frontend/static/js/main.b7b8ba38.js.map",
+    "main.b343dc25.js.map": "/team-project-foodies-frontend/static/js/main.b343dc25.js.map",
     "371.529e9177.chunk.css.map": "/team-project-foodies-frontend/static/css/371.529e9177.chunk.css.map",
     "371.199d1584.chunk.js.map": "/team-project-foodies-frontend/static/js/371.199d1584.chunk.js.map",
     "938.a915e18b.chunk.css.map": "/team-project-foodies-frontend/static/css/938.a915e18b.chunk.css.map",
@@ -25,6 +25,6 @@
   },
   "entrypoints": [
     "static/css/main.970ac8af.css",
-    "static/js/main.b7b8ba38.js"
+    "static/js/main.b343dc25.js"
   ]
 }
