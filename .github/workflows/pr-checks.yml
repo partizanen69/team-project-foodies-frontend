@@ -1,11 +1,11 @@
-name: Build and deploy to GitHub Pages
+name: Checks before merging PR
 
 on:
   push:
-    branches: [main]
+    branches-ignore: [main]
 
 jobs:
-  build-and-deploy:
+  build-and-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -16,9 +16,3 @@ jobs:
           npm ci
           npm run lint:js
           npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          branch: gh-pages
-          folder: build
