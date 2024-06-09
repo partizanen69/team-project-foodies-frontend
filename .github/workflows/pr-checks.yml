@@ -17,9 +17,11 @@ jobs:
           npm run lint:js
           npm run build
 
-  build-and-check-success:
-    runs-on: ubuntu-latest
+  status-check:
+    if: always()
     needs: build-and-check
+    runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo This command should pass for status check to pass
+      - uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
