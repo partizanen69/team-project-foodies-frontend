@@ -1,10 +1,9 @@
-import { React, lazy, Suspense, useEffect } from 'react';
+import { React, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout';
 
 import s from './App.module.scss';
 import axios from 'axios';
-import { getRecipes } from '../api/recipes';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const Loader = lazy(() => import('./Loader/Loader'));
