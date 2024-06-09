@@ -6,13 +6,12 @@ import s from './MainPage.module.scss';
 const MainPage = () => {
   
   return (
-      <Container className={s.main_container}>
-        <Hero/>
-      </Container>
+    <Container className={s.main_container}>
+      <Hero />
+    </Container>
   );
 };
 
-MainPage.propTypes = {
-};
+MainPage.propTypes = {};
 
 export default MainPage;
