@@ -1,16 +1,16 @@
-import styles from './UserInfo.module.scss';
+import styles from './ProfileInfo.module.scss';
 
-const UserInfo = () => {
+const ProfileInfo = () => {
   return (
-    <div className={styles.user_info}>
-      <div className={styles.user_info_card}>
+    <div className={styles.profile_info}>
+      <div className={styles.profile_info_card}>
         <div>
-          <img alt="user avatar" />
+          <img alt="User avatar" />
           <p>Username</p>
           <button type="button">+</button>
         </div>
 
-        <div className={styles.user_info_details}>
+        <div className={styles.profile_info_details}>
           <div>
             <p>Email: </p>
             <span>email</span>
@@ -41,4 +41,4 @@ const UserInfo = () => {
   );
 };
 
-export default UserInfo;
+export default ProfileInfo;

@@ -1,13 +1,16 @@
 import { React } from 'react';
-import Container from 'components/Container/Container';
-import s from './UserPage.module.scss';
-import UserInfo from 'components/UserInfo/UserInfo';
 import { Outlet } from 'react-router-dom';
-import MainTitle from 'components/MainTitle/MainTitle';
+
+import s from './ProfilePage.module.scss';
+import Container from 'components/Container/Container';
+
 import { PathInfo } from 'components/PathInfo/PathInfo';
+import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
 
-const UserPage = () => {
+import UserInfo from 'components/ProfileInfo/ProfileInfo';
+
+const ProfilePage = () => {
   return (
     <Container className={s.main_container}>
       <PathInfo currentPageName="profile" />
@@ -22,6 +25,6 @@ const UserPage = () => {
   );
 };
 
-UserPage.propTypes = {};
+ProfilePage.propTypes = {};
 
-export default UserPage;
+export default ProfilePage;

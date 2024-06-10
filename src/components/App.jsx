@@ -7,7 +7,9 @@ import axios from 'axios';
 import Recipe from '../pages/Recipe/Recipe';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
-const UserPage = lazy(() => import('../pages/MainPage/UserPage/UserPage'));
+const ProfilePage = lazy(() =>
+  import('../pages/MainPage/ProfilePage/ProfilePage')
+);
 const Loader = lazy(() => import('./Loader/Loader'));
 const Container = lazy(() => import('./Container/Container'));
 
@@ -37,7 +39,7 @@ export const App = () => {
             <Route index element={<MainPage />} />
             <Route path="/recipe/:id" element={<Recipe />} />
             <Route path="*" element={<MainPage />} />
-            <Route path="/user/:id" element={<UserPage />}>
+            <Route path="/user/:id" element={<ProfilePage />}>
               {/* <Route path="/user/:id/my-recipies" element={} />
               <Route path="/user/:id/favorites" element={} />
               <Route path="/user/:id/followers" element={} />
