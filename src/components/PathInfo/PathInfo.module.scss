@@ -1,0 +1,29 @@
+@import '../../assets/sass/utils/variables';
+
+.path_info_container {
+  padding-bottom: 32px;
+  display: flex;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 40px;
+  }
+}
+
+.page_name {
+  text-transform: uppercase;
+  font-family: Mulish;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.home_name {
+  color: #05050566;
+}
+
+.current_page_name {
+  color: $dark-text;
+}
