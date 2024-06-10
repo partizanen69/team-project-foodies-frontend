@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import s from './ProfilePage.module.scss';
@@ -9,8 +9,15 @@ import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
 
 import ProfileInfo from 'components/ProfileInfo/ProfileInfo';
+import { getUserDetails } from 'api/users';
 
 const ProfilePage = () => {
+  useEffect(() => {
+    const UserData = getUserDetails({ id: 1 }).then(data => {
+      console.log(data);
+    });
+  }, []);
+
   return (
     <Container className={s.main_container}>
       <PathInfo currentPageName="profile" />
