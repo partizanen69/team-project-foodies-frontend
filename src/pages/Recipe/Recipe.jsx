@@ -1,12 +1,48 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import Container from 'components/Container/Container';
-import s from '../MainPage/MainPage.module.scss';
 import { PathInfo } from '../../components/PathInfo/PathInfo';
+import { RecipeInfo } from './RecipeInfo/RecipeInfo';
+import { PopularRecipes } from './PopularRecipes/PopularRecipes';
+import { getRecipeById } from '../../api/recipes';
+import { useParams } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import s from './Recipe.module.scss';
 
 const Recipe = () => {
+  const { id } = useParams();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [recipe, setRecipe] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const recipe = await getRecipeById({ id });
+        setIsLoading(false);
+        setRecipe(recipe);
+      } catch (err) {
+        setIsLoading(false);
+        setErrorMsg(err.message);
+      }
+    })();
+  }, [id]);
+
   return (
-    <Container className={s.main_container}>
-      <PathInfo currentPageName="recipe" />
+    <Container>
+      {isLoading ? (
+        <Loader />
+      ) : errorMsg ? (
+        <div>{errorMsg}</div>
+      ) : (
+        <div className={s.recipe_content}>
+          <div>
+            <PathInfo currentPageName={recipe.title} />
+            <RecipeInfo recipe={recipe} />
+          </div>
+          <PopularRecipes />
+        </div>
+      )}
     </Container>
   );
 };
