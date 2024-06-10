@@ -7,9 +7,7 @@ import axios from 'axios';
 import Recipe from '../pages/Recipe/Recipe';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
-const ProfilePage = lazy(() =>
-  import('../pages/MainPage/ProfilePage/ProfilePage')
-);
+const ProfilePage = lazy(() => import('../pages/ProfilePage/ProfilePage'));
 const Loader = lazy(() => import('./Loader/Loader'));
 const Container = lazy(() => import('./Container/Container'));
 
