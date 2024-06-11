@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
+import { ReactComponent as BurgerBar } from '../../assets/icons/burger-bar.svg';
 
 import s from './Header.module.scss';
 
@@ -11,7 +12,8 @@ const Navigation = lazy(() => import('../Navigation/Navigation'));
 
 const Header = ({ openModal }) => {
 	const { user } = useSelector((state) => state.auth);
-
+  const isMainPage = useSelector((state) => state.ui.isMainPage);
+	
 	const [isLoggedIn, setIsLoggedIn] = useState(!!user);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -63,8 +65,8 @@ const Header = ({ openModal }) => {
 
 	return (
 		<>
-			<div className={s.header_container}>
-				<NavLink to="/" className={s.logo}>foodies</NavLink>
+			<div className={isMainPage ? s.header_container : s.header_container__light}>
+				<NavLink to="/" className={isMainPage ?  s.logo : s.logo__dark}>foodies</NavLink>
 				{(isSidebarOpen || (!isMobile && isLoggedIn)) && <Navigation isSidebarOpen={isSidebarOpen} closeSidebar={closeSidebar} />}
 				{isLoggedIn ? (
 					<div className={s.profile_bar_wrapper}>
@@ -78,12 +80,7 @@ const Header = ({ openModal }) => {
 							</svg>
 						</div>
 						<button type="button" onClick={openSidebar} className={s.burger_btn}>
-							<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M24.5 11.6665H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-								<path d="M24.5 7H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-								<path d="M24.5 16.3335H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-								<path d="M24.5 21H3.5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-							</svg>
+							<BurgerBar className={isMainPage ? s.burger_icon : s.burger_icon__dark}/>
 						</button>
 
 						{isDropDownShown && (

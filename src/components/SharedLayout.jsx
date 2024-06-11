@@ -45,8 +45,7 @@ export const SharedLayout = () => {
   };
 
   return (
-    <Suspense fallback={<Loader />}>
-      {loading && <Loader />}
+    <>
       <Header openModal={openModal} />
       <Outlet context={{ openModal }}/>
       <Modal isOpen={isModalSignInOpen || isModalSignUpOpen} onClose={closeModal}>
@@ -62,7 +61,7 @@ export const SharedLayout = () => {
           <LogoutForm handleLogOut={handleLogOut} closeModal={closeModal} />
         </Modal>
       )}
-    </Suspense>
+    </>
   );
 };
 
