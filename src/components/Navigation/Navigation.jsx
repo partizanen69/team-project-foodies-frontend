@@ -1,7 +1,7 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import s from './Navigation.module.scss';
 
 const Navigation = ({ isSidebarOpen, closeSidebar }) => {
