@@ -7,7 +7,8 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 343px;
+  width: 100%;
+  max-width: 343px;
 }
 
 .profile_info_card {
@@ -83,4 +84,22 @@
   @include font-styles(14px, 700, 1.43);
   color: $main-text;
   letter-spacing: -0.28px;
+}
+
+.btn_logout {
+  width: 100%;
+  max-width: 343px;
+  height: 48px;
+  display: flex;
+  padding: 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 30px;
+  background: $main-text;
+
+  @include font-styles(14px, 700, 1.43);
+  color: $bg-primary-color;
+  text-transform: uppercase;
 }
