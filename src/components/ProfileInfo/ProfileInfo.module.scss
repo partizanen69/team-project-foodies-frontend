@@ -1,3 +1,6 @@
+@import '../../assets/sass/utils/variables.scss';
+@import '../../assets/sass/utils/mixin.scss';
+
 .profile_info {
   display: flex;
   flex-direction: column;
@@ -11,18 +14,73 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 16px;
   padding: 30px 54px;
   width: 100%;
   border-radius: 30px;
   border: 1px solid rgba(5, 5, 5, 0.2);
 }
 
-.profile_info_details {
+.profile_avatar_block {
+  position: relative;
+}
+
+.profile_avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.btn_add_avatar {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translate(-50%);
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  gap: 10px;
+  border-radius: 50%;
+  border: none;
+  background: $dark-text;
+}
+
+.plus {
+  stroke: $bg-primary-color;
+}
+
+.user_name {
+  @include font-styles(18px, 800, 1.33);
+  text-transform: uppercase;
+}
+
+.details_list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
 
   width: 100%;
+}
+
+.details_list_item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item_key {
+  @include font-styles(12px, 500, 1.5);
+  color: $mid-dark-text;
+}
+
+.item_value {
+  @include font-styles(14px, 700, 1.43);
+  color: $main-text;
+  letter-spacing: -0.28px;
 }
