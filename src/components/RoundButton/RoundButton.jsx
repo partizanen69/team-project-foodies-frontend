@@ -8,11 +8,13 @@ const RoundButton = ({
   iconName = 'icon-arrow-up-right',
   iconWidth = 18,
   iconHeight = 18,
+  className = '',
+  iconClassName = '',
   onClick,
 }) => {
   return (
     <button
-      className={styles.button}
+      className={className || styles.button}
       style={{ width: size, height: size }}
       onClick={onClick}
     >
@@ -20,7 +22,7 @@ const RoundButton = ({
         name={iconName}
         width={iconWidth}
         height={iconHeight}
-        className={styles.icon}
+        className={iconClassName || styles.icon}
       />
     </button>
   );
