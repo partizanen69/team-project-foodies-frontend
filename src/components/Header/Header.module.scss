@@ -4,7 +4,7 @@
 .header_container {
 	@include flex-center(space-between);
 	position: absolute;
-	top: 24px;
+	top: 84px;
 	left: 24px;
 	width: 100%;
 	max-width: 327px;
@@ -172,7 +172,7 @@
 @media screen and (min-width: 768px) {
 	
 	.header_container {
-		top: 36px;
+		top: 122px;
 		left: 32px;
 		width: 704px;
 		max-width: 704px;
@@ -235,7 +235,7 @@
 
 @media screen and (min-width: 1440px) {
 	.header_container {
-		top: 40px;
+		top: 130px;
 		left: 80px;
 		width: 1280px;
 		max-width: 1280px;
