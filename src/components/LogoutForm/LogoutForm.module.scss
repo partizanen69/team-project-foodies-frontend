@@ -1,0 +1,45 @@
+@import "../../assets/sass/utils/mixin";
+@import "../../assets/sass/utils/variables";
+
+.logout_text{
+	@include font-styles(14px, 500, 1.42);
+	text-align: center;
+	margin-bottom: 32px;
+}
+
+.logout_btn {
+    @include font-styles(14px, 700, 1.42);
+	letter-spacing: -0.28px;
+	height: 48px;
+	padding: 14px 116px;
+	margin-top: 32px;
+	margin-bottom: 16px;
+	border-radius: 30px;
+	background: rgba(5, 5, 5, 0.20);
+	border: none;
+	color:rgba(255, 255, 255, 0.40);
+	cursor: pointer;
+}
+
+.logout_buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;  
+}
+
+.logout_btn:nth-child(1) {
+	margin: 0;
+	background-color: $dark-text;
+	color: $bg-primary-color;
+}
+
+.logout_btn:nth-child(2) {
+	margin: 0;
+	background-color: $bg-primary-color;
+	color: $dark-text;
+	border: 1px solid $dark-text;
+}
+
+@media screen and (min-width: 768px) {
+
+}
