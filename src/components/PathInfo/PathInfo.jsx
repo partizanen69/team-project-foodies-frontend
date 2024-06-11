@@ -19,5 +19,5 @@ export const PathInfo = ({ currentPageName }) => {
 };
 
 PathInfo.propTypes = {
-  pageName: PropTypes.string.isRequired,
+  currentPageName: PropTypes.string.isRequired,
 };

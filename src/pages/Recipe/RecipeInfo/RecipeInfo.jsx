@@ -1,7 +1,10 @@
+import { AddFavoriteBtn } from '../AddFavoriteBtn/AddFavoriteBtn';
+import { Ingredients } from '../Ingredients/Ingredients';
 import { RecipeCreatedBy } from '../RecipeCreatedBy/RecipeCreatedBy';
+import { RecipePreparation } from '../RecipePreparation/RecipePreparation';
 import s from './RecipeInfo.module.scss';
 
-export const RecipeInfo = ({ recipe }) => {
+export const RecipeInfo = ({ recipe, isFavorite }) => {
   return (
     <div className={s.recipe_info_wrap}>
       <div className={s.thumb_wrap}>
@@ -18,6 +21,11 @@ export const RecipeInfo = ({ recipe }) => {
           name={recipe.owner.name}
           avatar={recipe.owner.avatar}
         />
+      </div>
+      <Ingredients ingredients={recipe.ingredients} />
+      <RecipePreparation instructions={recipe.instructions} />
+      <div className={s.add_favorite_wrap}>
+        <AddFavoriteBtn isFavorite={isFavorite} />
       </div>
     </div>
   );

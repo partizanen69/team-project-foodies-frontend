@@ -21,3 +21,42 @@ export const getRecipeById = async ({ id }) => {
     handleAxiosError(err);
   }
 };
+
+export const getFavoriteRecipes = async ({
+  page = 1,
+  limit = 10,
+  recipeIds,
+}) => {
+  try {
+    const result = await axios.get('/recipes/favorites', {
+      params: {
+        page,
+        limit,
+        ...(recipeIds && recipeIds.length
+          ? { recipeIds: JSON.stringify(recipeIds) }
+          : null),
+      },
+    });
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
+
+export const addRecipeToFavorites = async ({ recipeId }) => {
+  try {
+    const response = await axios.post(`/recipes/${recipeId}/favorites`);
+    return response.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
+
+export const removeRecipeFromFavorites = async ({ recipeId }) => {
+  try {
+    const response = await axios.delete(`/recipes/${recipeId}/favorites`);
+    return response.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
