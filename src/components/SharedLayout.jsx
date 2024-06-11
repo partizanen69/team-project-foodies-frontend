@@ -16,7 +16,7 @@ export const SharedLayout = () => {
   const [isModalSignInOpen, setIsModalSignInOpen] = useState(false);
   const [isModalSignUpOpen, setIsModalSignUpOpen] = useState(false);
   const [isModalLogOutOpen, setIsModalLogOutOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
