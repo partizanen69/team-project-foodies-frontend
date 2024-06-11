@@ -1,6 +1,14 @@
 @import "../../assets/sass/utils/mixin";
 @import "../../assets/sass/utils/variables";
 
+.logout_title{
+	@include font-styles(28px, 800, 1.14);
+	color: $dark-text;
+	text-align: center;
+	letter-spacing: -0.64px;
+	margin-bottom: 16px;
+}
+
 .logout_text{
 	@include font-styles(14px, 500, 1.42);
 	text-align: center;

@@ -7,7 +7,7 @@ const LogoutForm = ({ handleLogOut, closeModal }) => {
 
   return (
     <>
-      <h2 className={s.modal_title__centered}>LOG OUT</h2>
+      <h2 className={s.logout_title}>LOG OUT</h2>
       <p className={s.logout_text}>You can always log back in at my time.</p>
       <div className={s.logout_buttons}>
         <button onClick={handleLogOut} className={s.logout_btn} type="button">LOGOUT</button>
