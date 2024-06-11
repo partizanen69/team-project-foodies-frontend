@@ -8,6 +8,7 @@ import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
+import { UpdateAvatar } from './UpdateAvatar/UpdateAvatar';
 
 const ProfileInfo = ({ userId }) => {
   const dispatch = useDispatch();
@@ -26,7 +27,6 @@ const ProfileInfo = ({ userId }) => {
         }
 
         const data = await getUserDetails({ id: userId });
-        console.log(data);
         setuserDetails(data);
       } catch (error) {
         setErrorMsg(error.message);
@@ -59,14 +59,8 @@ const ProfileInfo = ({ userId }) => {
               src={userDetails.avatarURL}
               className={s.profile_avatar}
             />
-            <button type="button" className={s.btn_add_avatar}>
-              <Icon
-                name="icon-plus"
-                width="16"
-                height="16"
-                className={s.plus}
-              />
-            </button>
+
+            <UpdateAvatar userId={userId} />
           </div>
 
           <p className={s.user_name}>

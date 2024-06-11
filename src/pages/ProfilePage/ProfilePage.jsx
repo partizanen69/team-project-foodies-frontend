@@ -8,9 +8,11 @@ import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
 
 import ProfileInfo from 'components/ProfileInfo/ProfileInfo';
+import { useSelector } from 'react-redux';
 
 const ProfilePage = () => {
   const { id } = useParams();
+  const { user } = useSelector(state => state.auth);
 
   return (
     <Container className={s.main_container}>
