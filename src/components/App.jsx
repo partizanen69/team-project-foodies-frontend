@@ -13,7 +13,7 @@ const Loader = lazy(() => import('./Loader/Loader'));
 const Container = lazy(() => import('./Container/Container'));
 
 axios.defaults.baseURL =
-  process.env.REACT_APP_BACKEND || 'http://localhost:3002/api';
+  process.env.REACT_APP_BACKEND || 'http://localhost:3000/api';
 
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem('jwt-token');
