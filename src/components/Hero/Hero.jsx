@@ -1,9 +1,23 @@
-import { React } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Container from 'components/Container/Container';
 
 import s from './Hero.module.scss';
 
-const Hero = () => {
+const Hero = ({ openModal }) => {
+  const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  const handleAddRecipeClick = () => {
+    if (user) {
+      navigate('/recipes/my');
+    } else {
+      openModal('sign in');
+    }
+  };
+
   return (
     <Container className={s.hero_container} style={{ borderRadius: '20px' }}>
       <div className={s.hero_content}>
@@ -14,7 +28,7 @@ const Hero = () => {
           Amazing recipes for beginners in the world of cooking, enveloping you
           in the aromas and tastes of various cuisines.
         </p>
-        <button className={s.hero_button}>ADD RECIPE</button>
+        <button className={s.hero_button} onClick={handleAddRecipeClick}>ADD RECIPE</button>
         <div className={s.images}>
           <div className={s.image_main}></div>
           <div className={s.image_secondary}></div>
@@ -23,5 +37,10 @@ const Hero = () => {
     </Container>
   );
 };
+
+Hero.propTypes = {
+	openModal: PropTypes.func.isRequired,
+};
+
 
 export default Hero;
