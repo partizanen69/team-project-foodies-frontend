@@ -1,10 +1,14 @@
-// SignInSignUpForm.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import { login, register } from '../../redux/actions/authActions';
 import { ReactComponent as EyeClosedIcon } from '../../assets/icons/eye-closed-icon.svg';
 import { ReactComponent as EyeOpenIcon } from '../../assets/icons/eye-open-icon.svg';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import s from './SignInSignUpForm.module.scss';
 
@@ -12,64 +16,78 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  
-  const handleLogin = (e) => {
-    e.preventDefault();
-    dispatch(login(email, password));
+  const validationSchema = Yup.object().shape({
+    name: isModalSignUpOpen ? Yup.string().required('Name is required') : Yup.string().nullable(),
+    email: Yup.string().required('Email is required').email('Email is invalid'),
+    password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
+  });
+
+  const { register: registerInput, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      Object.values(errors).forEach(error => {
+        toast.error(error.message);
+      });
+    }
+  }, [errors]);
+
+  const handleLogin = (data) => {
+    dispatch(login(data.email, data.password));
     closeModal();
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    dispatch(register(name, email, password));
+  const handleRegister = (data) => {
+    dispatch(register(data.name, data.email, data.password));
     closeModal();
   };
 
   return (
     <div className="sign-in-form">
       <h2 className={s.modal_title}>{isModalSignInOpen ? 'SIGN IN' : 'SIGN UP'}</h2>
-      <form onSubmit={isModalSignInOpen ? handleLogin : handleRegister}>
+      <form onSubmit={handleSubmit(isModalSignInOpen ? handleLogin : handleRegister)}>
         {isModalSignUpOpen && (
+          <div>
+            <input
+              className={s.modal_input}
+              type="text"
+              name="name"
+              placeholder="Name*"
+              {...registerInput('name')}
+            />
+          </div>
+        )}
+        <div>
           <input
             className={s.modal_input}
-            type="text"
-            name="name"
-            placeholder="Name*"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            type="email"
+            name="email"
+            placeholder="Email*"
+            {...registerInput('email')} 
           />
-        )}
-        <input
-          className={s.modal_input}
-          type="email"
-          name="email"
-          placeholder="Email*"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        </div>
         <div className={s.password_input_wrapper}>
           <input
             className={s.modal_input}
             type={isPasswordVisible ? "text" : "password"}
             name="password"
             placeholder="Password*"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...registerInput('password')}
           />
-          {password && (
-            isPasswordVisible ? (
-              <EyeOpenIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(false)} />
-            ) : (
-              <EyeClosedIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(true)} />
-            )
+          {isPasswordVisible ? (
+            <EyeOpenIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(false)} />
+          ) : (
+            <EyeClosedIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(true)} />
           )}
         </div>
-        <button className={s.modal_btn} type="submit" disabled={loading}>
+        <button 
+          className={s.modal_btn}
+          type="submit" 
+          disabled={loading}>
           {loading ? (isModalSignInOpen ? 'Signing In...' : 'Signing Up...') : (isModalSignInOpen ? 'SIGN IN' : 'CREATE')}
         </button>
       </form>
