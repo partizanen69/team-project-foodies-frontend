@@ -1,10 +1,27 @@
+import { useSelector } from 'react-redux';
 import s from './RecipeCreatedBy.module.scss';
+import { selectCurrentUser } from '../../../redux/selectors';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export const RecipeCreatedBy = ({ name, avatar }) => {
+export const RecipeCreatedBy = ({ name, avatar, ownerId }) => {
+  const currentUser = useSelector(selectCurrentUser);
+  const { openModal } = useOutletContext();
+  const navigate = useNavigate();
+
+  const handleBtnClick = () => {
+    if (!currentUser) {
+      openModal('sign in');
+      return;
+    }
+
+    navigate(`/user/${ownerId}`);
+  };
+
   const avatarPlaceholder = process.env.PUBLIC_URL + '/avatar-placeholder.svg';
   return (
     <div className={s.recipe_created_by_wrap}>
-      <button className={s.recipe_created_by}>
+      <button className={s.recipe_created_by} onClick={handleBtnClick}>
         <div className={s.avatar_wrap}>
           <img src={avatar || avatarPlaceholder} alt={name} />
         </div>
@@ -15,4 +32,10 @@ export const RecipeCreatedBy = ({ name, avatar }) => {
       </button>
     </div>
   );
+};
+
+RecipeCreatedBy.propTypes = {
+  ownerId: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
 };

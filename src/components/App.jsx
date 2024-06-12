@@ -1,9 +1,9 @@
-import { React, lazy, Suspense, useEffect,startTransition} from 'react';
+import { React, lazy, Suspense, useEffect, startTransition } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setIsMainPage } from '../redux/reducers/uiReducer';
-import { SharedLayout } from "./SharedLayout";
+import { SharedLayout } from './SharedLayout';
 import Recipe from '../pages/Recipe/Recipe';
 
 import s from './App.module.scss';
@@ -24,21 +24,17 @@ axios.interceptors.request.use(config => {
 });
 
 export const App = () => {
-  // this is an example of doing http requests
-  // useEffect(() => {
-  //   getRecipes().then(recipes => {
-  //     console.log('recipes', recipes);
-  //   });
-  // }, []);
-
   const dispatch = useDispatch();
   const location = useLocation();
 
-const isMainPage = useSelector((state) => state.ui.isMainPage);
+  const isMainPage = useSelector(state => state.ui.isMainPage);
 
   useEffect(() => {
     startTransition(() => {
-        if (location.pathname === '/' || location.pathname === '/team-project-foodies-frontend') {
+      if (
+        location.pathname === '/' ||
+        location.pathname === '/team-project-foodies-frontend'
+      ) {
         dispatch(setIsMainPage(true));
       } else {
         dispatch(setIsMainPage(false));
@@ -47,7 +43,9 @@ const isMainPage = useSelector((state) => state.ui.isMainPage);
   }, [location, dispatch]);
 
   return (
-    <Container className={isMainPage ? s.app_container__for_main : s.app_container}>
+    <Container
+      className={isMainPage ? s.app_container__for_main : s.app_container}
+    >
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
