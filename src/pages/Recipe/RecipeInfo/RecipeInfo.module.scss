@@ -71,3 +71,28 @@
   .add_favorite_wrap {
   }
 }
+
+@media screen and (min-width: 768px) {
+  .recipe_info_wrap {
+    gap: 40px;
+
+    .thumb_wrap {
+      width: 704px;
+      height: 400px;
+    }
+
+    .recipe_info {
+      .recipe_info_title {
+        font-size: 24px;
+        line-height: 28px;
+      }
+
+      .recipe_info_description {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+// @media screen and (min-width: 1440px) {

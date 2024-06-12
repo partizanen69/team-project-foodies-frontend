@@ -45,3 +45,35 @@ li.ingredient {
     }
   }
 }
+
+@media screen and (min-width: 768px) {
+  li.ingredient {
+    width: 178px;
+
+    .img_wrap {
+      width: 90px;
+      height: 90px;
+
+      img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .description {
+      gap: 4px;
+
+      .name {
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .measure {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+// @media screen and (min-width: 1440px) {

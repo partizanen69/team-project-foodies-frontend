@@ -14,3 +14,13 @@
   color: #050505e5;
   cursor: pointer;
 }
+
+@media screen and (min-width: 768px) {
+  .add_favorite_btn {
+    padding: 16px 32px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+// @media screen and (min-width: 1440px) {
