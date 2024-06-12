@@ -1,5 +1,5 @@
 import React, { useState, lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Outlet } from "react-router-dom";
 import { logout, fetchCurrentUser } from '../redux/actions/authActions';  
 
