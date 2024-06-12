@@ -1,6 +1,8 @@
-import { React, lazy, Suspense} from 'react';
-import { Routes, Route } from "react-router-dom";
+import { React, lazy, Suspense, useEffect,startTransition} from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { setIsMainPage } from '../redux/reducers/uiReducer';
 import { SharedLayout } from "./SharedLayout";
 import Recipe from '../pages/Recipe/Recipe';
 
@@ -28,8 +30,24 @@ export const App = () => {
   //     console.log('recipes', recipes);
   //   });
   // }, []);
+
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+const isMainPage = useSelector((state) => state.ui.isMainPage);
+
+  useEffect(() => {
+    startTransition(() => {
+        if (location.pathname === '/' || location.pathname === '/team-project-foodies-frontend') {
+        dispatch(setIsMainPage(true));
+      } else {
+        dispatch(setIsMainPage(false));
+      }
+    });
+  }, [location, dispatch]);
+
   return (
-    <Container className={s.app_container}>
+    <Container className={isMainPage ? s.app_container__for_main : s.app_container}>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
