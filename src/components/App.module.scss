@@ -9,19 +9,39 @@
   max-width: 375px;
   margin-left: auto;
   margin-right: auto;
-  padding: 68px 8px 16px 8px; // top = 8 (initial) + 24 + 36, padding because of header absolute
+  padding: 24px 16px 16px;
   background-color: $bg-primary-color;
   color: $main-text;
+}
 
-  @media screen and (min-width: 768px) {
+.app_container__for_main{
+	@extend .app_container;
+	padding: 24px 8px 16px;
+
+}
+
+@media screen and (min-width: 768px) {
+  .app_container {
     width: 768px;
     max-width: 768px;
-    padding: 102px 16px 32px 16px; // top = 16 (initial) + 36 + 50, padding because of header absolute
+    padding: 36px 32px 32px;
   }
 
-  @media screen and (min-width: 1440px) {
-    width: 1440px;
-    max-width: 1440px;
-    padding: 110px 20px 72px 20px; // top = 20 (initial) + 40 + 50, padding because of header absolute
+	.app_container__for_main{
+		padding:  36px 16px 32px;
+	
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.app_container {
+		width: 1440px;
+		max-width: 1440px;
+		padding: 40px 80px;
   }
+
+	.app_container__for_main{
+		padding:  36px 20px 32px;
+	
+	}
 }

@@ -1,16 +1,7 @@
-@import "../../assets/sass/utils/mixin";
+@import '../../assets/sass/utils/mixin';
 
-.main_container{
-    height: 100%;
-    width: 100%;
-    overflow: visible; 
-}
-
-.title_container{
-  @include flex-center;
-  height: 100%;
-}
-
-.title{
-  @include font-styles(36px,800); 
+.recipe_content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }

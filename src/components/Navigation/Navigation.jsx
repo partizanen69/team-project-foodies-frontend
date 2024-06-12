@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import s from './Navigation.module.scss';
 
 const Navigation = ({ isSidebarOpen, closeSidebar }) => {
+	const isMainPage = useSelector((state) => state.ui.isMainPage);
+
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
 	useEffect(() => {
@@ -42,7 +45,7 @@ const Navigation = ({ isSidebarOpen, closeSidebar }) => {
           </div>
         </nav>
       ) : (
-        <nav className={s.header_navigation}>
+        <nav className={isMainPage ? s.header_navigation : s.header_navigation__light}>
           <nav className={s.header_nav}>
             <NavLink className={s.nav__link} to="/">HOME</NavLink>
             <NavLink className={s.nav__link} to="/add">ADD RECIPE</NavLink>

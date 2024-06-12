@@ -30,7 +30,7 @@
   }
 
   .nav__link_wrapper {
-		margin-top: 218px;
+    margin-top: 218px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -38,21 +38,22 @@
   }
 
   .nav__link {
-		@include font-styles(14px, 700, 1.42);
-		display: block;
-		color: $bg-primary-color;
-		text-decoration: none;
-	
-		&:nth-child(2) {
-			margin-top: 8px;
-			padding: 14px;
-		}
-	
-		&:hover {
-			color: $bg-primary-color; 
-			text-shadow: 0 2px 5px rgba(255, 248, 248, 0.454);  
-		}
-	}
+    @include font-styles(14px, 700, 1.42);
+    display: block;
+    color: $bg-primary-color;
+    text-decoration: none;
+		white-space: nowrap;
+
+    &:nth-child(2) {
+      margin-top: 8px;
+      padding: 14px;
+    }
+
+    &:hover {
+      color: $bg-primary-color;
+      text-shadow: 0 2px 5px rgba(255, 248, 248, 0.454);
+    }
+  }
 
   .header_btn {
     margin: 0;
@@ -76,57 +77,57 @@
 }
 
 .images {
-	position: relative;
-	height: 205px;
-	width: 375px;
-	margin-top: 131px;
+  position: relative;
+  height: 205px;
+  width: 375px;
+  margin-top: 131px;
 }
 
 .image_main {
-	position: absolute;
-	top: -6px;
-	right: 37px;
-	background-image: url('../../assets/images/hero-food.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	width: 222px;
-	height: 209px;
+  position: absolute;
+  top: -6px;
+  right: 37px;
+  background-image: url('../../assets/images/hero-food.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 222px;
+  height: 209px;
 }
 
 .image_secondary {
-	position: absolute;
-	top: 92px;
-	left: 26px;
-	background-image: url('../../assets/images/hero-desert.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	width: 90px;
-	height: 84px;
+  position: absolute;
+  top: 92px;
+  left: 26px;
+  background-image: url('../../assets/images/hero-desert.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 84px;
 }
 
 @media screen and (min-resolution: 192dpi) and (max-width: 767px),
-	screen and (min-resolution: 2dppx) and (max-width: 767px),
-	screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
-	.image_main {
-		background-image: url('../../assets/images/hero-food@2x.png');
-	}
-	.image_secondary {
-		background-image: url('../../assets/images/hero-desert@2x.png');
-	}
+  screen and (min-resolution: 2dppx) and (max-width: 767px),
+  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+  .image_main {
+    background-image: url('../../assets/images/hero-food@2x.png');
+  }
+
+  .image_secondary {
+    background-image: url('../../assets/images/hero-desert@2x.png');
+  }
 }
 
 @media screen and (min-resolution: 288dpi) and (max-width: 767px),
-	screen and (min-resolution: 3dppx) and (max-width: 767px),
-	screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
-	.image_main {
-		background-image: url('../../assets/images/hero-food@3x.png');
-	}
-	.image_secondary {
-		background-image: url('../../assets/images/hero-desert@3x.png');
-	}
+  screen and (min-resolution: 3dppx) and (max-width: 767px),
+  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+  .image_main {
+    background-image: url('../../assets/images/hero-food@3x.png');
+  }
+
+  .image_secondary {
+    background-image: url('../../assets/images/hero-desert@3x.png');
+  }
 }
-
-
 
 .header_navigation {
   display: flex;
@@ -141,46 +142,63 @@
   .header_nav {
     display: flex;
     align-items: center;
-
   }
+
+  .nav__link {
+    @include font-styles(14px, 700, 1.5);
+    color: $bg-primary-color;
+    text-decoration: none;
+		white-space: nowrap;
+		
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .header_nav {
+      margin-left: 177px;
+      margin-right: 113px;
+    }
+
+    .nav__link {
+      @include font-styles(12px, 700, 1.5);
+    }
+
+    .nav__link:not(:first-child) {
+      border-radius: 30px;
+      border: 1px solid $light-dark-text;
+      padding: 14px;
+      margin-left: 16px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .header_navigation {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+}
+
+.header_navigation__light {
+	@extend .header_navigation;
+	background-color: $bg-primary-color;
+
+	.nav__link__dark {
+		@extend .nav__link;
+		color: $dark-text;
+	}
 
 	.nav__link {
 		@include font-styles(14px, 700, 1.5);
-		color: $bg-primary-color;
+		color: $dark-text;
 		text-decoration: none;
 
 		&:hover {
 			text-decoration: underline;
 		}
 	}
-
-	@media screen and (min-width: 768px) {
-
-		.header_nav{
-			margin-left: 177px;
-			margin-right: 113px;
-		}
-		.nav__link {
-			@include font-styles(12px, 700, 1.5);
-		}
-
-		.nav__link:not(:first-child) {
-			border-radius: 30px;
-			border: 1px solid $light-dark-text;	
-			padding: 14px;
-			margin-left: 16px;
-		}
-
-}
-
-@media screen and (max-width: 767px) {
-  .header_navigation {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-
-}
-
 }
