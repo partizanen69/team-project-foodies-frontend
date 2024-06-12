@@ -60,3 +60,12 @@ export const removeRecipeFromFavorites = async ({ recipeId }) => {
     handleAxiosError(err);
   }
 };
+
+export const getPopularRecipes = async () => {
+  try {
+    const result = await axios.get('/recipes/popular');
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
