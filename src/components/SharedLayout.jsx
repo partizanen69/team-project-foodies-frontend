@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense, useEffect } from 'react';
+import React, { useState, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from "react-router-dom";
 import { logout, fetchCurrentUser } from '../redux/actions/authActions';  
@@ -7,11 +7,9 @@ const LogoutForm = lazy(() => import('./LogoutForm/LogoutForm'));
 const SignInSignUpForm = lazy(() => import('./SignInSignUpForm/SignInSignUpForm'));
 const Header = lazy(() => import('./Header/Header'));
 const Modal = lazy(() => import('./Modal/Modal'));
-const Loader = lazy(() => import('./Loader/Loader'));
 
 export const SharedLayout = () => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
 
   const [isModalSignInOpen, setIsModalSignInOpen] = useState(false);
   const [isModalSignUpOpen, setIsModalSignUpOpen] = useState(false);
