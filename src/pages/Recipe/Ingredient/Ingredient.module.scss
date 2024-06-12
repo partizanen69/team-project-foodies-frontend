@@ -1,0 +1,47 @@
+li.ingredient {
+  display: flex;
+  gap: 10px;
+  width: 152px;
+
+  .img_wrap {
+    width: 75px;
+    height: 75px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #0505051a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 55px;
+      height: 55px;
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+
+    .name {
+      font-family: Mulish;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: -0.02em;
+      text-align: left;
+      color: #050505;
+    }
+    .measure {
+      font-family: Mulish;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: -0.02em;
+      text-align: left;
+      color: #05050599;
+    }
+  }
+}
