@@ -18,11 +18,7 @@ export const RecipeInfo = ({ recipe }) => {
             <div className={s.recipe_info_category_item}>{recipe.time} min</div>
           </div>
           <p className={s.recipe_info_description}>{recipe.description}</p>
-          <RecipeCreatedBy
-            ownerId={recipe.owner._id}
-            name={recipe.owner.name}
-            avatar={recipe.owner.avatar}
-          />
+          <RecipeCreatedBy ownerId={recipe.owner} />
         </div>
         <Ingredients ingredients={recipe.ingredients} />
         <RecipePreparation instructions={recipe.instructions} />

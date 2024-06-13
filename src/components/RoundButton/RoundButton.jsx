@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon';
-import styles from './RoundButton.module.scss';
+
+import s from './RoundButton.module.scss';
+import Icon from 'components/Icon/Icon';
 
 const RoundButton = ({
   size = 42,
@@ -14,7 +15,7 @@ const RoundButton = ({
 }) => {
   return (
     <button
-      className={className || styles.button}
+      className={className || s.button}
       style={{ width: size, height: size }}
       onClick={onClick}
     >
@@ -22,7 +23,7 @@ const RoundButton = ({
         name={iconName}
         width={iconWidth}
         height={iconHeight}
-        className={iconClassName || styles.icon}
+        className={s[iconClassName] || s.icon}
       />
     </button>
   );
@@ -33,7 +34,7 @@ RoundButton.propTypes = {
   iconName: PropTypes.string,
   iconWidth: PropTypes.number,
   iconHeight: PropTypes.number,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default RoundButton;
