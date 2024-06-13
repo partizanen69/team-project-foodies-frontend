@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Icon from 'components/Icon';
 import s from './Avatar.module.scss';
 import { updateAvatar } from 'api/users';

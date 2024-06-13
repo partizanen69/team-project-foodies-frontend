@@ -7,7 +7,7 @@ import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
 import { Avatar } from './Avatar/Avatar';
-import { getUserDetailsById, updateAvatar } from 'api/users';
+import { getUserDetailsById } from 'api/users';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
