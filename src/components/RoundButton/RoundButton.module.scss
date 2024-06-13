@@ -1,27 +1,32 @@
-@import "../../assets/sass/utils/variables";
+@import '../../assets/sass/utils/variables';
 
 .button {
-    border-radius: 50%;
-    border: 1px solid $light-dark-stroke;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color $hover-transition;
+  border-radius: 50%;
+  border: 1px solid $light-dark-stroke;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color $hover-transition;
 
-    &:hover,
-    &:focus {
-        background-color: $dark-text;
-    }
+  &:hover,
+  &:focus {
+    background-color: $dark-text;
+  }
 }
 
 .icon {
-    transition: fill $hover-transition;
-    fill: $dark-text;
+  transition: fill $hover-transition;
+  fill: $dark-text;
 }
 
 .button:hover .icon,
 .button:focus .icon {
-    fill: $bg-primary-color;
+  fill: $bg-primary-color;
+}
+
+.favorite {
+  transition: fill $hover-transition;
+  fill: red;
 }
