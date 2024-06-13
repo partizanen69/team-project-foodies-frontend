@@ -1,0 +1,28 @@
+@import "../../assets/sass/main.scss";
+@import "../../assets/sass/utils/mixin";
+@import "../../assets/sass/utils/variables";
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+
+.bottom {
+  padding: 40px 0 16px;
+  border-top: 1px solid $light-dark-stroke;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .bottom {
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .bottom {
+    padding-bottom: 40px;
+  }
+}
