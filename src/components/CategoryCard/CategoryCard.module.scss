@@ -1,0 +1,107 @@
+@import '../../assets/sass/utils/variables';
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 768px) {
+    border-radius: 30px;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+
+    @media (min-width: 768px) {
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+    }
+
+    .titleHolder {
+      display: flex;
+      padding: 10px 14px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      border-radius: 30px;
+      border: 1px solid $light-stroke-04;
+      background: $light-stroke;
+    }
+
+    .title {
+      color: $bg-primary-color;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: -0.02em;
+
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.smallCard {
+  width: 343px;
+  height: 250px;
+
+  @media (min-width: 768px) {
+    width: 342px;
+    height: 369px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 325px;
+    height: 369px;
+  }
+}
+
+.largeCard {
+  width: 100%;
+  height: 369px;
+
+  @media (min-width: 768px) {
+    width: 704px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 590px;
+  }
+}
+
+.button {
+  border-radius: 50%;
+  border: 1px solid $light-stroke;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color $hover-transition;
+
+  &:hover,
+  &:focus {
+    background-color: $dark-text;
+  }
+}
+
+.icon {
+  fill: $bg-primary-color;
+}
