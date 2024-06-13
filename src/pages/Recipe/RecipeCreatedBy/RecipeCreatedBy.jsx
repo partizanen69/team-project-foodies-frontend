@@ -4,7 +4,7 @@ import { selectCurrentUser } from '../../../redux/selectors';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export const RecipeCreatedBy = ({ name, avatar, ownerId }) => {
+export const RecipeCreatedBy = ({ ownerId, name, avatar, popular = false }) => {
   const currentUser = useSelector(selectCurrentUser);
   const { openModal } = useOutletContext();
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export const RecipeCreatedBy = ({ name, avatar, ownerId }) => {
           <img src={avatar || avatarPlaceholder} alt={name} />
         </div>
         <div className={s.name_wrap}>
-          <p className={s.created_by}>Created by:</p>
+          {!popular && <p className={s.created_by}>Created by:</p>}
           <p className={s.name}>{name}</p>
         </div>
       </button>
@@ -38,4 +38,5 @@ RecipeCreatedBy.propTypes = {
   ownerId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   avatar: PropTypes.string,
+  popular: PropTypes.bool,
 };

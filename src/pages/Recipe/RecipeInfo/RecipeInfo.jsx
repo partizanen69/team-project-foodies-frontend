@@ -21,7 +21,7 @@ export const RecipeInfo = ({ recipe }) => {
           <RecipeCreatedBy
             ownerId={recipe.owner._id}
             name={recipe.owner.name}
-            avatar={recipe.owner.avatar}
+            avatar={recipe.owner.avatarURL}
           />
         </div>
         <Ingredients ingredients={recipe.ingredients} />
