@@ -125,7 +125,7 @@ const Header = ({ openModal }) => {
               >
                 <NavLink
                   className={s.dropdown_menu_link}
-                  to={`user/${user.id}`}
+                  to={`user/${user.id}/recipies`}
                 >
                   PROFILE
                 </NavLink>

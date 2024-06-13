@@ -4,6 +4,7 @@
 .tabs_container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .tabs_list {
@@ -11,13 +12,25 @@
   color: $mid-dark-text;
   display: flex;
   gap: 30px;
+  width: 100%;
 
-  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.tabs_list::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: $light-dark-stroke;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
 }
 
 .tab_item {

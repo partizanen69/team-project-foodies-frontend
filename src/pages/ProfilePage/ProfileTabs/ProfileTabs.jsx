@@ -8,7 +8,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
       <ul className={s.tabs_list}>
         <li className={s.tab_item}>
           <NavLink
-            to={`/user/${userId}/my-recipies`}
+            to={`/user/${userId}/recipies`}
             state={{ from: location }}
             activeclassname={s.active}
           >

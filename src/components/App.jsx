@@ -58,7 +58,7 @@ export const App = () => {
             <Route path="/recipe/:id" element={<Recipe />} />
             <Route path="*" element={<MainPage />} />
             <Route path="/user/:id" element={<ProfilePage />}>
-              <Route path="/user/:id/my-recipies" element={<UserRecipes />} />
+              <Route path="/user/:id/recipies" element={<UserRecipes />} />
               <Route path="/user/:id/favorites" element={<MyFavorites />} />
               <Route path="/user/:id/followers" element={<UserFollowers />} />
               <Route path="/user/:id/following" element={<UserFollowing />} />
