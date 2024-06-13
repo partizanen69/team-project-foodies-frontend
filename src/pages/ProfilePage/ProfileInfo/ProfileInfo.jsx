@@ -5,8 +5,8 @@ import Modal from 'components/Modal/Modal';
 import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/actions/authActions';
-import { Avatar } from './Avatar/Avatar';
+import { logout } from '../../../redux/actions/authActions';
+import { Avatar } from '../Avatar/Avatar';
 import { getUserDetailsById } from 'api/users';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {

@@ -7,7 +7,7 @@ import { PathInfo } from 'components/PathInfo/PathInfo';
 import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
 
-import ProfileInfo from 'components/ProfileInfo/ProfileInfo';
+import ProfileInfo from 'pages/ProfilePage/ProfileInfo/ProfileInfo';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
