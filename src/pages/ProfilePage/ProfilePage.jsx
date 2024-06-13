@@ -1,15 +1,15 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import s from './ProfilePage.module.scss';
 import Container from 'components/Container/Container';
-
-import { PathInfo } from 'components/PathInfo/PathInfo';
 import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
+import { PathInfo } from 'components/PathInfo/PathInfo';
 
 import ProfileInfo from 'pages/ProfilePage/ProfileInfo/ProfileInfo';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import ProfileTabs from './ProfileTabs/ProfileTabs';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -35,16 +35,8 @@ const ProfilePage = () => {
 
       <div className={s.main_content}>
         <ProfileInfo userId={id} isOwnProfile={isOwnProfile} />
-
-        <ul>
-          <li>My recipes</li>
-          <li>My favorites</li>
-          <li>Followers</li>
-          <li>Following</li>
-        </ul>
+        <ProfileTabs userId={id} isOwnProfile={isOwnProfile} />
       </div>
-
-      <Outlet />
     </Container>
   );
 };

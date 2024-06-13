@@ -7,6 +7,10 @@ import { SharedLayout } from './SharedLayout';
 import Recipe from '../pages/Recipe/Recipe';
 
 import s from './App.module.scss';
+import UserRecipes from 'pages/ProfilePage/UserRecipes/UserRecipes';
+import MyFavorites from 'pages/ProfilePage/MyFavorites/MyFavorites';
+import UserFollowers from 'pages/ProfilePage/UserFollowers/UserFollowers';
+import UserFollowing from 'pages/ProfilePage/UserFollowing/UserFollowing';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const ProfilePage = lazy(() => import('../pages/ProfilePage/ProfilePage'));
@@ -54,10 +58,10 @@ export const App = () => {
             <Route path="/recipe/:id" element={<Recipe />} />
             <Route path="*" element={<MainPage />} />
             <Route path="/user/:id" element={<ProfilePage />}>
-              {/* <Route path="/user/:id/my-recipies" element={} />
-              <Route path="/user/:id/favorites" element={} />
-              <Route path="/user/:id/followers" element={} />
-              <Route path="/user/:id/following" element={} /> */}
+              <Route path="/user/:id/my-recipies" element={<UserRecipes />} />
+              <Route path="/user/:id/favorites" element={<MyFavorites />} />
+              <Route path="/user/:id/followers" element={<UserFollowers />} />
+              <Route path="/user/:id/following" element={<UserFollowing />} />
             </Route>
           </Route>
         </Routes>
