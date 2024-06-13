@@ -8,10 +8,11 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/actions/authActions';
 import { Avatar } from '../Avatar/Avatar';
 import { getUserDetailsById } from 'api/users';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [userDetails, setuserDetails] = useState({});
 
@@ -28,6 +29,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
   const handleLogOut = () => {
     dispatch(logout());
     closeModal();
+    navigate('/');
   };
 
   useEffect(() => {
