@@ -17,6 +17,9 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
   const { loading } = useSelector((state) => state.auth);
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const validationSchema = Yup.object().shape({
     name: isModalSignUpOpen ? Yup.string().required('Name is required') : Yup.string().nullable(),
@@ -24,9 +27,23 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
     password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
   });
 
-  const { register: registerInput, handleSubmit, formState: { errors } } = useForm({
+  const { register: registerInput, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
   });
+
+  const watchedValues = watch();
+
+  useEffect(() => {
+    if (watchedValues.name) {
+      setName(watchedValues.name)
+    }
+    if (watchedValues.email) {
+      setEmail(watchedValues.email)
+    }
+    if (watchedValues.password) {
+      setPassword(watchedValues.password)
+    }
+  }, [watchedValues]);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -51,25 +68,21 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
       <h2 className={s.modal_title}>{isModalSignInOpen ? 'SIGN IN' : 'SIGN UP'}</h2>
       <form onSubmit={handleSubmit(isModalSignInOpen ? handleLogin : handleRegister)}>
         {isModalSignUpOpen && (
-          <div>
-            <input
-              className={s.modal_input}
-              type="text"
-              name="name"
-              placeholder="Name*"
-              {...registerInput('name')}
-            />
-          </div>
-        )}
-        <div>
           <input
             className={s.modal_input}
-            type="email"
-            name="email"
-            placeholder="Email*"
-            {...registerInput('email')} 
+            type="text"
+            name="name"
+            placeholder="Name*"
+            {...registerInput('name')}
           />
-        </div>
+        )}
+        <input
+          className={s.modal_input}
+          type="email"
+          name="email"
+          placeholder="Email*"
+          {...registerInput('email')}
+        />
         <div className={s.password_input_wrapper}>
           <input
             className={s.modal_input}
@@ -84,9 +97,9 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
             <EyeClosedIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(true)} />
           )}
         </div>
-        <button 
-          className={s.modal_btn}
-          type="submit" 
+        <button
+          className={(isModalSignInOpen && email && password.length >= 6) || (isModalSignUpOpen && name && email && password.length >= 6) ? s.modal_btn__active : s.modal_btn}
+          type="submit"
           disabled={loading}>
           {loading ? (isModalSignInOpen ? 'Signing In...' : 'Signing Up...') : (isModalSignInOpen ? 'SIGN IN' : 'CREATE')}
         </button>
