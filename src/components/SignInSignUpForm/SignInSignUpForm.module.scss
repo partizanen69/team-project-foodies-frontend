@@ -42,6 +42,12 @@
 	cursor: pointer;
 }
 
+.modal_btn__active{
+	@extend .modal_btn;
+	background: $dark-text !important;
+	color:  $bg-primary-color !important;
+}
+
 .modal_btn:hover{
 	background-color: rgba(5, 5, 5, 0.30);
 	color: $bg-primary-color;

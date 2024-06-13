@@ -18,7 +18,6 @@ const Header = ({ openModal }) => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 	const [isDropDownShown, setIsDropDownShown] = useState(false);
-	const [hasAvatar] = useState(false);
 
 	const handleResize = () => {
 		setIsMobile(window.innerWidth < 768);
@@ -72,19 +71,21 @@ const Header = ({ openModal }) => {
 					<div className={s.profile_bar_wrapper}>
 						<div onClick={toggleDropDown} className={s.profile_bar}>
 							<span className={s.avatar_wrapper}>
-								<img src={hasAvatar ? process.env.PUBLIC_URL + '/test_avatar.jpg' : process.env.PUBLIC_URL + '/avatar-placeholder.svg'} alt="avatar" className={s.avatar} />
+								<img src={user?.avatarURL ? user.avatarURL : process.env.PUBLIC_URL + '/avatar-placeholder.svg'} alt="avatar" className={s.avatar} />
 							</span>
-							{user && <p className={s.profile_bar_name}>{user.name}</p>}
-							<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-							</svg>
+							<div className={s.name_wrapper}>
+								{user && <p className={s.profile_bar_name}>{user.name}</p>}
+								<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+								</svg>
+							</div>
 						</div>
 						<button type="button" onClick={openSidebar} className={s.burger_btn}>
 							<BurgerBar className={isMainPage ? s.burger_icon : s.burger_icon__dark}/>
 						</button>
 
 						{isDropDownShown && (
-							<div className={s.dropdown_menu}>
+							<div className={isMainPage ? s.dropdown_menu : s.dropdown_menu__main}>
 								<NavLink className={s.dropdown_menu_link} to="">PROFILE</NavLink>
 								<div className={s.dropdown_menu_link_img}>
 									<button className={s.dropdown_menu_link} onClick={() => openModal('log out')}>
