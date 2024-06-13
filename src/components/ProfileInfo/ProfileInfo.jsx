@@ -1,40 +1,21 @@
 import s from './ProfileInfo.module.scss';
 import { Suspense, useEffect, useState } from 'react';
 
-import { getUserDetails } from 'api/users';
-import Icon from 'components/Icon';
 import Modal from 'components/Modal/Modal';
 import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/authActions';
-import { UpdateAvatar } from './UpdateAvatar/UpdateAvatar';
+import { Avatar } from './Avatar/Avatar';
+import { getUserDetailsById, updateAvatar } from 'api/users';
 
-const ProfileInfo = ({ userId }) => {
+const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState(null);
   const [userDetails, setuserDetails] = useState({});
 
   const [isModalLogOutOpen, setIsModalLogOutOpen] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        if (!userId) {
-          return;
-        }
-
-        const data = await getUserDetails({ id: userId });
-        setuserDetails(data);
-      } catch (error) {
-        setErrorMsg(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [userId]);
 
   const openModal = () => {
     setIsModalLogOutOpen(true);
@@ -49,19 +30,28 @@ const ProfileInfo = ({ userId }) => {
     closeModal();
   };
 
+  useEffect(() => {
+    (async () => {
+      try {
+        if (!userId) {
+          return;
+        }
+
+        const data = await getUserDetailsById({ id: userId });
+        setuserDetails(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [userId]);
+
   return (
     <Suspense fallback={<Loader />}>
       <div className={s.profile_info}>
         <div className={s.profile_info_card}>
-          <div className={s.profile_avatar_block}>
-            <img
-              alt="User avatar"
-              src={userDetails.avatarURL}
-              className={s.profile_avatar}
-            />
-
-            <UpdateAvatar userId={userId} />
-          </div>
+          <Avatar avatar={userDetails.avatarURL} />
 
           <p className={s.user_name}>
             {isLoading ? `Loading...` : userDetails.name}
@@ -82,7 +72,7 @@ const ProfileInfo = ({ userId }) => {
               </span>
             </li>
 
-            {userDetails.hasOwnProperty('favorites') && (
+            {isOwnProfile && userDetails.hasOwnProperty('favorites') && (
               <li className={s.details_list_item}>
                 <p className={s.item_key}>Favorites: </p>
                 <span className={s.item_value}>
@@ -98,7 +88,7 @@ const ProfileInfo = ({ userId }) => {
               </span>
             </li>
 
-            {userDetails.hasOwnProperty('followingCount') && (
+            {isOwnProfile && userDetails.hasOwnProperty('followingCount') && (
               <li className={s.details_list_item}>
                 <p className={s.item_key}>Following: </p>
                 <span className={s.item_value}>
@@ -109,9 +99,13 @@ const ProfileInfo = ({ userId }) => {
           </ul>
         </div>
 
-        <button type="submit" className={s.btn_logout} onClick={openModal}>
-          Log Out
-        </button>
+        {isOwnProfile ? (
+          <button type="submit" className={s.btn_logout} onClick={openModal}>
+            Log Out
+          </button>
+        ) : (
+          <button className={s.btn_logout}>Follow</button>
+        )}
       </div>
 
       {isModalLogOutOpen && (

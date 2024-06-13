@@ -9,10 +9,19 @@ import Subtitle from 'components/Subtitle/Subtitle';
 
 import ProfileInfo from 'components/ProfileInfo/ProfileInfo';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 const ProfilePage = () => {
   const { id } = useParams();
   const { user } = useSelector(state => state.auth);
+
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
+
+  useEffect(() => {
+    if (user && user.id && id) {
+      setIsOwnProfile(user.id === id);
+    }
+  }, [user, id]);
 
   return (
     <Container className={s.main_container}>
@@ -25,7 +34,7 @@ const ProfilePage = () => {
       </Subtitle>
 
       <div className={s.main_content}>
-        <ProfileInfo userId={id} />
+        <ProfileInfo userId={id} isOwnProfile={isOwnProfile} />
 
         <ul>
           <li>My recipes</li>

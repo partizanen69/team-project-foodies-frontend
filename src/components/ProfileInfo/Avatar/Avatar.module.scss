@@ -1,5 +1,15 @@
 @import '../../../assets/sass/utils/variables.scss';
 
+.profile_avatar_block {
+  position: relative;
+}
+
+.profile_avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
 .btn_add_avatar {
   position: absolute;
   left: 50%;

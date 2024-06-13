@@ -22,16 +22,6 @@
   border: 1px solid rgba(5, 5, 5, 0.2);
 }
 
-.profile_avatar_block {
-  position: relative;
-}
-
-.profile_avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-
 .user_name {
   @include font-styles(18px, 800, 1.33);
   text-transform: uppercase;
