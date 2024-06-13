@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/team-project-foodies-frontend/static/css/main.21a401d2.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.2de5b1c3.js",
+    "main.css": "/team-project-foodies-frontend/static/css/main.3066a52b.css",
+    "main.js": "/team-project-foodies-frontend/static/js/main.47b68487.js",
     "static/css/739.64d68e3e.chunk.css": "/team-project-foodies-frontend/static/css/739.64d68e3e.chunk.css",
     "static/js/739.3a8ad9e5.chunk.js": "/team-project-foodies-frontend/static/js/739.3a8ad9e5.chunk.js",
     "static/css/781.7ad0c6e7.chunk.css": "/team-project-foodies-frontend/static/css/781.7ad0c6e7.chunk.css",
@@ -28,8 +28,8 @@
     "static/media/eye-closed-icon.svg": "/team-project-foodies-frontend/static/media/eye-closed-icon.30b488e2892091b0ab6a65075a568739.svg",
     "static/media/eye-open-icon.svg": "/team-project-foodies-frontend/static/media/eye-open-icon.9663035812a6a9dbe97bb016bc6421e7.svg",
     "static/media/burger-bar.svg": "/team-project-foodies-frontend/static/media/burger-bar.3d71d679ba10f3983585537b227ee306.svg",
-    "main.21a401d2.css.map": "/team-project-foodies-frontend/static/css/main.21a401d2.css.map",
-    "main.2de5b1c3.js.map": "/team-project-foodies-frontend/static/js/main.2de5b1c3.js.map",
+    "main.3066a52b.css.map": "/team-project-foodies-frontend/static/css/main.3066a52b.css.map",
+    "main.47b68487.js.map": "/team-project-foodies-frontend/static/js/main.47b68487.js.map",
     "739.64d68e3e.chunk.css.map": "/team-project-foodies-frontend/static/css/739.64d68e3e.chunk.css.map",
     "739.3a8ad9e5.chunk.js.map": "/team-project-foodies-frontend/static/js/739.3a8ad9e5.chunk.js.map",
     "781.7ad0c6e7.chunk.css.map": "/team-project-foodies-frontend/static/css/781.7ad0c6e7.chunk.css.map",
@@ -47,7 +47,7 @@
     "525.be5950e0.chunk.js.map": "/team-project-foodies-frontend/static/js/525.be5950e0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21a401d2.css",
-    "static/js/main.2de5b1c3.js"
+    "static/css/main.3066a52b.css",
+    "static/js/main.47b68487.js"
   ]
 }
