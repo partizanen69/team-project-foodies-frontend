@@ -12,7 +12,7 @@ const Hero = ({ openModal }) => {
 
   const handleAddRecipeClick = () => {
     if (user) {
-      navigate('/recipes/my');
+      navigate('/add');
     } else {
       openModal('sign in');
     }

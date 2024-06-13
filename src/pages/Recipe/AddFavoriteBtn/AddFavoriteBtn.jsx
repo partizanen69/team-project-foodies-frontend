@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../redux/selectors';
 import { useOutletContext } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import RoundButton from 'components/RoundButton/RoundButton';
 
 const showError = msg => {
   toast.error(msg, {
@@ -17,7 +18,7 @@ const showError = msg => {
   });
 };
 
-export const AddFavoriteBtn = ({ recipeId }) => {
+export const AddFavoriteBtn = ({ recipeId, round = false }) => {
   const currentUser = useSelector(selectCurrentUser);
   const [isLoading, setIsLoading] = useState(() =>
     currentUser && recipeId ? true : false
@@ -89,23 +90,40 @@ export const AddFavoriteBtn = ({ recipeId }) => {
     return isFavorite ? 'Remove from favorites' : 'Add to favorites';
   })();
 
+  const onClickHandler = () => {
+    if (!currentUser) {
+      openModal('sign in');
+      return;
+    }
+    isFavorite ? doRemoveRecipeFromFavorites() : doAddRecipeToFavorites();
+  };
+
   return (
-    <button
-      onClick={() => {
-        if (!currentUser) {
-          openModal('sign in');
-          return;
-        }
-        isFavorite ? doRemoveRecipeFromFavorites() : doAddRecipeToFavorites();
-      }}
-      className={s.add_favorite_btn}
-      disabled={isLoading}
-    >
-      {btnText}
-    </button>
+    <>
+      {!round && (
+        <button
+          onClick={() => onClickHandler()}
+          className={s.add_favorite_btn}
+          disabled={isLoading}
+        >
+          {btnText}
+        </button>
+      )}
+      {round && isFavorite && (
+        <RoundButton
+          iconName={'icon-heart'}
+          onClick={() => onClickHandler()}
+          iconClassName={'favorite'}
+        />
+      )}
+      {round && !isFavorite && (
+        <RoundButton iconName={'icon-heart'} onClick={() => onClickHandler()} />
+      )}
+    </>
   );
 };
 
 AddFavoriteBtn.propTypes = {
   recipeId: PropTypes.string.isRequired,
+  round: PropTypes.bool,
 };
