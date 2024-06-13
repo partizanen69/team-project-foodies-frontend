@@ -4,7 +4,7 @@ import { RecipeCard } from 'components/RecipeCard/RecipeCard';
 import { getPopularRecipes } from 'api/recipes';
 import s from './PopularRecipes.module.scss';
 
-const PopularRecipesList = () => {
+const PopularRecipes = () => {
   const [popularRecipes, setPopularRecipes] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -46,4 +46,4 @@ const PopularRecipesList = () => {
   );
 };
 
-export default PopularRecipesList;
+export default PopularRecipes;
