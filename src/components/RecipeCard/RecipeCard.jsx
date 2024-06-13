@@ -21,7 +21,12 @@ export const RecipeCard = ({ recipe }) => {
           <h3 className={s.recipeTitle}>{recipe.title}</h3>
           <p className={s.recipeDescription}>{recipe.description}</p>
           <div className={s.bottomWrapper}>
-            <RecipeCreatedBy ownerId={recipe.owner} popular={true} />
+            <RecipeCreatedBy
+              ownerId={recipe.owner._id}
+              name={recipe.owner.name}
+              avatar={recipe.owner.avatarURL}
+              popular={true}
+            />
             <div className={s.recipeCardIconWrapper}>
               <AddFavoriteBtn recipeId={recipe._id} round={true} />
               <RoundButton onClick={() => navigate(`/recipe/${recipe._id}`)} />
