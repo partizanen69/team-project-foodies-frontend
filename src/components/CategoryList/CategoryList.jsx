@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CategoryCard from '../CategoryCard/CategoryCard';
 import styles from './CategoryList.module.scss';
@@ -13,10 +13,18 @@ const CategoryList = ({
   onCategoryClick,
   onAllCategoriesClick,
 }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const getCategoryCardSize = index => {
-    if (window.innerWidth < 768) {
+    if (windowWidth < 768) {
       return 'small';
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+    } else if (windowWidth >= 768 && windowWidth < 1440) {
       if (index < 3) {
         return index === 2 ? 'large' : 'small';
       }
@@ -36,20 +44,21 @@ const CategoryList = ({
   };
 
   return (
-    <div className={styles.list}>
+    <ul className={styles.list}>
       {categories.map((category, index) => (
-        <CategoryCard
-          key={category._id}
-          imgUrl={backendUrl + category.imgUrl}
-          name={category.name}
-          size={getCategoryCardSize(index)}
-          onClick={() => onCategoryClick(category._id)}
-        />
+        <li key={category._id}>
+          <CategoryCard
+            imgUrl={backendUrl + category.imgUrl}
+            name={category.name}
+            size={getCategoryCardSize(index)}
+            onClick={() => onCategoryClick(category._id)}
+          />
+        </li>
       ))}
-      <div className={styles.allCategories}>
+      <li className={styles.allCategories}>
         <button onClick={onAllCategoriesClick}>ALL CATEGORIES</button>
-      </div>
-    </div>
+      </li>
+    </ul>
   );
 };
 
