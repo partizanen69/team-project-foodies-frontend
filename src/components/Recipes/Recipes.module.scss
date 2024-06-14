@@ -1,0 +1,16 @@
+@import '../../assets/sass/main.scss';
+
+.recipes_container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-inline: 8px;
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.recipes_header_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
