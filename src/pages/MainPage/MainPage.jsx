@@ -1,6 +1,8 @@
 import { React, lazy } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Container from 'components/Container/Container';
+import Footer from 'components/Footer/Footer';
+// import { Testimonials } from '../../components/Testimonials/Testimonials';
 import Recipes from 'components/Recipes/Recipes';
 
 import s from './MainPage.module.scss';
@@ -12,7 +14,9 @@ const MainPage = () => {
   return (
     <Container className={s.main_container}>
       <Hero openModal={openModal} />
-      <Recipes/>
+      <Recipes />
+      {/* <Testimonials /> */}
+      <Footer />
     </Container>
   );
 };
