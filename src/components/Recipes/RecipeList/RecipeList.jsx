@@ -1,33 +1,14 @@
-// import react tools
-import { useState, useEffect } from 'react';
+// import tools
+import PropTypes from 'prop-types';
 
 // import components
 import { RecipeCard } from 'components/RecipeCard/RecipeCard';
 import Loader from 'components/Loader/Loader';
 
-// import requests
-import { getRecipes } from 'api/recipes';
-
 // import styles
 import s from './RecipeList.module.scss';
 
-const RecipeList = () => {
-  const [recipesList, setRecipesList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await getRecipes();
-        setIsLoading(false);
-        setRecipesList(data.recipes);
-      } catch (err) {
-        setIsLoading(false);
-        setErrorMsg(err.message);
-      }
-    })();
-  }, []);
+const RecipeList = ({recipesList, isLoading, errorMsg}) => {
 
   return (
     <>
@@ -48,6 +29,12 @@ const RecipeList = () => {
       )}
     </>
   );
+};
+
+RecipeList.propTypes = {
+  recipesList: PropTypes.arrayOf(PropTypes.object),
+  isLoading: PropTypes.bool,
+  errorMsg: PropTypes.string
 };
 
 export default RecipeList;

@@ -1,5 +1,10 @@
+// import components
 import Icon from 'components/Icon/Icon';
+
+// import tools
 import PropTypes from 'prop-types';
+
+// import styles
 import s from './NavigationButton.module.scss';
 
 const NavigationButton = ({ title, action }) => {
@@ -7,7 +12,7 @@ const NavigationButton = ({ title, action }) => {
     <button
       type="button"
       className={s.recipes_navigation_button}
-      click={action}
+      onClick={action}
     >
       <Icon
         name="icon-arrow-back"
