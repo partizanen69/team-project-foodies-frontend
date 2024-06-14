@@ -1,12 +1,13 @@
 @import '../../assets/sass/utils/variables';
+@import '../../assets/sass/utils/mixin';
 
 .button {
+  @include flex-center;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid $light-dark-stroke;
   background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   transition: background-color $hover-transition;
 
@@ -14,20 +15,38 @@
   &:focus {
     background-color: $dark-text;
   }
+
+  &:hover .icon,
+  &:focus .icon {
+    fill: $bg-primary-color;
+  }
+
+  &:hover .favorite,
+  &:focus .favorite {
+    fill: red;
+  }
 }
 
 .icon {
+  width: 16px;
+  height: 16px;
   transition: fill $hover-transition;
   fill: $dark-text;
 }
 
-.button:hover .icon,
-.button:focus .icon {
-  fill: $bg-primary-color;
+@media screen and (min-width: 768px) {
+  .button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .favorite {
-  transition: fill $hover-transition;
   fill: red;
 }
 

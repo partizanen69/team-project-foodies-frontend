@@ -11,8 +11,8 @@ import icons from '../../assets/icons/icons.svg';
 //   </div>
 // );
 
-const Icon = ({ name, width = 32, height = 32, className = '' }) => (
-  <svg width={width} height={height} className={className}>
+const Icon = ({ name, className = '' }) => (
+  <svg className={className}>
     <use xlinkHref={`${icons}#${name}`} />
   </svg>
 );
