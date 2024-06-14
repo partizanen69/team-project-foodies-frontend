@@ -10,18 +10,12 @@ import Subtitle from 'components/Subtitle/Subtitle';
 import RecipeList from './RecipeList';
 import RecipePagination from './RecipePagination';
 
-// import requests
-import { getRecipes } from 'api/recipes';
-
 // import styles
 import s from './Recipes.module.scss';
 
 const Recipes = ({ recipes, recipesPerPage, recipesTotal, onBackClick }) => {
   const [recipesList, setRecipesList] = useState([]);
-  const [page, setPage] = useState(null);
   const [total, setTotal] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     setRecipesList(recipes);
@@ -39,12 +33,8 @@ const Recipes = ({ recipes, recipesPerPage, recipesTotal, onBackClick }) => {
           gastronomic desires.
         </Subtitle>
       </div>
-      <RecipeList
-        recipesList={recipesList}
-        isLoading={isLoading}
-        errorMsg={errorMsg}
-      />
-      <RecipePagination page={page} total={total} />
+      <RecipeList recipesList={recipesList} />
+      <RecipePagination total={total} />
     </Container>
   );
 };
