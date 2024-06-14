@@ -16,8 +16,6 @@ const NavigationButton = ({ title, action }) => {
     >
       <Icon
         name="icon-arrow-back"
-        width="16"
-        height="16"
         className={s.recipes_navigation_button_icon}
       />
       <span className={s.recipes_navigation_button_text}>{title}</span>
