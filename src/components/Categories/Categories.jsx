@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../../api/categories.js';
-import { getRecipes } from '../../api/recipes.js';
 import MainTitle from '../MainTitle/MainTitle';
 import Subtitle from '../Subtitle/Subtitle';
 import CategoryList from '../CategoryList/CategoryList';
-import Recipes from '../Recipes/Recipes';
 import { toast } from 'react-toastify';
 import styles from './Categories.module.scss';
 
-const recipesPerPage = 10;
-
-const Categories = () => {
+const Categories = ({ onCategorySelected }) => {
   const [categories, setCategories] = useState([]);
-  const [recipes, setRecipes] = useState([]);
-  const [recipesTotal, setRecipesTotal] = useState(0);
   const [allCategoriesLoaded, setAllCategoriesLoaded] = useState(false);
-  const [showRecipes, setShowRecipes] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,23 +18,13 @@ const Categories = () => {
         setCategories(categories);
         setIsLoading(false);
       })
-      .catch(err => {});
+      .catch(err => {
+        toast.error(`Failed to fetch catagories. ${err.message}`);
+      });
   }, []);
 
-  const handleCategoryClick = async categoryName => {
-    try {
-      const data = await getRecipes({
-        page: 1,
-        limit: recipesPerPage,
-        category: categoryName,
-      });
-
-      setRecipes(data.recipes);
-      setRecipesTotal(data.total);
-      setShowRecipes(true);
-    } catch (err) {
-      toast.error(`Failed to fetch ${categoryName} recipes: ${err.message}`);
-    }
+  const handleCategoryClick = categoryName => {
+    onCategorySelected(categoryName);
   };
 
   const handleAllCategoriesClick = async () => {
@@ -49,23 +32,10 @@ const Categories = () => {
       const allCategories = await getCategories({ all: true });
       setCategories(allCategories);
       setAllCategoriesLoaded(true);
-    } catch (err) {}
+    } catch (err) {
+      toast.error(`Failed to fetch all catagories. ${err.message}`);
+    }
   };
-
-  const handleBackClick = () => {
-    setShowRecipes(false);
-  };
-
-  if (showRecipes) {
-    return (
-      <Recipes
-        recipes={recipes}
-        recipesPerPage={recipesPerPage}
-        recipesTotal={recipesTotal}
-        onBackClick={handleBackClick}
-      />
-    );
-  }
 
   return (
     <section className={styles.container}>
