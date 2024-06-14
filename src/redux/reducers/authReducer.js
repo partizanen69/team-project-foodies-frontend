@@ -1,7 +1,14 @@
 import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE,
-  REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE,
-  LOGOUT, FETCH_CURRENT_USER_REQUEST, FETCH_CURRENT_USER_SUCCESS, FETCH_CURRENT_USER_FAILURE
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  LOGOUT,
+  FETCH_CURRENT_USER_REQUEST,
+  FETCH_CURRENT_USER_SUCCESS,
+  FETCH_CURRENT_USER_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -18,7 +25,12 @@ const authReducer = (state = initialState, action) => {
     case FETCH_CURRENT_USER_REQUEST:
       return { ...state, loading: true, error: null };
     case LOGIN_SUCCESS:
-      return { ...state, loading: false, user: action.payload.user, token: action.payload.token };
+      return {
+        ...state,
+        loading: false,
+        user: action.payload.user,
+        token: action.payload.token,
+      };
     case REGISTER_SUCCESS:
       return { ...state, loading: false, user: action.payload };
     case LOGIN_FAILURE:

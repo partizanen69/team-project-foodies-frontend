@@ -1,10 +1,12 @@
 import React, { useState, lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet } from "react-router-dom";
-import { logout, fetchCurrentUser } from '../redux/actions/authActions';  
+import { Outlet } from 'react-router-dom';
+import { logout, fetchCurrentUser } from '../redux/actions/authActions';
 
 const LogoutForm = lazy(() => import('./LogoutForm/LogoutForm'));
-const SignInSignUpForm = lazy(() => import('./SignInSignUpForm/SignInSignUpForm'));
+const SignInSignUpForm = lazy(() =>
+  import('./SignInSignUpForm/SignInSignUpForm')
+);
 const Header = lazy(() => import('./Header/Header'));
 const Modal = lazy(() => import('./Modal/Modal'));
 
@@ -19,8 +21,8 @@ export const SharedLayout = () => {
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-  
-  const openModal = (action) => {
+
+  const openModal = action => {
     if (action === 'sign in') {
       setIsModalSignInOpen(true);
     } else if (action === 'sign up') {
@@ -45,8 +47,11 @@ export const SharedLayout = () => {
   return (
     <>
       <Header openModal={openModal} />
-      <Outlet context={{ openModal }}/>
-      <Modal isOpen={isModalSignInOpen || isModalSignUpOpen} onClose={closeModal}>
+      <Outlet context={{ openModal }} />
+      <Modal
+        isOpen={isModalSignInOpen || isModalSignUpOpen}
+        onClose={closeModal}
+      >
         <SignInSignUpForm
           isModalSignInOpen={isModalSignInOpen}
           isModalSignUpOpen={isModalSignUpOpen}
