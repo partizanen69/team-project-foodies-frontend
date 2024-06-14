@@ -1,5 +1,6 @@
 // import react tools
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 // import components
 import Container from 'components/Container/Container';
@@ -15,32 +16,22 @@ import { getRecipes } from 'api/recipes';
 // import styles
 import s from './Recipes.module.scss';
 
-const Recipes = () => {
+const Recipes = ({ recipes, recipesPerPage, recipesTotal, onBackClick }) => {
   const [recipesList, setRecipesList] = useState([]);
-  const [page, setPage] = useState(null)
-  const [total, setTotal] = useState(null)
-  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(null);
+  const [total, setTotal] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const data = await getRecipes();
-        setIsLoading(false);
-        setRecipesList(data.recipes);
-        setPage(data.page)
-        setTotal(data.total)
-      } catch (err) {
-        setIsLoading(false);
-        setErrorMsg(err.message);
-      }
-    })();
-  }, []);
+    setRecipesList(recipes);
+    setTotal(recipesTotal);
+  }, [recipes, recipesTotal]);
 
   return (
     <Container className={s.recipes_container}>
       <div className={s.recipes_header_container}>
-        <NavigationButton title="back"></NavigationButton>
+        <NavigationButton title="back" action={onBackClick}></NavigationButton>
         <MainTitle>desserts</MainTitle>
         <Subtitle>
           Go on a taste journey, where every sip is a sophisticated creative
@@ -48,10 +39,28 @@ const Recipes = () => {
           gastronomic desires.
         </Subtitle>
       </div>
-      <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
-      <RecipePagination page={page} total={total}/>
+      <RecipeList
+        recipesList={recipesList}
+        isLoading={isLoading}
+        errorMsg={errorMsg}
+      />
+      <RecipePagination page={page} total={total} />
     </Container>
   );
+};
+
+Recipes.propTypes = {
+  recipes: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      thumb: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  recipesPerPage: PropTypes.number.isRequired,
+  recipesTotal: PropTypes.number.isRequired,
+  onBackClick: PropTypes.func.isRequired,
 };
 
 export default Recipes;

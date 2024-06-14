@@ -5,12 +5,16 @@ import { getRecipes } from '../../api/recipes.js';
 import MainTitle from '../MainTitle/MainTitle';
 import Subtitle from '../Subtitle/Subtitle';
 import CategoryList from '../CategoryList/CategoryList';
+import Recipes from '../Recipes/Recipes';
 import { toast } from 'react-toastify';
 import styles from './Categories.module.scss';
+
+const recipesPerPage = 10;
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [recipes, setRecipes] = useState([]);
+  const [recipesTotal, setRecipesTotal] = useState(0);
   const [allCategoriesLoaded, setAllCategoriesLoaded] = useState(false);
   const [showRecipes, setShowRecipes] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,11 +32,12 @@ const Categories = () => {
     try {
       const data = await getRecipes({
         page: 1,
-        limit: 10,
+        limit: recipesPerPage,
         category: categoryName,
       });
 
       setRecipes(data.recipes);
+      setRecipesTotal(data.total);
       setShowRecipes(true);
     } catch (err) {
       toast.error(`Failed to fetch ${categoryName} recipes: ${err.message}`);
@@ -52,7 +57,14 @@ const Categories = () => {
   };
 
   if (showRecipes) {
-    // return Recipes component here with recipes and onBackClick prop
+    return (
+      <Recipes
+        recipes={recipes}
+        recipesPerPage={recipesPerPage}
+        recipesTotal={recipesTotal}
+        onBackClick={handleBackClick}
+      />
+    );
   }
 
   return (
