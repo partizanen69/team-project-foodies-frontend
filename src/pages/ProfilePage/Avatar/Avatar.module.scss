@@ -1,0 +1,35 @@
+@import '../../../assets/sass/utils/variables.scss';
+
+.profile_avatar_block {
+  position: relative;
+}
+
+.profile_avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.btn_add_avatar {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translate(-50%);
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  gap: 10px;
+  border-radius: 50%;
+  border: none;
+  background: $dark-text;
+}
+
+.plus {
+  position: absolute;
+  stroke: $bg-primary-color;
+}
