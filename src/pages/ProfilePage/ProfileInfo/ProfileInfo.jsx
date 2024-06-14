@@ -57,7 +57,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           <Avatar avatar={userDetails.avatarURL} isOwnProfile={isOwnProfile} />
 
           <p className={s.user_name}>
-            {isLoading ? `User name` : userDetails.name}
+            {isLoading || !userDetails.name ? `User name` : userDetails.name}
           </p>
 
           <DetailsList

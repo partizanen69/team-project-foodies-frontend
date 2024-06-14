@@ -1,0 +1,8 @@
+@import '../../../assets/sass/utils/mixin.scss';
+
+.recipes_list {
+  @include flex-center();
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}

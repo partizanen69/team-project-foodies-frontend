@@ -6,14 +6,16 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
       <li className={s.details_list_item}>
         <p className={s.item_key}>Email: </p>
         <span className={s.item_value}>
-          {isLoading ? 0 : userDetails.email}
+          {isLoading || !userDetails.email ? 'No email' : userDetails.email}
         </span>
       </li>
 
       <li className={s.details_list_item}>
         <p className={s.item_key}>Added recipes: </p>
         <span className={s.item_value}>
-          {isLoading ? 0 : userDetails.recipesCount}
+          {isLoading || !userDetails.recipesCount
+            ? 0
+            : userDetails.recipesCount}
         </span>
       </li>
 
@@ -21,7 +23,7 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
         <li className={s.details_list_item}>
           <p className={s.item_key}>Favorites: </p>
           <span className={s.item_value}>
-            {isLoading ? 0 : userDetails.favorites}
+            {isLoading || !userDetails.favorites ? 0 : userDetails.favorites}
           </span>
         </li>
       )}
@@ -29,7 +31,9 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
       <li className={s.details_list_item}>
         <p className={s.item_key}>Followers: </p>
         <span className={s.item_value}>
-          {isLoading ? 0 : userDetails.followersCount}
+          {isLoading || !userDetails.followersCount
+            ? 0
+            : userDetails.followersCount}
         </span>
       </li>
 
@@ -37,7 +41,9 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
         <li className={s.details_list_item}>
           <p className={s.item_key}>Following: </p>
           <span className={s.item_value}>
-            {isLoading ? 0 : userDetails.followingCount}
+            {isLoading || !userDetails.followingCount
+              ? 0
+              : userDetails.followingCount}
           </span>
         </li>
       )}

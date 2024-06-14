@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-const MyRecipes = () => {
+const UserRecipes = () => {
   const { id } = useParams();
   const { user } = useSelector(state => state.auth);
 
@@ -17,7 +17,6 @@ const MyRecipes = () => {
 
   useEffect(() => {
     (async () => {
-      // Corrected syntax here
       if (id && isOwnProfile) {
         const result = await getUserRecipes();
         console.log(result);
@@ -25,9 +24,9 @@ const MyRecipes = () => {
         console.log('fetch user recipes');
       }
     })();
-  }, [isOwnProfile, id]); // Added 'id' to the dependency array
+  }, [isOwnProfile, id]);
 
-  return <div>MyRecipes</div>;
+  return <div>Recipes</div>;
 };
 
-export default MyRecipes;
+export default UserRecipes;
