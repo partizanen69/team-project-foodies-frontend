@@ -4,11 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 
 import schemaYup from './schemaYup';
-import { getCategoriesList } from '../../api/categories';
 import { getAreasList } from '../../api/areas';
 import { getIngredientsList } from '../../api/ingredients';
 import { showError } from '../../api/api.utils';
 import { addNewRecipe } from '../../api/recipes';
+import { getCategories } from '../../api/categories';
 
 const AddRecipeForm = () => {
   const {
@@ -18,12 +18,12 @@ const AddRecipeForm = () => {
     setValue,
     getValues,
     watch,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaYup),
     defaultValues: {
-      ingredients: []
-    }
+      ingredients: [],
+    },
   });
 
   const [categories, setCategories] = useState([]);
@@ -37,7 +37,7 @@ const AddRecipeForm = () => {
     const fetchInitialData = async () => {
       try {
         const [categoriesData, areasData, ingredientsData] = await Promise.all([
-          getCategoriesList(),
+          getCategories(),
           getAreasList(),
           getIngredientsList(),
         ]);
@@ -45,36 +45,44 @@ const AddRecipeForm = () => {
         setAreas(areasData);
         setIngredientsList(ingredientsData);
       } catch (error) {
-        showError(`Error occurred while trying to get initial data: ${error.message}`);
+        showError(
+          `Error occurred while trying to get initial data: ${error.message}`
+        );
       }
     };
     fetchInitialData();
   }, []);
 
-  const onSubmit = async (data) => {
-  try {
-    const formData = new FormData();
-    const { image, title, description, category, area, time, instructions } = data;
+  const onSubmit = async data => {
+    try {
+      const formData = new FormData();
+      const { image, title, description, category, area, time, instructions } =
+        data;
 
-    formData.append('thumb', image[0]);
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('category', category);
-    formData.append('area', area);
-    formData.append('time', time);
-    formData.append('instructions', instructions);
-    formData.append('ingredients', JSON.stringify(ingredientCards.map(card => ({
-      _id: card._id,
-      measure: card.measure,
-    }))));
+      formData.append('thumb', image[0]);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('category', category);
+      formData.append('area', area);
+      formData.append('time', time);
+      formData.append('instructions', instructions);
+      formData.append(
+        'ingredients',
+        JSON.stringify(
+          ingredientCards.map(card => ({
+            _id: card._id,
+            measure: card.measure,
+          }))
+        )
+      );
 
-    await addNewRecipe(formData);
-    navigate('/');
-  } catch (error) {
-    console.error('Error occurred while adding new recipe:', error);
-    alert('An error occurred: ' + error.message);
-  }
-};
+      await addNewRecipe(formData);
+      navigate('/');
+    } catch (error) {
+      console.error('Error occurred while adding new recipe:', error);
+      alert('An error occurred: ' + error.message);
+    }
+  };
 
   const handleImageChange = e => {
     const file = e.target.files[0];
@@ -109,7 +117,7 @@ const AddRecipeForm = () => {
     setIngredientCards([...ingredientCards, newCard]);
   };
 
-  const removeIngredientCard = (index) => {
+  const removeIngredientCard = index => {
     const updatedCards = [...ingredientCards];
     updatedCards.splice(index, 1);
     setIngredientCards(updatedCards);
@@ -143,9 +151,13 @@ const AddRecipeForm = () => {
           control={control}
           render={({ field }) => (
             <select {...field}>
-              <option key="default" value="">Select a category</option>
+              <option key="default" value="">
+                Select a category
+              </option>
               {categories.map((category, index) => (
-                <option key={index} value={category.id}>{category.name}</option>
+                <option key={index} value={category.id}>
+                  {category.name}
+                </option>
               ))}
             </select>
           )}
@@ -160,9 +172,13 @@ const AddRecipeForm = () => {
           control={control}
           render={({ field }) => (
             <select {...field}>
-              <option key="default" value="">Select an area</option>
+              <option key="default" value="">
+                Select an area
+              </option>
               {areas.map((area, index) => (
-                <option key={index} value={area.id}>{area.name}</option>
+                <option key={index} value={area.id}>
+                  {area.name}
+                </option>
               ))}
             </select>
           )}
@@ -173,9 +189,13 @@ const AddRecipeForm = () => {
       <div>
         <label>Time (minutes)</label>
         <div>
-          <button type="button" onClick={decrementTime}>-</button>
+          <button type="button" onClick={decrementTime}>
+            -
+          </button>
           <input type="number" {...register('time')} readOnly />
-          <button type="button" onClick={incrementTime}>+</button>
+          <button type="button" onClick={incrementTime}>
+            +
+          </button>
         </div>
         {errors.time && <p>{errors.time.message}</p>}
       </div>
@@ -187,19 +207,34 @@ const AddRecipeForm = () => {
           render={({ field }) => (
             <>
               <select {...field}>
-                <option key="default" value="">Select an ingredient</option>
+                <option key="default" value="">
+                  Select an ingredient
+                </option>
                 {ingredientsList.map(ingredient => (
-                  <option key={ingredient._id} value={ingredient._id}>{ingredient.name}</option>
+                  <option key={ingredient._id} value={ingredient._id}>
+                    {ingredient.name}
+                  </option>
                 ))}
               </select>
-              <input type="text" {...register('measure')} placeholder="Measure" />
-              <button type="button" onClick={() => {
-                const selectedIngredient = ingredientsList.find(ing => ing._id === watch('selectedIngredient'));
-                const measure = watch('measure');
-                if (selectedIngredient && measure) {
-                  addIngredient(selectedIngredient, measure);
-                }
-              }}>Add ingredient+</button>
+              <input
+                type="text"
+                {...register('measure')}
+                placeholder="Measure"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const selectedIngredient = ingredientsList.find(
+                    ing => ing._id === watch('selectedIngredient')
+                  );
+                  const measure = watch('measure');
+                  if (selectedIngredient && measure) {
+                    addIngredient(selectedIngredient, measure);
+                  }
+                }}
+              >
+                Add ingredient+
+              </button>
             </>
           )}
         />
@@ -213,7 +248,9 @@ const AddRecipeForm = () => {
             <div>
               <h4>{card.name}</h4>
               <p>Measure: {card.measure}</p>
-              <button type="button" onClick={() => removeIngredientCard(index)}>Remove</button>
+              <button type="button" onClick={() => removeIngredientCard(index)}>
+                Remove
+              </button>
             </div>
           </div>
         ))}
@@ -227,7 +264,9 @@ const AddRecipeForm = () => {
       </div>
 
       <div>
-        <button type="button" onClick={() => window.location.reload()}>Clear</button>
+        <button type="button" onClick={() => window.location.reload()}>
+          Clear
+        </button>
         <button type="submit">Publish</button>
       </div>
     </form>
