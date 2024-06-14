@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import styles
 import s from './RecipePagination.module.scss';
 
-const RecipePsginstion = ({ page, total, action }) => {
+const RecipePsginstion = ({ page, limit, action }) => {
   let elCount = [1, 2, 3];
   return (
     <>
@@ -29,7 +29,7 @@ const RecipePsginstion = ({ page, total, action }) => {
 
 RecipePsginstion.propTypes = {
   page: PropTypes.number,
-  total: PropTypes.number,
+  limit: PropTypes.number,
   action: PropTypes.func,
 };
 

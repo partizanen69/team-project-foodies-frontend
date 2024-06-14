@@ -1,6 +1,6 @@
 // import react tools
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import components
 import Container from 'components/Container/Container';
@@ -25,11 +25,12 @@ import s from './Recipes.module.scss';
 
 const Recipes = () => {
   const dispatch = useDispatch();
+  const { ingredients, area, category } = useSelector(state => state.filters);
 
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
-  const [page, setPage] = useState(null)
-  const [total, setTotal] = useState(null)
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(10)
 
   // store loading and error message
   const [isLoading, setIsLoading] = useState(true);
@@ -40,17 +41,17 @@ const Recipes = () => {
     (async () => {
       try {
         setIsLoading(true);
-        const data = await getRecipes();
+        const data = await getRecipes({ area: area, ingredients: ingredients });
         setIsLoading(false);
         setRecipesList(data.recipes);
         setPage(data.page)
-        setTotal(data.total)
+        setLimit(data.total)
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, []);
+  }, [page, limit, category, ingredients, area ]);
 
   // get ingredients
   useEffect(() => {
@@ -103,7 +104,7 @@ const Recipes = () => {
       <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
       
       {/* recipes pagination component */}
-      <RecipePagination page={page} total={total}/>
+      <RecipePagination page={page} limit={limit}/>
     </Container>
   );
 };
