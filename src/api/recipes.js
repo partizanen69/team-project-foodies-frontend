@@ -69,3 +69,17 @@ export const getPopularRecipes = async () => {
     handleAxiosError(err);
   }
 };
+
+export const addNewRecipe = async (recipe) => {
+  try {
+    const result = await axios.post('/recipes', recipe, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+
+  }
+}

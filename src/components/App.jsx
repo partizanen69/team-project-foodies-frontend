@@ -5,6 +5,7 @@ import axios from 'axios';
 import { setIsMainPage } from '../redux/reducers/uiReducer';
 import { SharedLayout } from './SharedLayout';
 import Recipe from '../pages/Recipe/Recipe';
+import AddRecipePage from 'pages/AddRecipePage/AddRecipePage';
 
 import s from './App.module.scss';
 
@@ -52,6 +53,7 @@ export const App = () => {
             <Route index element={<MainPage />} />
             <Route path="/recipe/:id" element={<Recipe />} />
             <Route path="*" element={<MainPage />} />
+            <Route path="/add" element={<AddRecipePage />} />
           </Route>
         </Routes>
       </Suspense>
