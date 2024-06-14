@@ -85,20 +85,3 @@
     width: 590px;
   }
 }
-
-.button {
-  border-radius: 50%;
-  border: 1px solid $light-stroke;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color $hover-transition;
-
-  &:hover,
-  &:focus {
-    border-style: none;
-    background-color: $dark-text;
-  }
-}

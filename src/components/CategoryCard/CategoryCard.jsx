@@ -16,7 +16,7 @@ const CategoryCard = ({ imgUrl, name, onClick, size }) => {
         <RoundButton
           size={44}
           iconName="icon-arrow-up-right"
-          className={styles.button}
+          className={'buttonLightStroke'}
           iconClassName={'arrowLight'}
           onClick={onClick}
         />
