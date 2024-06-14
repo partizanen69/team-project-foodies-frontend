@@ -69,3 +69,17 @@ export const getPopularRecipes = async () => {
     handleAxiosError(err);
   }
 };
+
+export const getMyRecipes = async (page = 1, limit = 10) => {
+  try {
+    const result = await axios.get('/recipes/my', {
+      params: {
+        ...(page ? { page } : null),
+        ...(limit ? { limit } : null),
+      },
+    });
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};

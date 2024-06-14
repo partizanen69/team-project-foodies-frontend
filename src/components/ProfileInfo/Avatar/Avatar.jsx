@@ -1,4 +1,4 @@
-import Icon from 'components/Icon';
+import Icon from '../../../components/Icon/Icon';
 import s from './Avatar.module.scss';
 import { updateAvatar } from 'api/users';
 import { useEffect, useState } from 'react';
