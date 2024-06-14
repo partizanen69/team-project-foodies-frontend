@@ -1,0 +1,16 @@
+@import '../../../assets/sass/utils/mixin';
+@import '../../../assets/sass/utils/variables';
+
+.add_recipe_form_label {
+  @include font-styles(16px, 800, 1.5);
+  font-family: 'Mulish', sans-serif;
+  letter-spacing: -0.02em;
+  color: rgba(5, 5, 5, 1);
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+  .add_recipe_form_label {
+    @include font-styles(20px, 800, 1.2);
+  }
+}
