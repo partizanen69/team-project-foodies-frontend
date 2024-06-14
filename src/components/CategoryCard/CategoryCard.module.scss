@@ -98,10 +98,7 @@
 
   &:hover,
   &:focus {
+    border-style: none;
     background-color: $dark-text;
   }
-}
-
-.icon {
-  fill: $bg-primary-color;
 }

@@ -12,6 +12,7 @@ const CategoryList = ({
   categories,
   onCategoryClick,
   onAllCategoriesClick,
+  allCategoriesLoaded,
 }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -51,13 +52,15 @@ const CategoryList = ({
             imgUrl={backendUrl + category.imgUrl}
             name={category.name}
             size={getCategoryCardSize(index)}
-            onClick={() => onCategoryClick(category._id)}
+            onClick={() => onCategoryClick(category.name)}
           />
         </li>
       ))}
-      <li className={styles.allCategories}>
-        <button onClick={onAllCategoriesClick}>ALL CATEGORIES</button>
-      </li>
+      {!allCategoriesLoaded && (
+        <li className={styles.allCategories}>
+          <button onClick={onAllCategoriesClick}>ALL CATEGORIES</button>
+        </li>
+      )}
     </ul>
   );
 };
@@ -72,6 +75,7 @@ CategoryList.propTypes = {
   ).isRequired,
   onCategoryClick: PropTypes.func.isRequired,
   onAllCategoriesClick: PropTypes.func.isRequired,
+  allCategoriesLoaded: PropTypes.bool.isRequired,
 };
 
 export default CategoryList;

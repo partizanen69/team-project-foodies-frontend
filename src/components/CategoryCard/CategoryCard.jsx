@@ -17,7 +17,7 @@ const CategoryCard = ({ imgUrl, name, onClick, size }) => {
           size={44}
           iconName="icon-arrow-up-right"
           className={styles.button}
-          iconClassName={styles.icon}
+          iconClassName={'arrowLight'}
           onClick={onClick}
         />
       </div>
