@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/team-project-foodies-frontend/static/css/main.3066a52b.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.a9a83b04.js",
+    "main.css": "/team-project-foodies-frontend/static/css/main.e6f524e8.css",
+    "main.js": "/team-project-foodies-frontend/static/js/main.ec05d994.js",
     "static/css/739.64d68e3e.chunk.css": "/team-project-foodies-frontend/static/css/739.64d68e3e.chunk.css",
     "static/js/739.3a8ad9e5.chunk.js": "/team-project-foodies-frontend/static/js/739.3a8ad9e5.chunk.js",
     "static/css/920.066b8e91.chunk.css": "/team-project-foodies-frontend/static/css/920.066b8e91.chunk.css",
@@ -30,8 +30,8 @@
     "static/media/eye-closed-icon.svg": "/team-project-foodies-frontend/static/media/eye-closed-icon.30b488e2892091b0ab6a65075a568739.svg",
     "static/media/eye-open-icon.svg": "/team-project-foodies-frontend/static/media/eye-open-icon.9663035812a6a9dbe97bb016bc6421e7.svg",
     "static/media/burger-bar.svg": "/team-project-foodies-frontend/static/media/burger-bar.3d71d679ba10f3983585537b227ee306.svg",
-    "main.3066a52b.css.map": "/team-project-foodies-frontend/static/css/main.3066a52b.css.map",
-    "main.a9a83b04.js.map": "/team-project-foodies-frontend/static/js/main.a9a83b04.js.map",
+    "main.e6f524e8.css.map": "/team-project-foodies-frontend/static/css/main.e6f524e8.css.map",
+    "main.ec05d994.js.map": "/team-project-foodies-frontend/static/js/main.ec05d994.js.map",
     "739.64d68e3e.chunk.css.map": "/team-project-foodies-frontend/static/css/739.64d68e3e.chunk.css.map",
     "739.3a8ad9e5.chunk.js.map": "/team-project-foodies-frontend/static/js/739.3a8ad9e5.chunk.js.map",
     "920.066b8e91.chunk.css.map": "/team-project-foodies-frontend/static/css/920.066b8e91.chunk.css.map",
@@ -51,7 +51,7 @@
     "525.be5950e0.chunk.js.map": "/team-project-foodies-frontend/static/js/525.be5950e0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3066a52b.css",
-    "static/js/main.a9a83b04.js"
+    "static/css/main.e6f524e8.css",
+    "static/js/main.ec05d994.js"
   ]
 }
