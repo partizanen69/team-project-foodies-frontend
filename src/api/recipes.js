@@ -1,13 +1,20 @@
 import axios from 'axios';
 import { handleAxiosError } from './api.utils';
 
-export const getRecipes = async ({ page, limit, category, area } = {}) => {
+export const getRecipes = async ({
+  page,
+  limit,
+  category,
+  area,
+  ingredients,
+} = {}) => {
   const result = await axios.get('recipes', {
     params: {
       ...(page ? { page } : null),
       ...(limit ? { limit } : null),
       ...(category ? { category } : null),
       ...(area ? { area } : null),
+      ...(ingredients ? { ingredients } : null),
     },
   });
   return result.data;
