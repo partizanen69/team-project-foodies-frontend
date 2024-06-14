@@ -19,3 +19,12 @@ export const showError = msg => {
   });
 };
 
+export const getAvatarSrc = avatar => {
+  const AVATAR_BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
+
+  if (!avatar) {
+    return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
+  }
+
+  return avatar.startsWith('http') ? avatar : `${AVATAR_BASE_URL}${avatar}`;
+};
