@@ -1,5 +1,6 @@
 // import react tools
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 // import components
 import Container from 'components/Container/Container';
@@ -15,18 +16,20 @@ import { getRecipes } from 'api/recipes';
 import { getIngredients } from 'api/ingedients'
 import { getAreas } from 'api/areas'
 
+// import store actions
+import { setIngredients } from '../../redux/actions/ingredientsActions';
+import { setAreas } from '../../redux/actions/areasActions';
+
 // import styles
 import s from './Recipes.module.scss';
 
 const Recipes = () => {
+  const dispatch = useDispatch();
+
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
   const [page, setPage] = useState(null)
   const [total, setTotal] = useState(null)
-  
-  // store ingredients and recipes
-  const [ingredients, setIngredients] = useState(null)
-  const [areas, setAreas] = useState(null)
 
   // store loading and error message
   const [isLoading, setIsLoading] = useState(true);
@@ -56,14 +59,13 @@ const Recipes = () => {
         setIsLoading(true);
         const data = await getIngredients();
         setIsLoading(false);
-        setIngredients(data);
-        console.log('ingedients', data)
+        dispatch(setIngredients(data));
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, []);
+  }, [dispatch]);
 
   // get areas
   useEffect(() => {
@@ -72,14 +74,13 @@ const Recipes = () => {
         setIsLoading(true);
         const data = await getAreas();
         setIsLoading(false);
-        setAreas(data);
-        console.log('areas', data)
+        dispatch(setAreas(data));
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container className={s.recipes_container}>
@@ -96,7 +97,7 @@ const Recipes = () => {
       </div>
 
       {/* recipes filters component */}
-      <RecipeFilters ingredients={ingredients} areas={areas}/>
+      <RecipeFilters />
 
       {/* recipes list component */}
       <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>

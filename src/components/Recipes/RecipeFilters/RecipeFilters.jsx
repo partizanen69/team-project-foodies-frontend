@@ -1,16 +1,20 @@
 // import tools
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // import styles
 import s from './RecipeFilters.module.scss';
 
-const RecipeFilters = (ingredients, areas, selectedFilter = '', onFilterChange) => {
+const RecipeFilters = (selectedFilter = '', onFilterChange) => {
+  const ingredients = useSelector(state => state.ingredients);
+  const areas = useSelector(state => state.areas);
+  console.log('ingredients', ingredients)
 
   return (
     <div>
       {/* ingridients filter */}
-      {ingredients && Array.isArray(ingredients) ? (
+      {Array.isArray(ingredients) ? (
         <select
           className={s.filter_select}
           value={selectedFilter}
@@ -39,8 +43,7 @@ const RecipeFilters = (ingredients, areas, selectedFilter = '', onFilterChange) 
 };
 
 RecipeFilters.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object),
-  areas: PropTypes.arrayOf(PropTypes.object),
+
 };
 
 export default RecipeFilters;

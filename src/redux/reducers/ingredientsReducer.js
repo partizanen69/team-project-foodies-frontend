@@ -1,16 +1,12 @@
+// ingredientsReducer.js
 import { SET_INGREDIENTS } from '../actions/ingredientsActions';
 
-const initialState = {
-  ingredients: [],
-};
+const initialState = [];
 
 const ingredientsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INGREDIENTS:
-      return {
-        ...state,
-        ingredients: action.payload,
-      };
+      return action.payload;
     default:
       return state;
   }
