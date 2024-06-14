@@ -3,6 +3,7 @@ import { RecipeCreatedBy } from 'pages/Recipe/RecipeCreatedBy/RecipeCreatedBy';
 import { AddFavoriteBtn } from 'pages/Recipe/AddFavoriteBtn/AddFavoriteBtn';
 import RoundButton from 'components/RoundButton/RoundButton';
 import s from './RecipeCard.module.scss';
+import Container from 'components/Container/Container';
 
 export const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const RecipeCard = ({ recipe }) => {
   return (
     <>
       {recipe ? (
-        <div className={s.recipeCardContainer}>
+        <Container className={s.recipeCardContainer}>
           <div className={s.recipeImgWrapper}>
             <img
               src={recipe.thumb}
@@ -32,7 +33,7 @@ export const RecipeCard = ({ recipe }) => {
               <RoundButton onClick={() => navigate(`/recipe/${recipe._id}`)} />
             </div>
           </div>
-        </div>
+        </Container>
       ) : (
         <div>There is no information about recipe</div>
       )}
