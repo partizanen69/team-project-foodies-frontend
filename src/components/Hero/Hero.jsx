@@ -7,7 +7,7 @@ import Container from 'components/Container/Container';
 import s from './Hero.module.scss';
 
 const Hero = ({ openModal }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector(state => state.auth);
   const navigate = useNavigate();
 
   const handleAddRecipeClick = () => {
@@ -28,7 +28,9 @@ const Hero = ({ openModal }) => {
           Amazing recipes for beginners in the world of cooking, enveloping you
           in the aromas and tastes of various cuisines.
         </p>
-        <button className={s.hero_button} onClick={handleAddRecipeClick}>ADD RECIPE</button>
+        <button className={s.hero_button} onClick={handleAddRecipeClick}>
+          ADD RECIPE
+        </button>
         <div className={s.images}>
           <div className={s.image_main}></div>
           <div className={s.image_secondary}></div>
@@ -39,8 +41,7 @@ const Hero = ({ openModal }) => {
 };
 
 Hero.propTypes = {
-	openModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
-
 
 export default Hero;

@@ -1,38 +1,53 @@
+@import '../../assets/sass/utils/mixin';
+@import '../../assets/sass/utils/variables';
+
 .popularRecipesContainer {
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  overflow: hidden;
+  max-width: 342px;
+  margin: 0px auto 64px auto;
 }
 
 .popularRecipesTitle {
-  margin-bottom: 40px;
-  font-weight: 800;
-  font-size: 24px;
-  line-height: 28px;
-  letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 1);
+  @include font-styles(18px, 800, 1.33);
+  margin-bottom: 32px;
+  letter-spacing: -0.36px;
+  color: $dark-text;
 }
 
 .popularRecipeList {
   display: flex;
   align-items: center;
   gap: 20px;
-  flex-wrap: nowrap;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .popularRecipesContainer {
     max-width: 704px;
+    margin-bottom: 100px;
+    overflow: hidden;
   }
-}
 
-@media (max-width: 375px) {
-  .popularRecipesContainer {
-    max-width: 342px;
+  .popularRecipesTitle {
+    @include font-styles(24px, 800, 1.17);
+    margin-bottom: 40px;
+    letter-spacing: -0.48px;
   }
 
   .popularRecipeList {
-    flex-direction: column;
+    gap: 40px 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .popularRecipesContainer {
+    max-width: 1280px;
+    margin-bottom: 120px;
+  }
+
+  .popularRecipeList {
+    gap: 20px;
   }
 }

@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react';
 import Container from 'components/Container/Container';
 import { PathInfo } from '../../components/PathInfo/PathInfo';
 import { RecipeInfo } from './RecipeInfo/RecipeInfo';
-import PopularRecipes from 'components/PopularRecipes/PopularRecipes';
+import PopularRecipes from '../../components/PopularRecipes/PopularRecipes';
 import { getRecipeById } from '../../api/recipes';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';

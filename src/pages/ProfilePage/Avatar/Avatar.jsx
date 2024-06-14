@@ -1,9 +1,9 @@
-import Icon from '../../../components/Icon/Icon';
 import s from './Avatar.module.scss';
 import { updateAvatar } from 'api/users';
+import Icon from 'components/Icon/Icon';
 import { useEffect, useState } from 'react';
 
-const BASE_URL = 'http://localhost:3002/'; // change to process.env.PUBLIC_URL before deployment
+const AVATAR_BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
 
 export const Avatar = ({ avatar }) => {
   const [userAvatar, setUserAvatar] = useState(avatar);
@@ -14,7 +14,9 @@ export const Avatar = ({ avatar }) => {
 
   const getAvatarSrc = avatar => {
     if (!avatar) return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
-    return avatar.startsWith('http://') ? avatar : `${BASE_URL}${avatar}`;
+    return avatar.startsWith('http://')
+      ? avatar
+      : `${AVATAR_BASE_URL}${avatar}`;
   };
 
   const handleFileChange = async event => {

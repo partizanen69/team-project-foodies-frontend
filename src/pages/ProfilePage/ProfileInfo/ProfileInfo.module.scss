@@ -1,5 +1,5 @@
-@import '../../assets/sass/utils/variables.scss';
-@import '../../assets/sass/utils/mixin.scss';
+@import '../../../assets/sass/utils/variables.scss';
+@import '../../../assets/sass/utils/mixin.scss';
 
 .profile_info {
   display: flex;
@@ -65,7 +65,7 @@
 
   border-radius: 30px;
   background: $main-text;
-
+  cursor: pointer;
   @include font-styles(14px, 700, 1.43);
   color: $bg-primary-color;
   text-transform: uppercase;

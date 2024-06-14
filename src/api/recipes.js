@@ -2,7 +2,7 @@ import axios from 'axios';
 import { handleAxiosError } from './api.utils';
 
 export const getRecipes = async ({ page, limit, category, area } = {}) => {
-  const result = await axios.get('/recipes', {
+  const result = await axios.get('api/recipes', {
     params: {
       ...(page ? { page } : null),
       ...(limit ? { limit } : null),
