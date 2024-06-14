@@ -3,6 +3,7 @@ import Container from 'components/Container/Container';
 import NavigationButton from './NavigationButton/NavigationButton';
 import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
+import RecipeList from './RecipeList';
 
 import s from './Recipes.module.scss';
 
@@ -18,6 +19,7 @@ const Recipes = () => {
           gastronomic desires.
         </Subtitle>
       </div>
+      <RecipeList/>
     </Container>
   );
 };
