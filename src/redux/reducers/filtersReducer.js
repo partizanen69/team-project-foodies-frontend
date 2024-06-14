@@ -2,13 +2,16 @@ import {
     SET_INGREDIENTS_FILTER,
     CLEAR_INGREDIENTS_FILTER,
     SET_AREA_FILTER,
-    CLEAR_AREA_FILTER
+    CLEAR_AREA_FILTER,
+    SET_PAGE_FILTER,
+    CLEAR_PAGE_FILTER
 } from '../actions/filtersActions';
 
 const initialState = {
     ingredients: null,
     area: null,
-    category: 'Dessert'
+    category: 'Dessert',
+    page: 1
 }
 
 const filtersReducer = (state = initialState, action) => {
@@ -32,6 +35,16 @@ const filtersReducer = (state = initialState, action) => {
       return  {
         ...state,
         area: null
+      };
+      case SET_PAGE_FILTER:
+      return  {
+        ...state,
+        page: action.payload
+      };
+    case CLEAR_PAGE_FILTER:
+      return  {
+        ...state,
+        page: 1
       };
     default:
       return state;

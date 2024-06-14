@@ -19,18 +19,17 @@ import { getAreas } from 'api/areas'
 // import store actions
 import { setIngredients } from '../../redux/actions/ingredientsActions';
 import { setAreas } from '../../redux/actions/areasActions';
+import { clearPageFilter } from '../../redux/actions/filtersActions';
 
 // import styles
 import s from './Recipes.module.scss';
 
 const Recipes = () => {
   const dispatch = useDispatch();
-  const { ingredients, area, category } = useSelector(state => state.filters);
+  const { ingredients, area, category, page } = useSelector(state => state.filters);
 
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
-  const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(10)
 
   // store loading and error message
   const [isLoading, setIsLoading] = useState(true);
@@ -41,17 +40,19 @@ const Recipes = () => {
     (async () => {
       try {
         setIsLoading(true);
-        const data = await getRecipes({ area: area, ingredients: ingredients });
+        const data = await getRecipes({ 
+          page: page,
+          ingredients: ingredients,
+          area: area
+        });
         setIsLoading(false);
         setRecipesList(data.recipes);
-        setPage(data.page)
-        setLimit(data.total)
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, [page, limit, category, ingredients, area ]);
+  }, [page, category, ingredients, area ]);
 
   // get ingredients
   useEffect(() => {
@@ -83,6 +84,11 @@ const Recipes = () => {
     })();
   }, [dispatch]);
 
+  // Clear page filter when area or ingredients change
+  useEffect(() => {
+    dispatch(clearPageFilter());
+  }, [area, ingredients, dispatch]);
+
   return (
     <Container className={s.recipes_container}>
 
@@ -104,7 +110,7 @@ const Recipes = () => {
       <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
       
       {/* recipes pagination component */}
-      <RecipePagination page={page} limit={limit}/>
+      <RecipePagination />
     </Container>
   );
 };

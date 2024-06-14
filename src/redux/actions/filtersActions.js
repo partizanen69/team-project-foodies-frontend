@@ -4,6 +4,8 @@ export const SET_AREA_FILTER = 'SET_AREA_FILTER';
 export const CLEAR_AREA_FILTER = 'CLEAR_AREA_FILTER';
 export const SET_CATEGORY_FILTER = 'SET_CATEGORY_FILTER';
 export const CLEAR_CATEGORY_FILTER = 'CLEAR_CATEGORY_FILTER';
+export const SET_PAGE_FILTER = 'SET_PAGE_FILTER';
+export const CLEAR_PAGE_FILTER = 'CLEAR_PAGE_FILTER';
 
 export const setIngredientsFilter = ingredients => ({
   type: SET_INGREDIENTS_FILTER,
@@ -30,4 +32,13 @@ export const setCategoryFilter = category => ({
 
 export const clearCategoryFilter = () => ({
   type: CLEAR_CATEGORY_FILTER
+});
+
+export const setPageFilter = page => ({
+  type: SET_PAGE_FILTER,
+  payload: page,
+});
+
+export const clearPageFilter = () => ({
+  type: CLEAR_PAGE_FILTER
 });

@@ -1,5 +1,11 @@
 @import '../../../assets/sass/main.scss';
 
+.filters_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 .filter_container {
     position: relative;
 }
