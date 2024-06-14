@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import exampleReducer from './exampleReducer'; 
+import authReducer from './authReducer';
+import uiReducer from './uiReducer';
 
 const rootReducer = combineReducers({
-  example: exampleReducer, 
+    auth: authReducer,
+    ui: uiReducer,
   // Other reducers go here
 });
 

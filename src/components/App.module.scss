@@ -1,28 +1,47 @@
-@import "../assets/sass/utils/mixin";
-@import "../assets/sass/utils/variables";
+@import '../assets/sass/utils/mixin';
+@import '../assets/sass/utils/variables';
 
-.app_container{
-    @include flex-center;
-    position: relative;
-    height: 100vh;
-    flex-direction: column;
-    width: 100%;
-    max-width: 375px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 8px 8px 16px;
-    background-color: $bg-primary-color;
-    color: $main-text;
+.app_container {
+  position: relative;
+  height: 100vh;
+  flex-direction: column;
+  width: 100%;
+  max-width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px 16px 16px;
+  background-color: $bg-primary-color;
+  color: $main-text;
+}
 
-    @media screen and (min-width: 768px) {
-      width: 768px;
-      max-width: 768px;
-      padding: 16px 16px 32px;
-    }
-  
-    @media screen and (min-width: 1440px) {
-      width: 1440px;
-      max-width: 1440px;
-      padding:20px 20px 72px;
-    }
+.app_container__for_main{
+	@extend .app_container;
+	padding: 24px 8px 16px;
+
+}
+
+@media screen and (min-width: 768px) {
+  .app_container {
+    width: 768px;
+    max-width: 768px;
+    padding: 36px 32px 32px;
+  }
+
+	.app_container__for_main{
+		padding:  36px 16px 32px;
+	
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.app_container {
+		width: 1440px;
+		max-width: 1440px;
+		padding: 40px 80px;
+  }
+
+	.app_container__for_main{
+		padding:  36px 20px 32px;
+	
+	}
 }

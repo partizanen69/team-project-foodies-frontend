@@ -1,0 +1,15 @@
+@import '../../assets/sass/utils/mixin';
+
+.recipe_content {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+
+  @media (max-width: 1439px) {
+    gap: 100px;
+  }
+
+  @media (max-width: 767px) {
+    gap: 64px;
+  }
+}

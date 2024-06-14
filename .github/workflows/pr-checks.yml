@@ -1,0 +1,27 @@
+name: Checks before merging PR
+
+on:
+  push:
+    branches-ignore: [main]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install, lint, build 🔧
+        run: |
+          npm ci
+          npm run lint:js
+          npm run build
+
+  status-check:
+    if: always()
+    needs: build-and-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
