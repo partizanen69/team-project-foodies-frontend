@@ -12,7 +12,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
             state={{ from: location }}
             activeclassname={s.active}
           >
-            My recipes
+            {isOwnProfile ? 'My recipes' : 'Recipes'}
           </NavLink>
         </li>
 
