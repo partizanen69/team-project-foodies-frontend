@@ -23,19 +23,17 @@ export const RecipeCreatedBy = ({ ownerId, name, avatar, popular = false }) => {
   return (
     <div className={s.recipe_created_by_wrap}>
       <button
-        className={
-          popular
-            ? classNames(s.recipe_created_by, s.recipe_created_by_popular)
-            : s.recipe_created_by
-        }
+        className={classNames(
+          s.recipe_created_by,
+          popular && s.recipe_created_by_popular
+        )}
         onClick={handleBtnClick}
       >
         <div
-          className={
-            popular
-              ? classNames(s.avatar_wrap, s.avatar_wrap_popular)
-              : s.avatar_wrap
-          }
+          className={classNames(
+            s.avatar_wrap,
+            popular && s.avatar_wrap_popular
+          )}
         >
           <img src={avatar || avatarPlaceholder} alt={name} />
         </div>

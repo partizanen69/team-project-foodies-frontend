@@ -109,15 +109,12 @@ export const AddFavoriteBtn = ({ recipeId, round = false }) => {
           {btnText}
         </button>
       )}
-      {round && isFavorite && (
+      {round && (
         <RoundButton
           iconName={'icon-heart'}
           onClick={() => onClickHandler()}
-          iconClassName={'favorite'}
+          iconClassName={isFavorite ? 'favorite' : ''}
         />
-      )}
-      {round && !isFavorite && (
-        <RoundButton iconName={'icon-heart'} onClick={() => onClickHandler()} />
       )}
     </>
   );
