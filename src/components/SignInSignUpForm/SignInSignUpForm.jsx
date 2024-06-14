@@ -9,12 +9,18 @@ import { ReactComponent as EyeClosedIcon } from '../../assets/icons/eye-closed-i
 import { ReactComponent as EyeOpenIcon } from '../../assets/icons/eye-open-icon.svg';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'components/Loader/Loader';
 
 import s from './SignInSignUpForm.module.scss';
 
-const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, openModal }) => {
+const SignInSignUpForm = ({
+  isModalSignInOpen,
+  isModalSignUpOpen,
+  closeModal,
+  openModal,
+}) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { loading } = useSelector(state => state.auth);
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [name, setName] = useState('');
@@ -22,12 +28,21 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
   const [password, setPassword] = useState('');
 
   const validationSchema = Yup.object().shape({
-    name: isModalSignUpOpen ? Yup.string().required('Name is required') : Yup.string().nullable(),
+    name: isModalSignUpOpen
+      ? Yup.string().required('Name is required')
+      : Yup.string().nullable(),
     email: Yup.string().required('Email is required').email('Email is invalid'),
-    password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(6, 'Password must be at least 6 characters'),
   });
 
-  const { register: registerInput, handleSubmit, watch, formState: { errors } } = useForm({
+  const {
+    register: registerInput,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
@@ -35,13 +50,13 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
 
   useEffect(() => {
     if (watchedValues.name) {
-      setName(watchedValues.name)
+      setName(watchedValues.name);
     }
     if (watchedValues.email) {
-      setEmail(watchedValues.email)
+      setEmail(watchedValues.email);
     }
     if (watchedValues.password) {
-      setPassword(watchedValues.password)
+      setPassword(watchedValues.password);
     }
   }, [watchedValues]);
 
@@ -53,20 +68,28 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
     }
   }, [errors]);
 
-  const handleLogin = (data) => {
-    dispatch(login(data.email, data.password));
-    closeModal();
+  const handleLogin = data => {
+    dispatch(login(data.email, data.password)).then(() => {
+      closeModal();
+    });
   };
 
-  const handleRegister = (data) => {
-    dispatch(register(data.name, data.email, data.password));
-    closeModal();
+  const handleRegister = data => {
+    dispatch(register(data.name, data.email, data.password)).then(() => {
+      closeModal();
+    });
   };
 
   return (
     <div className="sign-in-form">
-      <h2 className={s.modal_title}>{isModalSignInOpen ? 'SIGN IN' : 'SIGN UP'}</h2>
-      <form onSubmit={handleSubmit(isModalSignInOpen ? handleLogin : handleRegister)}>
+      <h2 className={s.modal_title}>
+        {isModalSignInOpen ? 'SIGN IN' : 'SIGN UP'}
+      </h2>
+      <form
+        onSubmit={handleSubmit(
+          isModalSignInOpen ? handleLogin : handleRegister
+        )}
+      >
         {isModalSignUpOpen && (
           <input
             className={s.modal_input}
@@ -86,33 +109,58 @@ const SignInSignUpForm = ({ isModalSignInOpen, isModalSignUpOpen, closeModal, op
         <div className={s.password_input_wrapper}>
           <input
             className={s.modal_input}
-            type={isPasswordVisible ? "text" : "password"}
+            type={isPasswordVisible ? 'text' : 'password'}
             name="password"
             placeholder="Password*"
             {...registerInput('password')}
           />
           {isPasswordVisible ? (
-            <EyeOpenIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(false)} />
+            <EyeOpenIcon
+              className={s.eye_icon}
+              onClick={() => setIsPasswordVisible(false)}
+            />
           ) : (
-            <EyeClosedIcon className={s.eye_icon} onClick={() => setIsPasswordVisible(true)} />
+            <EyeClosedIcon
+              className={s.eye_icon}
+              onClick={() => setIsPasswordVisible(true)}
+            />
           )}
         </div>
         <button
-          className={(isModalSignInOpen && email && password.length >= 6) || (isModalSignUpOpen && name && email && password.length >= 6) ? s.modal_btn__active : s.modal_btn}
+          className={
+            (isModalSignInOpen && email && password.length >= 6) ||
+            (isModalSignUpOpen && name && email && password.length >= 6)
+              ? s.modal_btn__active
+              : s.modal_btn
+          }
           type="submit"
-          disabled={loading}>
-          {loading ? (isModalSignInOpen ? 'Signing In...' : 'Signing Up...') : (isModalSignInOpen ? 'SIGN IN' : 'CREATE')}
+          disabled={loading}
+        >
+          {isModalSignInOpen ? 'SIGN IN' : 'CREATE'}
         </button>
       </form>
-      <p className={s.modal_text}>
-        {isModalSignInOpen ? "Don't have an account? " : "I already have an account? "}
-        <button type="button" className={s.modal_text_button} onClick={() => {
-          closeModal();
-          openModal(isModalSignInOpen ? 'sign up' : 'sign in');
-        }}>
-          {isModalSignInOpen ? "Create an account" : "Sign in"}
+      <div>
+        <p className={s.modal_text}>
+          {isModalSignInOpen
+            ? "Don't have an account? "
+            : 'I already have an account? '}
+        </p>
+        <button
+          type="button"
+          className={s.modal_text_button}
+          onClick={() => {
+            closeModal();
+            openModal(isModalSignInOpen ? 'sign up' : 'sign in');
+          }}
+        >
+          {isModalSignInOpen ? 'Create an account' : 'Sign in'}
         </button>
-      </p>
+      </div>
+      {loading && (
+        <div className={s.loader_overlay}>
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };
