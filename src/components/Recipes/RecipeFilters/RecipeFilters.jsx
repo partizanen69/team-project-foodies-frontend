@@ -35,24 +35,27 @@ const RecipeFilters = () => {
     <div>
       {/* ingredients filter */}
       {ingredients ? (
-        <select
-          className={s.filter_select}
-          value={ingredientsSelect ?? ''}
-          onChange={onFilterChange}
-        >
-          <option value="" disabled>
-            Ingredients
-          </option>
-          {ingredients.map(ingredient => (
-            <option
-              key={ingredient._id}
-              value={ingredient._id}
-              className={s.filter_option}
-            >
-              {ingredient.name}
+        <div className={s.filter_container}>
+          <select
+            className={s.filter_select}
+            value={ingredientsSelect ?? ''}
+            onChange={onFilterChange}
+          >
+            <option value="" disabled>
+              Ingredients
             </option>
-          ))}
-        </select>
+            {ingredients.map(ingredient => (
+              <option
+                key={ingredient._id}
+                value={ingredient._id}
+                className={s.filter_option}
+              >
+                {ingredient.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        
       ) : (
         <span>Ingredients list is empty</span>
       )}
