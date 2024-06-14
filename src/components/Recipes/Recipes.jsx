@@ -13,8 +13,8 @@ import RecipeFilters from './RecipeFilters';
 
 // import requests
 import { getRecipes } from 'api/recipes';
-import { getIngredients } from 'api/ingedients'
-import { getAreas } from 'api/areas'
+import { getIngredients } from 'api/ingedients';
+import { getAreasList } from 'api/areas';
 
 // import store actions
 import { setIngredients } from '../../redux/actions/ingredientsActions';
@@ -26,7 +26,9 @@ import s from './Recipes.module.scss';
 
 const Recipes = () => {
   const dispatch = useDispatch();
-  const { ingredients, area, category, page } = useSelector(state => state.filters);
+  const { ingredients, area, category, page } = useSelector(
+    state => state.filters
+  );
 
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
@@ -40,10 +42,10 @@ const Recipes = () => {
     (async () => {
       try {
         setIsLoading(true);
-        const data = await getRecipes({ 
+        const data = await getRecipes({
           page: page,
           ingredients: ingredients,
-          area: area
+          area: area,
         });
         setIsLoading(false);
         setRecipesList(data.recipes);
@@ -52,7 +54,7 @@ const Recipes = () => {
         setErrorMsg(err.message);
       }
     })();
-  }, [page, category, ingredients, area ]);
+  }, [page, category, ingredients, area]);
 
   // get ingredients
   useEffect(() => {
@@ -74,7 +76,7 @@ const Recipes = () => {
     (async () => {
       try {
         setIsLoading(true);
-        const data = await getAreas();
+        const data = await getAreasList();
         setIsLoading(false);
         dispatch(setAreas(data));
       } catch (err) {
@@ -91,7 +93,6 @@ const Recipes = () => {
 
   return (
     <Container className={s.recipes_container}>
-
       {/* header with description and action back */}
       <div className={s.recipes_header_container}>
         <NavigationButton title="back"></NavigationButton>
@@ -107,8 +108,12 @@ const Recipes = () => {
       <RecipeFilters />
 
       {/* recipes list component */}
-      <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
-      
+      <RecipeList
+        recipesList={recipesList}
+        isLoading={isLoading}
+        errorMsg={errorMsg}
+      />
+
       {/* recipes pagination component */}
       <RecipePagination />
     </Container>
