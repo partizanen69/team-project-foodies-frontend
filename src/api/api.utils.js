@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 export const handleAxiosError = err => {
   const msgPrefix = 'Request failed with error:';
   console.error('http request failed with error', err);
@@ -9,6 +11,12 @@ export const handleAxiosError = err => {
     );
   }
   throw new Error(`${msgPrefix} ${err.message}`);
+};
+
+export const showError = msg => {
+  toast.error(msg, {
+    autoClose: 5000,
+  });
 };
 
 export const getAvatarSrc = avatar => {
