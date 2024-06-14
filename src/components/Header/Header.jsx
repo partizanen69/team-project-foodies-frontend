@@ -123,10 +123,12 @@ const Header = ({ openModal }) => {
               <div
                 className={isMainPage ? s.dropdown_menu : s.dropdown_menu__main}
               >
+
                 <NavLink
                   className={s.dropdown_menu_link}
                   to={`user/${user.id}/recipies`}
                 >
+
                   PROFILE
                 </NavLink>
                 <div className={s.dropdown_menu_link_img}>
