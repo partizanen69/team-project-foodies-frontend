@@ -49,3 +49,16 @@
 .favorite {
   fill: red;
 }
+
+.arrowLight {
+  fill: $bg-primary-color;
+}
+
+.buttonLightStroke {
+  border: 1px solid $light-stroke;
+
+  &:hover,
+  &:focus {
+    border-style: none;
+  }
+}
