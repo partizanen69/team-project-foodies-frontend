@@ -2,17 +2,27 @@
 import Icon from 'components/Icon/Icon';
 
 // import tools
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // import styles
 import s from './NavigationButton.module.scss';
 
-const NavigationButton = ({ title, action }) => {
+// import store actions
+import { clearCategoryFilter } from '../../../redux/actions/filtersActions';
+
+const NavigationButton = ({ title }) => {
+  const dispatch = useDispatch();
+
+  const onBack = () => {
+    dispatch(clearCategoryFilter())
+  }
+
   return (
     <button
       type="button"
       className={s.recipes_navigation_button}
-      onClick={action}
+      onClick={onBack}
     >
       <Icon
         name="icon-arrow-back"
@@ -25,7 +35,6 @@ const NavigationButton = ({ title, action }) => {
 
 NavigationButton.propTypes = {
   title: PropTypes.string,
-  action: PropTypes.func,
 };
 
 export default NavigationButton;
