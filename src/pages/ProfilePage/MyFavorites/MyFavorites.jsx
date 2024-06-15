@@ -1,41 +1,40 @@
 import { getFavoriteRecipes } from 'api/recipes';
-import { useEffect, useState } from 'react';
-import RecipeItem from '../RecipeItem/RecipeItem';
+import { useEffect } from 'react';
 
-import s from '../UserRecipes/UserRecipes.module.scss';
 import ListItems from '../ListItems/ListItems';
 import ListPagination from '../ListPagination/ListPagination';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectFavorites,
+  selectList,
+  selectPage,
+} from '../../../redux/selectors';
+import { setList, setPage } from '../../../redux/reducers/listReducer';
 
 const MyFavorites = () => {
-  const [totalRecipes, setTotalRecipes] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recipes, setRecipes] = useState([]);
+  const dispatch = useDispatch();
+  const recipes = useSelector(selectList);
+  const currentPage = useSelector(selectPage);
+  const totalFavorites = useSelector(selectFavorites);
 
   useEffect(() => {
     (async () => {
-      const result = await getFavoriteRecipes(1, 10);
-
-      setTotalRecipes(result.totalRecipes);
-      setRecipes(result.recipes);
+      const result = await getFavoriteRecipes({ page: currentPage, limit: 10 });
+      dispatch(setList(result.recipes));
+      dispatch(setPage(currentPage));
     })();
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
+
   return (
     <>
       {recipes.length > 0 ? (
         <>
           <ListItems isRecipeCard={true} list={recipes} />
-          <ListPagination total={totalRecipes} currentPage={currentPage} />
+          {totalFavorites && (
+            <ListPagination total={totalFavorites} currentPage={currentPage} />
+          )}
         </>
       ) : (
-        // <>
-        //   <ul className={s.recipes_list}>
-        //     {recipes.map(recipe => (
-        //       <RecipeItem key={recipe._id} recipe={recipe} />
-        //     ))}
-        //   </ul>
-
-        //   <div>pagination</div>
-        // </>
         <p>
           Nothing has been added to your favorite recipes list yet. Please
           browse our recipes and add your favorites for easy access in the

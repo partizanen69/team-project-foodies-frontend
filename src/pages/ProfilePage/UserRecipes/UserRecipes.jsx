@@ -9,10 +9,6 @@ const UserRecipes = () => {
 
   const [isOwnProfile, setIsOwnProfile] = useState(false);
 
-  const [totalRecipes, setTotalRecipes] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recipes, setRecipes] = useState([]);
-
   useEffect(() => {
     if (user && user.id && id) {
       setIsOwnProfile(user.id === id);

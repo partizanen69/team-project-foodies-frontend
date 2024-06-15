@@ -14,7 +14,7 @@ import {
   unfollowUser,
 } from 'api/users';
 import { useNavigate } from 'react-router-dom';
-import { setList } from '../../../redux/reducers/listReducer';
+import { setFavorites, setList } from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
 
@@ -97,13 +97,14 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
 
         const data = await getUserDetailsById({ id: userId });
         setuserDetails(data);
+        dispatch(setFavorites(data.favorites));
       } catch (error) {
         console.log(error);
       } finally {
         setIsLoading(false);
       }
     })();
-  }, [userId]);
+  }, [dispatch, userId]);
 
   return (
     <Suspense fallback={<Loader />}>

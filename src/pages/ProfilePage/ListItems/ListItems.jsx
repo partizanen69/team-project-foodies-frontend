@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import UserCard from '../UserCard/UserCard';
 import RecipeItem from '../RecipeItem/RecipeItem';
 import s from './ListItems.module.scss';
-import ListPagination from '../ListPagination/ListPagination';
 
 const ListItems = ({ isRecipeCard, list }) => {
   return (
