@@ -37,6 +37,9 @@ const Recipes = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
 
+  // store window wirth to set recipes limit
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   // get recipes
   useEffect(() => {
     (async () => {
@@ -44,6 +47,7 @@ const Recipes = () => {
         setIsLoading(true);
         const data = await getRecipes({
           page: page,
+          limit: windowWidth >= 1440 ? 12 : 10,
           ingredients: ingredients,
           area: area,
         });
@@ -54,7 +58,7 @@ const Recipes = () => {
         setErrorMsg(err.message);
       }
     })();
-  }, [page, category, ingredients, area]);
+  }, [page, category, ingredients, area, windowWidth]);
 
   // get ingredients
   useEffect(() => {
@@ -91,6 +95,18 @@ const Recipes = () => {
     dispatch(clearPageFilter());
   }, [area, ingredients, dispatch]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <Container className={s.recipes_container}>
       {/* header with description and action back */}
@@ -104,18 +120,22 @@ const Recipes = () => {
         </Subtitle>
       </div>
 
-      {/* recipes filters component */}
-      <RecipeFilters />
+      <div className={s.content_wrapper}>
+        {/* recipes filters component */}
+        <RecipeFilters />
 
-      {/* recipes list component */}
-      <RecipeList
-        recipesList={recipesList}
-        isLoading={isLoading}
-        errorMsg={errorMsg}
-      />
+        <div className={s.recipes_wrapper}>
+          {/* recipes list component */}
+          <RecipeList
+            recipesList={recipesList}
+            isLoading={isLoading}
+            errorMsg={errorMsg}
+          />
 
-      {/* recipes pagination component */}
-      <RecipePagination />
+          {/* recipes pagination component */}
+          <RecipePagination />
+        </div>
+      </div>
     </Container>
   );
 };

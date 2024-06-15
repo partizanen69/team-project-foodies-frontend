@@ -36,4 +36,13 @@
   &:not(:hover):not(:focus)::after {
     width: 0%;
   }
+
+  @media (min-width: 764px) {
+    @include font-styles(14px, 700, 18px, -0.02em);
+  }
+}
+
+.recipes_navigation_button_icon {
+  width: 16px;
+  height: 16px;
 }
