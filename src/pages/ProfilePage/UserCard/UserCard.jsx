@@ -1,5 +1,4 @@
 import RoundButton from 'components/RoundButton/RoundButton';
-import s from './UserCard.module.scss';
 import PropTypes from 'prop-types';
 import { followUser, getUserFollowers, unfollowUser } from 'api/users';
 import { useParams } from 'react-router-dom';

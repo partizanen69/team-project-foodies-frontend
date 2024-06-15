@@ -1,4 +1,3 @@
-import s from './ListItems.module.scss';
 import RecipePreview from '../RecipePreview/RecipePreview';
 import PropTypes from 'prop-types';
 import UserCard from '../UserCard/UserCard';

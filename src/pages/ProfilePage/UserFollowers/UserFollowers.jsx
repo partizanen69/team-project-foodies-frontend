@@ -1,7 +1,6 @@
 import { getUserFollowers } from 'api/users';
 import ListItems from '../ListItems/ListItems';
-import s from './UserFollowers.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectList } from '../../../redux/selectors';
 import { setList } from '../../../redux/reducers/listReducer';
