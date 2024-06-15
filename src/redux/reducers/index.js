@@ -5,6 +5,7 @@ import listReducer from './listReducer';
 import ingredientsReducer from './ingredientsReducer';
 import areasReducer from './areasReducer';
 import filtersReducer from './filtersReducer';
+import categoriesReducer from './categoriesReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
   areas: areasReducer,
   filters: filtersReducer,
+  category: categoriesReducer
   // Other reducers go here
 });
 

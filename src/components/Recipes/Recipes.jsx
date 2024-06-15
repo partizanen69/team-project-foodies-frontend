@@ -26,9 +26,8 @@ import s from './Recipes.module.scss';
 
 const Recipes = () => {
   const dispatch = useDispatch();
-  const filters = useSelector(
-    state => state.filters
-  );
+  const filters = useSelector(state => state.filters);
+  const category = useSelector(state => state.category.category);
 
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
@@ -57,14 +56,21 @@ const Recipes = () => {
         });
         setIsLoading(false);
         setRecipesList(data.recipes);
-        setLimit(windowWidth >= 1440 ? 12 : 10)
-        setTotal(data.total)
+        setLimit(windowWidth >= 1440 ? 12 : 10);
+        setTotal(data.total);
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, [filters.ingredients, filters.area, windowWidth, filters.page, limit, filters.category]);
+  }, [
+    filters.ingredients,
+    filters.area,
+    windowWidth,
+    filters.page,
+    limit,
+    filters.category,
+  ]);
 
   // get ingredients
   useEffect(() => {
@@ -130,7 +136,7 @@ const Recipes = () => {
       {/* header with description and action back */}
       <div className={s.recipes_header_container}>
         <NavigationButton title="back"></NavigationButton>
-        <MainTitle>desserts</MainTitle>
+        <MainTitle>{category.name}</MainTitle>
         <Subtitle>
           Go on a taste journey, where every sip is a sophisticated creative
           chord, and every dessert is an expression of the most refined
@@ -140,15 +146,19 @@ const Recipes = () => {
 
       <div className={s.content_wrapper}>
         {/* recipes filters component */}
-        <RecipeFilters/>
+        <RecipeFilters />
 
         <div className={s.recipes_wrapper}>
           {/* recipes list component */}
-          <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
-          
+          <RecipeList
+            recipesList={recipesList}
+            isLoading={isLoading}
+            errorMsg={errorMsg}
+          />
+
           {/* recipes pagination component */}
-          <RecipePagination total={Math.ceil(total / limit)}/>
-          </div>
+          <RecipePagination total={Math.ceil(total / limit)} />
+        </div>
       </div>
     </Container>
   );

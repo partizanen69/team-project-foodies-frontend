@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import styles from './Categories.module.scss';
 import { useDispatch } from 'react-redux';
 import { setCategoryFilter } from '../../redux/actions/filtersActions.js';
+import { setCategory } from '../../redux/actions/categoriesActions.js';
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,9 @@ const Categories = () => {
       });
   }, []);
 
-  const handleCategoryClick = categoryName => {
-    dispatch(setCategoryFilter(categoryName))
+  const handleCategoryClick = category => {
+    dispatch(setCategoryFilter(category.name))
+    dispatch(setCategory(category))
   };
 
   const handleAllCategoriesClick = async () => {
