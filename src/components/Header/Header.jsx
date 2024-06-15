@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
 import { ReactComponent as BurgerBar } from '../../assets/icons/burger-bar.svg';
+import {getAvatarSrc} from '../../api/api.utils'
 
 import s from './Header.module.scss';
 
@@ -18,7 +19,7 @@ const Header = ({ openModal }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isDropDownShown, setIsDropDownShown] = useState(false);
-
+  const [avatar, setAvatar] = useState(user?.avatarURL ?? '')
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
   };
@@ -62,6 +63,10 @@ const Header = ({ openModal }) => {
     setIsLoggedIn(!!user);
   }, [user]);
 
+  useEffect(() => {
+    setAvatar(getAvatarSrc(user?.avatarURL))
+  }, [user?.avatarURL]);
+  
   return (
     <>
       <div
@@ -81,11 +86,7 @@ const Header = ({ openModal }) => {
             <div onClick={toggleDropDown} className={s.profile_bar}>
               <span className={s.avatar_wrapper}>
                 <img
-                  src={
-                    user?.avatarURL
-                      ? user.avatarURL
-                      : process.env.PUBLIC_URL + '/avatar-placeholder.svg'
-                  }
+                  src={avatar}
                   alt="avatar"
                   className={s.avatar}
                 />
