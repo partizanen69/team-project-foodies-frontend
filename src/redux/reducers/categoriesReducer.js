@@ -1,6 +1,6 @@
-import { SET_CATEGORY, CLEAR_CATEGORY } from '../actions/filtersCategories';
+import { SET_CATEGORY, CLEAR_CATEGORY } from '../actions/categoriesActions';
 
-const initialState = null;
+const initialState = { category: null }
 
 const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
