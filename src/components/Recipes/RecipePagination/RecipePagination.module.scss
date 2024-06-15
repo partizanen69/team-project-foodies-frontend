@@ -29,4 +29,13 @@
         color: $gray-text;
         background-color: $dark-text;
     }
+
+    @media (hover: none) {
+        border: 1px solid $light-dark-stroke;
+        color: $dark-text;
+
+        &_active {
+            border: 1px solid $dark-text;
+        }
+    }
 }

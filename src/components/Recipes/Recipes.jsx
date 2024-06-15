@@ -26,7 +26,7 @@ import s from './Recipes.module.scss';
 
 const Recipes = () => {
   const dispatch = useDispatch();
-  const { ingredients, area, category, page } = useSelector(
+  const filters = useSelector(
     state => state.filters
   );
 
@@ -46,10 +46,10 @@ const Recipes = () => {
       try {
         setIsLoading(true);
         const data = await getRecipes({
-          page: page,
+          page: filters.page,
           limit: windowWidth >= 1440 ? 12 : 10,
-          ingredients: ingredients,
-          area: area,
+          ingredients: filters.ingredients,
+          area: filters.area,
         });
         setIsLoading(false);
         setRecipesList(data.recipes);
@@ -58,7 +58,7 @@ const Recipes = () => {
         setErrorMsg(err.message);
       }
     })();
-  }, [page, category, ingredients, area, windowWidth]);
+  }, [filters.ingredients, filters.area, windowWidth, filters.page]);
 
   // get ingredients
   useEffect(() => {
@@ -93,7 +93,31 @@ const Recipes = () => {
   // Clear page filter when area or ingredients change
   useEffect(() => {
     dispatch(clearPageFilter());
-  }, [area, ingredients, dispatch]);
+  }, [filters.area, filters.ingredients, dispatch]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", alertUser);
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
+  }, []);
+  
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -122,19 +146,15 @@ const Recipes = () => {
 
       <div className={s.content_wrapper}>
         {/* recipes filters component */}
-        <RecipeFilters />
+        <RecipeFilters/>
 
         <div className={s.recipes_wrapper}>
           {/* recipes list component */}
-          <RecipeList
-            recipesList={recipesList}
-            isLoading={isLoading}
-            errorMsg={errorMsg}
-          />
-
+          <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
+          
           {/* recipes pagination component */}
           <RecipePagination />
-        </div>
+          </div>
       </div>
     </Container>
   );
