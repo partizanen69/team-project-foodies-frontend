@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import s from './ListPagination.module.scss';
-import { selectPage } from '../../../redux/selectors';
+import { selectLimit, selectPage } from '../../../redux/selectors';
 import { setPage } from '../../../redux/reducers/listReducer';
 
 const ListPagination = ({ total }) => {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectPage);
+  const limit = useSelector(selectLimit);
 
-  const totalPages = Math.ceil(total / 10);
+  const totalPages = Math.ceil(total / limit);
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   const handlePageChange = page => {

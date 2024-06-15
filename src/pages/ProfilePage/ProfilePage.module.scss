@@ -1,5 +1,5 @@
 .main_container {
-  margin-top: 170px;
+  margin-top: 64px;
   height: 100%;
   width: 100%;
   overflow: visible;
@@ -31,6 +31,7 @@
 @media screen and (min-width: 1440px) {
   .main_container {
     max-width: 1280px;
+    margin-top: 80px;
   }
 
   .main_content {
