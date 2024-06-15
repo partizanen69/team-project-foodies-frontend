@@ -1,12 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { RecipeCreatedBy } from 'pages/Recipe/RecipeCreatedBy/RecipeCreatedBy';
 import { AddFavoriteBtn } from 'pages/Recipe/AddFavoriteBtn/AddFavoriteBtn';
+import Container from 'components/Container/Container';
 import RoundButton from 'components/RoundButton/RoundButton';
 import s from './RecipeCard.module.scss';
-import Container from 'components/Container/Container';
 
 export const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>

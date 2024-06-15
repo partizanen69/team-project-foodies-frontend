@@ -1,0 +1,89 @@
+@import '../../../assets/sass/utils/mixin';
+@import '../../../assets/sass/utils/variables';
+
+.recipe_image_container {
+  width: 343px;
+  height: 318px;
+  border-radius: 30px;
+  border: 1px dashed rgba(5, 5, 5, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe_image_input {
+  display: none;
+}
+
+.recipe_image_preview_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.recipe_image_preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.recipe_image_text_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe_upload_icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+.recipe_image_text {
+  @include font-styles(14px, 500, 1.4);
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: $dark-text;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.upload_again_container {
+  margin-left: 103px;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.upload_again {
+  @extend .recipe_image_text;
+}
+
+@media screen and (min-width: 768px) {
+  .recipe_image_container {
+    width: 704px;
+    height: 400px;
+  }
+
+  .recipe_upload_icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+  }
+
+  .recipe_image_text {
+    @include font-styles(16px, 500, 1.5);
+  }
+
+  .upload_again_container {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .recipe_image_container {
+    width: 551px;
+    height: 400px;
+  }
+}

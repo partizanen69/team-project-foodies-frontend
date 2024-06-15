@@ -1,13 +1,20 @@
 import axios from 'axios';
 import { handleAxiosError } from './api.utils';
 
-export const getRecipes = async ({ page, limit, category, area } = {}) => {
-  const result = await axios.get('api/recipes', {
+export const getRecipes = async ({
+  page,
+  limit,
+  category,
+  area,
+  ingredients,
+} = {}) => {
+  const result = await axios.get('recipes', {
     params: {
       ...(page ? { page } : null),
       ...(limit ? { limit } : null),
       ...(category ? { category } : null),
       ...(area ? { area } : null),
+      ...(ingredients ? { ingredients } : null),
     },
   });
   return result.data;
@@ -70,12 +77,11 @@ export const getPopularRecipes = async () => {
   }
 };
 
-export const getMyRecipes = async (page = 1, limit = 10) => {
+export const addNewRecipe = async recipe => {
   try {
-    const result = await axios.get('/recipes/my', {
-      params: {
-        ...(page ? { page } : null),
-        ...(limit ? { limit } : null),
+    const result = await axios.post('/recipes', recipe, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
     });
     return result.data;
