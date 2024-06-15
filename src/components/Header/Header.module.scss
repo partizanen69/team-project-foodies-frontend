@@ -56,6 +56,7 @@
 
 .profile_bar_wrapper {
 	@include flex-center;
+	position: relative;
 }
 
 .dropdown_menu {
@@ -64,20 +65,14 @@
 	justify-content: center;
 	align-items: left;
 	flex-direction: column;
-	top: 46px;
-	right: 33px;
+	top: 40px;
+	left: 0;
 	width: 122px;
 	height: 72px;
 	background-color: $dark-text;
 	padding: 16px;
 	border-radius: 20px;
 	border: 1px solid rgba(255, 255, 255, 0.20);
-}
-
-.dropdown_menu__main {
-	@extend .dropdown_menu;
-	top: 66px;
-	right: 48px;
 }
 
 .dropdown_menu_link_img{
@@ -237,15 +232,10 @@
 	
 	.dropdown_menu {
 		top: 60px;
-		right: 19px;
+		left: 0;
 		width: 148px;
 		height: 74px;
 		padding: 16px;
-	}
-
-	.dropdown_menu__main {
-		top: 94px;
-		right: 94px;
 	}
 
 	.dropdown_menu_link_img{
@@ -286,5 +276,10 @@
 		width: 1280px;
 		max-width: 1280px;
 		margin-bottom: 80px;
+	}
+
+	.dropdown_menu {
+		top: 60px;
+		left: -14px;
 	}
 }

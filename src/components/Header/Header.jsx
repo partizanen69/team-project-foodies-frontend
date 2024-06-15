@@ -121,7 +121,7 @@ const Header = ({ openModal }) => {
 
             {isDropDownShown && (
               <div
-                className={isMainPage ? s.dropdown_menu : s.dropdown_menu__main}
+                className={s.dropdown_menu}
               >
 
                 <NavLink
