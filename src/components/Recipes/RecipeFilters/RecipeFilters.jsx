@@ -1,6 +1,10 @@
 // import tools
-import { useState, useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
+// import components
+import Select from '../Select';
 
 // import styles
 import s from './RecipeFilters.module.scss';
@@ -19,100 +23,64 @@ const RecipeFilters = () => {
   const areas = useSelector(state => state.areas);
   const filters = useSelector(state => state.filters);
 
-  const [ingredientsSelect, setIngredientSelect] = useState(filters.ingredients);
-  const [areaSelect, setAreaSelect] = useState(filters.area);
-
-  const onIngredientChange = (event) => {
-    const ingredient = event.target.value;
-
-    if (ingredient === filters.ingredients) {
-      setIngredientSelect(null);
+  const handleIngredient = ({ _id: id }) => {
+    if (id === filters.ingredients) {
       dispatch(clearIngredientsFilter());
     } else {
-      setIngredientSelect(ingredient);
-      dispatch(setIngredientsFilter(ingredient));
+      dispatch(setIngredientsFilter(id));
     }
   };
 
-  const onAreaChange = (event) => {
-    const area = event.target.value;
-
-    if (area === filters.area) {
-      setAreaSelect(null);
+  const handleArea = ({ _id: id }) => {
+    if (id === filters.area) {
       dispatch(clearAreaFilter());
     } else {
-      setAreaSelect(area);
-      dispatch(setAreaFilter(area));
+      dispatch(setAreaFilter(id));
     }
   };
 
-  useEffect(() => {
-    setIngredientSelect(filters.ingredient);
-  }, [filters.ingredient]);
+  const renderSelect = item => {
+    let options, onChange, className;
 
-  useEffect(() => {
-    setAreaSelect(filters.area);
-  }, [filters.area]);
+    switch (item) {
+      case 'ingredients':
+        options = ingredients;
+        onChange = handleIngredient;
+        className = 'ingredients';
+        break;
+      case 'area':
+        options = areas;
+        onChange = handleArea;
+        className = 'area';
+        break;
+      default:
+        return null;
+    }
+
+    return (
+      <li key={item}>
+          <Select
+            options={options}
+            onChange={onChange}
+            value={item}
+            className={className}
+          />
+      </li>
+    );
+  };
 
   return (
-    <div className={s.filters_wrapper}>
-      {/* ingredients filter */}
-      {areas ? (
-        <div className={s.filter_container}>
-          <select
-            className={s.filter_select}
-            value={ingredientsSelect ?? ''}
-            onChange={onIngredientChange}
-          >
-            <option value="" disabled>
-              Ingredients
-            </option>
-            {ingredients.map(ingredient => (
-              <option
-                key={ingredient._id}
-                value={ingredient.name}
-                className={s.filter_option}
-              >
-                {ingredient.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        
-      ) : (
-        <span>Ingredients list is empty</span>
-      )}
-
-      {/* areas filter */}
-      {areas ? (
-        <div className={s.filter_container}>
-          <select
-            className={s.filter_select}
-            value={areaSelect ?? ''}
-            onChange={onAreaChange}
-          >
-            <option value="" disabled>
-              Areas
-            </option>
-            {areas.map(area => (
-              <option
-                key={area._id}
-                value={area.name}
-                className={s.filter_option}
-              >
-                {area.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        
-      ) : (
-        <span>Ingredients list is empty</span>
-      )}
-    </div>
+    <> 
+      <ul className={s.recipeFilters}>
+        {['ingredients', 'area'].map(item => renderSelect(item))}
+      </ul>
+    </>
   );
 };
 
-RecipeFilters.propTypes = {};
+RecipeFilters.propTypes = {
+  handleIngredient: PropTypes.func,
+  handleArea: PropTypes.func,
+};
 
 export default RecipeFilters;
