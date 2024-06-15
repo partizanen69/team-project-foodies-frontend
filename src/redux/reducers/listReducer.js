@@ -33,9 +33,12 @@ const listSlice = createSlice({
     setFavorites: (state, action) => {
       state.favorites = action.payload;
     },
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { setList, setPage, setPageName, setFavorites } =
+export const { setList, setPage, setPageName, setFavorites, setIsLoading } =
   listSlice.actions;
 export default listSlice.reducer;

@@ -7,27 +7,53 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFavorites,
   selectList,
+  selectListLoading,
   selectPage,
 } from '../../../redux/selectors';
-import { setList, setPage } from '../../../redux/reducers/listReducer';
+import {
+  setIsLoading,
+  setList,
+  setPage,
+} from '../../../redux/reducers/listReducer';
+import { showError } from 'api/api.utils';
+import Loader from 'components/Loader/Loader';
 
 const MyFavorites = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectListLoading);
   const recipes = useSelector(selectList);
   const currentPage = useSelector(selectPage);
   const totalFavorites = useSelector(selectFavorites);
 
   useEffect(() => {
+    return () => {
+      dispatch(setList([])); // Reset list to empty or initial state
+      dispatch(setPage(1)); // Reset page to 1 or initial state
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
     (async () => {
-      const result = await getFavoriteRecipes({ page: currentPage, limit: 10 });
-      dispatch(setList(result.recipes));
-      dispatch(setPage(currentPage));
+      try {
+        dispatch(setIsLoading(true));
+        const result = await getFavoriteRecipes({
+          page: currentPage,
+          limit: 10,
+        });
+        dispatch(setList(result.recipes));
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        dispatch(setIsLoading(false));
+      }
     })();
   }, [currentPage, dispatch]);
 
   return (
     <>
-      {recipes.length > 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : recipes.length > 0 ? (
         <>
           <ListItems isRecipeCard={true} list={recipes} />
           {totalFavorites && <ListPagination total={totalFavorites} />}

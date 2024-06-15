@@ -2,45 +2,71 @@ import { getUserRecipes } from 'api/recipes';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectList, selectPage } from '../../../redux/selectors';
-import { setList } from '../../../redux/reducers/listReducer';
+import {
+  selectList,
+  selectListLoading,
+  selectPage,
+} from '../../../redux/selectors';
+import {
+  setIsLoading,
+  setList,
+  setPage,
+} from '../../../redux/reducers/listReducer';
 import ListItems from '../ListItems/ListItems';
 import ListPagination from '../ListPagination/ListPagination';
+import { showError } from 'api/api.utils';
+import Loader from 'components/Loader/Loader';
 
 const UserRecipes = () => {
   const { id } = useParams();
   const { user } = useSelector(state => state.auth);
-
   const [isOwnProfile, setIsOwnProfile] = useState(false);
+  const isLoading = useSelector(selectListLoading);
 
   const dispatch = useDispatch();
   const recipes = useSelector(selectList);
   const currentPage = useSelector(selectPage);
   const [totalRecipes, setTotalRecipes] = useState(0);
 
+  useEffect(() => {}, [dispatch]);
+
   useEffect(() => {
     if (user && user.id && id) {
       setIsOwnProfile(user.id === id);
     }
-  }, [user, id]);
+
+    return () => {
+      dispatch(setList([])); // Reset list to empty or initial state
+      dispatch(setPage(1)); // Reset page to 1 or initial state
+    };
+  }, [user, id, dispatch]);
 
   useEffect(() => {
     (async () => {
-      if (id) {
-        const result = await getUserRecipes({
-          owner: id,
-          page: currentPage,
-          limit: 10,
-        });
-        dispatch(setList(result.recipes));
-        setTotalRecipes(result.total);
+      try {
+        if (id) {
+          dispatch(setIsLoading(true));
+          const result = await getUserRecipes({
+            owner: id,
+            page: currentPage,
+            limit: 10,
+          });
+          dispatch(setList(result.recipes));
+          setTotalRecipes(result.total);
+        }
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        dispatch(setIsLoading(false));
       }
     })();
   }, [isOwnProfile, id, currentPage, dispatch]);
 
   return (
     <>
-      {recipes.length > 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : recipes.length > 0 ? (
         <>
           <ListItems isRecipeCard={true} list={recipes} />
           {totalRecipes && <ListPagination total={totalRecipes} />}
