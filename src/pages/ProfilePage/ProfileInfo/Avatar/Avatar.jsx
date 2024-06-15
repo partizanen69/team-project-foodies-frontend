@@ -1,15 +1,18 @@
 import { getAvatarSrc } from 'api/api.utils';
 import s from './Avatar.module.scss';
-import { updateAvatar } from 'api/users';
+// import { updateAvatar } from 'api/users';
 import Icon from 'components/Icon/Icon';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setAvatarStore,
+  updateAvatarStore,
+} from '../../../../redux/actions/authActions';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
-  const [userAvatar, setUserAvatar] = useState(avatar);
-
-  useEffect(() => {
-    setUserAvatar(avatar);
-  }, [avatar]);
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
+  const [userAvatar, setUserAvatar] = useState(user?.avatarURL ?? '');
 
   const handleFileChange = async event => {
     const selectedFile = event.target.files[0];
@@ -21,21 +24,27 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
     formData.append('avatar', selectedFile);
 
     try {
-      const response = await updateAvatar(formData);
-      const uniqueQueryString = `updated=${new Date().getTime()}`;
-      setUserAvatar(`${response.avatarURL}?${uniqueQueryString}`);
+      dispatch(updateAvatarStore(formData));
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    if (isOwnProfile) {
+      setUserAvatar(getAvatarSrc(user?.avatarURL));
+    } else {
+      setUserAvatar(getAvatarSrc(avatar));
+    }
+  }, [user?.avatarURL, avatar, isOwnProfile]);
+
   return (
     <div className={s.profile_avatar_block}>
       <img
         alt="User avatar"
-        src={getAvatarSrc(userAvatar)}
+        src={userAvatar}
         className={s.profile_avatar}
-        onError={() => setUserAvatar(null)}
+        onError={() => dispatch(setAvatarStore(null))}
       />
 
       {isOwnProfile && (

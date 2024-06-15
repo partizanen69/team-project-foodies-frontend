@@ -23,14 +23,16 @@ import { selectLimit } from '../../../redux/selectors';
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-  const [userDetails, setuserDetails] = useState({});
   const location = useLocation();
-  const locationList = location.pathname.split('/');
-  const pageName = locationList[locationList.length - 1];
+
   const limit = useSelector(selectLimit);
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [userDetails, setUserDetails] = useState({});
   const [isModalLogOutOpen, setIsModalLogOutOpen] = useState(false);
+
+  const locationList = location.pathname.split('/');
+  const pageName = locationList[locationList.length - 1];
 
   const openModal = () => {
     setIsModalLogOutOpen(true);
@@ -53,7 +55,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           return;
         }
         await followUser(userDetails.id);
-        setuserDetails(prevState => {
+        setUserDetails(prevState => {
           return {
             ...prevState,
             followersCount: userDetails.followersCount + 1,
@@ -81,7 +83,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           return;
         }
         await unfollowUser(userDetails.id);
-        setuserDetails(prevState => {
+        setUserDetails(prevState => {
           return {
             ...prevState,
             followersCount: userDetails.followersCount - 1,
@@ -110,7 +112,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         }
 
         const data = await getUserDetailsById({ id: userId });
-        setuserDetails(data);
+        setUserDetails(data);
         dispatch(setFavorites(data.favorites));
       } catch (error) {
         console.log(error);
