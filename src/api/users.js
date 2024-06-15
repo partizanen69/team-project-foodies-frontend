@@ -34,11 +34,10 @@ export const getUserFollowers = async ({ id, page = 1, limit = 9 }) => {
   }
 };
 
-export const getUserFollowing = async ({ id, page = 1, limit = 9 }) => {
+export const getUserFollowing = async ({ page = 1, limit = 9 }) => {
   try {
     const result = await axios.get('/users/following', {
       params: {
-        userId: id,
         page,
         limit,
       },
@@ -60,7 +59,9 @@ export const followUser = async id => {
 
 export const unfollowUser = async id => {
   try {
-    const result = await axios.delete('/users/following', { followingId: id });
+    const result = await axios.delete('/users/following', {
+      data: { followingId: id },
+    });
     return result.data;
   } catch (err) {
     handleAxiosError(err);

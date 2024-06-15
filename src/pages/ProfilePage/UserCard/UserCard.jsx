@@ -1,7 +1,7 @@
 import RoundButton from 'components/RoundButton/RoundButton';
 import s from './UserCard.module.scss';
 import PropTypes from 'prop-types';
-import { followUser, getUserFollowers } from 'api/users';
+import { followUser, getUserFollowers, unfollowUser } from 'api/users';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setList } from '../../../redux/reducers/listReducer';
@@ -16,10 +16,15 @@ const getImageSrc = image => {
 const UserCard = props => {
   const dispatch = useDispatch();
   const { id: userId } = useParams();
-  const { _id, name, avatarURL, recipesCount, isFollowing, recipes } =
-    props.user;
-
-  const isFollowingList = props.isFollowingList;
+  // const [isLoading, setIsLoading] = useState(true);
+  const {
+    _id,
+    name,
+    avatarURL,
+    recipesCount,
+    isFollowing = true,
+    recipes,
+  } = props.user;
 
   const follow = () => {
     (async () => {
@@ -42,7 +47,26 @@ const UserCard = props => {
     })();
   };
 
-  const unfollow = () => {};
+  const unfollow = () => {
+    (async () => {
+      try {
+        if (!userId || !_id) {
+          return;
+        }
+        await unfollowUser(_id);
+        const data = await getUserFollowers({
+          id: userId,
+          page: 1,
+          limit: 9,
+        });
+        dispatch(setList(data.followers));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // setIsLoading(false);
+      }
+    })();
+  };
 
   return (
     <li>
@@ -76,15 +100,15 @@ const UserCard = props => {
   );
 };
 
-// UserCard.propTypes = {
-//   isFollowingList: PropTypes.bool.isRequired,
-//   user: PropTypes.objectOf({
-//     name: PropTypes.string.isRequired,
-//     avatarURL: PropTypes.string.isRequired,
-//     recipesCount: PropTypes.number.isRequired,
-//     isFollowing: PropTypes.bool.isRequired,
-//     recipes: PropTypes.array.isRequired,
-//   }).isRequired,
-// };
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarURL: PropTypes.string.isRequired,
+    recipesCount: PropTypes.number.isRequired,
+    recipes: PropTypes.array.isRequired,
+    isFollowing: PropTypes.bool,
+  }),
+};
 
 export default UserCard;

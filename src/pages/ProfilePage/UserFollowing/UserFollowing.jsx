@@ -7,12 +7,13 @@ import { selectList } from '../../../redux/selectors';
 import { setList } from '../../../redux/reducers/listReducer';
 import { useParams } from 'react-router-dom';
 
-const UserFollowing = () => {
+const UserFollowing = props => {
   const dispatch = useDispatch();
   const { id } = useParams();
   // const [isLoading, setIsLoading] = useState(true);
   const userList = useSelector(selectList);
   useEffect(() => {
+    dispatch(setList([]));
     (async () => {
       try {
         if (!id) {
@@ -27,7 +28,14 @@ const UserFollowing = () => {
       }
     })();
   }, [id, dispatch]);
-  return <ListItems isRecipeCard={false} list={userList} />;
+
+  return (
+    <ListItems
+      isRecipeCard={false}
+      list={userList}
+      isFollowers={props.isFollowers}
+    />
+  );
 };
 
 export default UserFollowing;
