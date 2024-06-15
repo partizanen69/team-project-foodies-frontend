@@ -30,9 +30,7 @@ const MyFavorites = () => {
       {recipes.length > 0 ? (
         <>
           <ListItems isRecipeCard={true} list={recipes} />
-          {totalFavorites && (
-            <ListPagination total={totalFavorites} currentPage={currentPage} />
-          )}
+          {totalFavorites && <ListPagination total={totalFavorites} />}
         </>
       ) : (
         <p>

@@ -78,10 +78,11 @@ export const getPopularRecipes = async () => {
   }
 };
 
-export const getUserRecipes = async (page = 1, limit = 10) => {
+export const getUserRecipes = async ({ owner, page = 1, limit = 10 }) => {
   try {
-    const result = await axios.get(`/recipes/my`, {
+    const result = await axios.get(`/recipes/user-recipes`, {
       params: {
+        owner,
         page,
         limit,
       },
