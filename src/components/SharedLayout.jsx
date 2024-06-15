@@ -2,11 +2,8 @@ import React, { useState, lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { logout, fetchCurrentUser } from '../redux/actions/authActions';
-
+import Form from './SignInSignUpForm/Form';
 const LogoutForm = lazy(() => import('./LogoutForm/LogoutForm'));
-const SignInSignUpForm = lazy(() =>
-  import('./SignInSignUpForm/SignInSignUpForm')
-);
 const Header = lazy(() => import('./Header/Header'));
 const Modal = lazy(() => import('./Modal/Modal'));
 
@@ -52,11 +49,11 @@ export const SharedLayout = () => {
         isOpen={isModalSignInOpen || isModalSignUpOpen}
         onClose={closeModal}
       >
-        <SignInSignUpForm
-          isModalSignInOpen={isModalSignInOpen}
-          isModalSignUpOpen={isModalSignUpOpen}
-          closeModal={closeModal}
-          openModal={openModal}
+        <Form
+         isModalSignInOpen={isModalSignInOpen}
+         isModalSignUpOpen={isModalSignUpOpen}
+         closeModal={closeModal}
+         openModal={openModal}
         />
       </Modal>
       {isModalLogOutOpen && (
