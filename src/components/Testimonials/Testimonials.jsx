@@ -1,58 +1,84 @@
-// import { Autoplay, Pagination } from "swiper/modules";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// // import { useGetTestimonialsQuery, apiInstance } from "../../redux";
-// import { useGetTestimonialsQuery } from "../../redux";
-// import { Icon } from "../../components/Icons/Icons";
-// // import { ErrorComponent, Icon, LoadingSpinner } from "../";
+import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 
-// import styles from "./Testimonials.module.scss";
+import Container from 'components/Container/Container';
 
-// export const Testimonials = () => {
-//   const {
-//     data: testimonialsData = [],
-//     isFetching: testimonialsIsFetching,
-//     isLoading: testimonialsIsLoading,
-//     // isError: testimonialsIsError,
-//     // refetch: refetchTestimonials,
-//   } = useGetTestimonialsQuery();
+import { findTestimonials } from 'api/testimonials';
 
-//   const isLoading = testimonialsIsFetching || testimonialsIsLoading;
+import styles from './Testimonials.module.scss';
+import { Icon } from "../Icons/Icons";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-//   return (
-//     <div className={styles.container}>
-//       {/* {isLoading && <LoadingSpinner className={styles.loading} />} */}
-//       {/* {!isLoading && testimonialsIsError && (
-//         <ErrorComponent onRetry={refetchTestimonials} />
-//       )} */}
-//       {testimonialsData.length > 0 && (
-//         <>
-//           <h3 className={styles.tagline}>What our customer say</h3>
-//           <h2 className={styles.headline}>TESTIMONIALS</h2>
-//           <Swiper
-//             autoplay={{
-//               delay: 3000,
-//               disableOnInteraction: true,
-//             }}
-//             pagination={{ clickable: true }}
-//             modules={[Pagination, Autoplay]}
-//             className={styles.swiper}
-//           >
-//             {testimonialsData.map((el) => (
-//               <SwiperSlide className={styles.swiperSlide} key={el._id}>
-//                 <Icon
-//                   id={"quote"}
-//                   className={styles.icon}
-//                   width={24}
-//                   height={24}
-//                 />
+export const Testimonials = () => {
+  // const dispatch = useDispatch();
+  const [testimonials, setTestimonials] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-//                 <span className={styles.description}>{el.testimonial}</span>
-//                 <span className={styles.owner}>{el?.owner?.name}</span>
-//               </SwiperSlide>
-//             ))}
-//           </Swiper>
-//         </>
-//       )}
-//     </div>
-//   );
-// };
+  useEffect(() => {
+    findTestimonials()
+      .then(testimonials => {
+        setTestimonials(testimonials);
+        setIsLoading(false);
+      })
+      .catch();
+  }, []);
+
+
+  return (
+    <Container>
+        <div className={styles.testimonial_container}>
+          {/* <div className={styles.testimonials_title_wrapper}> */}
+
+        {testimonials.length > 0 &&
+        <>
+
+
+        <h3 className={styles.testimonial_hightlight}>What our customer say</h3>
+          <h2 className={styles.testimonial_title}>TESTIMONIALS</h2>
+
+
+            <Swiper
+            autoplay={{
+              delay: 6000,
+              disableOnInteraction: true,
+          }}
+
+         spaceBetween={30}
+         slidesPerView={1}
+          pagination={{
+          el: `.${styles.paginationContainer}`,
+          clickable: true,
+          dynamicBullets: true,
+          bulletClass: styles.paginationBullet,
+          bulletActiveClass: styles.paginationBulletActive,
+        }}
+            modules={[Pagination, Autoplay]}
+            className={styles.swiper}
+          >
+            {testimonials.map((el) => (
+              <SwiperSlide className={styles.swiperSlide} key={el._id}>
+                <Icon
+                  id={"icon-quote"}
+                  className={styles.icon}
+                  width={24}
+                  height={24}
+                />
+
+                <p className={styles.description}>{el.testimonial}</p>
+                <h4 className={styles.owner}>{el.owner}</h4>
+
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
+}
+</div>
+          {/* </div> */}
+</Container>
+  );
+};
+
+

@@ -7,6 +7,7 @@ import { getRecipeById } from '../../api/recipes';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import s from './Recipe.module.scss';
+import Footer from 'components/Footer/Footer';
 
 const Recipe = () => {
   const { id } = useParams();
@@ -43,6 +44,7 @@ const Recipe = () => {
           <PopularRecipes />
         </div>
       )}
+      <Footer />
     </Container>
   );
 };

@@ -5,6 +5,7 @@ import Loader from '../../components/Loader/Loader';
 import MainTitle from "components/MainTitle/MainTitle";
 import Subtitle from "components/Subtitle/Subtitle";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
+import Footer from 'components/Footer/Footer';
 
 import s from './AddRecipePage.module.scss';
 
@@ -36,13 +37,14 @@ const AddRecipePage = () => {
                         <div className={s.add_title_container}>
                             <MainTitle>Add Recipe</MainTitle>
                             <Subtitle>Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us.</Subtitle>
-                        </div>                        
+                        </div>
                         <AddRecipeForm />
                     </>
                 )}
-            </div>
+        </div>
+        <Footer />
         </Container>
-    ); 
+    );
 };
 
 AddRecipePage.prototype = {};
