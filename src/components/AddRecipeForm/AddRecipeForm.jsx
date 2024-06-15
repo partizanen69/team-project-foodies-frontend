@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import schemaYup from './schemaYup';
 import { getCategories } from '../../api/categories';
@@ -9,6 +11,8 @@ import { getAreasList } from '../../api/areas';
 import { getIngredientsList } from '../../api/ingredients';
 import { showError } from '../../api/api.utils';
 import { addNewRecipe } from '../../api/recipes';
+import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
+import { ReactComponent as CloseIcon } from '../../assets/icons/trash-light.svg';
 
 import ImageUpload from './ImageUpload/ImageUpload';
 import TitleInput from './TitleInput/TitleInput';
@@ -16,7 +20,10 @@ import DescriptionInput from './DescriptionInput/DescriptionInput';
 import AreaSelect from './AreaSelect/AreaSelect';
 import CategorySelect from './CategorySelect/CategorySelect';
 import TimeInput from './TimeInput/TimeInput';
+import AddRecipeFormLabel from './AddRecipeFormLabel/AddRecipeFormLabel';
+import InstructionsInput from './InstructionsInput/InstructionsInput';
 
+import s from './AddRecipeForm.module.scss';
 
 const AddRecipeForm = () => {
   const {
@@ -26,13 +33,15 @@ const AddRecipeForm = () => {
     setValue,
     getValues,
     watch,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaYup),
     defaultValues: {
-      ingredients: []
-    }
+      ingredients: [],
+    },
   });
+  // TODO: to remove
+  console.log('errors', errors, getValues());
 
   const [categories, setCategories] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -53,40 +62,47 @@ const AddRecipeForm = () => {
         setAreas(areasData);
         setIngredientsList(ingredientsData);
       } catch (error) {
-        showError(`Error occurred while trying to get initial data: ${error.message}`);
+        showError(
+          `Error occurred while trying to get initial data: ${error.message}`
+        );
       }
     };
     fetchInitialData();
   }, []);
 
-  const onSubmit = async (data) => {
-  try {
-    const formData = new FormData();
-    const { image, title, description, category, area, time, instructions } = data;
+  const onSubmit = async data => {
+    console.log('asdfasdf', data);
+    try {
+      const formData = new FormData();
+      const { image, title, description, category, area, time, instructions } =
+        data;
 
-    formData.append('thumb', image[0]);
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('category', category);
-    formData.append('area', area);
-    formData.append('time', time);
-    formData.append('instructions', instructions);
-    formData.append('ingredients', JSON.stringify(ingredientCards.map(card => ({
-      _id: card._id,
-      measure: card.measure,
-    }))));
+      formData.append('thumb', image[0]);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('category', category);
+      formData.append('area', area);
+      formData.append('time', time);
+      formData.append('instructions', instructions);
+      formData.append(
+        'ingredients',
+        JSON.stringify(
+          ingredientCards.map(card => ({
+            _id: card._id,
+            measure: card.measure,
+          }))
+        )
+      );
 
-    console.log("FORM DATA", formData);
+      await addNewRecipe(formData);
+      toast.success('Recipe added successfully');
 
-    await addNewRecipe(formData);
-    console.log('Recipe added successfully', formData);
-
-    navigate('/');
-  } catch (error) {
-    console.error('Error occurred while adding new recipe:', error);
-    alert('An error occurred: ' + error.message);
-  }
-};
+      navigate('/');
+    } catch (error) {
+      console.error('Error occurred while adding new recipe:', error);
+      toast.error(`An error occurred: ${error.message}`);
+    }
+  };
 
   const handleImageChange = e => {
     const file = e.target.files[0];
@@ -95,7 +111,7 @@ const AddRecipeForm = () => {
       setValue('image', [file]);
     }
   };
-  
+
   const addIngredient = (selectedIngredient, measure) => {
     const newCard = {
       _id: selectedIngredient._id,
@@ -104,10 +120,14 @@ const AddRecipeForm = () => {
       img: selectedIngredient.img,
     };
 
-    setIngredientCards([...ingredientCards, newCard]);
+    // TODO: to remove
+    console.log('ingredientCards', ingredientCards);
+    const newIngredients = [...ingredientCards, newCard];
+    setValue('ingredients', newIngredients);
+    setIngredientCards(newIngredients);
   };
 
-  const removeIngredientCard = (index) => {
+  const removeIngredientCard = index => {
     const updatedCards = [...ingredientCards];
     updatedCards.splice(index, 1);
     setIngredientCards(updatedCards);
@@ -115,6 +135,7 @@ const AddRecipeForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <ToastContainer />
 
       <ImageUpload
         imagePreview={imagePreview}
@@ -162,57 +183,109 @@ const AddRecipeForm = () => {
         time={getValues('time')}
       />
 
-    <div>
+      <div className={s.add_recipe_form_ingredients}>
         <Controller
           name="selectedIngredient"
           control={control}
           render={({ field }) => (
-            <>
-              <select {...field}>
-                <option key="default" value="">Select an ingredient</option>
-                {ingredientsList.map(ingredient => (
-                  <option key={ingredient._id} value={ingredient._id}>{ingredient.name}</option>
-                ))}
-              </select>
-              <input type="text" {...register('measure')} placeholder="Measure" />
-              <button type="button" onClick={() => {
-                const selectedIngredient = ingredientsList.find(ing => ing._id === watch('selectedIngredient'));
-                const measure = watch('measure');
-                if (selectedIngredient && measure) {
-                  addIngredient(selectedIngredient, measure);
-                }
-              }}>Add ingredient+</button>
-            </>
+            <div className={s.add_recipe_form_ingredient_input}>
+              <AddRecipeFormLabel>Ingredients</AddRecipeFormLabel>
+
+              <div className={s.add_recipe_form_ingredient_select_wrap}>
+                <select
+                  {...field}
+                  className={`${s.add_recipe_form_ingredient_input_select} ${
+                    field.value === ''
+                      ? s.ingredient_placeholder
+                      : s.ingredient_selected
+                  }`}
+                >
+                  <option
+                    key="default"
+                    value=""
+                    className={s.add_recipe_form_ingredient_input_option}
+                  >
+                    Add the ingredient
+                  </option>
+                  {ingredientsList.map(ingredient => (
+                    <option
+                      key={ingredient._id}
+                      value={ingredient._id}
+                      className={
+                        s.add_recipe_form_ingredient_input_ingredient_option
+                      }
+                    >
+                      {ingredient.name}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="text"
+                  {...register('measure')}
+                  placeholder="Enter quantity"
+                  className={s.add_recipe_form_ingredient_input_measure}
+                />
+              </div>
+
+              <button
+                className={s.add_recipe_form_ingredient_input_button}
+                type="button"
+                onClick={() => {
+                  const selectedIngredient = ingredientsList.find(
+                    ing => ing._id === watch('selectedIngredient')
+                  );
+                  const measure = watch('measure');
+                  if (selectedIngredient && measure) {
+                    addIngredient(selectedIngredient, measure);
+                  } else {
+                    toast.error('Please enter quantity');
+                  }
+                }}
+              >
+                <span>Add ingredient </span>
+                <PlusIcon
+                  className={s.add_recipe_form_ingredient_input_button_icon}
+                />
+              </button>
+            </div>
           )}
         />
       </div>
 
       <div>
-        <label>Ingredients</label>
         {ingredientCards.map((card, index) => (
           <div key={`ingredient-card-${index}`}>
             <img src={card.img} alt={card.name} />
             <div>
               <h4>{card.name}</h4>
               <p>Measure: {card.measure}</p>
-              <button type="button" onClick={() => removeIngredientCard(index)}>Remove</button>
+              <button type="button" onClick={() => removeIngredientCard(index)}>
+                Remove
+              </button>
             </div>
           </div>
         ))}
       </div>
 
-      {<div>
-        <label>Instructions</label>
-        <textarea {...register('instructions')} maxLength="200" />
-        <p>{watch('instructions')?.length || 0}/200</p>
-        {errors.instructions && <p>{errors.instructions.message}</p>}
-      </div>}
+      <InstructionsInput
+        name="instructions"
+        register={register}
+        watch={watch}
+        errors={errors}
+        maxLength={200}
+        description={getValues('instructions')}
+      />
 
-      
-
-      <div>
-        <button type="button" onClick={() => window.location.reload()}>Clear</button>
-        <button type="submit">Publish</button>
+      <div className={s.add_recipe_form_actions}>
+        <button
+          className={s.add_recipe_form_close_button}
+          onClick={() => window.location.reload()}
+        >
+          <CloseIcon className={s.add_recipe_form_close_icon} />
+        </button>
+        <button className={s.add_recipe_form_publish_button} type="submit">
+          Publish
+        </button>
       </div>
     </form>
   );

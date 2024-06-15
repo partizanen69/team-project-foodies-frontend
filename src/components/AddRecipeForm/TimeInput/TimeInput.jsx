@@ -7,7 +7,7 @@ const TimeInput = ({ register, getValues, setValue, errors }) => {
   const [displayTime, setDisplayTime] = useState("");
 
   useEffect(() => {
-    const currentValue = getValues('time') || 0;
+    const currentValue = getValues('time') || 10;
     setDisplayTime(`${currentValue} min`); 
   }, [getValues]);
 
