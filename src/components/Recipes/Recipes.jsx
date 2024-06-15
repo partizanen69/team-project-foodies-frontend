@@ -29,6 +29,9 @@ const Recipes = () => {
   const filters = useSelector(
     state => state.filters
   );
+  const {name, description} = useSelector(
+    state => state.category
+  );
 
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
@@ -130,12 +133,8 @@ const Recipes = () => {
       {/* header with description and action back */}
       <div className={s.recipes_header_container}>
         <NavigationButton title="back"></NavigationButton>
-        <MainTitle>desserts</MainTitle>
-        <Subtitle>
-          Go on a taste journey, where every sip is a sophisticated creative
-          chord, and every dessert is an expression of the most refined
-          gastronomic desires.
-        </Subtitle>
+        <MainTitle>{name}</MainTitle>
+        <Subtitle>{description}</Subtitle>
       </div>
 
       <div className={s.content_wrapper}>
