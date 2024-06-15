@@ -1,11 +1,11 @@
 import RoundButton from 'components/RoundButton/RoundButton';
 import { useNavigate } from 'react-router-dom';
-import RemoveFavorite from '../MyFavorites/RemoveFavorite/RemoveFavorite';
+import RemoveItem from '../RemoveItem/RemoveItem';
 
 import s from './RecipeItem.module.scss';
 import { getAvatarSrc } from 'api/api.utils';
 
-const RecipeItem = ({ recipe }) => {
+const RecipeItem = ({ recipe, ownRecipe }) => {
   const navigate = useNavigate();
 
   return (
@@ -25,7 +25,7 @@ const RecipeItem = ({ recipe }) => {
 
       <div className={s.button_group}>
         <RoundButton onClick={() => navigate(`/recipe/${recipe._id}`)} />
-        <RemoveFavorite recipeId={recipe._id} />
+        <RemoveItem recipeId={recipe._id} ownRecipe={ownRecipe} />
       </div>
     </li>
   );
