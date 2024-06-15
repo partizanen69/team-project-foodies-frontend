@@ -10,15 +10,18 @@ const CategorySelect = ({ control, categories, errors }) => (
       name="category"
       control={control}
       render={({ field }) => (
-        <select
-          {...field}
-          className={s.category_select}
-        >
-          <option key="default" value="" className={s.category_select_option}>Select a category</option>
-          {categories.map(category => (
-            <option key={category.name} value={category.id}>{category.name}</option>
-          ))}
-        </select>
+        <div className={s.select_wrapper}>
+          <select
+            {...field}
+            className={`${s.category_select} ${field.value ? s.category_selected : s.category_placeholder}`}
+          >
+            <option key="default" value="" className={s.category_select_option}>Select a category</option>
+            {categories.map(category => (
+              <option key={category.name} value={category.id}>{category.name}</option>
+            ))}
+          </select>
+          <div className={s.select_arrow}></div>
+        </div>
       )}
     />
     {errors.category && <p className="error">{errors.category.message}</p>}
