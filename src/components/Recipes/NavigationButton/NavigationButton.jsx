@@ -10,12 +10,16 @@ import s from './NavigationButton.module.scss';
 
 // import store actions
 import { clearCategoryFilter } from '../../../redux/actions/filtersActions';
+import { clearIngredientsFilter } from '../../../redux/actions/filtersActions';
+import { clearAreaFilter } from '../../../redux/actions/filtersActions';
 
 const NavigationButton = ({ title }) => {
   const dispatch = useDispatch();
 
   const onBack = () => {
     dispatch(clearCategoryFilter())
+    dispatch(clearIngredientsFilter())
+    dispatch(clearAreaFilter())
   }
 
   return (
