@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/team-project-foodies-frontend/static/css/main.9069c0b1.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.c8c56280.js",
-    "static/css/220.bf61a11c.chunk.css": "/team-project-foodies-frontend/static/css/220.bf61a11c.chunk.css",
-    "static/js/220.014e19ee.chunk.js": "/team-project-foodies-frontend/static/js/220.014e19ee.chunk.js",
+    "main.js": "/team-project-foodies-frontend/static/js/main.385ef3a6.js",
+    "static/css/967.a0795600.chunk.css": "/team-project-foodies-frontend/static/css/967.a0795600.chunk.css",
+    "static/js/967.e2c23707.chunk.js": "/team-project-foodies-frontend/static/js/967.e2c23707.chunk.js",
     "static/css/636.b9124b97.chunk.css": "/team-project-foodies-frontend/static/css/636.b9124b97.chunk.css",
     "static/js/636.d00f9a4f.chunk.js": "/team-project-foodies-frontend/static/js/636.d00f9a4f.chunk.js",
     "static/css/781.1e0ca61d.chunk.css": "/team-project-foodies-frontend/static/css/781.1e0ca61d.chunk.css",
@@ -24,7 +24,7 @@
     "static/media/hero-food.png": "/team-project-foodies-frontend/static/media/hero-food.68b7a552d97d291a744a.png",
     "static/media/hero-desert@2x.png": "/team-project-foodies-frontend/static/media/hero-desert@2x.c81afe2a181a1e022dd2.png",
     "static/media/hero-desert.png": "/team-project-foodies-frontend/static/media/hero-desert.d0295535aca7f8a13dcb.png",
-    "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.b4b53982bb58f70738e39b174fd2a800.svg",
+    "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.7f1863b313fb6f77fbaa2c5b7e56b407.svg",
     "index.html": "/team-project-foodies-frontend/index.html",
     "static/media/eye-closed-icon.svg": "/team-project-foodies-frontend/static/media/eye-closed-icon.30b488e2892091b0ab6a65075a568739.svg",
     "static/media/eye-open-icon.svg": "/team-project-foodies-frontend/static/media/eye-open-icon.9663035812a6a9dbe97bb016bc6421e7.svg",
@@ -32,9 +32,9 @@
     "static/media/arrow-drop-down.svg": "/team-project-foodies-frontend/static/media/arrow-drop-down.fd7da6c31ae1dcd7e3b1.svg",
     "static/media/arrow-filter.svg": "/team-project-foodies-frontend/static/media/arrow-filter.fd7da6c31ae1dcd7e3b1.svg",
     "main.9069c0b1.css.map": "/team-project-foodies-frontend/static/css/main.9069c0b1.css.map",
-    "main.c8c56280.js.map": "/team-project-foodies-frontend/static/js/main.c8c56280.js.map",
-    "220.bf61a11c.chunk.css.map": "/team-project-foodies-frontend/static/css/220.bf61a11c.chunk.css.map",
-    "220.014e19ee.chunk.js.map": "/team-project-foodies-frontend/static/js/220.014e19ee.chunk.js.map",
+    "main.385ef3a6.js.map": "/team-project-foodies-frontend/static/js/main.385ef3a6.js.map",
+    "967.a0795600.chunk.css.map": "/team-project-foodies-frontend/static/css/967.a0795600.chunk.css.map",
+    "967.e2c23707.chunk.js.map": "/team-project-foodies-frontend/static/js/967.e2c23707.chunk.js.map",
     "636.b9124b97.chunk.css.map": "/team-project-foodies-frontend/static/css/636.b9124b97.chunk.css.map",
     "636.d00f9a4f.chunk.js.map": "/team-project-foodies-frontend/static/js/636.d00f9a4f.chunk.js.map",
     "781.1e0ca61d.chunk.css.map": "/team-project-foodies-frontend/static/css/781.1e0ca61d.chunk.css.map",
@@ -52,6 +52,6 @@
   },
   "entrypoints": [
     "static/css/main.9069c0b1.css",
-    "static/js/main.c8c56280.js"
+    "static/js/main.385ef3a6.js"
   ]
 }
