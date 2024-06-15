@@ -40,6 +40,9 @@ const Recipes = () => {
   // store window wirth to set recipes limit
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const [limit, setLimit] = useState(windowWidth >= 1440 ? 12 : 10);
+  const [total, setTotal] = useState(window.innerWidth);
+
   // get recipes
   useEffect(() => {
     (async () => {
@@ -47,18 +50,20 @@ const Recipes = () => {
         setIsLoading(true);
         const data = await getRecipes({
           page: filters.page,
-          limit: windowWidth >= 1440 ? 12 : 10,
+          limit: limit,
           ingredients: filters.ingredients,
           area: filters.area,
         });
         setIsLoading(false);
         setRecipesList(data.recipes);
+        setLimit(windowWidth >= 1440 ? 12 : 10)
+        setTotal(data.total)
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, [filters.ingredients, filters.area, windowWidth, filters.page]);
+  }, [filters.ingredients, filters.area, windowWidth, filters.page, limit]);
 
   // get ingredients
   useEffect(() => {
@@ -141,7 +146,7 @@ const Recipes = () => {
           <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
           
           {/* recipes pagination component */}
-          <RecipePagination />
+          <RecipePagination total={Math.ceil(total / limit)}/>
           </div>
       </div>
     </Container>
