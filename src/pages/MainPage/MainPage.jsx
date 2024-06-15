@@ -4,6 +4,8 @@ import { useOutletContext } from 'react-router-dom';
 import Container from 'components/Container/Container';
 import Recipes from 'components/Recipes/Recipes'; 
 import Categories from 'components/Categories/Categories';
+import Footer from 'components/Footer/Footer';
+// import { Testimonials } from '../../components/Testimonials/Testimonials';
 
 import s from './MainPage.module.scss';
 const Hero = lazy(() => import('../../components/Hero/Hero'));
@@ -19,6 +21,8 @@ const MainPage = () => {
         ? <Recipes/>
         : <Categories/>
       }
+      {/* <Testimonials /> */}
+      <Footer />
     </Container>
   );
 };

@@ -14,7 +14,7 @@ import RecipeFilters from './RecipeFilters';
 // import requests
 import { getRecipes } from 'api/recipes';
 import { getIngredients } from 'api/ingedients';
-import { getAreas } from 'api/areas';
+import { getAreasList } from 'api/areas';
 
 // import store actions
 import { setIngredients } from '../../redux/actions/ingredientsActions';
@@ -80,7 +80,7 @@ const Recipes = () => {
     (async () => {
       try {
         setIsLoading(true);
-        const data = await getAreas();
+        const data = await getAreasList();
         setIsLoading(false);
         dispatch(setAreas(data));
       } catch (err) {
