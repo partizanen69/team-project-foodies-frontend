@@ -10,6 +10,10 @@ const ListPagination = ({ total }) => {
   const totalPages = Math.ceil(total / 10);
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+  const handlePageChange = page => {
+    dispatch(setPage(page));
+  };
+
   return (
     <ul className={s.pagination_elements}>
       {pages &&
@@ -19,7 +23,7 @@ const ListPagination = ({ total }) => {
             className={`${s.pagination_element} ${
               currentPage === page ? s.pagination_element_active : ''
             }`}
-            onClick={() => dispatch(setPage(page))}
+            onClick={() => handlePageChange(page)}
           >
             {page}
           </li>
