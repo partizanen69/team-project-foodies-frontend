@@ -1,8 +1,12 @@
 import s from './UserCard.module.scss';
 import RoundButton from 'components/RoundButton/RoundButton';
-// import PropTypes from 'prop-types';
-import { followUser, getUserFollowers, unfollowUser } from 'api/users';
-import { useParams } from 'react-router-dom';
+import {
+  followUser,
+  getUserFollowers,
+  getUserFollowing,
+  unfollowUser,
+} from 'api/users';
+import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setList } from '../../../redux/reducers/listReducer';
 import { useEffect, useState } from 'react';
@@ -20,6 +24,9 @@ const UserCard = props => {
   const [viewWidth, setViewWidth] = useState(window.innerWidth);
   const currentPage = useSelector(selectPage);
   const limit = useSelector(selectLimit);
+  const location = useLocation();
+  const locationList = location.pathname.split('/');
+  const pageName = locationList[locationList.length - 1];
 
   useEffect(() => {
     function handleResize() {
@@ -32,8 +39,6 @@ const UserCard = props => {
 
   const dispatch = useDispatch();
   const { id: userId } = useParams();
-
-  // const [isLoading, setIsLoading] = useState(true);
 
   const {
     _id,
@@ -59,8 +64,6 @@ const UserCard = props => {
         dispatch(setList(data.followers));
       } catch (error) {
         showError(error.message);
-      } finally {
-        // setIsLoading(false);
       }
     })();
   };
@@ -72,27 +75,23 @@ const UserCard = props => {
           return;
         }
         await unfollowUser(_id);
-        // const data = await getUserFollowers({
-        //   id: userId,
-        //   page: currentPage,
-        //   limit,
-        // });
-        // if (Math.ceil(data.total / limit) < currentPage && currentPage > 1) {
-        //   dispatch(
-        //     setPage(prev => {
-        //       if (prev > 1) {
-        //         return prev - 1;
-        //       } else {
-        //         return 1;
-        //       }
-        //     })
-        //   );
-        // }
-        // dispatch(setList(data.followers));
+        if (pageName === 'followers') {
+          const data = await getUserFollowers({
+            id: userId,
+            page: currentPage,
+            limit,
+          });
+          dispatch(setList(data.followers));
+        } else if (pageName === 'following') {
+          const data = await getUserFollowing({
+            id: userId,
+            page: currentPage,
+            limit,
+          });
+          dispatch(setList(data.following));
+        }
       } catch (error) {
         showError(error.message);
-      } finally {
-        // setIsLoading(false);
       }
     })();
   };
@@ -161,16 +160,5 @@ const UserCard = props => {
     </>
   );
 };
-
-// UserCard.propTypes = {
-//   user: PropTypes.shape({
-//     _id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     avatarURL: PropTypes.string.isRequired,
-//     recipesCount: PropTypes.number.isRequired,
-//     recipes: PropTypes.array.isRequired,
-//     isFollowing: PropTypes.bool,
-//   }),
-// };
 
 export default UserCard;
