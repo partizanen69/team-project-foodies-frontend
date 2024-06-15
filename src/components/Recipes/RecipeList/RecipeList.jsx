@@ -19,7 +19,7 @@ const RecipeList = ({recipesList, isLoading, errorMsg}) => {
       ) : recipesList && recipesList.length > 0 ? (
         <ul className={s.recipes_list}>
           {recipesList.map(recipe => (
-            <li key={recipe._id}>
+            <li className={s.recipe_item} key={recipe._id}>
               <RecipeCard recipe={recipe} />
             </li>
           ))}

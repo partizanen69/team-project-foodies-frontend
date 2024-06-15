@@ -6,9 +6,17 @@ import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/actions/authActions';
+import { Avatar } from '../Avatar/Avatar';
+import {
+  followUser,
+  getUserDetailsById,
+  getUserFollowers,
+  unfollowUser,
+} from 'api/users';
 import { Avatar } from './Avatar/Avatar';
 import { getUserDetailsById } from 'api/users';
 import { useNavigate } from 'react-router-dom';
+import { setList } from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
@@ -31,6 +39,54 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
     dispatch(logout());
     closeModal();
     navigate('/');
+  };
+
+  const follow = () => {
+    (async () => {
+      try {
+        if (!userId) {
+          return;
+        }
+        await followUser(userDetails.id);
+        setuserDetails(prevState => {
+          return { ...prevState, isFollowing: true };
+        });
+        const data = await getUserFollowers({
+          id: userId,
+          page: 1,
+          limit: 9,
+        });
+        dispatch(setList(data.followers));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // setIsLoading(false);
+      }
+    })();
+  };
+
+  const unfollow = () => {
+    (async () => {
+      try {
+        if (!userId) {
+          return;
+        }
+        await unfollowUser(userDetails.id);
+        setuserDetails(prevState => {
+          return { ...prevState, isFollowing: false };
+        });
+        const data = await getUserFollowers({
+          id: userId,
+          page: 1,
+          limit: 9,
+        });
+        dispatch(setList(data.followers));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // setIsLoading(false);
+      }
+    })();
   };
 
   useEffect(() => {
@@ -66,13 +122,19 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
             isOwnProfile={isOwnProfile}
           />
         </div>
-
+        {console.log(userDetails.isFollowing)}
         {isOwnProfile ? (
           <button type="submit" className={s.btn_logout} onClick={openModal}>
             Log Out
           </button>
+        ) : userDetails.isFollowing ? (
+          <button className={s.btn_logout} onClick={unfollow}>
+            Following
+          </button>
         ) : (
-          <button className={s.btn_logout}>Follow</button>
+          <button className={s.btn_logout} onClick={follow}>
+            Follow
+          </button>
         )}
       </div>
 
