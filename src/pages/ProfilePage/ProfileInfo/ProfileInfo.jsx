@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../redux/actions/authActions';
 
 import {
@@ -13,17 +13,22 @@ import {
   getUserFollowers,
   unfollowUser,
 } from 'api/users';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { setFavorites, setList } from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
 import { showError } from 'api/api.utils';
+import { selectLimit } from '../../../redux/selectors';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [userDetails, setuserDetails] = useState({});
+  const location = useLocation();
+  const locationList = location.pathname.split('/');
+  const pageName = locationList[locationList.length - 1];
+  const limit = useSelector(selectLimit);
 
   const [isModalLogOutOpen, setIsModalLogOutOpen] = useState(false);
 
@@ -49,18 +54,22 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         }
         await followUser(userDetails.id);
         setuserDetails(prevState => {
-          return { ...prevState, isFollowing: true };
+          return {
+            ...prevState,
+            followersCount: userDetails.followersCount + 1,
+            isFollowing: true,
+          };
         });
-        // const data = await getUserFollowers({
-        //   id: userId,
-        //   page: 1,
-        //   limit: 9,
-        // });
-        // dispatch(setList(data.followers));
+        if (pageName === 'followers') {
+          const data = await getUserFollowers({
+            id: userId,
+            page: 1,
+            limit,
+          });
+          dispatch(setList(data.followers));
+        }
       } catch (error) {
         showError(error.message);
-      } finally {
-        // setIsLoading(false);
       }
     })();
   };
@@ -73,18 +82,22 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         }
         await unfollowUser(userDetails.id);
         setuserDetails(prevState => {
-          return { ...prevState, isFollowing: false };
+          return {
+            ...prevState,
+            followersCount: userDetails.followersCount - 1,
+            isFollowing: false,
+          };
         });
-        const data = await getUserFollowers({
-          id: userId,
-          page: 1,
-          limit: 9,
-        });
-        dispatch(setList(data.followers));
+        if (pageName === 'followers') {
+          const data = await getUserFollowers({
+            id: userId,
+            page: 1,
+            limit,
+          });
+          dispatch(setList(data.followers));
+        }
       } catch (error) {
         console.log(error);
-      } finally {
-        // setIsLoading(false);
       }
     })();
   };
