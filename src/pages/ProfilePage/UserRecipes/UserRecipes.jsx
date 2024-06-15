@@ -68,7 +68,7 @@ const UserRecipes = () => {
         <Loader />
       ) : recipes.length > 0 ? (
         <>
-          <ListItems isRecipeCard={true} list={recipes} />
+          <ListItems isRecipeCard={true} list={recipes} ownRecipes={true} />
           {totalRecipes && <ListPagination total={totalRecipes} />}
         </>
       ) : (
