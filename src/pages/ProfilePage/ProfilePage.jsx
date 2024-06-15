@@ -6,7 +6,7 @@ import s from './ProfilePage.module.scss';
 import Container from 'components/Container/Container';
 import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
-import { PathInfo } from 'components/PathInfo/PathInfo'
+import { PathInfo } from 'components/PathInfo/PathInfo';
 import Footer from 'components/Footer/Footer';
 
 import ProfileInfo from 'pages/ProfilePage/ProfileInfo/ProfileInfo';
@@ -38,6 +38,7 @@ const ProfilePage = () => {
         <ProfileInfo userId={id} isOwnProfile={isOwnProfile} />
         <ProfileTabs userId={id} isOwnProfile={isOwnProfile} />
       </div>
+
       <Footer />
     </Container>
   );

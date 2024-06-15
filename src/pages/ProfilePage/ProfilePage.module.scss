@@ -13,6 +13,7 @@
   gap: 64px;
   width: 100%;
   margin-top: 32px;
+  margin-bottom: 64px;
   overflow: hidden;
 }
 
@@ -23,6 +24,7 @@
 
   .main_content {
     gap: 80px;
+    margin-bottom: 100px;
   }
 }
 
@@ -35,5 +37,6 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 40px;
+    margin-bottom: 120px;
   }
 }

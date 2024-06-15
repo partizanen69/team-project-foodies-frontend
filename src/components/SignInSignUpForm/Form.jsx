@@ -11,9 +11,9 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader/Loader';
 
-import s from './SignInSignUpForm.module.scss';
+import s from './Form.module.scss';
 
-const SignInSignUpForm = ({
+const Form = ({
   isModalSignInOpen,
   isModalSignUpOpen,
   closeModal,
@@ -165,11 +165,11 @@ const SignInSignUpForm = ({
   );
 };
 
-SignInSignUpForm.propTypes = {
+Form.propTypes = {
   isModalSignInOpen: PropTypes.bool.isRequired,
   isModalSignUpOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   openModal: PropTypes.func.isRequired,
 };
 
-export default SignInSignUpForm;
+export default Form;

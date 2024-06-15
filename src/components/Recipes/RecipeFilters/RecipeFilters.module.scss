@@ -1,35 +1,86 @@
 @import '../../../assets/sass/main.scss';
 
 .filters_wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  display: grid;
+  height: fit-content;
+  grid-template-columns: repeat(1, minmax(343px, 1fr));
+  width: 343px;
+  row-gap: 14px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(345px, 1fr));
+    column-gap: 14px;
+    width: 704px;
+  }
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(1, minmax(330px, 1fr));
+    row-gap: 14px;
+    width: 330px;
+  }
 }
 
 .filter_container {
-    position: relative;
+  position: relative;
 }
 
 .filter_select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-    width: 100%;
-    height: 56px;   
-    padding-left: 18px;
-    padding-right: 54px;
-    background-color: $bg-primary-color;
-    border: 1px solid rgba(5, 5, 5, 0.12);
-    border-radius: 30px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    outline: none;
+  width: 100%;
+  height: 48px;
+  padding-left: 18px;
+  padding-right: 54px;
+  background-color: $bg-primary-color;
+  border: 1px solid rgba(5, 5, 5, 0.12);
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: none;
 
-    background-image: url('../../../assets/icons/arrow-filter.svg'); // Додайте шлях до вашої кастомної іконки
-    background-repeat: no-repeat;
-    background-position: right 18px center;
-    background-size: 18px;
+  background-image: url('../../../assets/icons/arrow-filter.svg'); // Додайте шлях до вашої кастомної іконки
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 18px;
+
+  @media (min-width: 764px) {
+    height: 56px;
+  }
+
+  @media (min-width: 1440px) {
+    @include font-styles(14px, 700, 18px, -0.02em);
+  }
+}
+
+/* Breakpoints */
+$mobile: 375px;
+$mobile-max: 767.99px;
+$tablet: 768px;
+$tablet-max: 1439.99px;
+$desktop: 1440px;
+
+.recipeFilters {
+  display: grid;
+  height: fit-content;
+
+  @media screen and (min-width: $mobile) and (max-width: $mobile-max) {
+    grid-template-columns: repeat(1, minmax(343px, 1fr));
+    width: 343px;
+    row-gap: 14px;
+  }
+
+  @media screen and (min-width: $tablet) and (max-width: $tablet-max) {
+    grid-template-columns: repeat(2, minmax(345px, 1fr));
+    column-gap: 14px;
+    width: 704px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(1, minmax(330px, 1fr));
+    row-gap: 14px;
+    width: 330px;
+  }
 }

@@ -6,9 +6,17 @@ import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/actions/authActions';
-import { Avatar } from '../Avatar/Avatar';
-import { getUserDetailsById } from 'api/users';
+
+import {
+  followUser,
+  getUserDetailsById,
+  getUserFollowers,
+  unfollowUser,
+} from 'api/users';
 import { useNavigate } from 'react-router-dom';
+import { setFavorites, setList } from '../../../redux/reducers/listReducer';
+import DetailsList from './DetailsList/DetailsList';
+import { Avatar } from './Avatar/Avatar';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -32,6 +40,54 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
     navigate('/');
   };
 
+  const follow = () => {
+    (async () => {
+      try {
+        if (!userId) {
+          return;
+        }
+        await followUser(userDetails.id);
+        setuserDetails(prevState => {
+          return { ...prevState, isFollowing: true };
+        });
+        const data = await getUserFollowers({
+          id: userId,
+          page: 1,
+          limit: 9,
+        });
+        dispatch(setList(data.followers));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // setIsLoading(false);
+      }
+    })();
+  };
+
+  const unfollow = () => {
+    (async () => {
+      try {
+        if (!userId) {
+          return;
+        }
+        await unfollowUser(userDetails.id);
+        setuserDetails(prevState => {
+          return { ...prevState, isFollowing: false };
+        });
+        const data = await getUserFollowers({
+          id: userId,
+          page: 1,
+          limit: 9,
+        });
+        dispatch(setList(data.followers));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // setIsLoading(false);
+      }
+    })();
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -41,72 +97,44 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
 
         const data = await getUserDetailsById({ id: userId });
         setuserDetails(data);
+        dispatch(setFavorites(data.favorites));
       } catch (error) {
         console.log(error);
       } finally {
         setIsLoading(false);
       }
     })();
-  }, [userId]);
+  }, [dispatch, userId]);
 
   return (
     <Suspense fallback={<Loader />}>
       <div className={s.profile_info}>
         <div className={s.profile_info_card}>
-          <Avatar avatar={userDetails.avatarURL} />
+          <Avatar avatar={userDetails.avatarURL} isOwnProfile={isOwnProfile} />
 
           <p className={s.user_name}>
-            {isLoading ? `Loading...` : userDetails.name}
+            {isLoading || !userDetails.name ? `User name` : userDetails.name}
           </p>
 
-          <ul className={s.details_list}>
-            <li className={s.details_list_item}>
-              <p className={s.item_key}>Email: </p>
-              <span className={s.item_value}>
-                {isLoading ? `Loading...` : userDetails.email}
-              </span>
-            </li>
-
-            <li className={s.details_list_item}>
-              <p className={s.item_key}>Added recipes: </p>
-              <span className={s.item_value}>
-                {isLoading ? `Loading...` : userDetails.recipesCount}
-              </span>
-            </li>
-
-            {isOwnProfile && userDetails.hasOwnProperty('favorites') && (
-              <li className={s.details_list_item}>
-                <p className={s.item_key}>Favorites: </p>
-                <span className={s.item_value}>
-                  {isLoading ? `Loading...` : userDetails.favorites}
-                </span>
-              </li>
-            )}
-
-            <li className={s.details_list_item}>
-              <p className={s.item_key}>Followers: </p>
-              <span className={s.item_value}>
-                {isLoading ? `Loading...` : userDetails.followersCount}
-              </span>
-            </li>
-
-            {isOwnProfile && userDetails.hasOwnProperty('followingCount') && (
-              <li className={s.details_list_item}>
-                <p className={s.item_key}>Following: </p>
-                <span className={s.item_value}>
-                  {isLoading ? `Loading...` : userDetails.followingCount}
-                </span>
-              </li>
-            )}
-          </ul>
+          <DetailsList
+            userDetails={userDetails}
+            isLoading={isLoading}
+            isOwnProfile={isOwnProfile}
+          />
         </div>
 
         {isOwnProfile ? (
           <button type="submit" className={s.btn_logout} onClick={openModal}>
             Log Out
           </button>
+        ) : userDetails.isFollowing ? (
+          <button className={s.btn_logout} onClick={unfollow}>
+            Following
+          </button>
         ) : (
-          <button className={s.btn_logout}>Follow</button>
+          <button className={s.btn_logout} onClick={follow}>
+            Follow
+          </button>
         )}
       </div>
 

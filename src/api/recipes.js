@@ -35,6 +35,7 @@ export const getFavoriteRecipes = async ({
   recipeIds,
 }) => {
   try {
+    // console.log(page);
     const result = await axios.get('/recipes/favorites', {
       params: {
         page,
@@ -77,6 +78,22 @@ export const getPopularRecipes = async () => {
   }
 };
 
+export const getUserRecipes = async ({ owner, page = 1, limit = 10 }) => {
+  try {
+    const result = await axios.get(`/recipes/user-recipes`, {
+      params: {
+        owner,
+        page,
+        limit,
+      },
+    });
+
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
+
 export const addNewRecipe = async recipe => {
   try {
     const result = await axios.post('/recipes', recipe, {
@@ -84,6 +101,15 @@ export const addNewRecipe = async recipe => {
         'Content-Type': 'multipart/form-data',
       },
     });
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
+
+export const deleteRecipe = async recipeId => {
+  try {
+    const result = await axios.delete(`/recipes/${recipeId}`);
     return result.data;
   } catch (err) {
     handleAxiosError(err);

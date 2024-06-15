@@ -1,12 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
-
+import { logout } from '../../redux/actions/authActions';
 import s from './LogoutForm.module.scss';
 
-const LogoutForm = ({ handleLogOut, closeModal }) => {
+const LogoutForm = ({ closeModal }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading } = useSelector(state => state.auth);
+  const [, setIsLoggedIn] = useState(false);
+
+  const handleLogOut = () => {
+    dispatch(logout());
+    setIsLoggedIn(false);
+    closeModal();
+    navigate('/');
+  };
 
   return (
     <>

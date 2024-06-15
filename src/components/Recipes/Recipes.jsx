@@ -26,7 +26,7 @@ import s from './Recipes.module.scss';
 
 const Recipes = () => {
   const dispatch = useDispatch();
-  const { ingredients, area, category, page } = useSelector(
+  const filters = useSelector(
     state => state.filters
   );
 
@@ -37,24 +37,33 @@ const Recipes = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
 
+  // store window wirth to set recipes limit
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const [limit, setLimit] = useState(windowWidth >= 1440 ? 12 : 10);
+  const [total, setTotal] = useState(window.innerWidth);
+
   // get recipes
   useEffect(() => {
     (async () => {
       try {
         setIsLoading(true);
         const data = await getRecipes({
-          page: page,
-          ingredients: ingredients,
-          area: area,
+          page: filters.page,
+          limit: limit,
+          ingredients: filters.ingredients,
+          area: filters.area,
         });
         setIsLoading(false);
         setRecipesList(data.recipes);
+        setLimit(windowWidth >= 1440 ? 12 : 10)
+        setTotal(data.total)
       } catch (err) {
         setIsLoading(false);
         setErrorMsg(err.message);
       }
     })();
-  }, [page, category, ingredients, area]);
+  }, [filters.ingredients, filters.area, windowWidth, filters.page, limit]);
 
   // get ingredients
   useEffect(() => {
@@ -89,7 +98,31 @@ const Recipes = () => {
   // Clear page filter when area or ingredients change
   useEffect(() => {
     dispatch(clearPageFilter());
-  }, [area, ingredients, dispatch]);
+  }, [filters.area, filters.ingredients, dispatch]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <Container className={s.recipes_container}>
@@ -104,18 +137,18 @@ const Recipes = () => {
         </Subtitle>
       </div>
 
-      {/* recipes filters component */}
-      <RecipeFilters />
+      <div className={s.content_wrapper}>
+        {/* recipes filters component */}
+        <RecipeFilters/>
 
-      {/* recipes list component */}
-      <RecipeList
-        recipesList={recipesList}
-        isLoading={isLoading}
-        errorMsg={errorMsg}
-      />
-
-      {/* recipes pagination component */}
-      <RecipePagination />
+        <div className={s.recipes_wrapper}>
+          {/* recipes list component */}
+          <RecipeList recipesList={recipesList} isLoading={isLoading} errorMsg={errorMsg}/>
+          
+          {/* recipes pagination component */}
+          <RecipePagination total={Math.ceil(total / limit)}/>
+          </div>
+      </div>
     </Container>
   );
 };
