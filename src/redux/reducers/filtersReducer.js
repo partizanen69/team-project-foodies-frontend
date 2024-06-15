@@ -13,7 +13,7 @@ import {
 const initialState = {
   ingredients: null,
   area: null,
-  category: 'Dessert',
+  category: null,
   page: 1,
 };
 

@@ -29,4 +29,26 @@
         color: $gray-text;
         background-color: $dark-text;
     }
+
+    @media (hover: none) {
+        border: 1px solid $light-dark-stroke;
+        color: $dark-text;
+
+        &_active {
+            border: 1px solid $dark-text;
+        }
+    }
+}
+
+.pagination_dots {
+    @include font-styles(14px, 400, 20.02px, 0.17px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid $light-dark-stroke;
+    color: $dark-text;
+    background-color: transparent;
 }

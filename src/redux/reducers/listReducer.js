@@ -11,6 +11,7 @@ const initialState = {
   pageName: pages.recipies,
   page: 1,
   limit: 9,
+  favorites: 0,
   list: [],
   isLoading: false,
   error: null,
@@ -29,8 +30,12 @@ const listSlice = createSlice({
     setPageName: (state, action) => {
       state.pageName = action.payload;
     },
+    setFavorites: (state, action) => {
+      state.favorites = action.payload;
+    },
   },
 });
 
-export const { setList, setPage, setPageName } = listSlice.actions;
+export const { setList, setPage, setPageName, setFavorites } =
+  listSlice.actions;
 export default listSlice.reducer;
