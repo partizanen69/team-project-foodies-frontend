@@ -7,10 +7,10 @@ import Container from 'components/Container/Container';
 import MainTitle from 'components/MainTitle/MainTitle';
 import Subtitle from 'components/Subtitle/Subtitle';
 import { PathInfo } from 'components/PathInfo/PathInfo';
+import Footer from 'components/Footer/Footer';
 
 import ProfileInfo from 'pages/ProfilePage/ProfileInfo/ProfileInfo';
 import ProfileTabs from './ProfileTabs/ProfileTabs';
-import Footer from 'components/Footer/Footer';
 
 const ProfilePage = () => {
   const { id } = useParams();

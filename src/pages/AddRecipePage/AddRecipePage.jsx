@@ -37,14 +37,15 @@ const AddRecipePage = () => {
                         <div className={s.add_title_container}>
                             <MainTitle>Add Recipe</MainTitle>
                             <Subtitle>Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us.</Subtitle>
-                        </div>                        
+                        </div>
                         <AddRecipeForm />
                         <Footer />
                     </>
                 )}
-            </div>
+        </div>
+        <Footer />
         </Container>
-    ); 
+    );
 };
 
 AddRecipePage.prototype = {};
