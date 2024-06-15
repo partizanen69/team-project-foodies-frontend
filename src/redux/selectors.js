@@ -13,3 +13,7 @@ export const selectFavorites = state => {
 export const selectPage = state => {
   return state.list.page;
 };
+
+export const selectListLoading = state => {
+  return state.list.isLoading;
+};
