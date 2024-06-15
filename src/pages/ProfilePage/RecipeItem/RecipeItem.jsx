@@ -1,6 +1,6 @@
 import RoundButton from 'components/RoundButton/RoundButton';
 import { useNavigate } from 'react-router-dom';
-import RemoveFavorite from '../RemoveFavorite/RemoveFavorite';
+import RemoveFavorite from '../MyFavorites/RemoveFavorite/RemoveFavorite';
 
 import s from './RecipeItem.module.scss';
 import { getAvatarSrc } from 'api/api.utils';

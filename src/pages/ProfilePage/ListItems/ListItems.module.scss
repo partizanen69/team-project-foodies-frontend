@@ -1,0 +1,9 @@
+@import '../../../assets/sass/utils/mixin.scss';
+
+.list_items {
+  @include flex-center();
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  margin-top: 40px;
+}

@@ -6,18 +6,17 @@ import LogoutForm from 'components/LogoutForm/LogoutForm';
 import Loader from 'components/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/actions/authActions';
-import { Avatar } from '../Avatar/Avatar';
+
 import {
   followUser,
   getUserDetailsById,
   getUserFollowers,
   unfollowUser,
 } from 'api/users';
-import { Avatar } from './Avatar/Avatar';
-import { getUserDetailsById } from 'api/users';
 import { useNavigate } from 'react-router-dom';
 import { setList } from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
+import { Avatar } from './Avatar/Avatar';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -122,7 +121,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
             isOwnProfile={isOwnProfile}
           />
         </div>
-        {console.log(userDetails.isFollowing)}
+
         {isOwnProfile ? (
           <button type="submit" className={s.btn_logout} onClick={openModal}>
             Log Out
