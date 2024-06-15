@@ -33,13 +33,15 @@ const AddRecipeForm = () => {
     setValue,
     getValues,
     watch,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaYup),
     defaultValues: {
-      ingredients: []
-    }
+      ingredients: [],
+    },
   });
+  // TODO: to remove
+  console.log('errors', errors, getValues());
 
   const [categories, setCategories] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
@@ -60,16 +62,20 @@ const AddRecipeForm = () => {
         setAreas(areasData);
         setIngredientsList(ingredientsData);
       } catch (error) {
-        showError(`Error occurred while trying to get initial data: ${error.message}`);
+        showError(
+          `Error occurred while trying to get initial data: ${error.message}`
+        );
       }
     };
     fetchInitialData();
   }, []);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
+    console.log('asdfasdf', data);
     try {
       const formData = new FormData();
-      const { image, title, description, category, area, time, instructions } = data;
+      const { image, title, description, category, area, time, instructions } =
+        data;
 
       formData.append('thumb', image[0]);
       formData.append('title', title);
@@ -78,18 +84,23 @@ const AddRecipeForm = () => {
       formData.append('area', area);
       formData.append('time', time);
       formData.append('instructions', instructions);
-      formData.append('ingredients', JSON.stringify(ingredientCards.map(card => ({
-        _id: card._id,
-        measure: card.measure,
-      }))));
+      formData.append(
+        'ingredients',
+        JSON.stringify(
+          ingredientCards.map(card => ({
+            _id: card._id,
+            measure: card.measure,
+          }))
+        )
+      );
 
       await addNewRecipe(formData);
-      toast.success('Recipe added successfully'); 
+      toast.success('Recipe added successfully');
 
       navigate('/');
     } catch (error) {
       console.error('Error occurred while adding new recipe:', error);
-      toast.error(`An error occurred: ${error.message}`); 
+      toast.error(`An error occurred: ${error.message}`);
     }
   };
 
@@ -100,7 +111,7 @@ const AddRecipeForm = () => {
       setValue('image', [file]);
     }
   };
-  
+
   const addIngredient = (selectedIngredient, measure) => {
     const newCard = {
       _id: selectedIngredient._id,
@@ -109,10 +120,14 @@ const AddRecipeForm = () => {
       img: selectedIngredient.img,
     };
 
-    setIngredientCards([...ingredientCards, newCard]);
+    // TODO: to remove
+    console.log('ingredientCards', ingredientCards);
+    const newIngredients = [...ingredientCards, newCard];
+    setValue('ingredients', newIngredients);
+    setIngredientCards(newIngredients);
   };
 
-  const removeIngredientCard = (index) => {
+  const removeIngredientCard = index => {
     const updatedCards = [...ingredientCards];
     updatedCards.splice(index, 1);
     setIngredientCards(updatedCards);
@@ -179,16 +194,26 @@ const AddRecipeForm = () => {
               <div className={s.add_recipe_form_ingredient_select_wrap}>
                 <select
                   {...field}
-                  className={`${s.add_recipe_form_ingredient_input_select} ${field.value === "" ? s.ingredient_placeholder : s.ingredient_selected}`}
+                  className={`${s.add_recipe_form_ingredient_input_select} ${
+                    field.value === ''
+                      ? s.ingredient_placeholder
+                      : s.ingredient_selected
+                  }`}
                 >
-                  <option key="default" value="" className={s.add_recipe_form_ingredient_input_option}>
+                  <option
+                    key="default"
+                    value=""
+                    className={s.add_recipe_form_ingredient_input_option}
+                  >
                     Add the ingredient
                   </option>
                   {ingredientsList.map(ingredient => (
                     <option
                       key={ingredient._id}
                       value={ingredient._id}
-                      className={s.add_recipe_form_ingredient_input_ingredient_option}
+                      className={
+                        s.add_recipe_form_ingredient_input_ingredient_option
+                      }
                     >
                       {ingredient.name}
                     </option>
@@ -206,17 +231,21 @@ const AddRecipeForm = () => {
                 className={s.add_recipe_form_ingredient_input_button}
                 type="button"
                 onClick={() => {
-                  const selectedIngredient = ingredientsList.find(ing => ing._id === watch('selectedIngredient'));
+                  const selectedIngredient = ingredientsList.find(
+                    ing => ing._id === watch('selectedIngredient')
+                  );
                   const measure = watch('measure');
                   if (selectedIngredient && measure) {
                     addIngredient(selectedIngredient, measure);
                   } else {
-                    toast.error('Please enter quantity'); 
+                    toast.error('Please enter quantity');
                   }
                 }}
               >
                 <span>Add ingredient </span>
-                <PlusIcon className={s.add_recipe_form_ingredient_input_button_icon} />
+                <PlusIcon
+                  className={s.add_recipe_form_ingredient_input_button_icon}
+                />
               </button>
             </div>
           )}
@@ -230,7 +259,9 @@ const AddRecipeForm = () => {
             <div>
               <h4>{card.name}</h4>
               <p>Measure: {card.measure}</p>
-              <button type="button" onClick={() => removeIngredientCard(index)}>Remove</button>
+              <button type="button" onClick={() => removeIngredientCard(index)}>
+                Remove
+              </button>
             </div>
           </div>
         ))}
@@ -244,13 +275,17 @@ const AddRecipeForm = () => {
         maxLength={200}
         description={getValues('instructions')}
       />
-      
 
       <div className={s.add_recipe_form_actions}>
-        <button  className={s.add_recipe_form_close_button} type="button" onClick={() => window.location.reload()}>
-          <CloseIcon className={s.add_recipe_form_close_icon}/>
+        <button
+          className={s.add_recipe_form_close_button}
+          onClick={() => window.location.reload()}
+        >
+          <CloseIcon className={s.add_recipe_form_close_icon} />
         </button>
-        <button className={s.add_recipe_form_publish_button} type="submit">Publish</button>
+        <button className={s.add_recipe_form_publish_button} type="submit">
+          Publish
+        </button>
       </div>
     </form>
   );
