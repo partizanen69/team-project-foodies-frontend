@@ -4,7 +4,7 @@ import RoundButton from 'components/RoundButton/RoundButton';
 import { followUser, getUserFollowers, unfollowUser } from 'api/users';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setList, setPage } from '../../../redux/reducers/listReducer';
+import { setList } from '../../../redux/reducers/listReducer';
 import { useEffect, useState } from 'react';
 import { selectLimit, selectPage } from '../../../redux/selectors';
 import { showError } from 'api/api.utils';
