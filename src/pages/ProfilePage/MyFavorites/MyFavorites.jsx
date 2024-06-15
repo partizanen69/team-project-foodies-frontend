@@ -6,6 +6,7 @@ import ListPagination from '../ListPagination/ListPagination';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFavorites,
+  selectLimit,
   selectList,
   selectListLoading,
   selectPage,
@@ -14,6 +15,7 @@ import {
   setIsLoading,
   setList,
   setPage,
+  setTotalUsers,
 } from '../../../redux/reducers/listReducer';
 import { showError } from 'api/api.utils';
 import Loader from 'components/Loader/Loader';
@@ -24,11 +26,13 @@ const MyFavorites = () => {
   const recipes = useSelector(selectList);
   const currentPage = useSelector(selectPage);
   const totalFavorites = useSelector(selectFavorites);
+  const limit = useSelector(selectLimit);
 
   useEffect(() => {
     return () => {
       dispatch(setList([])); // Reset list to empty or initial state
       dispatch(setPage(1)); // Reset page to 1 or initial state
+      dispatch(setTotalUsers(0));
     };
   }, [dispatch]);
 
@@ -38,7 +42,7 @@ const MyFavorites = () => {
         dispatch(setIsLoading(true));
         const result = await getFavoriteRecipes({
           page: currentPage,
-          limit: 10,
+          limit,
         });
         dispatch(setList(result.recipes));
       } catch (error) {
@@ -47,7 +51,7 @@ const MyFavorites = () => {
         dispatch(setIsLoading(false));
       }
     })();
-  }, [currentPage, dispatch]);
+  }, [currentPage, limit, dispatch]);
 
   return (
     <>

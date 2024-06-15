@@ -15,6 +15,7 @@ const initialState = {
   list: [],
   isLoading: false,
   error: null,
+  totalUsers: 0,
 };
 
 const listSlice = createSlice({
@@ -36,9 +37,18 @@ const listSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    setTotalUsers: (state, action) => {
+      state.totalUsers = action.payload;
+    },
   },
 });
 
-export const { setList, setPage, setPageName, setFavorites, setIsLoading } =
-  listSlice.actions;
+export const {
+  setList,
+  setPage,
+  setPageName,
+  setFavorites,
+  setIsLoading,
+  setTotalUsers,
+} = listSlice.actions;
 export default listSlice.reducer;
