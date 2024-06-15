@@ -37,6 +37,12 @@ const listSlice = createSlice({
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    removeFromList: (state, action) => {
+      state.list = state.list.filter(recipe => recipe._id !== action.payload);
+    },
+    setLimit: (state, action) => {
+      state.limit = action.payload;
+    },
     setTotalUsers: (state, action) => {
       state.totalUsers = action.payload;
     },
@@ -49,6 +55,8 @@ export const {
   setPageName,
   setFavorites,
   setIsLoading,
+  removeFromList,
+  setLimit,
   setTotalUsers,
 } = listSlice.actions;
 export default listSlice.reducer;

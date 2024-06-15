@@ -51,6 +51,7 @@ const Recipes = () => {
         const data = await getRecipes({
           page: filters.page,
           limit: limit,
+          category: filters.category,
           ingredients: filters.ingredients,
           area: filters.area,
         });
@@ -63,7 +64,7 @@ const Recipes = () => {
         setErrorMsg(err.message);
       }
     })();
-  }, [filters.ingredients, filters.area, windowWidth, filters.page, limit]);
+  }, [filters.ingredients, filters.area, windowWidth, filters.page, limit, filters.category]);
 
   // get ingredients
   useEffect(() => {

@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
 import s from './DetailsList.module.scss';
+import { selectFavorites } from '../../../../redux/selectors';
 
 const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
+  const favorites = useSelector(selectFavorites);
+
   return (
     <ul className={s.details_list}>
       <li className={s.details_list_item}>
@@ -23,7 +27,7 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
         <li className={s.details_list_item}>
           <p className={s.item_key}>Favorites: </p>
           <span className={s.item_value}>
-            {isLoading || !userDetails.favorites ? 0 : userDetails.favorites}
+            {isLoading || !favorites ? 0 : favorites}
           </span>
         </li>
       )}

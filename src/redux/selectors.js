@@ -25,3 +25,7 @@ export const selectLimit = state => {
 export const selectListLoading = state => {
   return state.list.isLoading;
 };
+
+export const selectPageLimit = state => {
+  return state.list.limit;
+};

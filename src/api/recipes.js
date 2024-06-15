@@ -106,3 +106,12 @@ export const addNewRecipe = async recipe => {
     handleAxiosError(err);
   }
 };
+
+export const deleteRecipe = async recipeId => {
+  try {
+    const result = await axios.delete(`/recipes/${recipeId}`);
+    return result.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+};
