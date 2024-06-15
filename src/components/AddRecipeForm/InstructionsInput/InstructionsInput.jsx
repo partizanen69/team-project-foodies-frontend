@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 
-import s from './DescriptionInput.module.scss';
+import s from './InstructionsInput.module.scss';
 
-const DescriptionInput = ({ register, name, errors, maxLength }) => {
+
+const InstructionsInput = ({  register, name, errors, maxLength }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (e) => {
@@ -11,16 +13,19 @@ const DescriptionInput = ({ register, name, errors, maxLength }) => {
   };
 
   return (
-    <div className={s.add_recipe_form_description_wrap}>
-    <div className={s.add_recipe_form_description}>
+    <div className={s.add_recipe_form_instructions}>
+    <AddRecipeFormLabel>Recipe Preparation</AddRecipeFormLabel>
+      <div className={s.add_recipe_form_instructions_wrap}>
+        
+    <div className={s.add_recipe_form_counter}>
       <input
         {...register(name)}
         type="text"
         value={inputValue}
         maxLength={maxLength}
         onChange={handleChange}
-        placeholder="Enter a description of the dish"
-        className={s.add_recipe_form_description_input}
+        placeholder="Enter recipe"
+        className={s.add_recipe_form_instructions_input}
       />
       <div className={s.character_count}>
         <span style={{ color: inputValue.length > 0 ? 'rgba(5, 5, 5, 1)' : 'rgba(5, 5, 5, 0.6)' }}>
@@ -28,11 +33,13 @@ const DescriptionInput = ({ register, name, errors, maxLength }) => {
         </span>
         <span>/{maxLength}</span>
       </div>
-      </div>
+          
+    </div>
       {errors[name] && <p>{errors[name].message}</p>}
       <div className={s.bottom_border}></div>
-    </div>
+      </div>
+      </div>
   );
 };
 
-export default DescriptionInput;
+export default InstructionsInput;

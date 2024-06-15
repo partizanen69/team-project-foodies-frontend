@@ -7,6 +7,7 @@ import Subtitle from "components/Subtitle/Subtitle";
 import AddRecipeForm from "components/AddRecipeForm/AddRecipeForm";
 
 import s from './AddRecipePage.module.scss';
+import Footer from 'components/Footer/Footer';
 
 const AddRecipePage = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +39,7 @@ const AddRecipePage = () => {
                             <Subtitle>Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us.</Subtitle>
                         </div>                        
                         <AddRecipeForm />
+                        <Footer />
                     </>
                 )}
             </div>

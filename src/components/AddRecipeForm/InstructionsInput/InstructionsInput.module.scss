@@ -1,22 +1,27 @@
 @import '../../../assets/sass/utils/mixin';
 @import '../../../assets/sass/utils/variables';
 
-.add_recipe_form_description_wrap {
+.add_recipe_form_instructions {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
   margin-bottom: 32px;
 }
 
-.add_recipe_form_description {
+.add_recipe_form_instructions_wrap {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.add_recipe_form_description_input {
+.add_recipe_form_instructions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add_recipe_form_instructions_input {
   width: 100%;
-  min-height: 20px;
+  min-height: 36px;
   border: none;
   padding: 0;
   outline: none;
@@ -42,6 +47,12 @@
   margin-top: -1px;
 }
 
+.add_recipe_form_counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .character_count {
   display: flex;
   align-items: center;
@@ -58,5 +69,11 @@
 @media screen and (min-width: 768px) {
   .add_recipe_form_description {
     gap: 47px;
+  }
+
+  .add_recipe_form_instructions {
+    gap: 40px;
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
 }
