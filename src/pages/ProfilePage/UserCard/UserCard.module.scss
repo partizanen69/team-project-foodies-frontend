@@ -1,0 +1,93 @@
+@import '../../../assets/sass/utils/variables.scss';
+@import '../../../assets/sass/utils/mixin.scss';
+
+.user_card {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(5, 5, 5, 0.1);
+  }
+
+  & .wrapper {
+    display: flex;
+    gap: 16px;
+  }
+
+  & .avatar {
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+  }
+
+  & .name {
+    @include font-styles(16px, 800, 1.5, -0.32px);
+    text-transform: uppercase;
+    color: #050505;
+  }
+
+  & .text {
+    margin-top: 4px;
+    @include font-styles(12px, 500, 1.5, -0.24px);
+    color: rgba(5, 5, 5, 0.6);
+  }
+
+  & .follow_button {
+    margin-top: 8px;
+    @include font-styles(14px, 700, 1.43, -0.28px);
+    text-transform: uppercase;
+    background-color: transparent;
+    color: rgba(5, 5, 5, 0.9);
+    padding: 8px 16px;
+    border: 1px solid rgba(5, 5, 5, 0.12);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color $hover-transition;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-text;
+      color: $bg-primary-color;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .user_card {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    & .avatar {
+      width: 85px;
+      height: 85px;
+    }
+
+    & .name {
+      @include font-styles(20px, 800, 1.2, -0.4px);
+    }
+
+    & .text {
+      @include font-styles(14px, 500, 1.43, -0.28px);
+    }
+
+    & .follow_button {
+      padding: 10px 24px;
+      @include font-styles(16px, 700, 1.5, -0.32px);
+    }
+
+    & .recipe_list {
+      display: flex;
+      gap: 12px;
+
+      & .recipe_image {
+        width: 100px;
+        height: 100px;
+        border-radius: 15px;
+        object-fit: cover;
+      }
+    }
+  }
+}

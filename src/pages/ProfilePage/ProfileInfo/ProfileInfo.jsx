@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { setFavorites, setList } from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
+import { showError } from 'api/api.utils';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -50,14 +51,14 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         setuserDetails(prevState => {
           return { ...prevState, isFollowing: true };
         });
-        const data = await getUserFollowers({
-          id: userId,
-          page: 1,
-          limit: 9,
-        });
-        dispatch(setList(data.followers));
+        // const data = await getUserFollowers({
+        //   id: userId,
+        //   page: 1,
+        //   limit: 9,
+        // });
+        // dispatch(setList(data.followers));
       } catch (error) {
-        console.log(error);
+        showError(error.message);
       } finally {
         // setIsLoading(false);
       }
@@ -122,7 +123,6 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
             isOwnProfile={isOwnProfile}
           />
         </div>
-
         {isOwnProfile ? (
           <button type="submit" className={s.btn_logout} onClick={openModal}>
             Log Out
