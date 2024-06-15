@@ -50,10 +50,10 @@ export const SharedLayout = () => {
         onClose={closeModal}
       >
         <Form
-         isModalSignInOpen={isModalSignInOpen}
-         isModalSignUpOpen={isModalSignUpOpen}
-         closeModal={closeModal}
-         openModal={openModal}
+          isModalSignInOpen={isModalSignInOpen}
+          isModalSignUpOpen={isModalSignUpOpen}
+          closeModal={closeModal}
+          openModal={openModal}
         />
       </Modal>
       {isModalLogOutOpen && (
