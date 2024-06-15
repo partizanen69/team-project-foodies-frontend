@@ -10,6 +10,7 @@ import { PathInfo } from 'components/PathInfo/PathInfo';
 
 import ProfileInfo from 'pages/ProfilePage/ProfileInfo/ProfileInfo';
 import ProfileTabs from './ProfileTabs/ProfileTabs';
+import Footer from 'components/Footer/Footer';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -37,6 +38,8 @@ const ProfilePage = () => {
         <ProfileInfo userId={id} isOwnProfile={isOwnProfile} />
         <ProfileTabs userId={id} isOwnProfile={isOwnProfile} />
       </div>
+
+      <Footer />
     </Container>
   );
 };
