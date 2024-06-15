@@ -5,3 +5,15 @@ export const selectCurrentUser = state => {
 export const selectList = state => {
   return state.list.list;
 };
+
+export const selectFavorites = state => {
+  return state.list.favorites;
+};
+
+export const selectPage = state => {
+  return state.list.page;
+};
+
+export const selectListLoading = state => {
+  return state.list.isLoading;
+};

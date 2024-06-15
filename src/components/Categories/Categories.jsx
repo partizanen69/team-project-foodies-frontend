@@ -6,8 +6,11 @@ import Subtitle from '../Subtitle/Subtitle';
 import CategoryList from '../CategoryList/CategoryList';
 import { toast } from 'react-toastify';
 import styles from './Categories.module.scss';
+import { useDispatch } from 'react-redux';
+import { setCategoryFilter } from '../../redux/actions/filtersActions.js';
 
-const Categories = ({ onCategorySelected }) => {
+const Categories = () => {
+  const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
   const [allCategoriesLoaded, setAllCategoriesLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +27,7 @@ const Categories = ({ onCategorySelected }) => {
   }, []);
 
   const handleCategoryClick = categoryName => {
-    onCategorySelected(categoryName);
+    dispatch(setCategoryFilter(categoryName))
   };
 
   const handleAllCategoriesClick = async () => {

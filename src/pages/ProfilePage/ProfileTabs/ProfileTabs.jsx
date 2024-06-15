@@ -3,6 +3,9 @@ import s from './ProfileTabs.module.scss';
 
 const ProfileTabs = ({ userId, isOwnProfile }) => {
   const location = useLocation();
+
+  const getNavLinkClass = ({ isActive }) => (isActive ? s.active : '');
+
   return (
     <div className={s.tabs_container}>
       <ul className={s.tabs_list}>
@@ -10,9 +13,9 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
           <NavLink
             to={`/user/${userId}/recipies`}
             state={{ from: location }}
-            activeclassname={s.active}
+            className={getNavLinkClass}
           >
-            My recipes
+            {isOwnProfile ? 'My recipes' : 'Recipes'}
           </NavLink>
         </li>
 
@@ -21,7 +24,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
             <NavLink
               to={`/user/${userId}/favorites`}
               state={{ from: location }}
-              activeclassname={s.active}
+              className={getNavLinkClass}
             >
               My favorites
             </NavLink>
@@ -32,7 +35,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
           <NavLink
             to={`/user/${userId}/followers`}
             state={{ from: location }}
-            activeclassname={s.active}
+            className={getNavLinkClass}
           >
             Followers
           </NavLink>
@@ -43,14 +46,13 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
             <NavLink
               to={`/user/${userId}/following`}
               state={{ from: location }}
-              activeclassname={s.active}
+              className={getNavLinkClass}
             >
               Following
             </NavLink>
           </li>
         )}
       </ul>
-
       <Outlet />
     </div>
   );
