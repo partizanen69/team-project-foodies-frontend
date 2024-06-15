@@ -139,7 +139,7 @@ const Form = ({
           {isModalSignInOpen ? 'SIGN IN' : 'CREATE'}
         </button>
       </form>
-      <div>
+      <div className={s.modal_text_wrapper}>
         <p className={s.modal_text}>
           {isModalSignInOpen
             ? "Don't have an account? "
