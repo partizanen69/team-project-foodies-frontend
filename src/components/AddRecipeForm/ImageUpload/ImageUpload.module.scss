@@ -1,6 +1,12 @@
 @import '../../../assets/sass/utils/mixin';
 @import '../../../assets/sass/utils/variables';
 
+.upload_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .recipe_image_container {
   width: 343px;
   height: 318px;
@@ -23,8 +29,8 @@
 }
 
 .recipe_image_preview {
-  width: 100%;
-  height: 100%;
+  width: 343px;
+  height: 318px;
   object-fit: cover;
   border-radius: 30px;
 }
@@ -33,12 +39,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .recipe_upload_icon {
   width: 50px;
   height: 50px;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .recipe_image_text {
@@ -51,7 +59,6 @@
 }
 
 .upload_again_container {
-  margin-left: 103px;
   margin-top: 16px;
   margin-bottom: 32px;
 }
@@ -62,6 +69,11 @@
 
 @media screen and (min-width: 768px) {
   .recipe_image_container {
+    width: 704px;
+    height: 400px;
+  }
+
+  .recipe_image_preview {
     width: 704px;
     height: 400px;
   }
@@ -78,6 +90,7 @@
 
   .upload_again_container {
     margin-top: 20px;
+    margin-bottom: 80px;
   }
 }
 
@@ -85,5 +98,12 @@
   .recipe_image_container {
     width: 551px;
     height: 400px;
+  }
+  .recipe_image_preview {
+    width: 551px;
+    height: 400px;
+  }
+  .upload_again_container {
+    margin-bottom: 0px;
   }
 }

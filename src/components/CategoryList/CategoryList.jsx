@@ -52,7 +52,7 @@ const CategoryList = ({
             imgUrl={backendUrl + category.imgUrl}
             name={category.name}
             size={getCategoryCardSize(index)}
-            onClick={() => onCategoryClick(category.name)}
+            onClick={() => onCategoryClick(category)}
           />
         </li>
       ))}

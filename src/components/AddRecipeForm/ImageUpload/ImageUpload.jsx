@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ImageUpload.module.scss';
 
 const ImageUpload = ({ handleImageChange, imagePreview }) => (
-  <div>
+  <div className={s.upload_container}>
     <label htmlFor="image-upload" className={s.recipe_image_container}>
       <input
         type="file"

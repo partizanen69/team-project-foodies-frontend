@@ -12,7 +12,7 @@ const AreaSelect = ({ control, areas, errors }) => (
       render={({ field }) => (
         <select
           {...field}
-          className={s.area_select}
+          className={`${s.area_select} ${field.value ? s.area_selected : s.area_placeholder}`}
         >
           <option value="" className={s.area_select_option}>Select an area</option>
           {areas.map(area => (
