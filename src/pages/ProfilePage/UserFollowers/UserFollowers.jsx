@@ -19,6 +19,7 @@ import { useParams } from 'react-router-dom';
 import { showError } from 'api/api.utils';
 import Loader from 'components/Loader/Loader';
 import ListPagination from '../ListPagination/ListPagination';
+import s from './UserFollowers.module.scss';
 
 const UserFollowers = () => {
   const dispatch = useDispatch();
@@ -66,9 +67,10 @@ const UserFollowers = () => {
           {totalUsers > limit && <ListPagination total={totalUsers} />}
         </>
       ) : (
-        <p>
-          Your account currently has no subscriptions to other users. Learn more
-          about our users and select those whose content interests you.
+        <p className={s.empty_text}>
+          There are currently no followers on your account. Please engage our
+          visitors with interesting content and draw their attention to your
+          profile.
         </p>
       )}
     </>

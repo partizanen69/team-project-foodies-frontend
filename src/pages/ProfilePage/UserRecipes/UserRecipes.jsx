@@ -16,6 +16,7 @@ import ListItems from '../ListItems/ListItems';
 import ListPagination from '../ListPagination/ListPagination';
 import { showError } from 'api/api.utils';
 import Loader from 'components/Loader/Loader';
+import s from './UserRecipes.module.scss';
 
 const UserRecipes = () => {
   const { id } = useParams();
@@ -72,7 +73,7 @@ const UserRecipes = () => {
           {totalRecipes && <ListPagination total={totalRecipes} />}
         </>
       ) : (
-        <p>
+        <p className={s.empty_text}>
           Nothing has been added to your recipes list yet. Please browse our
           recipes and add your favorites for easy access in the future.
         </p>

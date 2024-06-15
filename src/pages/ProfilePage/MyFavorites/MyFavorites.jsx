@@ -19,6 +19,7 @@ import {
 } from '../../../redux/reducers/listReducer';
 import { showError } from 'api/api.utils';
 import Loader from 'components/Loader/Loader';
+import s from './MyFavorites.module.scss';
 
 const MyFavorites = () => {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const MyFavorites = () => {
           {totalFavorites && <ListPagination total={totalFavorites} />}
         </>
       ) : (
-        <p>
+        <p className={s.empty_text}>
           Nothing has been added to your favorite recipes list yet. Please
           browse our recipes and add your favorites for easy access in the
           future.
