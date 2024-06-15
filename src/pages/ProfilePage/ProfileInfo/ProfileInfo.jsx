@@ -154,7 +154,6 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
             )}
           </ul>
         </div>
-        {console.log(userDetails.isFollowing)}
         {isOwnProfile ? (
           <button type="submit" className={s.btn_logout} onClick={openModal}>
             Log Out

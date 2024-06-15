@@ -1,21 +1,36 @@
+import s from './UserCard.module.scss';
 import RoundButton from 'components/RoundButton/RoundButton';
 import PropTypes from 'prop-types';
 import { followUser, getUserFollowers, unfollowUser } from 'api/users';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setList } from '../../../redux/reducers/listReducer';
+import { useEffect, useState } from 'react';
 
-const BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
+const BASE_IMAGE_URL = process.env.REACT_APP_BACKEND_AVATAR;
 
 const getImageSrc = image => {
   if (!image) return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
-  return image.startsWith('https://') ? image : `${BASE_URL}${image}`;
+  return image.startsWith('https://') ? image : `${BASE_IMAGE_URL}${image}`;
 };
 
 const UserCard = props => {
+  const [viewWidth, setViewWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setViewWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [viewWidth]);
+
   const dispatch = useDispatch();
   const { id: userId } = useParams();
+
   // const [isLoading, setIsLoading] = useState(true);
+
   const {
     _id,
     name,
@@ -68,33 +83,62 @@ const UserCard = props => {
   };
 
   return (
-    <li>
-      <div>
-        <img src={getImageSrc(avatarURL)} alt="" />
+    <li className={s.user_card}>
+      <div className={s.wrapper}>
+        <img
+          className={s.avatar}
+          src={getImageSrc(avatarURL)}
+          alt="user avatar"
+        />
         <div>
-          <h3>{name}</h3>
-          <p>Own recipes: {recipesCount}</p>
+          <h3 className={s.name}>{name}</h3>
+          <p className={s.text}>Own recipes: {recipesCount}</p>
           {isFollowing ? (
-            <button onClick={unfollow}>Following</button>
+            <button className={s.follow_button} onClick={unfollow}>
+              Following
+            </button>
           ) : (
-            <button onClick={follow}>Follow</button>
+            <button className={s.follow_button} onClick={follow}>
+              Follow
+            </button>
           )}
         </div>
-        <ul>
-          {recipes.map(recipe => {
+      </div>
+      {viewWidth >= 768 && viewWidth < 1440 && (
+        <ul className={s.recipe_list}>
+          {recipes.slice(0, 3).map(recipe => {
             return (
               <li key={recipe._id}>
-                <img src={getImageSrc(avatarURL)} alt="" />
+                <img
+                  className={s.recipe_image}
+                  src={getImageSrc(avatarURL)}
+                  alt=""
+                />
               </li>
             );
           })}
         </ul>
-        <RoundButton
-          onClick={() => {
-            window.location.href = `/user/${_id}/recipies`;
-          }}
-        />
-      </div>
+      )}
+      {viewWidth >= 1440 && (
+        <ul className={s.recipe_list}>
+          {recipes.map(recipe => {
+            return (
+              <li key={recipe._id}>
+                <img
+                  className={s.recipe_image}
+                  src={getImageSrc(avatarURL)}
+                  alt=""
+                />
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      <RoundButton
+        onClick={() => {
+          window.location.href = `/team-project-foodies-frontend/user/${_id}/recipies`;
+        }}
+      />
     </li>
   );
 };

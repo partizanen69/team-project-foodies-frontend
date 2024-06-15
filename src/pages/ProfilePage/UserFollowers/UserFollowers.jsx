@@ -13,6 +13,7 @@ const UserFollowers = () => {
   const userList = useSelector(selectList);
   useEffect(() => {
     (async () => {
+      dispatch(setList([]));
       try {
         if (!id) {
           return;
