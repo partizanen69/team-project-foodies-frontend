@@ -21,34 +21,35 @@
   }
   position: relative;
   margin-bottom: 24px;
-}
 
-.tabs_list::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -14px;
-  width: 100%;
-  height: 1px;
-  background-color: $light-dark-stroke;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -14px;
+    width: 100%;
+    height: 1px;
+    background-color: $light-dark-stroke;
+  }
 }
 
 .tab_item {
   width: max-content;
+  color: $mid-dark-text;
 }
 
 .active {
   color: $dark-text;
 
   position: relative;
-}
 
-.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background-color: $dark-text;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -14px;
+    width: 100%;
+    height: 2px;
+    background-color: $dark-text;
+  }
 }
