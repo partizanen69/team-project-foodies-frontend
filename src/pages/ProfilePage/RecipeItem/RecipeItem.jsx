@@ -26,6 +26,7 @@ const RecipeItem = ({ recipe, isFavorite }) => {
           src={getAvatarSrc(recipe.thumb)}
           alt={recipe.title}
           className={s.recipe_thumb}
+          onError={getAvatarSrc(null)}
         />
       </div>
 
