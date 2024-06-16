@@ -1,4 +1,5 @@
 // import tools
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // import components
@@ -8,7 +9,12 @@ import Loader from 'components/Loader/Loader';
 // import styles
 import s from './RecipeList.module.scss';
 
-const RecipeList = ({recipesList, isLoading, errorMsg}) => {
+const RecipeList = ({ recipesList, isLoading, errorMsg, scrollToRef }) => {
+  useEffect(() => {
+    if (scrollToRef && scrollToRef.current) {
+      scrollToRef.current.scrollIntoView({ behavior: 'instant' });
+    }
+  }, [scrollToRef]);
 
   return (
     <>
@@ -20,7 +26,7 @@ const RecipeList = ({recipesList, isLoading, errorMsg}) => {
         <ul className={s.recipes_list}>
           {recipesList.map(recipe => (
             <li className={s.recipe_item} key={recipe._id}>
-              <RecipeCard recipe={recipe} />
+              <RecipeCard recipe={recipe} scrollToTop={false} />
             </li>
           ))}
         </ul>
@@ -34,7 +40,8 @@ const RecipeList = ({recipesList, isLoading, errorMsg}) => {
 RecipeList.propTypes = {
   recipesList: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
-  errorMsg: PropTypes.string
+  errorMsg: PropTypes.string,
+  scrollToRef: PropTypes.object,
 };
 
 export default RecipeList;
