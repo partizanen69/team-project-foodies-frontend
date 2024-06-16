@@ -39,7 +39,14 @@ const AddRecipeForm = () => {
   } = useForm({
     resolver: yupResolver(schemaYup),
     defaultValues: {
+      image: null,
+      title: '',
+      description: '',
+      area: '',
+      category: '',
+      time: 0, 
       ingredients: [],
+      instructions: '',
     },
   });
 
@@ -230,11 +237,7 @@ const AddRecipeForm = () => {
           <div className={s.add_recipe_form_actions}>
             <button
               className={s.add_recipe_form_close_button}
-              onClick={() => {
-                reset(); 
-                setImagePreview(null);
-                setIngredientCards([]);
-              }}
+              onClick={() => window.location.reload()}
             >
               <CloseIcon className={s.add_recipe_form_close_icon} />
             </button>
