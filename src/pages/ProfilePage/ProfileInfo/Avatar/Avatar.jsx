@@ -1,21 +1,23 @@
 import { getAvatarSrc } from 'api/api.utils';
 import s from './Avatar.module.scss';
-// import { updateAvatar } from 'api/users';
 import Icon from 'components/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setAvatarStore,
-  updateAvatarStore,
-} from '../../../../redux/actions/authActions';
+import { updateAvatarStore } from '../../../../redux/actions/authActions';
+import Loader from 'components/Loader/Loader';
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.auth);
-  const [userAvatar, setUserAvatar] = useState(user?.avatarURL ?? '');
+  const { user, loading } = useSelector(state => state.auth);
+  const [userAvatar, setUserAvatar] = useState(
+    localStorage.getItem('avatarURL') || (user?.avatarURL ?? '')
+  );
 
-  const handleFileChange = async event => {
+  const handleFileChange = event => {
     const selectedFile = event.target.files[0];
+
     if (!selectedFile) {
       return;
     }
@@ -26,7 +28,8 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
     try {
       dispatch(updateAvatarStore(formData));
     } catch (error) {
-      console.log(error);
+      toast.error(`Error occured: ${error.message}`);
+      console.error(error);
     }
   };
 
@@ -44,9 +47,10 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
         alt="User avatar"
         src={userAvatar}
         className={s.profile_avatar}
-        onError={() => dispatch(setAvatarStore(null))}
+        onError={() =>
+          setUserAvatar(`${process.env.PUBLIC_URL}/avatar-placeholder.svg`)
+        }
       />
-
       {isOwnProfile && (
         <label htmlFor="avatar" className={s.btn_add_avatar}>
           <Icon name="icon-plus" className={s.plus} />
@@ -60,8 +64,13 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
           />
         </label>
       )}
+
+      {loading && <Loader />}
     </div>
   );
 };
 
-Avatar.propTypes = {};
+Avatar.propTypes = {
+  avatar: PropTypes.string,
+  isOwnProfile: PropTypes.bool,
+};

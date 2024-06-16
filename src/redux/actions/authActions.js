@@ -15,6 +15,7 @@ import {
   UPDATE_AVATAR_FAILURE,
   SET_AVATAR,
 } from './actionTypes';
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { updateAvatar } from 'api/users';
@@ -27,12 +28,11 @@ const loginSuccess = (user, token) => ({
   type: LOGIN_SUCCESS,
   payload: { user, token },
 });
-const loginFailure = error => ({ type: LOGIN_FAILURE, payload: error });
 
+const loginFailure = error => ({ type: LOGIN_FAILURE, payload: error });
 const registerRequest = () => ({ type: REGISTER_REQUEST });
 const registerSuccess = user => ({ type: REGISTER_SUCCESS, payload: user });
 const registerFailure = error => ({ type: REGISTER_FAILURE, payload: error });
-
 const logoutAction = () => ({ type: LOGOUT });
 
 const fetchCurrentUserRequest = () => ({ type: FETCH_CURRENT_USER_REQUEST });
@@ -40,6 +40,7 @@ const fetchCurrentUserSuccess = user => ({
   type: FETCH_CURRENT_USER_SUCCESS,
   payload: user,
 });
+
 const fetchCurrentUserFailure = error => ({
   type: FETCH_CURRENT_USER_FAILURE,
   payload: error,
@@ -51,7 +52,7 @@ export const updateAvatarBegin = () => ({
 
 export const updateAvatarSuccess = avatarUrl => ({
   type: UPDATE_AVATAR_SUCCESS,
-  payload: { avatarUrl },
+  payload: { avatarURL: avatarUrl },
 });
 
 export const updateAvatarFailure = error => ({
@@ -62,12 +63,10 @@ export const updateAvatarFailure = error => ({
 export const fetchCurrentUser = () => async dispatch => {
   dispatch(fetchCurrentUserRequest());
   const token = localStorage.getItem('jwt-token');
-
   if (!token) {
     dispatch(fetchCurrentUserFailure('No token found'));
     return;
   }
-
   try {
     const response = await axios.get('/users/current', {
       headers: { Authorization: `Bearer ${token}` },
@@ -119,6 +118,7 @@ export const logout = () => dispatch => {
 };
 
 export const updateAvatarStore = formData => async dispatch => {
+  dispatch(updateAvatarBegin());
   try {
     const response = await updateAvatar(formData);
 
@@ -126,6 +126,7 @@ export const updateAvatarStore = formData => async dispatch => {
     const uniqueAvatarURL = `${response.avatarURL}?t=${timestamp}`;
 
     dispatch(updateAvatarSuccess(uniqueAvatarURL));
+    toast.success('Avatar updated successfully!');
   } catch (error) {
     dispatch(updateAvatarFailure(error.message));
     toast.error(error.message);
@@ -134,5 +135,5 @@ export const updateAvatarStore = formData => async dispatch => {
 
 export const setAvatarStore = avatarURL => ({
   type: SET_AVATAR,
-  payload: { avatarURL },
+  payload: avatarURL,
 });

@@ -43,7 +43,7 @@ const AddRecipeForm = () => {
       description: '',
       area: '',
       category: '',
-      time: 0, 
+      time: 0,
       ingredients: [],
       instructions: '',
     },
@@ -101,14 +101,13 @@ const AddRecipeForm = () => {
           }))
         )
       );
-      
+
       await addNewRecipe(formData);
       toast.success('Recipe added successfully');
 
       if (user) {
         navigate(`/user/${user.id}`);
       }
-
     } catch (error) {
       toast.error(`Error occurred while adding new recipe: ${error.message}`);
     }
@@ -122,12 +121,14 @@ const AddRecipeForm = () => {
     }
   };
 
-  const handleMeasureChange = (e) => {
+  const handleMeasureChange = e => {
     setIsTyping(true);
   };
 
   const addIngredient = (selectedIngredient, measure) => {
-    const ingredientExists = ingredientCards.some(card => card._id === selectedIngredient._id);
+    const ingredientExists = ingredientCards.some(
+      card => card._id === selectedIngredient._id
+    );
     if (ingredientExists) {
       toast.error('This ingredient is already added');
       return;
@@ -153,7 +154,6 @@ const AddRecipeForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-
       <div className={s.add_recipe_form_container}>
         <div>
           <ImageUpload
@@ -162,7 +162,7 @@ const AddRecipeForm = () => {
             errors={errors}
           />
         </div>
-      
+
         <div>
           <TitleInput
             name="title"
@@ -217,12 +217,12 @@ const AddRecipeForm = () => {
             control={control}
             register={register}
           />
-        
+
           <AddIngredientCard
             removeIngredientCard={removeIngredientCard}
             ingredientCards={ingredientCards}
           />
-      
+
           <InstructionsInput
             name="instructions"
             register={register}

@@ -4,6 +4,7 @@ import { selectCurrentUser } from '../../../redux/selectors';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { getAvatarSrc } from '../../../api/api.utils';
 
 export const RecipeCreatedBy = ({ ownerId, name, avatar, popular = false }) => {
   const currentUser = useSelector(selectCurrentUser);
@@ -19,7 +20,6 @@ export const RecipeCreatedBy = ({ ownerId, name, avatar, popular = false }) => {
     navigate(`/user/${ownerId}`);
   };
 
-  const avatarPlaceholder = process.env.PUBLIC_URL + '/avatar-placeholder.svg';
   return (
     <div className={s.recipe_created_by_wrap}>
       <button
@@ -35,7 +35,7 @@ export const RecipeCreatedBy = ({ ownerId, name, avatar, popular = false }) => {
             popular && s.avatar_wrap_popular
           )}
         >
-          <img src={avatar || avatarPlaceholder} alt={name} />
+          <img src={getAvatarSrc(avatar)} alt={name} />
         </div>
         <div className={s.name_wrap}>
           {!popular && <p className={s.created_by}>Created by:</p>}

@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import RoundButton from 'components/RoundButton/RoundButton';
 import { useNavigate, useParams } from 'react-router-dom';
 import RemoveItem from '../RemoveItem/RemoveItem';
 
 import s from './RecipeItem.module.scss';
-import { getAvatarSrc } from 'api/api.utils';
+import { getImageSrc } from 'api/api.utils';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,6 +13,7 @@ const RecipeItem = ({ recipe, isFavorite }) => {
   const { id } = useParams();
   const { user } = useSelector(state => state.auth);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
+  const [recipeImage, setRecipeImage] = useState(recipe.thumb);
 
   useEffect(() => {
     if (user && user.id && id) {
@@ -19,13 +21,20 @@ const RecipeItem = ({ recipe, isFavorite }) => {
     }
   }, [user, id]);
 
+  useEffect(() => {
+    setRecipeImage(getImageSrc(recipe?.thumb));
+  }, [recipe.thumb]);
+
   return (
     <li className={s.recipe_card}>
       <div className={s.thumb_wrapper}>
         <img
-          src={getAvatarSrc(recipe.thumb)}
+          src={recipeImage}
           alt={recipe.title}
           className={s.recipe_thumb}
+          onError={() =>
+            setRecipeImage(`${process.env.PUBLIC_URL}/image-placeholder.svg`)
+          }
         />
       </div>
 
@@ -42,6 +51,16 @@ const RecipeItem = ({ recipe, isFavorite }) => {
       </div>
     </li>
   );
+};
+
+RecipeItem.propTypes = {
+  recipe: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    thumb: PropTypes.string,
+  }).isRequired,
+  isFavorite: PropTypes.bool,
 };
 
 export default RecipeItem;
