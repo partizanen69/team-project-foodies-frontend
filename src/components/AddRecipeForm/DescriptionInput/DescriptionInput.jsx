@@ -8,8 +8,8 @@ const DescriptionInput = ({ register, name, errors, maxLength }) => {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setInputValue(value.slice(0, maxLength)); 
-    setIsTyping(true); 
+    setInputValue(value.slice(0, maxLength));
+    setIsTyping(true);
   };
 
   return (
