@@ -8,17 +8,15 @@ import {
 } from 'api/users';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setList } from '../../../redux/reducers/listReducer';
+import { setFollowing, setList } from '../../../redux/reducers/listReducer';
 import { useEffect, useState } from 'react';
-import { selectLimit, selectPage } from '../../../redux/selectors';
-import { showError } from 'api/api.utils';
-
-const BASE_IMAGE_URL = process.env.REACT_APP_BACKEND_AVATAR;
-
-const getImageSrc = image => {
-  if (!image) return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
-  return image.startsWith('https://') ? image : `${BASE_IMAGE_URL}${image}`;
-};
+import {
+  selectCurrentUser,
+  selectLimit,
+  selectPage,
+} from '../../../redux/selectors';
+import { getAvatarSrc, showError } from 'api/api.utils';
+import RecipeImage from './RecipeImage/RecipeImage';
 
 const UserCard = props => {
   const [viewWidth, setViewWidth] = useState(window.innerWidth);
@@ -27,6 +25,8 @@ const UserCard = props => {
   const location = useLocation();
   const locationList = location.pathname.split('/');
   const pageName = locationList[locationList.length - 1];
+
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
     function handleResize() {
@@ -48,6 +48,7 @@ const UserCard = props => {
     isFollowing = true,
     recipes,
   } = props.user;
+  const [followingState, setFollowingState] = useState(isFollowing);
 
   const follow = () => {
     (async () => {
@@ -55,13 +56,19 @@ const UserCard = props => {
         if (!userId || !_id) {
           return;
         }
-        await followUser(_id);
+        const following = await followUser(_id);
         const data = await getUserFollowers({
           id: userId,
           page: currentPage,
           limit,
         });
         dispatch(setList(data.followers));
+
+        if (currentUser.id === userId) {
+          dispatch(setFollowing(following.following.length));
+        }
+
+        setFollowingState(true);
       } catch (error) {
         showError(error.message);
       }
@@ -74,7 +81,7 @@ const UserCard = props => {
         if (!userId || !_id) {
           return;
         }
-        await unfollowUser(_id);
+        const following = await unfollowUser(_id);
         if (pageName === 'followers') {
           const data = await getUserFollowers({
             id: userId,
@@ -90,6 +97,12 @@ const UserCard = props => {
           });
           dispatch(setList(data.following));
         }
+
+        if (currentUser.id === userId) {
+          dispatch(setFollowing(following.following.length));
+        }
+
+        setFollowingState(false);
       } catch (error) {
         showError(error.message);
       }
@@ -103,18 +116,23 @@ const UserCard = props => {
           <div className={s.wrapper}>
             <img
               className={s.avatar}
-              src={getImageSrc(avatarURL)}
+              src={getAvatarSrc(avatarURL)}
               alt="user avatar"
             />
             <div>
               <h3 className={s.name}>{name}</h3>
               <p className={s.text}>Own recipes: {recipesCount}</p>
-              {isFollowing ? (
+              {followingState ? (
                 <button className={s.follow_button} onClick={unfollow}>
                   Following
                 </button>
               ) : (
-                <button className={s.follow_button} onClick={follow}>
+                <button
+                  className={`${s.follow_button} ${
+                    currentUser.id === _id && s.disabled
+                  }`}
+                  onClick={follow}
+                >
                   Follow
                 </button>
               )}
@@ -122,32 +140,16 @@ const UserCard = props => {
           </div>
           {viewWidth >= 768 && viewWidth < 1440 && (
             <ul className={s.recipe_list}>
-              {recipes.slice(0, 3).map(recipe => {
-                return (
-                  <li key={recipe._id}>
-                    <img
-                      className={s.recipe_image}
-                      src={getImageSrc(avatarURL)}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+              {recipes.slice(0, 3).map(recipe => (
+                <RecipeImage key={recipe._id} recipe={recipe} />
+              ))}
             </ul>
           )}
           {viewWidth >= 1440 && (
             <ul className={s.recipe_list}>
-              {recipes.map(recipe => {
-                return (
-                  <li key={recipe._id}>
-                    <img
-                      className={s.recipe_image}
-                      src={getImageSrc(avatarURL)}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+              {recipes.map(recipe => (
+                <RecipeImage key={recipe._id} recipe={recipe} />
+              ))}
             </ul>
           )}
           <RoundButton

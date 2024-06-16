@@ -4,15 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setIsMainPage } from '../redux/reducers/uiReducer';
 import { SharedLayout } from './SharedLayout';
-import Recipe from '../pages/Recipe/Recipe';
-import AddRecipePage from 'pages/AddRecipePage/AddRecipePage';
 
 import s from './App.module.scss';
-import UserRecipes from 'pages/ProfilePage/UserRecipes/UserRecipes';
-import MyFavorites from 'pages/ProfilePage/MyFavorites/MyFavorites';
-import UserFollowers from 'pages/ProfilePage/UserFollowers/UserFollowers';
-import UserFollowing from 'pages/ProfilePage/UserFollowing/UserFollowing';
 
+const UserRecipes = lazy(() =>
+  import('pages/ProfilePage/UserRecipes/UserRecipes')
+);
+const MyFavorites = lazy(() =>
+  import('pages/ProfilePage/MyFavorites/MyFavorites')
+);
+const UserFollowers = lazy(() =>
+  import('pages/ProfilePage/UserFollowers/UserFollowers')
+);
+const UserFollowing = lazy(() =>
+  import('pages/ProfilePage/UserFollowing/UserFollowing')
+);
+const AddRecipePage = lazy(() => import('pages/AddRecipePage/AddRecipePage'));
+const Recipe = lazy(() => import('../pages/Recipe/Recipe'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const ProfilePage = lazy(() => import('../pages/ProfilePage/ProfilePage'));
 const Loader = lazy(() => import('./Loader/Loader'));
@@ -59,7 +67,6 @@ export const App = () => {
             <Route path="/recipe/:id" element={<Recipe />} />
             <Route path="*" element={<MainPage />} />
             <Route path="/add" element={<AddRecipePage />} />
-
 
             <Route path="/user/:id" element={<ProfilePage />}>
               <Route path="/user/:id/recipies" element={<UserRecipes />} />
