@@ -69,10 +69,10 @@ export const App = () => {
             <Route path="/add" element={<AddRecipePage />} />
 
             <Route path="/user/:id" element={<ProfilePage />}>
-              <Route path="/user/:id/recipies" element={<UserRecipes />} />
-              <Route path="/user/:id/favorites" element={<MyFavorites />} />
-              <Route path="/user/:id/followers" element={<UserFollowers />} />
-              <Route path="/user/:id/following" element={<UserFollowing />} />
+              <Route path="recipies" element={<UserRecipes />} />
+              <Route path="favorites" element={<MyFavorites />} />
+              <Route path="followers" element={<UserFollowers />} />
+              <Route path="following" element={<UserFollowing />} />
             </Route>
           </Route>
         </Routes>

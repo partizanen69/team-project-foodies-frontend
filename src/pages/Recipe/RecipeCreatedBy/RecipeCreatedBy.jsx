@@ -17,7 +17,7 @@ export const RecipeCreatedBy = ({ ownerId, name, avatar, popular = false }) => {
       return;
     }
 
-    navigate(`/user/${ownerId}`);
+    navigate(`/user/${ownerId}/recipies`);
   };
 
   return (

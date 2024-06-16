@@ -4,7 +4,8 @@ import s from './ProfileTabs.module.scss';
 const ProfileTabs = ({ userId, isOwnProfile }) => {
   const location = useLocation();
 
-  const getNavLinkClass = ({ isActive }) => (isActive ? s.active : '');
+  const getNavLinkClass = ({ isActive }) =>
+    `${s.tab_link} ${isActive ? s.active : ''}`;
 
   return (
     <div className={s.tabs_container}>
@@ -15,7 +16,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
             state={{ from: location }}
             className={getNavLinkClass}
           >
-            {isOwnProfile ? 'My recipes' : 'Recipes'}
+            {isOwnProfile ? 'MY RECIPES' : 'RECIPES'}
           </NavLink>
         </li>
 
@@ -26,7 +27,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
               state={{ from: location }}
               className={getNavLinkClass}
             >
-              My favorites
+              MY FAVORITES
             </NavLink>
           </li>
         )}
@@ -37,7 +38,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
             state={{ from: location }}
             className={getNavLinkClass}
           >
-            Followers
+            FOLLOWERS
           </NavLink>
         </li>
 
@@ -48,7 +49,7 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
               state={{ from: location }}
               className={getNavLinkClass}
             >
-              Following
+              FOLLOWING
             </NavLink>
           </li>
         )}
