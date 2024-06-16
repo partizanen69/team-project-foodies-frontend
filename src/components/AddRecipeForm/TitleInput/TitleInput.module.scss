@@ -1,6 +1,11 @@
 @import '../../../assets/sass/utils/mixin';
 @import '../../../assets/sass/utils/variables';
 
+.input_container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
 .add_recipe_form_title {
   @include font-styles(24px, 800, 1.16);
   width: 100%;
@@ -10,16 +15,21 @@
   color: $mid-dark-text;
   outline: none;
   border: none;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  transition: border-color 0.3s ease;
 }
 
 .typing_text {
   color: rgba(5, 5, 5, 1);
 }
 
+.error_message {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
 @media screen and (min-width: 768px) {
-  .add_recipe_form_title {
+  .input_container {
     margin-bottom: 40px;
   }
 }

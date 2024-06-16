@@ -59,10 +59,15 @@
 @media screen and (min-width: 768px) {
   .category_select_container {
     gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  .category_select_option {
+    margin: 0px;
   }
 
   .category_select {
-    width: 313px;
-    height: 54px;
+    width: 315px;
+    height: 56px;
   }
 }

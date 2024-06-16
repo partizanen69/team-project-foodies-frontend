@@ -26,6 +26,9 @@
   margin-bottom: 8px;
   letter-spacing: -0.36px;
   color: $dark-text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .recipeDescription {
@@ -36,8 +39,6 @@
   margin-bottom: 8px;
   letter-spacing: -0.28px;
   overflow: hidden;
-  white-space: normal;
-  text-overflow: ellipsis;
 }
 
 .bottomWrapper {
