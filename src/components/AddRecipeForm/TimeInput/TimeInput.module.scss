@@ -6,55 +6,61 @@
   height: 80px;
   flex-direction: column;
   gap: 8px;
-}
 
-.add_recipe_form_time_buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-}
+  .add_recipe_form_time_buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
 
-.add_recipe_form_time_buttons:hover .button {
-  border: 1px solid rgba(5, 5, 5, 1);
-}
+    &:hover .add_recipe_form_time_button {
+      border: 1px solid rgba(5, 5, 5, 1);
+    }
 
-.add_recipe_form_time_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 47px;
-  height: 47px;
-  cursor: pointer;
+    .add_recipe_form_time_button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 47px;
+      height: 47px;
+      cursor: pointer;
+      border-radius: 30px;
+      border: 1px solid rgba(5, 5, 5, 0.12);
+      color: rgba(5, 5, 5, 1);
+      background-color: #fff;
 
-  border-radius: 30px;
-  border: 1px solid rgba(5, 5, 5, 0.12);
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
 
-  color: rgba(5, 5, 5, 1);
-}
+  .add_recipe_form_time_input {
+    text-align: center;
+    width: 47px;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    outline: none;
+    font-family: Mulish, sans-serif;
+    @include font-styles(14px, 500, 1.42);
+    letter-spacing: -0.02em;
+    color: rgba(5, 5, 5, 0.6);
+  }
 
-.add_recipe_form_time_input {
-  text-align: center;
-  width: 47px;
-
-  border: none;
-  padding: 0px;
-  margin: 0px;
-  outline: none;
-
-  font-family: Mulish, sans-serif;
-  @include font-styles(14px, 500, 1.42);
-  letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 0.6);
-}
-
-@media screen and (min-width: 768px) {
-  .add_recipe_form_time {
+  @media screen and (min-width: 768px) {
     gap: 16px;
     margin-bottom: 60px;
-  }
-  .add_recipe_form_time_button {
-    width: 56px;
-    height: 56px;
+
+    .add_recipe_form_time_buttons .add_recipe_form_time_button {
+      width: 56px;
+      height: 56px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
   }
 }

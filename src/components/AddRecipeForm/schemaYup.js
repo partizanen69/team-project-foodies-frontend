@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 const schemaYup = yup.object().shape({
+  image: yup.mixed().required('Please upload an image for the recipe'),
   title: yup.string().required('Title is required'),
   description: yup
     .string()
