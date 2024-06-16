@@ -26,7 +26,7 @@ const RecipeItem = ({ recipe, isFavorite }) => {
           src={getImageSrc(recipe.thumb)}
           alt={recipe.title}
           className={s.recipe_thumb}
-          onError={getImageSrc(null)}
+          onError={() => getImageSrc(null)}
         />
       </div>
 

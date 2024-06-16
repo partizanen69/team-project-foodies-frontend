@@ -3,10 +3,7 @@ import s from './Avatar.module.scss';
 import Icon from 'components/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setAvatarStore,
-  updateAvatarStore,
-} from '../../../../redux/actions/authActions';
+import { updateAvatarStore } from '../../../../redux/actions/authActions';
 import Loader from 'components/Loader/Loader';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
@@ -47,7 +44,7 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
         alt="User avatar"
         src={userAvatar}
         className={s.profile_avatar}
-        onError={() => dispatch(setAvatarStore(null))}
+        onError={() => getAvatarSrc(null)}
       />
       {isOwnProfile && (
         <label htmlFor="avatar" className={s.btn_add_avatar}>
