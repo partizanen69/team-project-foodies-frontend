@@ -15,13 +15,20 @@
 
 .add_recipe_form_close_button {
   all: initial;
-  border: none;
+  border: 1px solid rgba(5, 5, 5, 0.12);
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: transparent;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add_recipe_form_close_icon {
   width: 20px;
   height: 20px;
-  border: none;
   cursor: pointer;
 
   border: none;
@@ -63,6 +70,10 @@
   .add_recipe_form_inputs {
     display: flex;
     flex-direction: row;
+  }
+  .add_recipe_form_close_button {
+    width: 56px;
+    height: 56px;
   }
 }
 

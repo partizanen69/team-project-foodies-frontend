@@ -38,7 +38,14 @@ const AddRecipeForm = () => {
   } = useForm({
     resolver: yupResolver(schemaYup),
     defaultValues: {
+      image: null,
+      title: '',
+      description: '',
+      area: '',
+      category: '',
+      time: 0, 
       ingredients: [],
+      instructions: '',
     },
   });
 
@@ -153,6 +160,7 @@ const AddRecipeForm = () => {
           <ImageUpload
             imagePreview={imagePreview}
             handleImageChange={handleImageChange}
+            errors={errors}
           />
         </div>
       
@@ -196,6 +204,7 @@ const AddRecipeForm = () => {
               getValues={getValues}
               setValue={setValue}
               time={getValues('time')}
+              errors={errors}
             />
           </div>
 
