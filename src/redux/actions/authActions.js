@@ -135,5 +135,5 @@ export const updateAvatarStore = formData => async dispatch => {
 
 export const setAvatarStore = avatarURL => ({
   type: SET_AVATAR,
-  payload: { avatarURL },
+  payload: avatarURL,
 });
