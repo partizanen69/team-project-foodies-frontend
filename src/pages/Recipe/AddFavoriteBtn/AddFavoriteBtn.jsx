@@ -39,7 +39,10 @@ export const AddFavoriteBtn = ({ recipeId, round = false }) => {
           recipeIds: [recipeId],
         });
 
-        setIsFavorite(favoriteRecipes?.recipes[0]?._id === recipeId);
+        const isFavorite = favoriteRecipes?.recipes?.some(
+          recipe => recipe._id === recipeId
+        );
+        setIsFavorite(isFavorite);
       } catch (err) {
         showError(
           `Could not check if recipe is favorite because of error: ${err.message}`
