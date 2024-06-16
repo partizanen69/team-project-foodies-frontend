@@ -4,7 +4,6 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   REGISTER_REQUEST,
-  REGISTER_SUCCESS,
   REGISTER_FAILURE,
   LOGOUT,
   FETCH_CURRENT_USER_REQUEST,
@@ -31,7 +30,6 @@ const loginSuccess = (user, token) => ({
 
 const loginFailure = error => ({ type: LOGIN_FAILURE, payload: error });
 const registerRequest = () => ({ type: REGISTER_REQUEST });
-const registerSuccess = user => ({ type: REGISTER_SUCCESS, payload: user });
 const registerFailure = error => ({ type: REGISTER_FAILURE, payload: error });
 const logoutAction = () => ({ type: LOGOUT });
 
@@ -97,14 +95,12 @@ export const login = (email, password) => async dispatch => {
 export const register = (name, email, password) => async dispatch => {
   dispatch(registerRequest());
   try {
-    const response = await axios.post('/users/register', {
+    await axios.post('/users/register', {
       name,
       email,
       password,
     });
-    const { user } = response.data;
-    dispatch(registerSuccess(user));
-    toast.success('Welcome to Foodies!');
+    toast.success('Registration was successful. Please sign in');
   } catch (error) {
     dispatch(registerFailure(error.response.data.message || error.message));
     toast.error(error.response.data.message || error.message);

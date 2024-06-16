@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 
 import Container from 'components/Container/Container';
 
 import { findTestimonials } from 'api/testimonials';
-// import { getUserDetailsById } from 'api/users';
 
 import styles from './Testimonials.module.scss';
 import { Icon } from '../Icons/Icons';
@@ -12,8 +10,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-import AuthorTestimonialsInfo from './getAuthor.jsx';
 
 export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -66,16 +62,13 @@ export const Testimonials = () => {
                   />
 
                   <p className={styles.description}>{el.testimonial}</p>
-                  <h4 className={styles.owner}>
-                    <AuthorTestimonialsInfo author={el.owner} />
-                  </h4>
+                  <h4 className={styles.owner}>{el.owner.name}</h4>
                 </SwiperSlide>
               ))}
             </Swiper>
           </>
         )}
       </div>
-      {/* </div> */}
     </Container>
   );
 };
