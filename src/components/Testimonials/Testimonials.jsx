@@ -16,7 +16,6 @@ import 'swiper/css/pagination';
 import AuthorTestimonialsInfo from './getAuthor.jsx';
 
 export const Testimonials = () => {
-  // const dispatch = useDispatch();
   const [testimonials, setTestimonials] = useState([]);
 
   // eslint-disable-next-line no-unused-vars
@@ -30,17 +29,6 @@ export const Testimonials = () => {
       })
       .catch(error => console.log(error));
   }, []);
-
-//   const [users, setUsers] = useState([]);
-
-//  useEffect(() => {
-//   getUserDetailsById()
-//       .then(users => {
-//         setUsers(users);
-//         setIsLoading(false);
-//       })
-//       .catch(error => console.log(error));
-//  }, []);
 
   return (
     <Container>
@@ -61,13 +49,15 @@ export const Testimonials = () => {
               }}
               spaceBetween={30}
               slidesPerView={1}
-
               pagination={{ clickable: true }}
-                            modules={[Pagination, Autoplay]}
+              modules={[Pagination, Autoplay]}
               className={styles['swiper']}
             >
-              {testimonials.map((el) => (
-                <SwiperSlide className={styles.swiperSlide} key={`${el._id}-${el.index}`}>
+              {testimonials.map(el => (
+                <SwiperSlide
+                  className={styles.swiperSlide}
+                  key={`${el._id}-${el.index}`}
+                >
                   <Icon
                     id={'icon-quote'}
                     className={styles.icon}
@@ -76,8 +66,9 @@ export const Testimonials = () => {
                   />
 
                   <p className={styles.description}>{el.testimonial}</p>
-                  {/* <h4 className={styles.owner}><AuthorTestimonialsInfo author={el.owner._id}/></h4> */}
-                  <h4 className={styles.owner}>FOODIES USER</h4>
+                  <h4 className={styles.owner}>
+                    <AuthorTestimonialsInfo author={el.owner} />
+                  </h4>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -85,10 +76,6 @@ export const Testimonials = () => {
         )}
       </div>
       {/* </div> */}
-
     </Container>
   );
 };
-
-// { _id, testimonial, owner }, index
-
