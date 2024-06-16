@@ -16,6 +16,8 @@ const initialState = {
   isLoading: false,
   error: null,
   totalUsers: 0,
+  following: 0,
+  followers: 0,
 };
 
 const listSlice = createSlice({
@@ -33,6 +35,12 @@ const listSlice = createSlice({
     },
     setFavorites: (state, action) => {
       state.favorites = action.payload;
+    },
+    setFollowing: (state, action) => {
+      state.following = action.payload;
+    },
+    setFollowers: (state, action) => {
+      state.followers = action.payload;
     },
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
@@ -58,5 +66,7 @@ export const {
   removeFromList,
   setLimit,
   setTotalUsers,
+  setFollowing,
+  setFollowers,
 } = listSlice.actions;
 export default listSlice.reducer;

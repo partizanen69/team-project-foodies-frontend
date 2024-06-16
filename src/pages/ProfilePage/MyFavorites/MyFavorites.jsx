@@ -15,7 +15,6 @@ import {
   setIsLoading,
   setList,
   setPage,
-  setTotalUsers,
 } from '../../../redux/reducers/listReducer';
 import { showError } from 'api/api.utils';
 import Loader from 'components/Loader/Loader';
@@ -33,7 +32,6 @@ const MyFavorites = () => {
     return () => {
       dispatch(setList([])); // Reset list to empty or initial state
       dispatch(setPage(1)); // Reset page to 1 or initial state
-      dispatch(setTotalUsers(0));
     };
   }, [dispatch]);
 

@@ -14,11 +14,16 @@ import {
   unfollowUser,
 } from 'api/users';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setFavorites, setList } from '../../../redux/reducers/listReducer';
+import {
+  setFavorites,
+  setFollowers,
+  setFollowing,
+  setList,
+} from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
 import { showError } from 'api/api.utils';
-import { selectLimit } from '../../../redux/selectors';
+import { selectFollowers, selectLimit } from '../../../redux/selectors';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -29,6 +34,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
   const locationList = location.pathname.split('/');
   const pageName = locationList[locationList.length - 1];
   const limit = useSelector(selectLimit);
+  const followers = useSelector(selectFollowers);
 
   const [isModalLogOutOpen, setIsModalLogOutOpen] = useState(false);
 
@@ -68,6 +74,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           });
           dispatch(setList(data.followers));
         }
+
+        dispatch(setFollowers(followers + 1));
       } catch (error) {
         showError(error.message);
       }
@@ -96,6 +104,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           });
           dispatch(setList(data.followers));
         }
+
+        dispatch(setFollowers(followers - 1));
       } catch (error) {
         console.log(error);
       }
@@ -112,6 +122,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         const data = await getUserDetailsById({ id: userId });
         setuserDetails(data);
         dispatch(setFavorites(data.favorites));
+        dispatch(setFollowers(data.followersCount));
+        dispatch(setFollowing(data.followingCount));
       } catch (error) {
         console.log(error);
       } finally {

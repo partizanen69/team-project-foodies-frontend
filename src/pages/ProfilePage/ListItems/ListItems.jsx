@@ -5,7 +5,7 @@ import s from './ListItems.module.scss';
 
 const ListItems = ({ isRecipeCard, list, ownRecipes }) => {
   return (
-    <ul className={s.list_items}>
+    <ul className={isRecipeCard ? s.list_items : ''}>
       {isRecipeCard
         ? list.map(item => (
             <RecipeItem key={item._id} recipe={item} ownRecipe={ownRecipes} />
