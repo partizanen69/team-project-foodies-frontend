@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import Icon from '../../Icon/Icon';
+import { ReactComponent as PlusIcon } from '../../../assets/icons/plus.svg';
 
 import s from './AddIngredient.module.scss';
 
@@ -80,7 +80,7 @@ const AddIngredient = ({
                             }}
                         >
                             <span>Add ingredient </span>
-                            <Icon id="plus" className={s.add_recipe_form_ingredient_input_button_icon}/>
+                                <PlusIcon className={s.add_recipe_form_ingredient_input_button_icon} />
                         </button>
                     </div>
                 )}
