@@ -73,7 +73,7 @@
   background-repeat: no-repeat;
   width: 222px;
   height: 209px;
-  z-index: 1002;
+  z-index: 1;
 }
 
 .image_secondary {
@@ -85,7 +85,7 @@
   background-repeat: no-repeat;
   width: 90px;
   height: 84px;
-  z-index: 1002;
+  z-index: 1;
 }
 
 @media screen and (min-resolution: 192dpi) and (max-width: 767px),
@@ -147,14 +147,14 @@
 
     .line3{
       display: block;
-      left:229px;
-      z-index: 1001;
+      left: 229px;
+      z-index: 1.5;
     }
   
     .line4{
       display: block;
-      right: 240px;
-      z-index: 1001;
+      right: 247px;
+      z-index: 1.5;
     }
 
   }
@@ -248,7 +248,7 @@
     }
   
     .line4{
-      right: 260px;
+      right: 273px;
     }
   }
 
