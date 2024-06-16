@@ -68,7 +68,7 @@
   @include font-styles(14px, 500, 1.42);
   letter-spacing: -0.02em;
   color: rgba(5, 5, 5, 1);
-
+  background-color: #fff;
   outline: none;
   background-color: transparent;
   border: none;
@@ -94,6 +94,7 @@
   color: rgba(5, 5, 5, 1);
   text-transform: uppercase;
   cursor: pointer;
+  background-color: #fff;
 }
 
 .add_recipe_form_ingredient_input_button:hover {
