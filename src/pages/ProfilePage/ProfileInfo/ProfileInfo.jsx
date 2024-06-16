@@ -139,15 +139,15 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           />
         </div>
         {isOwnProfile ? (
-          <button type="submit" className={s.btn_logout} onClick={openModal}>
+          <button type="button" className={s.btn_logout} onClick={openModal}>
             Log Out
           </button>
         ) : userDetails.isFollowing ? (
-          <button className={s.btn_logout} onClick={unfollow}>
+          <button type="button" className={s.btn_logout} onClick={unfollow}>
             Following
           </button>
         ) : (
-          <button className={s.btn_logout} onClick={follow}>
+          <button type="button" className={s.btn_logout} onClick={follow}>
             Follow
           </button>
         )}

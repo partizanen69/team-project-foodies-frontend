@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAvatarStore } from '../../../../redux/actions/authActions';
 import Loader from 'components/Loader/Loader';
+import PropTypes from 'prop-types';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -44,7 +45,9 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
         alt="User avatar"
         src={userAvatar}
         className={s.profile_avatar}
-        onError={() => getAvatarSrc(null)}
+        onError={() =>
+          setUserAvatar(`${process.env.PUBLIC_URL}/avatar-placeholder.svg`)
+        }
       />
       {isOwnProfile && (
         <label htmlFor="avatar" className={s.btn_add_avatar}>
@@ -64,4 +67,8 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
     </div>
   );
 };
-Avatar.propTypes = {};
+
+Avatar.propTypes = {
+  avatar: PropTypes.string,
+  isOwnProfile: PropTypes.bool,
+};
