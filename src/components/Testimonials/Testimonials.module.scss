@@ -10,6 +10,7 @@
   align-items: center;
   min-height: 150px;
   padding: 0 16px 0 16px;
+  margin-bottom: 100px;
 
   .testimonial_hightlight {
     margin-bottom: 16px;
@@ -104,6 +105,8 @@
 @media (min-width: 768px) {
   .testimonial_container {
     padding: 0 32px 0 32px;
+    margin-bottom: 120px;
+    
     .testimonial_highlight {
       font-size: 16px;
       line-height: 1.4;

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Container from 'components/Container/Container';
 
 import { findTestimonials } from 'api/testimonials';
+// import { getUserDetailsById } from 'api/users';
 
 import styles from './Testimonials.module.scss';
 import { Icon } from '../Icons/Icons';
@@ -12,9 +13,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import AuthorTestimonialsInfo from './getAuthor.jsx';
+
 export const Testimonials = () => {
-  // const dispatch = useDispatch();
   const [testimonials, setTestimonials] = useState([]);
+
   // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,7 +27,7 @@ export const Testimonials = () => {
         setTestimonials(testimonials);
         setIsLoading(false);
       })
-      .catch();
+      .catch(error => console.log(error));
   }, []);
 
   return (
@@ -46,18 +49,15 @@ export const Testimonials = () => {
               }}
               spaceBetween={30}
               slidesPerView={1}
-              pagination={{
-                el: `.${styles.paginationContainer}`,
-                clickable: true,
-                dynamicBullets: true,
-                bulletClass: styles.paginationBullet,
-                bulletActiveClass: styles.paginationBulletActive,
-              }}
+              pagination={{ clickable: true }}
               modules={[Pagination, Autoplay]}
-              className={styles.swiper}
+              className={styles['swiper']}
             >
               {testimonials.map(el => (
-                <SwiperSlide className={styles.swiperSlide} key={el._id}>
+                <SwiperSlide
+                  className={styles.swiperSlide}
+                  key={`${el._id}-${el.index}`}
+                >
                   <Icon
                     id={'icon-quote'}
                     className={styles.icon}
@@ -66,7 +66,9 @@ export const Testimonials = () => {
                   />
 
                   <p className={styles.description}>{el.testimonial}</p>
-                  <h4 className={styles.owner}>{el.owner}</h4>
+                  <h4 className={styles.owner}>
+                    <AuthorTestimonialsInfo author={el.owner} />
+                  </h4>
                 </SwiperSlide>
               ))}
             </Swiper>
