@@ -6,9 +6,16 @@ import styles from './CategoryCard.module.scss';
 const CategoryCard = ({ imgUrl, name, onClick, size }) => {
   const cardClass = size === 'large' ? styles.largeCard : styles.smallCard;
 
+  const retinaUrl = `${(imgUrl || '').replace(/.jpg$/, '')}@2x.jpg`;
+
   return (
     <div className={`${styles.card} ${cardClass}`}>
-      <img src={imgUrl} alt={name} className={styles.image} />
+      <img
+        srcSet={`${retinaUrl} 2x`}
+        src={imgUrl}
+        alt={name}
+        className={styles.image}
+      />
       <div className={styles.content}>
         <div className={styles.titleHolder}>
           <p className={styles.title}>{name}</p>

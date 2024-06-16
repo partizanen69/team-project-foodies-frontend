@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import s from './ImageUpload.module.scss';
 
 const ImageUpload = ({ handleImageChange, imagePreview, errors }) => (
@@ -32,7 +33,7 @@ const ImageUpload = ({ handleImageChange, imagePreview, errors }) => (
         </label>
       </div>
     )}
-    {errors && <p className={s.add_recipe_form_error}>{errors.message}</p>}
+    <ErrorMessage error={errors?.image} />
   </div>
 );
 

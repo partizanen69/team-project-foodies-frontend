@@ -22,7 +22,6 @@ const AreaSelect = ({ control, areas, errors }) => (
         </select>
       )}
     />
-    <div className={s.select_arrow}></div>
     <ErrorMessage error={errors?.area} />
   </div>
 );
