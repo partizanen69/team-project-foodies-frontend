@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import s from './TitleInput.module.scss'; 
 
-const TitleInput = ({ register, errors, title }) => {
+const TitleInput = ({ register, errors }) => {
     const [isTyping, setIsTyping] = useState(false);
 
     const handleInputChange = () => {
@@ -9,15 +10,16 @@ const TitleInput = ({ register, errors, title }) => {
     };
 
     return (
-        <div>
+        <div className={s.input_container}>
             <input
                 type="text"
-                {...register('title')}
+                {...register('title', {
+                    onChange: handleInputChange
+                })}
                 placeholder='The name of the recipe'
                 className={`${s.add_recipe_form_title} ${isTyping ? s.typing_text : ''}`}
-                onChange={handleInputChange}
             />
-            {errors.title && <p className="error">{errors.title.message}</p>}
+            <ErrorMessage error={errors?.title} />
         </div>
     );
 };
