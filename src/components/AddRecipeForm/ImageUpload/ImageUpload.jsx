@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ImageUpload.module.scss';
 
-const ImageUpload = ({ handleImageChange, imagePreview }) => (
+const ImageUpload = ({ handleImageChange, imagePreview, errors }) => (
   <div className={s.upload_container}>
     <label htmlFor="image-upload" className={s.recipe_image_container}>
       <input
@@ -32,6 +32,7 @@ const ImageUpload = ({ handleImageChange, imagePreview }) => (
         </label>
       </div>
     )}
+    {errors && <p className={s.add_recipe_form_error}>{errors.message}</p>}
   </div>
 );
 
