@@ -35,13 +35,15 @@ const UserRecipes = () => {
     if (user && user.id && id) {
       setIsOwnProfile(user.id === id);
     }
+  }, [user, id]);
 
+  useEffect(() => {
     return () => {
       // reset list and page before component unmounts
       dispatch(setList([]));
       dispatch(setPage(1));
     };
-  }, [user, id, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     (async () => {
