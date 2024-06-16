@@ -1,5 +1,5 @@
 // import react tools
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import components
@@ -41,6 +41,7 @@ const Recipes = () => {
 
   const [limit, setLimit] = useState(windowWidth >= 1440 ? 12 : 10);
   const [total, setTotal] = useState(window.innerWidth);
+  const contentRef = useRef(null);
 
   // get recipes
   useEffect(() => {
@@ -134,7 +135,7 @@ const Recipes = () => {
   return (
     <Container className={s.recipes_container}>
       {/* header with description and action back */}
-      <div className={s.recipes_header_container}>
+      <div className={s.recipes_header_container} ref={contentRef}>
         <NavigationButton title="back"></NavigationButton>
         <MainTitle>{category.name}</MainTitle>
         <Subtitle>
@@ -154,6 +155,7 @@ const Recipes = () => {
             recipesList={recipesList}
             isLoading={isLoading}
             errorMsg={errorMsg}
+            scrollToRef={contentRef}
           />
 
           {/* recipes pagination component */}
