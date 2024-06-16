@@ -7,8 +7,9 @@ const schemaYup = yup.object().shape({
     .max(200, 'Description must be at most 200 characters')
     .required('Description is required'),
   category: yup.string().required('Category is required'),
+  area: yup.string().required('Area is required'),
   time: yup
-    .number()
+    .string()
     .min(1, 'Time must be at least 1 minute')
     .required('Time is required'),
   ingredients: yup
@@ -26,4 +27,4 @@ const schemaYup = yup.object().shape({
     .required('Instructions are required'),
 });
 
-export default schemaYup;
+export default schemaYup; 

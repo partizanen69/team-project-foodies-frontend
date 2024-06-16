@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 
 import schemaYup from './schemaYup';
@@ -22,6 +23,7 @@ import CategorySelect from './CategorySelect/CategorySelect';
 import TimeInput from './TimeInput/TimeInput';
 import AddRecipeFormLabel from './AddRecipeFormLabel/AddRecipeFormLabel';
 import InstructionsInput from './InstructionsInput/InstructionsInput';
+import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 import s from './AddRecipeForm.module.scss';
 
@@ -40,14 +42,14 @@ const AddRecipeForm = () => {
       ingredients: [],
     },
   });
-  // TODO: to remove
-  console.log('errors', errors, getValues());
 
   const [categories, setCategories] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
   const [areas, setAreas] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
   const [ingredientCards, setIngredientCards] = useState([]);
+  const [isTyping, setIsTyping] = useState(false);
+  const { user } = useSelector(state => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -84,23 +86,33 @@ const AddRecipeForm = () => {
       formData.append('area', area);
       formData.append('time', time);
       formData.append('instructions', instructions);
+
+      /* ingredientCards.forEach((ingredient, index) => {
+        formData.append(`ingredients[${index}][id]`, ingredient._id);
+        formData.append(`ingredients[${index}][measure]`, ingredient.measure);
+      });
+
+      formData.append('ingredients', JSON.stringify(ingredientCards)); */
+
       formData.append(
         'ingredients',
         JSON.stringify(
           ingredientCards.map(card => ({
-            _id: card._id,
+            id: card._id,
             measure: card.measure,
           }))
         )
-      );
-
+      ); 
+      
       await addNewRecipe(formData);
       toast.success('Recipe added successfully');
 
-      navigate('/');
+      if (user) {
+        navigate(`/user/${user.id}`);
+      }
+
     } catch (error) {
-      console.error('Error occurred while adding new recipe:', error);
-      toast.error(`An error occurred: ${error.message}`);
+      toast.error(`Error occurred while adding new recipe: ${error.message}`);
     }
   };
 
@@ -112,6 +124,10 @@ const AddRecipeForm = () => {
     }
   };
 
+  const handleMeasureChange = (e) => { 
+    setIsTyping(true); 
+  };
+
   const addIngredient = (selectedIngredient, measure) => {
     const newCard = {
       _id: selectedIngredient._id,
@@ -120,8 +136,6 @@ const AddRecipeForm = () => {
       img: selectedIngredient.img,
     };
 
-    // TODO: to remove
-    console.log('ingredientCards', ingredientCards);
     const newIngredients = [...ingredientCards, newCard];
     setValue('ingredients', newIngredients);
     setIngredientCards(newIngredients);
@@ -135,7 +149,6 @@ const AddRecipeForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ToastContainer />
 
       <ImageUpload
         imagePreview={imagePreview}
@@ -179,7 +192,6 @@ const AddRecipeForm = () => {
         register={register}
         getValues={getValues}
         setValue={setValue}
-        errors={errors}
         time={getValues('time')}
       />
 
@@ -224,7 +236,9 @@ const AddRecipeForm = () => {
                   {...register('measure')}
                   placeholder="Enter quantity"
                   className={s.add_recipe_form_ingredient_input_measure}
+                  onChange={handleMeasureChange}
                 />
+                {errors?.ingredients && !isTyping && <ErrorMessage error={errors?.ingredients} />}             
               </div>
 
               <button
@@ -238,7 +252,7 @@ const AddRecipeForm = () => {
                   if (selectedIngredient && measure) {
                     addIngredient(selectedIngredient, measure);
                   } else {
-                    toast.error('Please enter quantity');
+                    toast.error('Please enter quantity and select ingredient');
                   }
                 }}
               >
