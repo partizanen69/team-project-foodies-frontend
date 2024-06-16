@@ -20,7 +20,7 @@ const Form = ({
   openModal,
 }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector(state => state.auth);
+  const { loading } = useSelector(state => state.auth.loading);
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [name, setName] = useState('');
