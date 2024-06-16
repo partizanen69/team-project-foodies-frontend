@@ -21,7 +21,6 @@ const CategorySelect = ({ control, categories, errors }) => (
               <option key={category.name} value={category.id}>{category.name}</option>
             ))}
           </select>
-          <div className={s.select_arrow}></div>
         </div>
       )}
     />

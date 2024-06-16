@@ -29,6 +29,11 @@
   border-radius: 30px;
   border: 1px solid rgba(5, 5, 5, 0.12);
   color: rgba(5, 5, 5, 1);
+  background-color: #fff;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .add_recipe_form_time_input {
@@ -52,5 +57,10 @@
   .add_recipe_form_time_button {
     width: 56px;
     height: 56px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
   }
 }
