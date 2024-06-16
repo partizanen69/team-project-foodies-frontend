@@ -1,6 +1,7 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import s from './AreaSelect.module.scss';
 
 const AreaSelect = ({ control, areas, errors }) => (
@@ -14,14 +15,15 @@ const AreaSelect = ({ control, areas, errors }) => (
           {...field}
           className={`${s.area_select} ${field.value ? s.area_selected : s.area_placeholder}`}
         >
-          <option value="" className={s.area_select_option}>Select an area</option>
+          <option key="default" value="" className={s.area_select_option}>Select an area</option>
           {areas.map(area => (
             <option key={area.name} value={area.id}>{area.name}</option>
           ))}
         </select>
       )}
     />
-    {errors.area && <p className="error">{errors.area.message}</p>}
+    <div className={s.select_arrow}></div>
+    <ErrorMessage error={errors?.area} />
   </div>
 );
 

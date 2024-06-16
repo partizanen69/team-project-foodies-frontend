@@ -1,6 +1,7 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import s from './CategorySelect.module.scss';
 
 const CategorySelect = ({ control, categories, errors }) => (
@@ -24,7 +25,8 @@ const CategorySelect = ({ control, categories, errors }) => (
         </div>
       )}
     />
-    {errors.category && <p className="error">{errors.category.message}</p>}
+
+    <ErrorMessage error={errors?.category} />
   </div>
 );
 
