@@ -106,7 +106,7 @@ const AddRecipeForm = () => {
       toast.success('Recipe added successfully');
 
       if (user) {
-        navigate(`/user/${user.id}`);
+        navigate(`/user/${user.id}/recipies`);
       }
     } catch (error) {
       toast.error(`Error occurred while adding new recipe: ${error.message}`);

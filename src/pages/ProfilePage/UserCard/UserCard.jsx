@@ -6,7 +6,7 @@ import {
   getUserFollowing,
   unfollowUser,
 } from 'api/users';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFollowing, setList } from '../../../redux/reducers/listReducer';
 import { useEffect, useState } from 'react';
@@ -25,6 +25,7 @@ const UserCard = props => {
   const location = useLocation();
   const locationList = location.pathname.split('/');
   const pageName = locationList[locationList.length - 1];
+  const navigate = useNavigate();
 
   const currentUser = useSelector(selectCurrentUser);
 
@@ -152,11 +153,7 @@ const UserCard = props => {
               ))}
             </ul>
           )}
-          <RoundButton
-            onClick={() => {
-              window.location.href = `/team-project-foodies-frontend/user/${_id}/recipies`;
-            }}
-          />
+          <RoundButton onClick={() => navigate(`/user/${_id}/recipies`)} />
         </li>
       )}
     </>
