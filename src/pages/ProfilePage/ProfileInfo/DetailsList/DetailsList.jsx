@@ -1,9 +1,15 @@
 import { useSelector } from 'react-redux';
 import s from './DetailsList.module.scss';
-import { selectFavorites } from '../../../../redux/selectors';
+import {
+  selectFavorites,
+  selectFollowers,
+  selectFollowing,
+} from '../../../../redux/selectors';
 
 const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
   const favorites = useSelector(selectFavorites);
+  const following = useSelector(selectFollowing);
+  const followers = useSelector(selectFollowers);
 
   return (
     <ul className={s.details_list}>
@@ -35,9 +41,7 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
       <li className={s.details_list_item}>
         <p className={s.item_key}>Followers: </p>
         <span className={s.item_value}>
-          {isLoading || !userDetails.followersCount
-            ? 0
-            : userDetails.followersCount}
+          {isLoading || !followers ? 0 : followers}
         </span>
       </li>
 
@@ -45,9 +49,7 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
         <li className={s.details_list_item}>
           <p className={s.item_key}>Following: </p>
           <span className={s.item_value}>
-            {isLoading || !userDetails.followingCount
-              ? 0
-              : userDetails.followingCount}
+            {isLoading || !following ? 0 : following}
           </span>
         </li>
       )}

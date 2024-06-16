@@ -14,6 +14,14 @@ export const selectFavorites = state => {
   return state.list.favorites;
 };
 
+export const selectFollowers = state => {
+  return state.list.followers;
+};
+
+export const selectFollowing = state => {
+  return state.list.following;
+};
+
 export const selectPage = state => {
   return state.list.page;
 };

@@ -14,19 +14,24 @@ import {
   unfollowUser,
 } from 'api/users';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setFavorites, setList } from '../../../redux/reducers/listReducer';
+import {
+  setFavorites,
+  setFollowers,
+  setFollowing,
+  setList,
+} from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
 import { showError } from 'api/api.utils';
-import { selectLimit } from '../../../redux/selectors';
+import { selectFollowers, selectLimit } from '../../../redux/selectors';
 import { toast } from 'react-toastify';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
   const limit = useSelector(selectLimit);
+  const followers = useSelector(selectFollowers);
 
   const [isLoading, setIsLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({});
@@ -71,6 +76,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           });
           dispatch(setList(data.followers));
         }
+
+        dispatch(setFollowers(followers + 1));
       } catch (error) {
         showError(error.message);
       }
@@ -99,6 +106,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           });
           dispatch(setList(data.followers));
         }
+
+        dispatch(setFollowers(followers - 1));
       } catch (error) {
         toast.error(`Error occured: ${error.message}`);
         console.error(error);
@@ -116,6 +125,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         const data = await getUserDetailsById({ id: userId });
         setUserDetails(data);
         dispatch(setFavorites(data.favorites));
+        dispatch(setFollowers(data.followersCount));
+        dispatch(setFollowing(data.followingCount));
       } catch (error) {
         toast.error(`Error occured: ${error.message}`);
         console.error(error);
