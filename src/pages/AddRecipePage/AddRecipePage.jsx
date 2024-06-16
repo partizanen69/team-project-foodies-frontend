@@ -39,7 +39,6 @@ const AddRecipePage = () => {
                             <Subtitle>Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us.</Subtitle>
                         </div>
                         <AddRecipeForm />
-                        <Footer />
                     </>
                 )}
         </div>
