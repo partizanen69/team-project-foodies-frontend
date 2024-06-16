@@ -26,24 +26,18 @@
   width: 47px;
   height: 47px;
   cursor: pointer;
-
   border-radius: 30px;
   border: 1px solid rgba(5, 5, 5, 0.12);
-  opacity: 0px;
-
   color: rgba(5, 5, 5, 1);
 }
 
 .add_recipe_form_time_input {
   text-align: center;
   width: 47px;
-
   border: none;
   padding: 0px;
   margin: 0px;
   outline: none;
-  opacity: 0px;
-
   font-family: Mulish, sans-serif;
   @include font-styles(14px, 500, 1.42);
   letter-spacing: -0.02em;
