@@ -60,7 +60,7 @@ const MyFavorites = () => {
         <Loader />
       ) : recipes.length > 0 ? (
         <>
-          <ListItems isRecipeCard={true} list={recipes} />
+          <ListItems isRecipeCard={true} list={recipes} isFavorite={true} />
           {totalFavorites && <ListPagination total={totalFavorites} />}
         </>
       ) : (

@@ -9,6 +9,10 @@ import {
   FETCH_CURRENT_USER_REQUEST,
   FETCH_CURRENT_USER_SUCCESS,
   FETCH_CURRENT_USER_FAILURE,
+  UPDATE_AVATAR_BEGIN,
+  UPDATE_AVATAR_SUCCESS,
+  UPDATE_AVATAR_FAILURE,
+  SET_AVATAR,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -41,6 +45,36 @@ const authReducer = (state = initialState, action) => {
       return { ...state, user: null, token: null, loading: false, error: null };
     case FETCH_CURRENT_USER_SUCCESS:
       return { ...state, loading: false, user: action.payload };
+    case UPDATE_AVATAR_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case UPDATE_AVATAR_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: {
+          ...state.user,
+          avatarUrl: action.payload.avatarURL,
+        },
+        error: null,
+      };
+    case UPDATE_AVATAR_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    case SET_AVATAR:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          avatarUrl: action.payload.avatarURL,
+        },
+      };
     default:
       return state;
   }

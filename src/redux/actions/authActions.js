@@ -10,9 +10,14 @@ import {
   FETCH_CURRENT_USER_REQUEST,
   FETCH_CURRENT_USER_SUCCESS,
   FETCH_CURRENT_USER_FAILURE,
+  UPDATE_AVATAR_BEGIN,
+  UPDATE_AVATAR_SUCCESS,
+  UPDATE_AVATAR_FAILURE,
+  SET_AVATAR,
 } from './actionTypes';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateAvatar } from 'api/users';
 
 axios.defaults.baseURL =
   process.env.REACT_APP_BACKEND || 'http://localhost:3002/api';
@@ -38,6 +43,20 @@ const fetchCurrentUserSuccess = user => ({
 const fetchCurrentUserFailure = error => ({
   type: FETCH_CURRENT_USER_FAILURE,
   payload: error,
+});
+
+export const updateAvatarBegin = () => ({
+  type: UPDATE_AVATAR_BEGIN,
+});
+
+export const updateAvatarSuccess = avatarUrl => ({
+  type: UPDATE_AVATAR_SUCCESS,
+  payload: { avatarUrl },
+});
+
+export const updateAvatarFailure = error => ({
+  type: UPDATE_AVATAR_FAILURE,
+  payload: { error },
 });
 
 export const fetchCurrentUser = () => async dispatch => {
@@ -98,3 +117,22 @@ export const logout = () => dispatch => {
   dispatch(logoutAction());
   toast.success('Successfully logged out.');
 };
+
+export const updateAvatarStore = formData => async dispatch => {
+  try {
+    const response = await updateAvatar(formData);
+
+    const timestamp = new Date().getTime();
+    const uniqueAvatarURL = `${response.avatarURL}?t=${timestamp}`;
+
+    dispatch(updateAvatarSuccess(uniqueAvatarURL));
+  } catch (error) {
+    dispatch(updateAvatarFailure(error.message));
+    toast.error(error.message);
+  }
+};
+
+export const setAvatarStore = avatarURL => ({
+  type: SET_AVATAR,
+  payload: { avatarURL },
+});

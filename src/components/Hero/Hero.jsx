@@ -20,6 +20,10 @@ const Hero = ({ openModal }) => {
 
   return (
     <Container className={s.hero_container} style={{ borderRadius: '20px' }}>
+      <span className={`${s.line} ${s.line1}`}></span>
+      <span className={`${s.line} ${s.line2}`}></span>
+      <span className={`${s.line} ${s.line3}`}></span>
+      <span className={`${s.line} ${s.line4}`}></span>
       <div className={s.hero_content}>
         <h1 className={s.hero_title}>
           IMPROVE YOUR <br className={s.break} /> CULINARY TALENTS
