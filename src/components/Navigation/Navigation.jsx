@@ -82,14 +82,14 @@ const Navigation = ({ isSidebarOpen, closeSidebar }) => {
             isMainPage ? s.header_navigation : s.header_navigation__light
           }
         >
-          <nav className={s.header_nav}>
+          {/* <nav className={s.header_nav}> */}
             <NavLink className={s.nav__link} to="/">
               HOME
             </NavLink>
             <NavLink className={s.nav__link} to="/add">
               ADD RECIPE
             </NavLink>
-          </nav>
+          {/* </nav> */}
         </nav>
       )}
     </>
