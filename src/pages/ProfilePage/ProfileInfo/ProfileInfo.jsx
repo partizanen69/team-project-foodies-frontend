@@ -19,6 +19,7 @@ import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
 import { showError } from 'api/api.utils';
 import { selectLimit } from '../../../redux/selectors';
+import { toast } from 'react-toastify';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -99,7 +100,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           dispatch(setList(data.followers));
         }
       } catch (error) {
-        console.log(error);
+        toast.error(`Error occured: ${error.message}`);
+        console.error(error);
       }
     })();
   };
@@ -115,7 +117,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         setUserDetails(data);
         dispatch(setFavorites(data.favorites));
       } catch (error) {
-        console.log(error);
+        toast.error(`Error occured: ${error.message}`);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }

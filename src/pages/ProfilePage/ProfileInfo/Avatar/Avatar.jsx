@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateAvatarStore } from '../../../../redux/actions/authActions';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
     try {
       dispatch(updateAvatarStore(formData));
     } catch (error) {
-      console.log(error);
+      toast.error(`Error occured: ${error.message}`);
+      console.error(error);
     }
   };
 
