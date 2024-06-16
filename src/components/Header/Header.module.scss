@@ -6,17 +6,19 @@
 	position: absolute;
 	top: 40px;
 	left: 25px;
+	padding-right: 5px;
 	width: 100%;
 	max-width: 327px;
 	height: 38px;
 	background-color: $dark-text;
 	color: $bg-primary-color;
 	z-index: 10;
+	background-color: transparent;
 }
 
 .header_container__light {
 	@extend.header_container;
-	width: 343px;
+	width: 100%;
 	max-width: 343px;
 	position: static;
 	margin-bottom: 64px;
@@ -199,13 +201,13 @@
 	.header_container {
 		top: 56px;
 		left: 50px;
-		width: 672px;
-		max-width: 704px;
+		width: 100%;
+		max-width: 669px;
 		height: 50px;
 	}
 
 	.header_container__light {
-		width: 704px;
+		width: 100%;
 		max-width: 704px;
 	}
 

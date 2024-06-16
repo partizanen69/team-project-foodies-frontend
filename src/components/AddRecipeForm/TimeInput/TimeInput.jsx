@@ -3,16 +3,16 @@ import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 
 import s from './TimeInput.module.scss';
 
-const TimeInput = ({ register, getValues, setValue }) => {
+const TimeInput = ({ register, getValues, setValue, errors }) => {
   const [displayTime, setDisplayTime] = useState("");
 
   useEffect(() => {
-    const currentValue = getValues('time') || 10;
+    const currentValue = getValues('time') || 0;
     setDisplayTime(`${currentValue} min`);
   }, [getValues]);
 
   const incrementTime = () => {
-    const currentValue = getValues('time') || 10;
+    const currentValue = getValues('time') || 0;
     const newValue = currentValue + 1;
     setValue('time', newValue);
     setDisplayTime(`${newValue} min`);
@@ -47,6 +47,7 @@ const TimeInput = ({ register, getValues, setValue }) => {
           className={s.add_recipe_form_time_button}
         >+</button>
       </div>
+      {errors && <p className={s.add_recipe_form_error}>{errors.message}</p>}
     </div>
   );
 };

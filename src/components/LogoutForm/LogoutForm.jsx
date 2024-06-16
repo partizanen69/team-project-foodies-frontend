@@ -42,7 +42,6 @@ const LogoutForm = ({ closeModal }) => {
 };
 
 LogoutForm.propTypes = {
-  handleLogOut: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
 };
 

@@ -29,7 +29,6 @@
 
   border-radius: 30px;
   border: 1px solid rgba(5, 5, 5, 0.12);
-  opacity: 0px;
 
   color: rgba(5, 5, 5, 1);
 }
@@ -42,7 +41,6 @@
   padding: 0px;
   margin: 0px;
   outline: none;
-  opacity: 0px;
 
   font-family: Mulish, sans-serif;
   @include font-styles(14px, 500, 1.42);

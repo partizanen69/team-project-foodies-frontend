@@ -24,19 +24,21 @@ import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
 import { showError } from 'api/api.utils';
 import { selectFollowers, selectLimit } from '../../../redux/selectors';
+import { toast } from 'react-toastify';
 
 const ProfileInfo = ({ userId, isOwnProfile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-  const [userDetails, setuserDetails] = useState({});
   const location = useLocation();
-  const locationList = location.pathname.split('/');
-  const pageName = locationList[locationList.length - 1];
   const limit = useSelector(selectLimit);
   const followers = useSelector(selectFollowers);
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [userDetails, setUserDetails] = useState({});
   const [isModalLogOutOpen, setIsModalLogOutOpen] = useState(false);
+
+  const locationList = location.pathname.split('/');
+  const pageName = locationList[locationList.length - 1];
 
   const openModal = () => {
     setIsModalLogOutOpen(true);
@@ -59,7 +61,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           return;
         }
         await followUser(userDetails.id);
-        setuserDetails(prevState => {
+        setUserDetails(prevState => {
           return {
             ...prevState,
             followersCount: userDetails.followersCount + 1,
@@ -89,7 +91,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           return;
         }
         await unfollowUser(userDetails.id);
-        setuserDetails(prevState => {
+        setUserDetails(prevState => {
           return {
             ...prevState,
             followersCount: userDetails.followersCount - 1,
@@ -107,7 +109,8 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
 
         dispatch(setFollowers(followers - 1));
       } catch (error) {
-        console.log(error);
+        toast.error(`Error occured: ${error.message}`);
+        console.error(error);
       }
     })();
   };
@@ -120,12 +123,13 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
         }
 
         const data = await getUserDetailsById({ id: userId });
-        setuserDetails(data);
+        setUserDetails(data);
         dispatch(setFavorites(data.favorites));
         dispatch(setFollowers(data.followersCount));
         dispatch(setFollowing(data.followingCount));
       } catch (error) {
-        console.log(error);
+        toast.error(`Error occured: ${error.message}`);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -149,15 +153,15 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
           />
         </div>
         {isOwnProfile ? (
-          <button type="submit" className={s.btn_logout} onClick={openModal}>
+          <button type="button" className={s.btn_logout} onClick={openModal}>
             Log Out
           </button>
         ) : userDetails.isFollowing ? (
-          <button className={s.btn_logout} onClick={unfollow}>
+          <button type="button" className={s.btn_logout} onClick={unfollow}>
             Following
           </button>
         ) : (
-          <button className={s.btn_logout} onClick={follow}>
+          <button type="button" className={s.btn_logout} onClick={follow}>
             Follow
           </button>
         )}

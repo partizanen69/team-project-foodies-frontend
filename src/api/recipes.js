@@ -35,7 +35,6 @@ export const getFavoriteRecipes = async ({
   recipeIds,
 }) => {
   try {
-    // console.log(page);
     const result = await axios.get('/recipes/favorites', {
       params: {
         page,

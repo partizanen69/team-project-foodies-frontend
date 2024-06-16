@@ -6,13 +6,15 @@ import Container from 'components/Container/Container';
 import RoundButton from 'components/RoundButton/RoundButton';
 import s from './RecipeCard.module.scss';
 
-export const RecipeCard = ({ recipe }) => {
+export const RecipeCard = ({ recipe, scrollToTop = true }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (scrollToTop) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, scrollToTop]);
 
   return (
     <>

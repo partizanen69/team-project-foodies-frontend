@@ -1,18 +1,23 @@
 import { getAvatarSrc } from 'api/api.utils';
 import s from './Avatar.module.scss';
-import { updateAvatar } from 'api/users';
 import Icon from 'components/Icon/Icon';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateAvatarStore } from '../../../../redux/actions/authActions';
+import Loader from 'components/Loader/Loader';
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
-  const [userAvatar, setUserAvatar] = useState(avatar);
+  const dispatch = useDispatch();
+  const { user, loading } = useSelector(state => state.auth);
+  const [userAvatar, setUserAvatar] = useState(
+    localStorage.getItem('avatarURL') || (user?.avatarURL ?? '')
+  );
 
-  useEffect(() => {
-    setUserAvatar(avatar);
-  }, [avatar]);
-
-  const handleFileChange = async event => {
+  const handleFileChange = event => {
     const selectedFile = event.target.files[0];
+
     if (!selectedFile) {
       return;
     }
@@ -21,23 +26,31 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
     formData.append('avatar', selectedFile);
 
     try {
-      const response = await updateAvatar(formData);
-      const uniqueQueryString = `updated=${new Date().getTime()}`;
-      setUserAvatar(`${response.avatarURL}?${uniqueQueryString}`);
+      dispatch(updateAvatarStore(formData));
     } catch (error) {
-      console.log(error);
+      toast.error(`Error occured: ${error.message}`);
+      console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (isOwnProfile) {
+      setUserAvatar(getAvatarSrc(user?.avatarURL));
+    } else {
+      setUserAvatar(getAvatarSrc(avatar));
+    }
+  }, [user?.avatarURL, avatar, isOwnProfile]);
 
   return (
     <div className={s.profile_avatar_block}>
       <img
         alt="User avatar"
-        src={getAvatarSrc(userAvatar)}
+        src={userAvatar}
         className={s.profile_avatar}
-        onError={() => setUserAvatar(null)}
+        onError={() =>
+          setUserAvatar(`${process.env.PUBLIC_URL}/avatar-placeholder.svg`)
+        }
       />
-
       {isOwnProfile && (
         <label htmlFor="avatar" className={s.btn_add_avatar}>
           <Icon name="icon-plus" className={s.plus} />
@@ -51,8 +64,13 @@ export const Avatar = ({ avatar, isOwnProfile }) => {
           />
         </label>
       )}
+
+      {loading && <Loader />}
     </div>
   );
 };
 
-Avatar.propTypes = {};
+Avatar.propTypes = {
+  avatar: PropTypes.string,
+  isOwnProfile: PropTypes.bool,
+};

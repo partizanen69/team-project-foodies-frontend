@@ -21,10 +21,52 @@ export const showError = msg => {
 
 export const getAvatarSrc = avatar => {
   const AVATAR_BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
+  try {
+    if (!avatar) {
+      return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
+    }
 
-  if (!avatar) {
+    return avatar.startsWith('http') ? avatar : `${AVATAR_BASE_URL}${avatar}`;
+  } catch (err) {
     return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
   }
+};
 
-  return avatar.startsWith('http') ? avatar : `${AVATAR_BASE_URL}${avatar}`;
+const AVATAR_BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
+export const getImageSrc = image => {
+  try {
+    if (!image) {
+      return `${process.env.PUBLIC_URL}/image-placeholder.svg`;
+    }
+
+    return image.startsWith('http') ? image : resolveImagePath(image);
+  } catch (err) {
+    return `${process.env.PUBLIC_URL}/image-placeholder.svg`;
+  }
+};
+
+const resolveImagePath = imageSrc => {
+  const imagePath = imageSrc.startsWith('public')
+    ? pathJoin(AVATAR_BASE_URL, ...imageSrc.split('/').slice(1))
+    : pathJoin(AVATAR_BASE_URL, ...imageSrc.split('/'));
+
+  return imagePath;
+};
+
+const pathJoin = (...args) => {
+  const path = [];
+  for (const _pathChunk of args) {
+    let pathChunk = '';
+    if (_pathChunk.endsWith('/')) {
+      pathChunk = _pathChunk.slice(0, pathChunk.length - 1);
+    }
+
+    if ((pathChunk || _pathChunk).startsWith('/')) {
+      pathChunk = pathChunk.slice(1);
+    }
+
+    path.push(pathChunk || _pathChunk);
+  }
+
+  return path.join('/');
 };

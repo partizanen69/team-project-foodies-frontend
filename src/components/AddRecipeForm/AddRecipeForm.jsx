@@ -38,7 +38,14 @@ const AddRecipeForm = () => {
   } = useForm({
     resolver: yupResolver(schemaYup),
     defaultValues: {
+      image: null,
+      title: '',
+      description: '',
+      area: '',
+      category: '',
+      time: 0,
       ingredients: [],
+      instructions: '',
     },
   });
 
@@ -72,7 +79,6 @@ const AddRecipeForm = () => {
   }, []);
 
   const onSubmit = async data => {
-    console.log('asdfasdf', data);
     try {
       const formData = new FormData();
       const { image, title, description, category, area, time, instructions } =
@@ -95,14 +101,13 @@ const AddRecipeForm = () => {
           }))
         )
       );
-      
+
       await addNewRecipe(formData);
       toast.success('Recipe added successfully');
 
       if (user) {
         navigate(`/user/${user.id}`);
       }
-
     } catch (error) {
       toast.error(`Error occurred while adding new recipe: ${error.message}`);
     }
@@ -116,12 +121,14 @@ const AddRecipeForm = () => {
     }
   };
 
-  const handleMeasureChange = (e) => {
+  const handleMeasureChange = e => {
     setIsTyping(true);
   };
 
   const addIngredient = (selectedIngredient, measure) => {
-    const ingredientExists = ingredientCards.some(card => card._id === selectedIngredient._id);
+    const ingredientExists = ingredientCards.some(
+      card => card._id === selectedIngredient._id
+    );
     if (ingredientExists) {
       toast.error('This ingredient is already added');
       return;
@@ -147,15 +154,15 @@ const AddRecipeForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-
       <div className={s.add_recipe_form_container}>
         <div>
           <ImageUpload
             imagePreview={imagePreview}
             handleImageChange={handleImageChange}
+            errors={errors}
           />
         </div>
-      
+
         <div>
           <TitleInput
             name="title"
@@ -196,6 +203,7 @@ const AddRecipeForm = () => {
               getValues={getValues}
               setValue={setValue}
               time={getValues('time')}
+              errors={errors}
             />
           </div>
 
@@ -209,12 +217,12 @@ const AddRecipeForm = () => {
             control={control}
             register={register}
           />
-        
+
           <AddIngredientCard
             removeIngredientCard={removeIngredientCard}
             ingredientCards={ingredientCards}
           />
-      
+
           <InstructionsInput
             name="instructions"
             register={register}
