@@ -1,3 +1,4 @@
+import { getImageSrc } from '../../../api/api.utils';
 import { AddFavoriteBtn } from '../AddFavoriteBtn/AddFavoriteBtn';
 import { Ingredients } from '../Ingredients/Ingredients';
 import { RecipeCreatedBy } from '../RecipeCreatedBy/RecipeCreatedBy';
@@ -8,7 +9,7 @@ export const RecipeInfo = ({ recipe }) => {
   return (
     <div className={s.recipe_info_wrap}>
       <div className={s.thumb_wrap}>
-        <img src={recipe.thumb} alt={recipe.title} />
+        <img src={getImageSrc(recipe.thumb)} alt={recipe.title} />
       </div>
       <div className={s.recipe_details_wrap}>
         <div className={s.recipe_info}>
