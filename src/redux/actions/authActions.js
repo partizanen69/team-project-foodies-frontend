@@ -51,7 +51,7 @@ export const updateAvatarBegin = () => ({
 
 export const updateAvatarSuccess = avatarUrl => ({
   type: UPDATE_AVATAR_SUCCESS,
-  payload: { avatarUrl },
+  payload: { avatarURL: avatarUrl },  
 });
 
 export const updateAvatarFailure = error => ({
@@ -119,6 +119,7 @@ export const logout = () => dispatch => {
 };
 
 export const updateAvatarStore = formData => async dispatch => {
+  dispatch(updateAvatarBegin());
   try {
     const response = await updateAvatar(formData);
 
@@ -126,6 +127,7 @@ export const updateAvatarStore = formData => async dispatch => {
     const uniqueAvatarURL = `${response.avatarURL}?t=${timestamp}`;
 
     dispatch(updateAvatarSuccess(uniqueAvatarURL));
+    toast.success("Avatar updated successfully!");
   } catch (error) {
     dispatch(updateAvatarFailure(error.message));
     toast.error(error.message);

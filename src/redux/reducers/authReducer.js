@@ -51,16 +51,17 @@ const authReducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
-    case UPDATE_AVATAR_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        user: {
-          ...state.user,
-          avatarUrl: action.payload.avatarURL,
-        },
-        error: null,
-      };
+      case UPDATE_AVATAR_SUCCESS:
+        localStorage.setItem('avatarURL', action.payload.avatarURL); // Store avatar URL
+        return {
+          ...state,
+          loading: false,
+          user: {
+            ...state.user,
+            avatarURL: action.payload.avatarURL,
+          },
+          error: null,
+        };
     case UPDATE_AVATAR_FAILURE:
       return {
         ...state,

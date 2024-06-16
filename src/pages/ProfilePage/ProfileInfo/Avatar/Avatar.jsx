@@ -1,28 +1,24 @@
 import { getAvatarSrc } from 'api/api.utils';
 import s from './Avatar.module.scss';
-// import { updateAvatar } from 'api/users';
 import Icon from 'components/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setAvatarStore,
-  updateAvatarStore,
-} from '../../../../redux/actions/authActions';
+import { setAvatarStore, updateAvatarStore } from '../../../../redux/actions/authActions';
 
 export const Avatar = ({ avatar, isOwnProfile }) => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
-  const [userAvatar, setUserAvatar] = useState(user?.avatarURL ?? '');
+  const [userAvatar, setUserAvatar] = useState(localStorage.getItem('avatarURL') || (user?.avatarURL ?? ''));
 
-  const handleFileChange = async event => {
+  const handleFileChange = event => {
     const selectedFile = event.target.files[0];
     if (!selectedFile) {
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('avatar', selectedFile);
-
+  
     try {
       dispatch(updateAvatarStore(formData));
     } catch (error) {
