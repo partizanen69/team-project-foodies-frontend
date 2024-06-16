@@ -79,7 +79,6 @@ const AddRecipeForm = () => {
   }, []);
 
   const onSubmit = async data => {
-    console.log('asdfasdf', data);
     try {
       const formData = new FormData();
       const { image, title, description, category, area, time, instructions } =
