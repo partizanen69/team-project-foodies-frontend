@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import RemoveItem from '../RemoveItem/RemoveItem';
 
 import s from './RecipeItem.module.scss';
-import { getAvatarSrc } from 'api/api.utils';
+import { getImageSrc } from 'api/api.utils';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -23,10 +23,10 @@ const RecipeItem = ({ recipe, isFavorite }) => {
     <li className={s.recipe_card}>
       <div className={s.thumb_wrapper}>
         <img
-          src={getAvatarSrc(recipe.thumb)}
+          src={getImageSrc(recipe.thumb)}
           alt={recipe.title}
           className={s.recipe_thumb}
-          onError={getAvatarSrc(null)}
+          onError={getImageSrc(null)}
         />
       </div>
 
