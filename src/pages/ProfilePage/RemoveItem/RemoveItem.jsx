@@ -13,7 +13,7 @@ import {
   selectPageLimit,
 } from '../../../redux/selectors';
 
-const RemoveItem = ({ recipeId, ownRecipe = false }) => {
+const RemoveItem = ({ recipeId, isFavorite = false }) => {
   const dispatch = useDispatch();
   const totalFavorites = useSelector(selectFavorites);
   const currentPage = useSelector(selectPage);
@@ -53,7 +53,7 @@ const RemoveItem = ({ recipeId, ownRecipe = false }) => {
     <RoundButton
       iconName="icon-trash"
       className=""
-      onClick={!ownRecipe ? handleRemoveFavorite : handleRemoveOwnRecipe}
+      onClick={isFavorite ? handleRemoveFavorite : handleRemoveOwnRecipe}
     />
   );
 };

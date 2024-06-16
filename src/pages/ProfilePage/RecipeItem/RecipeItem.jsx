@@ -1,12 +1,23 @@
 import RoundButton from 'components/RoundButton/RoundButton';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RemoveItem from '../RemoveItem/RemoveItem';
 
 import s from './RecipeItem.module.scss';
 import { getAvatarSrc } from 'api/api.utils';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const RecipeItem = ({ recipe, ownRecipe }) => {
+const RecipeItem = ({ recipe, isFavorite }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { user } = useSelector(state => state.auth);
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
+
+  useEffect(() => {
+    if (user && user.id && id) {
+      setIsOwnProfile(user.id === id);
+    }
+  }, [user, id]);
 
   return (
     <li className={s.recipe_card}>
@@ -25,7 +36,9 @@ const RecipeItem = ({ recipe, ownRecipe }) => {
 
       <div className={s.button_group}>
         <RoundButton onClick={() => navigate(`/recipe/${recipe._id}`)} />
-        <RemoveItem recipeId={recipe._id} ownRecipe={ownRecipe} />
+        {isOwnProfile && (
+          <RemoveItem recipeId={recipe._id} isFavorite={isFavorite} />
+        )}
       </div>
     </li>
   );

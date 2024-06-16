@@ -37,8 +37,9 @@ const UserRecipes = () => {
     }
 
     return () => {
-      dispatch(setList([])); // Reset list to empty or initial state
-      dispatch(setPage(1)); // Reset page to 1 or initial state
+      // reset list and page before component unmounts
+      dispatch(setList([]));
+      dispatch(setPage(1));
     };
   }, [user, id, dispatch]);
 
@@ -69,7 +70,7 @@ const UserRecipes = () => {
         <Loader />
       ) : recipes.length > 0 ? (
         <>
-          <ListItems isRecipeCard={true} list={recipes} ownRecipes={true} />
+          <ListItems isRecipeCard={true} list={recipes} isFavorite={false} />
           {totalRecipes && <ListPagination total={totalRecipes} />}
         </>
       ) : (
