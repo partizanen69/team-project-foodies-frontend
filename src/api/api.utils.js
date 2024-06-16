@@ -21,10 +21,26 @@ export const showError = msg => {
 
 export const getAvatarSrc = avatar => {
   const AVATAR_BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
+  try {
+    if (!avatar) {
+      return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
+    }
 
-  if (!avatar) {
+    return avatar.startsWith('http') ? avatar : `${AVATAR_BASE_URL}${avatar}`;
+  } catch (err) {
     return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
   }
+};
 
-  return avatar.startsWith('http') ? avatar : `${AVATAR_BASE_URL}${avatar}`;
+export const getImageSrc = image => {
+  const AVATAR_BASE_URL = process.env.REACT_APP_BACKEND_AVATAR;
+  try {
+    if (!image) {
+      return `${process.env.PUBLIC_URL}/image-placeholder.svg`;
+    }
+
+    return image.startsWith('http') ? image : `${AVATAR_BASE_URL}${image}`;
+  } catch (err) {
+    return `${process.env.PUBLIC_URL}/image-placeholder.svg`;
+  }
 };

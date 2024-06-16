@@ -52,12 +52,13 @@ const authReducer = (state = initialState, action) => {
         error: null,
       };
     case UPDATE_AVATAR_SUCCESS:
+      localStorage.setItem('avatarURL', action.payload.avatarURL);
       return {
         ...state,
         loading: false,
         user: {
           ...state.user,
-          avatarUrl: action.payload.avatarURL,
+          avatarURL: action.payload.avatarURL,
         },
         error: null,
       };
