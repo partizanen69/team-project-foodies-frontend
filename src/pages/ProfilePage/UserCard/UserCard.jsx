@@ -15,14 +15,8 @@ import {
   selectLimit,
   selectPage,
 } from '../../../redux/selectors';
-import { showError } from 'api/api.utils';
-
-const BASE_IMAGE_URL = process.env.REACT_APP_BACKEND_AVATAR;
-
-const getImageSrc = image => {
-  if (!image) return `${process.env.PUBLIC_URL}/avatar-placeholder.svg`;
-  return image.startsWith('https://') ? image : `${BASE_IMAGE_URL}${image}`;
-};
+import { getAvatarSrc, showError } from 'api/api.utils';
+import RecipeImage from './RecipeImage/RecipeImage';
 
 const UserCard = props => {
   const [viewWidth, setViewWidth] = useState(window.innerWidth);
@@ -122,7 +116,7 @@ const UserCard = props => {
           <div className={s.wrapper}>
             <img
               className={s.avatar}
-              src={getImageSrc(avatarURL)}
+              src={getAvatarSrc(avatarURL)}
               alt="user avatar"
             />
             <div>
@@ -146,32 +140,16 @@ const UserCard = props => {
           </div>
           {viewWidth >= 768 && viewWidth < 1440 && (
             <ul className={s.recipe_list}>
-              {recipes.slice(0, 3).map(recipe => {
-                return (
-                  <li key={recipe._id}>
-                    <img
-                      className={s.recipe_image}
-                      src={getImageSrc(avatarURL)}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+              {recipes.slice(0, 3).map(recipe => (
+                <RecipeImage key={recipe._id} recipe={recipe} />
+              ))}
             </ul>
           )}
           {viewWidth >= 1440 && (
             <ul className={s.recipe_list}>
-              {recipes.map(recipe => {
-                return (
-                  <li key={recipe._id}>
-                    <img
-                      className={s.recipe_image}
-                      src={getImageSrc(avatarURL)}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+              {recipes.map(recipe => (
+                <RecipeImage key={recipe._id} recipe={recipe} />
+              ))}
             </ul>
           )}
           <RoundButton
