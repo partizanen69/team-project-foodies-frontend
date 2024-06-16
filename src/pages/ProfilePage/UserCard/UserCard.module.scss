@@ -47,10 +47,14 @@
     cursor: pointer;
     transition: background-color $hover-transition;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: $dark-text;
       color: $bg-primary-color;
+    }
+
+    &.disabled {
+      color: rgba(5, 5, 5, 0.3);
+      pointer-events: none;
     }
   }
 }
