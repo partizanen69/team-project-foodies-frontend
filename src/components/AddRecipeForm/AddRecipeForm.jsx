@@ -34,7 +34,6 @@ const AddRecipeForm = () => {
     setValue,
     getValues,
     watch,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schemaYup),
