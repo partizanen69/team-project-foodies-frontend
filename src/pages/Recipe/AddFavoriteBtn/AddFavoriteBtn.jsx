@@ -24,9 +24,7 @@ export const AddFavoriteBtn = ({
   setFavoriteRecipes,
 }) => {
   const currentUser = useSelector(selectCurrentUser);
-  const [isLoading, setIsLoading] = useState(() =>
-    currentUser && recipeId ? true : false
-  );
+  const [isLoading, setIsLoading] = useState(false);
   const isFavorite = useMemo(() => {
     return (favoriteRecipes || []).some(recipe => recipe._id === recipeId);
   }, [recipeId, favoriteRecipes]);
