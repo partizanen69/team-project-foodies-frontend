@@ -21,10 +21,10 @@
 
 .add_recipe_form_ingredient_input_select {
   padding: 14px;
-  width: 343px;
-  height: 48px;
+  width: 100%;
+  height: 100%;
   border-radius: 30px;
-  border: 1px solid rgba(5, 5, 5, 0.2);
+  border: 1px solid $light-dark-text;
   opacity: 1;
 
   font-family: 'Mulish', sans-serif;
@@ -32,26 +32,53 @@
   letter-spacing: -0.02em;
 
   appearance: none;
-  background: url('../../../assets/icons/arrow-drop-down.svg') no-repeat right
-    16px center;
   background-color: inherit;
 
-  color: rgba(5, 5, 5, 0.6);
+  color: $mid-dark-text;
 
   &.ingredient_placeholder {
-    color: rgba(5, 5, 5, 0.6);
+    color: $mid-dark-text;
   }
 
   &.ingredient_selected {
-    color: rgba(5, 5, 5, 1);
+    color: $dark-text;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.add_recipe_form_ingredient_select_wrapper {
+  position: relative;
+  width: 343px;
+  height: 48px;
+}
+
+.add_recipe_select_dropdown_icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: $dark-text;
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .add_recipe_form_ingredient_input_ingredient_option {
   font-family: 'Mulish', sans-serif;
   @include font-styles(14px, 500, 1.42);
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 1);
+  color: $dark-text;
 }
 
 .add_recipe_form_ingredient_input_select::-ms-expand {
@@ -67,15 +94,15 @@
   font-family: 'Mulish', sans-serif;
   @include font-styles(14px, 500, 1.42);
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 1);
-  background-color: #fff;
+  color: $dark-text;
+  background-color: $bg-primary-color;
   outline: none;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid rgba(5, 5, 5, 0.12);
+  border-bottom: 1px solid $light-dark-stroke-button;
 
   &::placeholder {
-    color: rgba(5, 5, 5, 0.6);
+    color: $mid-dark-text;
   }
 }
 
@@ -86,31 +113,34 @@
   width: 184px;
   height: 48px;
   border-radius: 30px;
-  border: 1px solid rgba(5, 5, 5, 0.9);
+  border: 1px solid $avatar-name-text;
 
   font-family: 'Mulish', sans-serif;
   @include font-styles(14px, 700, 1.42);
   letter-spacing: -0.02em;
-  color: rgba(5, 5, 5, 1);
+  color: $dark-text;
   text-transform: uppercase;
   cursor: pointer;
   background-color: #fff;
 }
 
 .add_recipe_form_ingredient_input_button:hover {
-  border: 2px solid rgba(5, 5, 5, 0.9);
+  border: 2px solid $avatar-name-text;
 }
 
 .add_recipe_form_ingredient_input_button_icon {
   width: 20px;
   height: 20px;
   margin-left: 8px;
-
-  fill: rgba(5, 5, 5, 1);
+  stroke: $dark-text;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-miterlimit: 4;
+  stroke-width: 3px;
 }
 
 @media screen and (min-width: 768px) {
-  .add_recipe_form_ingredient_input_select {
+  .add_recipe_form_ingredient_select_wrapper {
     width: 315px;
     height: 56px;
   }

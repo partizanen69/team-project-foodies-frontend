@@ -2,6 +2,7 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import icons from '../../../assets/icons/icons.svg';
 import s from './AreaSelect.module.scss';
 
 const AreaSelect = ({ control, areas, errors }) => (
@@ -11,15 +12,28 @@ const AreaSelect = ({ control, areas, errors }) => (
       name="area"
       control={control}
       render={({ field }) => (
-        <select
-          {...field}
-          className={`${s.area_select} ${field.value ? s.area_selected : s.area_placeholder}`}
-        >
-          <option key="default" value="" className={s.area_select_option}>Select an area</option>
-          {areas.map(area => (
-            <option key={area.name} value={area.id}>{area.name}</option>
-          ))}
-        </select>
+        <div className={s.area_select_wrapper}>
+          <select
+            {...field}
+            className={`${s.area_select} ${
+              field.value ? s.area_selected : s.area_placeholder
+            }`}
+          >
+            <option key="default" value="" className={s.area_select_option}>
+              Select an area
+            </option>
+            {areas.map(area => (
+              <option key={area.name} value={area.id}>
+                {area.name}
+              </option>
+            ))}
+          </select>
+          <span>
+            <svg className={s.area_select_dropdown_icon}>
+              <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
+            </svg>
+          </span>
+        </div>
       )}
     />
     <ErrorMessage error={errors?.area} />

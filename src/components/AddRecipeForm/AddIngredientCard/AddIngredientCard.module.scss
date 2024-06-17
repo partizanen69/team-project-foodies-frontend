@@ -10,6 +10,7 @@
 }
 
 .ingredient_card {
+  position: relative;
   min-width: 155px;
   height: 75px;
   display: flex;
@@ -40,12 +41,12 @@
 }
 
 .ingredient_card_name {
-  color: rgba(5, 5, 5, 1);
+  color: $dark-text;
   margin: 0px;
 }
 
 .ingredient_card_measure {
-  color: rgba(5, 5, 5, 0.6);
+  color: $mid-dark-text;
 }
 
 .add_recipe_form_close_button {
@@ -60,8 +61,15 @@
 }
 
 .add_recipe_form_close_icon {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 16px;
   height: 16px;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: $dark-text;
 }
 
 .add_recipe_form_close_icon:hover {

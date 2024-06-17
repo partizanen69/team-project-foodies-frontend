@@ -1,139 +1,144 @@
-@import "../../assets/sass/utils/mixin";
-@import "../../assets/sass/utils/variables";
+@import '../../assets/sass/utils/mixin';
+@import '../../assets/sass/utils/variables';
 
-.modal_title{
-	@include font-styles(28px, 800, 1.14);
-	color: $dark-text;
-	text-align: left;
-	letter-spacing: -0.64px;
-	margin-bottom: 32px;
+.modal_title {
+  @include font-styles(28px, 800, 1.14);
+  color: $dark-text;
+  text-align: left;
+  letter-spacing: -0.64px;
+  margin-bottom: 32px;
 }
 
-.modal_title__centered{
-	@extend .modal_title;
-	text-align: center;
-	margin-bottom: 16px;
+.modal_title__centered {
+  @extend .modal_title;
+  text-align: center;
+  margin-bottom: 16px;
 }
 
-.modal_input{
-	@include font-styles(14px, 500, 1.42);
-	border-radius: 30px;
-	border: 1px solid rgba(5, 5, 5, 0.12);
-	padding: 14px;
-	width: 283px;
-	height: 48px;
+.modal_input {
+  @include font-styles(14px, 500, 1.42);
+  border-radius: 30px;
+  border: 1px solid rgba(5, 5, 5, 0.12);
+  padding: 14px;
+  width: 283px;
+  height: 48px;
 }
 
 .modal_input:not(:last-of-type) {
   margin-bottom: 14px;
 }
 
-.modal_btn{
-	@include font-styles(14px, 700, 1.42);
-	letter-spacing: -0.28px;
-	height: 48px;
-	padding: 14px 116px;
-	margin-top: 32px;
-	margin-bottom: 16px;
-	border-radius: 30px;
-	background: rgba(5, 5, 5, 0.20);
-	border: none;
-	color:rgba(255, 255, 255, 0.40);
-	cursor: pointer;
+.modal_btn {
+  @include font-styles(14px, 700, 1.42);
+  letter-spacing: -0.28px;
+  height: 48px;
+  padding: 14px 116px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  border-radius: 30px;
+  background: rgba(5, 5, 5, 0.2);
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
 }
 
-.modal_btn__active{
-	@extend .modal_btn;
-	background: $dark-text !important;
-	color:  $bg-primary-color !important;
+.modal_btn__active {
+  @extend .modal_btn;
+  background: $dark-text !important;
+  color: $bg-primary-color !important;
 }
 
-.modal_btn:hover{
-	background-color: rgba(5, 5, 5, 0.30);
-	color: $bg-primary-color;
+.modal_btn:hover {
+  background-color: rgba(5, 5, 5, 0.3);
+  color: $bg-primary-color;
 }
 
-.modal_text_wrapper{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.modal_text_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal_text{
-	@include font-styles(12px, 500, 1.5);
-	color:  rgba(5, 5, 5, 0.60);
-	letter-spacing: -0.28px;
-	text-align: center;
-	margin-right: 4px;
+.modal_text {
+  @include font-styles(12px, 500, 1.5);
+  color: rgba(5, 5, 5, 0.6);
+  letter-spacing: -0.28px;
+  text-align: center;
+  margin-right: 4px;
 }
 
-.modal_text_button{
-	border: none;
-	padding: 0;
-	margin: 0;
-	background-color: transparent;
-	color: $dark-text;
+.modal_text_button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: $dark-text;
 }
 
-.password_input_wrapper{
-	margin-top: 14px;
-	position: relative;
+.password_input_wrapper {
+  margin-top: 14px;
+  position: relative;
 }
 
-.eye_icon{
-	position: absolute;
-	top: 18px;
-	right: 18px;
+.eye_icon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: $dark-text;
 }
-
 
 @media screen and (min-width: 768px) {
+  .modal_title {
+    @include font-styles(32px, 800, 1.25);
+    color: $dark-text;
+    text-align: left;
+    letter-spacing: -0.64px;
+    margin-bottom: 40px;
+  }
 
-	.modal_title{
-		@include font-styles(32px, 800, 1.25);
-		color: $dark-text;
-		text-align: left;
-		letter-spacing: -0.64px;
-		margin-bottom: 40px;
-	}
-	
-	.modal_input{
-		border-radius: 30px;
-		border: 1px solid rgba(5, 5, 5, 0.12);
-		padding: 16px 18px;
-		width: 400px;
-		height: 56px;
-	}
+  .modal_input {
+    border-radius: 30px;
+    border: 1px solid rgba(5, 5, 5, 0.12);
+    padding: 16px 18px;
+    width: 400px;
+    height: 56px;
+  }
 
-	.modal_btn{
-		width: 400px;
-		height: 56px;
-		margin-top: 40px;
-		margin-bottom: 20px;
-		border-radius: 30px;
-		background: rgba(5, 5, 5, 0.20);
-		border: none;
-		color:rgba(255, 255, 255, 0.40);
-		cursor: pointer;
-	}
-	
-	.modal_text{
-		@include font-styles(14px, 500, 1.28);
-		color:  rgba(5, 5, 5, 0.60);
-		letter-spacing: -0.28px;
-		text-align: center;
-	}
+  .modal_btn {
+    width: 400px;
+    height: 56px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    background: rgba(5, 5, 5, 0.2);
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+  }
+
+  .modal_text {
+    @include font-styles(14px, 500, 1.28);
+    color: rgba(5, 5, 5, 0.6);
+    letter-spacing: -0.28px;
+    text-align: center;
+  }
 }
 
 .loader_overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: rgba(0, 0, 0, 0.5);
-	z-index: 9999; // Ensure it's on top of everything
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999; // Ensure it's on top of everything
+}
