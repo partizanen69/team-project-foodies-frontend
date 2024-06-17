@@ -34,6 +34,10 @@
   width: 16px;
   height: 16px;
   stroke: $bg-primary-color;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-miterlimit: 4;
+  stroke-width: 3px;
 }
 
 @media screen and (min-width: 768px) {

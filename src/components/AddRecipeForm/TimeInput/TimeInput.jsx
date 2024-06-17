@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 
 import s from './TimeInput.module.scss';
+import Icon from 'components/Icon/Icon';
 
 const TimeInput = ({ register, getValues, setValue, errors }) => {
-  const [displayTime, setDisplayTime] = useState("");
+  const [displayTime, setDisplayTime] = useState('');
 
   useEffect(() => {
     const currentValue = getValues('time') || 0;
@@ -35,14 +36,16 @@ const TimeInput = ({ register, getValues, setValue, errors }) => {
           onClick={decrementTime}
           className={s.add_recipe_form_time_button}
         >
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <Icon
+            name="icon-time-minus"
+            className={s.add_recipe_form_time_icon}
+          />
         </button>
         <input
           type="text"
           value={displayTime}
-          readOnly {...register('time')}
+          readOnly
+          {...register('time')}
           className={s.add_recipe_form_time_input}
         />
         <button
@@ -50,13 +53,15 @@ const TimeInput = ({ register, getValues, setValue, errors }) => {
           onClick={incrementTime}
           className={s.add_recipe_form_time_button}
         >
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 5V19" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M5 12H19" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+                    <Icon
+            name="icon-time-plus"
+            className={s.add_recipe_form_time_icon}
+          />
         </button>
       </div>
-      {errors && <p className={s.add_recipe_form_error}>{errors.time?.message}</p>}
+      {errors && (
+        <p className={s.add_recipe_form_error}>{errors.time?.message}</p>
+      )}
     </div>
   );
 };

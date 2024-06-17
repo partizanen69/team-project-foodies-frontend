@@ -11,7 +11,7 @@ export const Icon = ({ id, className, width, height }) => {
       id={id}
       className={classnames(styles.icons, className)}
     >
-      <use xlinkHref={`${icons}#${id}`} />
+      <use xlinkHref={`${icons}#icon-${id}`} />
     </svg>
   );
 }

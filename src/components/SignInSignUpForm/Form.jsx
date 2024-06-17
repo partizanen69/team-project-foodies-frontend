@@ -5,12 +5,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { login, register } from '../../redux/actions/authActions';
-import { ReactComponent as EyeClosedIcon } from '../../assets/icons/eye-closed-icon.svg';
-import { ReactComponent as EyeOpenIcon } from '../../assets/icons/eye-open-icon.svg';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader/Loader';
-
+import icons from '../../assets/icons/icons.svg';
 import s from './Form.module.scss';
 
 const Form = ({
@@ -115,15 +113,19 @@ const Form = ({
             {...registerInput('password')}
           />
           {isPasswordVisible ? (
-            <EyeOpenIcon
+            <svg
               className={s.eye_icon}
               onClick={() => setIsPasswordVisible(false)}
-            />
+            >
+              <use xlinkHref={`${icons}#${'icon-eye-open'}`}></use>
+            </svg>
           ) : (
-            <EyeClosedIcon
+            <svg
               className={s.eye_icon}
               onClick={() => setIsPasswordVisible(true)}
-            />
+            >
+              <use xlinkHref={`${icons}#${'icon-eye-closed'}`}></use>
+            </svg>
           )}
         </div>
         <button

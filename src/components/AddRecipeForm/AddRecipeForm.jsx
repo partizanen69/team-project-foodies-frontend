@@ -12,8 +12,8 @@ import { getAreasList } from '../../api/areas';
 import { getIngredientsList } from '../../api/ingredients';
 import { showError } from '../../api/api.utils';
 import { addNewRecipe } from '../../api/recipes';
-import { ReactComponent as CloseIcon } from '../../assets/icons/trash-light.svg';
 
+import { Icon } from '../Icons/Icons';
 import ImageUpload from './ImageUpload/ImageUpload';
 import TitleInput from './TitleInput/TitleInput';
 import DescriptionInput from './DescriptionInput/DescriptionInput';
@@ -237,7 +237,12 @@ const AddRecipeForm = () => {
               className={s.add_recipe_form_close_button}
               onClick={() => window.location.reload()}
             >
-              <CloseIcon className={s.add_recipe_form_close_icon} />
+              <Icon
+                width={'20px'}
+                height={'20px'}
+                id={'trash'}
+                className={s.add_recipe_form_close_icon}
+              />
             </button>
             <button className={s.add_recipe_form_publish_button} type="submit">
               Publish

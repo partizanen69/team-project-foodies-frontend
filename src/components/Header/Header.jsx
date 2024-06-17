@@ -4,9 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
-import { ReactComponent as BurgerBar } from '../../assets/icons/burger-bar.svg';
-import {getAvatarSrc} from '../../api/api.utils'
-
+import { getAvatarSrc } from '../../api/api.utils';
+import icons from '../../assets/icons/icons.svg';
 import s from './Header.module.scss';
 
 const Navigation = lazy(() => import('../Navigation/Navigation'));
@@ -19,7 +18,7 @@ const Header = ({ openModal }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isDropDownShown, setIsDropDownShown] = useState(false);
-  const [avatar, setAvatar] = useState(user?.avatarURL ?? '')
+  const [avatar, setAvatar] = useState(user?.avatarURL ?? '');
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
   };
@@ -64,9 +63,9 @@ const Header = ({ openModal }) => {
   }, [user]);
 
   useEffect(() => {
-    setAvatar(getAvatarSrc(user?.avatarURL))
+    setAvatar(getAvatarSrc(user?.avatarURL));
   }, [user?.avatarURL]);
-  
+
   return (
     <>
       <div
@@ -85,28 +84,12 @@ const Header = ({ openModal }) => {
           <div className={s.profile_bar_wrapper}>
             <div onClick={toggleDropDown} className={s.profile_bar}>
               <span className={s.avatar_wrapper}>
-                <img
-                  src={avatar}
-                  alt="avatar"
-                  className={s.avatar}
-                />
+                <img src={avatar} alt="avatar" className={s.avatar} />
               </span>
               <div className={s.name_wrapper}>
                 {user && <p className={s.profile_bar_name}>{user.name}</p>}
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.5 6.75L9 11.25L13.5 6.75"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                <svg className={s.arrow}>
+                  <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
                 </svg>
               </div>
             </div>
@@ -115,21 +98,17 @@ const Header = ({ openModal }) => {
               onClick={openSidebar}
               className={s.burger_btn}
             >
-              <BurgerBar
-                className={isMainPage ? s.burger_icon : s.burger_icon__dark}
-              />
+              <svg className={isMainPage ? s.burger_icon : s.burger_icon__dark}>
+                <use xlinkHref={`${icons}#${'icon-burger-bar'}`}></use>
+              </svg>
             </button>
 
             {isDropDownShown && (
-              <div
-                className={s.dropdown_menu}
-              >
-
+              <div className={s.dropdown_menu}>
                 <NavLink
                   className={s.dropdown_menu_link}
                   to={`user/${user.id}/recipies`}
                 >
-
                   PROFILE
                 </NavLink>
                 <div className={s.dropdown_menu_link_img}>
@@ -138,27 +117,10 @@ const Header = ({ openModal }) => {
                     onClick={() => openModal('log out')}
                   >
                     LOG OUT
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.25 12.75L12.75 5.25"
-                        stroke="white"
-                        strokeWidth="1.3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.25 5.25H12.75V12.75"
-                        stroke="white"
-                        strokeWidth="1.3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                    <svg className={s.icon_arrow_up_right}>
+                      <use
+                        xlinkHref={`${icons}#${'icon-arrow-up-right'}`}
+                      ></use>
                     </svg>
                   </button>
                 </div>
