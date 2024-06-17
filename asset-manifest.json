@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-foodies-frontend/static/css/main.1159c762.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.d5c3dae0.js",
+    "main.js": "/team-project-foodies-frontend/static/js/main.da373624.js",
     "static/css/169.f676d589.chunk.css": "/team-project-foodies-frontend/static/css/169.f676d589.chunk.css",
     "static/js/169.d11a6dd3.chunk.js": "/team-project-foodies-frontend/static/js/169.d11a6dd3.chunk.js",
     "static/css/1.dbafe985.chunk.css": "/team-project-foodies-frontend/static/css/1.dbafe985.chunk.css",
@@ -14,8 +14,8 @@
     "static/js/460.bc6f033f.chunk.js": "/team-project-foodies-frontend/static/js/460.bc6f033f.chunk.js",
     "static/css/536.a82dfb6d.chunk.css": "/team-project-foodies-frontend/static/css/536.a82dfb6d.chunk.css",
     "static/js/536.9eccf931.chunk.js": "/team-project-foodies-frontend/static/js/536.9eccf931.chunk.js",
-    "static/css/886.2d891a4d.chunk.css": "/team-project-foodies-frontend/static/css/886.2d891a4d.chunk.css",
-    "static/js/886.6c413343.chunk.js": "/team-project-foodies-frontend/static/js/886.6c413343.chunk.js",
+    "static/css/886.82dc9b57.chunk.css": "/team-project-foodies-frontend/static/css/886.82dc9b57.chunk.css",
+    "static/js/886.cf452435.chunk.js": "/team-project-foodies-frontend/static/js/886.cf452435.chunk.js",
     "static/css/438.8904a830.chunk.css": "/team-project-foodies-frontend/static/css/438.8904a830.chunk.css",
     "static/js/438.d381c508.chunk.js": "/team-project-foodies-frontend/static/js/438.d381c508.chunk.js",
     "static/js/242.41550f70.chunk.js": "/team-project-foodies-frontend/static/js/242.41550f70.chunk.js",
@@ -36,10 +36,10 @@
     "static/media/hero-food.png": "/team-project-foodies-frontend/static/media/hero-food.68b7a552d97d291a744a.png",
     "static/media/hero-desert@2x.png": "/team-project-foodies-frontend/static/media/hero-desert@2x.c81afe2a181a1e022dd2.png",
     "static/media/hero-desert.png": "/team-project-foodies-frontend/static/media/hero-desert.d0295535aca7f8a13dcb.png",
-    "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.4d64c4e5e1289f29372886b6b07df528.svg",
+    "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.a7b765e08619e5504383ee609e09da2e.svg",
     "index.html": "/team-project-foodies-frontend/index.html",
     "main.1159c762.css.map": "/team-project-foodies-frontend/static/css/main.1159c762.css.map",
-    "main.d5c3dae0.js.map": "/team-project-foodies-frontend/static/js/main.d5c3dae0.js.map",
+    "main.da373624.js.map": "/team-project-foodies-frontend/static/js/main.da373624.js.map",
     "169.f676d589.chunk.css.map": "/team-project-foodies-frontend/static/css/169.f676d589.chunk.css.map",
     "169.d11a6dd3.chunk.js.map": "/team-project-foodies-frontend/static/js/169.d11a6dd3.chunk.js.map",
     "1.dbafe985.chunk.css.map": "/team-project-foodies-frontend/static/css/1.dbafe985.chunk.css.map",
@@ -52,8 +52,8 @@
     "460.bc6f033f.chunk.js.map": "/team-project-foodies-frontend/static/js/460.bc6f033f.chunk.js.map",
     "536.a82dfb6d.chunk.css.map": "/team-project-foodies-frontend/static/css/536.a82dfb6d.chunk.css.map",
     "536.9eccf931.chunk.js.map": "/team-project-foodies-frontend/static/js/536.9eccf931.chunk.js.map",
-    "886.2d891a4d.chunk.css.map": "/team-project-foodies-frontend/static/css/886.2d891a4d.chunk.css.map",
-    "886.6c413343.chunk.js.map": "/team-project-foodies-frontend/static/js/886.6c413343.chunk.js.map",
+    "886.82dc9b57.chunk.css.map": "/team-project-foodies-frontend/static/css/886.82dc9b57.chunk.css.map",
+    "886.cf452435.chunk.js.map": "/team-project-foodies-frontend/static/js/886.cf452435.chunk.js.map",
     "438.8904a830.chunk.css.map": "/team-project-foodies-frontend/static/css/438.8904a830.chunk.css.map",
     "438.d381c508.chunk.js.map": "/team-project-foodies-frontend/static/js/438.d381c508.chunk.js.map",
     "242.41550f70.chunk.js.map": "/team-project-foodies-frontend/static/js/242.41550f70.chunk.js.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.1159c762.css",
-    "static/js/main.d5c3dae0.js"
+    "static/js/main.da373624.js"
   ]
 }
