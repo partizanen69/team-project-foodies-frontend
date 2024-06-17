@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import s from './AddFavoriteBtn.module.scss';
 import { toast } from 'react-toastify';
 import {
   addRecipeToFavorites,
-  getFavoriteRecipes,
   removeRecipeFromFavorites,
 } from '../../../api/recipes';
 import { useSelector } from 'react-redux';
@@ -18,46 +17,28 @@ const showError = msg => {
   });
 };
 
-export const AddFavoriteBtn = ({ recipeId, round = false }) => {
+export const AddFavoriteBtn = ({
+  recipeId,
+  round = false,
+  favoriteRecipes,
+  setFavoriteRecipes,
+}) => {
   const currentUser = useSelector(selectCurrentUser);
   const [isLoading, setIsLoading] = useState(() =>
     currentUser && recipeId ? true : false
   );
-  const [isFavorite, setIsFavorite] = useState(false);
+  const isFavorite = useMemo(() => {
+    return (favoriteRecipes || []).some(recipe => recipe._id === recipeId);
+  }, [recipeId, favoriteRecipes]);
   const { openModal } = useOutletContext();
-
-  useEffect(() => {
-    if (!currentUser) {
-      return;
-    }
-
-    setIsLoading(true);
-
-    (async () => {
-      try {
-        const favoriteRecipes = await getFavoriteRecipes({
-          recipeIds: [recipeId],
-        });
-
-        const isFavorite = favoriteRecipes?.recipes?.some(
-          recipe => recipe._id === recipeId
-        );
-        setIsFavorite(isFavorite);
-      } catch (err) {
-        showError(
-          `Could not check if recipe is favorite because of error: ${err.message}`
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [currentUser, recipeId]);
 
   const doAddRecipeToFavorites = async () => {
     try {
       setIsLoading(true);
-      await addRecipeToFavorites({ recipeId });
-      setIsFavorite(true);
+      const recipe = await addRecipeToFavorites({ recipeId });
+      setFavoriteRecipes(favoriteRecipes => {
+        return [...(favoriteRecipes || []), recipe];
+      });
     } catch (err) {
       showError(
         `Error occured while trying to add recipe to favorites: ${err.message}`
@@ -71,7 +52,11 @@ export const AddFavoriteBtn = ({ recipeId, round = false }) => {
     try {
       setIsLoading(true);
       await removeRecipeFromFavorites({ recipeId });
-      setIsFavorite(false);
+      setFavoriteRecipes(favoriteRecipes => {
+        return (favoriteRecipes || []).filter(
+          recipe => recipe._id !== recipeId
+        );
+      });
     } catch (err) {
       showError(
         `Error occured while trying to add recipe to favorites: ${err.message}`

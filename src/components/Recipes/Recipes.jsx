@@ -12,7 +12,7 @@ import RecipePagination from './RecipePagination';
 import RecipeFilters from './RecipeFilters';
 
 // import requests
-import { getRecipes } from 'api/recipes';
+import { getFavoriteRecipes, getRecipes } from 'api/recipes';
 import { getIngredients } from 'api/ingedients';
 import { getAreasList } from 'api/areas';
 
@@ -23,11 +23,14 @@ import { clearPageFilter } from '../../redux/actions/filtersActions';
 
 // import styles
 import s from './Recipes.module.scss';
+import { selectCurrentUser } from '../../redux/selectors';
 
 const Recipes = () => {
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filters);
   const category = useSelector(state => state.category.category);
+  const currentUser = useSelector(selectCurrentUser);
+  const [favoriteRecipes, setFavoriteRecipes] = useState(null);
 
   // store recipes and pagination
   const [recipesList, setRecipesList] = useState(null);
@@ -55,6 +58,13 @@ const Recipes = () => {
           ingredients: filters.ingredients,
           area: filters.area,
         });
+        if (currentUser) {
+          const { recipes } = await getFavoriteRecipes({
+            recipeIds: data.recipes.map(r => r._id),
+          });
+          setFavoriteRecipes(recipes);
+        }
+
         setIsLoading(false);
         setRecipesList(data.recipes);
         setLimit(windowWidth >= 1440 ? 12 : 10);
@@ -71,6 +81,7 @@ const Recipes = () => {
     filters.page,
     limit,
     filters.category,
+    currentUser,
   ]);
 
   // get ingredients
@@ -156,6 +167,8 @@ const Recipes = () => {
             isLoading={isLoading}
             errorMsg={errorMsg}
             scrollToRef={contentRef}
+            favoriteRecipes={favoriteRecipes}
+            setFavoriteRecipes={setFavoriteRecipes}
           />
 
           {/* recipes pagination component */}

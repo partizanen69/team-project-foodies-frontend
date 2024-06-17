@@ -6,7 +6,12 @@ import Container from 'components/Container/Container';
 import RoundButton from 'components/RoundButton/RoundButton';
 import s from './RecipeCard.module.scss';
 
-export const RecipeCard = ({ recipe, scrollToTop = true }) => {
+export const RecipeCard = ({
+  recipe,
+  scrollToTop = true,
+  favoriteRecipes,
+  setFavoriteRecipes,
+}) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -37,7 +42,12 @@ export const RecipeCard = ({ recipe, scrollToTop = true }) => {
               popular={true}
             />
             <div className={s.recipeCardIconWrapper}>
-              <AddFavoriteBtn recipeId={recipe._id} round={true} />
+              <AddFavoriteBtn
+                favoriteRecipes={favoriteRecipes}
+                setFavoriteRecipes={setFavoriteRecipes}
+                recipeId={recipe._id}
+                round={true}
+              />
               <RoundButton onClick={() => navigate(`/recipe/${recipe._id}`)} />
             </div>
           </div>
