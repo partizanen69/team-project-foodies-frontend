@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
+  selectLimit,
   selectList,
   selectListLoading,
   selectPage,
@@ -20,11 +21,12 @@ import s from './UserRecipes.module.scss';
 
 const UserRecipes = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
   const { user } = useSelector(state => state.auth);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const isLoading = useSelector(selectListLoading);
-
-  const dispatch = useDispatch();
+  const limit = useSelector(selectLimit);
   const recipes = useSelector(selectList);
   const currentPage = useSelector(selectPage);
   const [totalRecipes, setTotalRecipes] = useState(0);
@@ -53,7 +55,7 @@ const UserRecipes = () => {
           const result = await getUserRecipes({
             owner: id,
             page: currentPage,
-            limit: 10,
+            limit: limit,
           });
           dispatch(setList(result.recipes));
           setTotalRecipes(result.total);
@@ -64,7 +66,7 @@ const UserRecipes = () => {
         dispatch(setIsLoading(false));
       }
     })();
-  }, [isOwnProfile, id, currentPage, dispatch]);
+  }, [isOwnProfile, id, currentPage, limit, dispatch]);
 
   return (
     <>
