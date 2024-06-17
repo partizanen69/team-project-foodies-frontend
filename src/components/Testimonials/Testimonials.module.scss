@@ -120,14 +120,13 @@
         width: 16px;
         height: 16px;
         color: $slider-dark-color;
-        // margin: 0 6px !important;
       }
 
       .swiperSlide {
         padding: 0 32px 0 32px;
 
         .icon {
-          width: 60px;
+          width: 59px;
           height: 48px;
         }
 
@@ -151,57 +150,6 @@
 .testimonial_container {
     padding: 0 309px 0 309px;
 }}
-// .section {
-//   padding: 0 0 64px 0;
-
-//   @media (width >=768px) {
-//     padding: 0 0 100px 0;
-//   }
-
-//   @media (width >=1440px) {
-//     padding: 0 0 120px 0;
-//   }
-// }
-
-
-// .paginationContainer {
-//   position: absolute;
-//   bottom: 10px;
-//   left: 50%;
-//   transform: translateX(-50%);
-// }
-
-// .paginationBullet {
-//   border-radius: 50%;
-//   background-color: $slider-light-color;
-//   margin: 0 5px;
-//   padding: 5px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-// }
-
-// .paginationBulletActive {
-//   background-color: $slider-dark-color;
-//   color: $slider-dark-color;
-// }
-
-// .swiper_pagination_bullet {
-//   padding: 5px 10px;
-//   border-radius: 0;
-//   width: auto;
-//   height: 30px;
-//   text-align: center;
-//   line-height: 30px;
-//   font-size: 15px;
-//   color: $slider-light-color;
-//   opacity: 1;
-//   background: $slider-light-color;
-// }
-
-// .swiper_pagination_bullet_active {
-//   color: $slider-dark-color;
-//   background: $slider-dark-color;
-// }
 
 .swiper-pagination-bullet {
   width: 20px;

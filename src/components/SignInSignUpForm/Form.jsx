@@ -8,7 +8,7 @@ import { login, register } from '../../redux/actions/authActions';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader/Loader';
-import icons from '../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './Form.module.scss';
 
 const Form = ({
@@ -113,19 +113,17 @@ const Form = ({
             {...registerInput('password')}
           />
           {isPasswordVisible ? (
-            <svg
+            <Icon
+              name={'icon-eye-open'}
               className={s.eye_icon}
               onClick={() => setIsPasswordVisible(false)}
-            >
-              <use xlinkHref={`${icons}#${'icon-eye-open'}`}></use>
-            </svg>
+            />
           ) : (
-            <svg
+            <Icon
+              name={'icon-eye-closed'}
               className={s.eye_icon}
               onClick={() => setIsPasswordVisible(true)}
-            >
-              <use xlinkHref={`${icons}#${'icon-eye-closed'}`}></use>
-            </svg>
+            />
           )}
         </div>
         <button
