@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/team-project-foodies-frontend/static/css/main.1159c762.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.b0938c66.js",
+    "main.js": "/team-project-foodies-frontend/static/js/main.d5c3dae0.js",
     "static/css/169.f676d589.chunk.css": "/team-project-foodies-frontend/static/css/169.f676d589.chunk.css",
-    "static/js/169.47e0c75f.chunk.js": "/team-project-foodies-frontend/static/js/169.47e0c75f.chunk.js",
+    "static/js/169.d11a6dd3.chunk.js": "/team-project-foodies-frontend/static/js/169.d11a6dd3.chunk.js",
     "static/css/1.dbafe985.chunk.css": "/team-project-foodies-frontend/static/css/1.dbafe985.chunk.css",
     "static/js/1.9d8e858d.chunk.js": "/team-project-foodies-frontend/static/js/1.9d8e858d.chunk.js",
     "static/css/595.8150c893.chunk.css": "/team-project-foodies-frontend/static/css/595.8150c893.chunk.css",
@@ -39,9 +39,9 @@
     "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.4d64c4e5e1289f29372886b6b07df528.svg",
     "index.html": "/team-project-foodies-frontend/index.html",
     "main.1159c762.css.map": "/team-project-foodies-frontend/static/css/main.1159c762.css.map",
-    "main.b0938c66.js.map": "/team-project-foodies-frontend/static/js/main.b0938c66.js.map",
+    "main.d5c3dae0.js.map": "/team-project-foodies-frontend/static/js/main.d5c3dae0.js.map",
     "169.f676d589.chunk.css.map": "/team-project-foodies-frontend/static/css/169.f676d589.chunk.css.map",
-    "169.47e0c75f.chunk.js.map": "/team-project-foodies-frontend/static/js/169.47e0c75f.chunk.js.map",
+    "169.d11a6dd3.chunk.js.map": "/team-project-foodies-frontend/static/js/169.d11a6dd3.chunk.js.map",
     "1.dbafe985.chunk.css.map": "/team-project-foodies-frontend/static/css/1.dbafe985.chunk.css.map",
     "1.9d8e858d.chunk.js.map": "/team-project-foodies-frontend/static/js/1.9d8e858d.chunk.js.map",
     "595.8150c893.chunk.css.map": "/team-project-foodies-frontend/static/css/595.8150c893.chunk.css.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.1159c762.css",
-    "static/js/main.b0938c66.js"
+    "static/js/main.d5c3dae0.js"
   ]
 }
