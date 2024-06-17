@@ -1,4 +1,4 @@
-$dark-text: #050505;
+$dark-text: rgb(5, 5, 5);
 $main-text: rgba(5, 5, 5, 0.8);
 $mid-dark-text: rgba(5, 5, 5, 0.6);
 $lighter-dark-text: rgba(5, 5, 5, 0.4);
@@ -12,13 +12,13 @@ $light-stroke-04: rgba(255, 255, 255, 0.4);
 
 $gray-text-lighter: rgba(255, 255, 255, 0.8);
 $gray-text: rgba(255, 255, 255, 0.9);
-$bg-primary-color: #ffffff;
+$bg-primary-color: rgb(255, 255, 255);
 
 $slider-light-color: rgba(217, 217, 217, 1);
 $slider-dark-color: rgba(0, 0, 0, 1);
 
 $quote-color: rgba(233, 233, 233, 1);
 
-$pagination-border-color: #05050510;
+$pagination-border-color: rgba(5, 5, 5, 0.063);
 
 $hover-transition: 0.3s;

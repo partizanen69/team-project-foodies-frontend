@@ -58,9 +58,9 @@ const Select = ({ options = [], value, onChange }) => {
         tabIndex={0}
       >
         <span className={cl.selectValue}>{selectedValue}</span>
-        <span>
+        <span className={cl.iconWrapper}>
           <svg className={cl.arrow}>
-            <use xlinkHref={`${icons}#${'icon-arrow-down'}`}></use>
+            <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
           </svg>
         </span>
       </button>

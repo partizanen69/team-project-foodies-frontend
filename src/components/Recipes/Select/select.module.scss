@@ -41,12 +41,19 @@ $desktop: 1440px;
     text-transform: uppercase;
   }
 
+  .iconWrapper {
+    display: flex;
+  }
+
   .arrow {
     transition: transform ease-in-out 0.3s;
     width: 18px;
     height: 18px;
     fill: none;
     stroke: $dark-text;
+    stroke-width: 1.8px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .selectDropdown {

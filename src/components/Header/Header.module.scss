@@ -1,287 +1,314 @@
-@import "../../assets/sass/utils/mixin";
-@import "../../assets/sass/utils/variables";
+@import '../../assets/sass/utils/mixin';
+@import '../../assets/sass/utils/variables';
 
 .header_container {
-	@include flex-center(space-between);
-	position: absolute;
-	top: 40px;
-	left: 25px;
-	padding-right: 5px;
-	width: 100%;
-	max-width: 327px;
-	height: 38px;
-	background-color: $dark-text;
-	color: $bg-primary-color;
-	z-index: 10;
-	background-color: transparent;
+  @include flex-center(space-between);
+  position: absolute;
+  top: 40px;
+  left: 25px;
+  padding-right: 5px;
+  width: 100%;
+  max-width: 327px;
+  height: 38px;
+  background-color: $dark-text;
+  color: $bg-primary-color;
+  z-index: 10;
+  background-color: transparent;
 }
 
 .header_container__light {
-	@extend.header_container;
-	width: 100%;
-	max-width: 343px;
-	position: static;
-	margin-bottom: 64px;
-	background-color: $bg-primary-color;
+  @extend.header_container;
+  width: 100%;
+  max-width: 343px;
+  position: static;
+  margin-bottom: 64px;
+  background-color: $bg-primary-color;
 }
 
 .burger_btn {
-	margin: 0;
-	padding: 0;
-	background-color: transparent;
-	border: none;
-	width: 28px;
-	height: 28px;
-	cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 }
 
-.burger_icon{
-	fill: $bg-primary-color;
-	stroke: $bg-primary-color;
+.burger_icon_common {
+  width: 28px;
+  height: 28px;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.burger_icon__dark{
-	fill: $dark-text;
-	stroke: $dark-text;
+.burger_icon {
+  @extend .burger_icon_common;
+  fill: $bg-primary-color;
+  stroke: $bg-primary-color;
+}
+
+.burger_icon__dark {
+  @extend .burger_icon_common;
+  fill: $dark-text;
+  stroke: $dark-text;
 }
 
 .logo {
-	@include font-styles(20px, 800, 1.2);
-	color: $bg-primary-color;
-	letter-spacing: -0.4px;
+  @include font-styles(20px, 800, 1.2);
+  color: $bg-primary-color;
+  letter-spacing: -0.4px;
 }
 
 .logo__dark {
-	@extend .logo;
-	color: $dark-text;
+  @extend .logo;
+  color: $dark-text;
 }
 
 .profile_bar_wrapper {
-	@include flex-center;
-	position: relative;
+  @include flex-center;
+  position: relative;
 }
 
 .dropdown_menu {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: left;
-	flex-direction: column;
-	top: 40px;
-	left: 0;
-	width: 122px;
-	height: 72px;
-	background-color: $dark-text;
-	padding: 16px;
-	border-radius: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.20);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  top: 40px;
+  left: 0;
+  width: 122px;
+  height: 72px;
+  background-color: $dark-text;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.dropdown_menu_link_img{
-	display: flex;
-	align-items: center;
-	margin-top: 4px;
+.dropdown_menu_link_img {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
 }
 
-.dropdown_menu_link{
-	@include font-styles(12px, 700, 1.5);
-	display: flex;
-	align-items: center;
-	margin: 0;
-	background-color: transparent;
-	padding: 0;
-	border: none;
-	color: $bg-primary-color;
-	cursor: pointer;
+.dropdown_menu_link {
+  @include font-styles(12px, 700, 1.5);
+  display: flex;
+  align-items: center;
+  margin: 0;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  color: $bg-primary-color;
+  cursor: pointer;
 }
 
-.dropdown_menu_link_img a{
-	margin-right: 2px;
+.dropdown_menu_link_img a {
+  margin-right: 2px;
 }
 
 .profile_bar {
-	display: flex;
-	align-items: center;
-	margin-right: 4px;
-	min-width: 122px;
-	width: 100%;
-	height: 32px;
-	border-radius: 30px;
-	
-	background-color: $dark-text;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+  min-width: 122px;
+  width: 100%;
+  height: 32px;
+  border-radius: 30px;
+
+  background-color: $dark-text;
+  cursor: pointer;
 }
 
 .profile_bar_unauthenticated {
-	@extend .profile_bar;
-	width: 156px;
-	height: 38px;
-	background-color: $bg-primary-color;
-	margin-right: 0;
+  @extend .profile_bar;
+  width: 156px;
+  height: 38px;
+  background-color: $bg-primary-color;
+  margin-right: 0;
 }
 
 .profile_bar__light {
-	@extend .profile_bar;
-	background-color: $bg-primary-color;
+  @extend .profile_bar;
+  background-color: $bg-primary-color;
 }
 
-.avatar_wrapper{
-	display: flex;
-	align-items: center;
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-	background-color: $bg-primary-color;
+.avatar_wrapper {
+  display: flex;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: $bg-primary-color;
 }
 
 .avatar {
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
 
-.name_wrapper{
-	@include flex-center;
-	padding: 16px 14px 16px 6px;
+.name_wrapper {
+  @include flex-center;
+  padding: 16px 14px 16px 6px;
 }
 
 .profile_bar_name {
-	@include font-styles(12px, 700, 1.5);
-	margin-left: 6px;
-	margin-right: 4px;
-	text-transform: uppercase;
+  @include font-styles(12px, 700, 1.5);
+  margin-left: 6px;
+  margin-right: 4px;
+  text-transform: uppercase;
+}
+
+.arrow {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: $bg-primary-color;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .profile_bar_name__dark {
-	@extend .profile_bar_name;
-	color: $dark-text;
+  @extend .profile_bar_name;
+  color: $dark-text;
 }
 
 .burger {
-	width: 20px;
-	height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .sign_in_block {
-	@include font-styles(12px, 700, 1.5);
-	@include flex-center;
-	margin: 0;
-	padding: 10px 16px;
-	background-color: transparent;
-	border: none;
-	white-space: nowrap;
-	height: 38px;
-	background-color: $bg-primary-color;
-	border-radius: 30px;
-	color: $dark-text;
-	cursor: pointer;
+  @include font-styles(12px, 700, 1.5);
+  @include flex-center;
+  margin: 0;
+  padding: 10px 16px;
+  background-color: transparent;
+  border: none;
+  white-space: nowrap;
+  height: 38px;
+  background-color: $bg-primary-color;
+  border-radius: 30px;
+  color: $dark-text;
+  cursor: pointer;
 }
 
-.sign_in_block:hover{
-	background-color: rgba(255, 136, 0, 0.793);
-	color: $bg-primary-color;
+.sign_in_block:hover {
+  background-color: rgba(255, 136, 0, 0.793);
+  color: $bg-primary-color;
 }
 
 .sign_up_block {
-	@extend .sign_in_block;
-	background-color: $dark-text;
-	color: $bg-primary-color;
-	border: 1px solid #E8E8E8;
-	cursor: pointer;
+  @extend .sign_in_block;
+  background-color: $dark-text;
+  color: $bg-primary-color;
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
 }
 
-.sign_up_block:hover{
-	background-color: rgba(255, 136, 0, 0.793);
-	color: $bg-primary-color;
+.sign_up_block:hover {
+  background-color: rgba(255, 136, 0, 0.793);
+  color: $bg-primary-color;
 }
 
+.icon_arrow_up_right {
+  width: 18px;
+  height: 18px;
+  fill: $bg-primary-color;
+  stroke: $bg-primary-color;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 @media screen and (min-width: 768px) {
-	
-	.header_container {
-		top: 56px;
-		left: 50px;
-		width: 100%;
-		max-width: 669px;
-		height: 50px;
-	}
+  .header_container {
+    top: 56px;
+    left: 50px;
+    width: 100%;
+    max-width: 669px;
+    height: 50px;
+  }
 
-	.header_container__light {
-		width: 100%;
-		max-width: 704px;
-	}
+  .header_container__light {
+    width: 100%;
+    max-width: 704px;
+  }
 
-	.logo{
-		@include font-styles(24px, 800, 1.16);
-		letter-spacing: -0.48px;
-	}
+  .logo {
+    @include font-styles(24px, 800, 1.16);
+    letter-spacing: -0.48px;
+  }
 
-	.burger_btn{
-		display: none;
-	}
+  .burger_btn {
+    display: none;
+  }
 
-	.avatar_wrapper{
-		width: 50px;
-		height: 50px;
-	}
+  .avatar_wrapper {
+    width: 50px;
+    height: 50px;
+  }
 
-	.profile_bar {
-		margin-right: 0;
-		min-width: 148px;
-		width: 100%;
-		height: 50px;
-	}
-	
-	.dropdown_menu {
-		top: 60px;
-		left: 0;
-		width: 148px;
-		height: 74px;
-		padding: 16px;
-	}
+  .profile_bar {
+    margin-right: 0;
+    min-width: 148px;
+    width: 100%;
+    height: 50px;
+  }
 
-	.dropdown_menu_link_img{
-		margin-top: 6px;
-	}
+  .dropdown_menu {
+    top: 60px;
+    left: 0;
+    width: 148px;
+    height: 74px;
+    padding: 16px;
+  }
 
-	.avatar {
-		width: 50px;
-		height: 50px;
-	}
-	
-	.profile_bar_unauthenticated {
-		height: 46px;
-		width: 208px;
-	}
-	
-	.sign_in_block {
-		@include font-styles(12px, 700, 1.5);
-		padding: 14px 30px;
-		height: 46px;
-	}
+  .dropdown_menu_link_img {
+    margin-top: 6px;
+  }
 
-	.sign_up_block {
-		@extend .sign_in_block;
-		padding: 14px 28px;
-	}
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .profile_bar_unauthenticated {
+    height: 46px;
+    width: 208px;
+  }
+
+  .sign_in_block {
+    @include font-styles(12px, 700, 1.5);
+    padding: 14px 30px;
+    height: 46px;
+  }
+
+  .sign_up_block {
+    @extend .sign_in_block;
+    padding: 14px 28px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-	.header_container {
-		top: 56px;
-		left: 80px;
-		width: 1280px;
-		max-width: 1280px;
-	}
+  .header_container {
+    top: 56px;
+    left: 80px;
+    width: 1280px;
+    max-width: 1280px;
+  }
 
-	.header_container__light {
-		width: 1280px;
-		max-width: 1280px;
-		margin-bottom: 80px;
-	}
+  .header_container__light {
+    width: 1280px;
+    max-width: 1280px;
+    margin-bottom: 80px;
+  }
 
-	.dropdown_menu {
-		top: 60px;
-		left: -14px;
-	}
+  .dropdown_menu {
+    top: 60px;
+    left: -14px;
+  }
 }
