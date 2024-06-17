@@ -9,7 +9,14 @@ import Loader from 'components/Loader/Loader';
 // import styles
 import s from './RecipeList.module.scss';
 
-const RecipeList = ({ recipesList, isLoading, errorMsg, scrollToRef }) => {
+const RecipeList = ({
+  recipesList,
+  isLoading,
+  errorMsg,
+  scrollToRef,
+  favoriteRecipes,
+  setFavoriteRecipes,
+}) => {
   useEffect(() => {
     if (scrollToRef && scrollToRef.current) {
       scrollToRef.current.scrollIntoView({ behavior: 'instant' });
@@ -26,7 +33,12 @@ const RecipeList = ({ recipesList, isLoading, errorMsg, scrollToRef }) => {
         <ul className={s.recipes_list}>
           {recipesList.map(recipe => (
             <li className={s.recipe_item} key={recipe._id}>
-              <RecipeCard recipe={recipe} scrollToTop={false} />
+              <RecipeCard
+                recipe={recipe}
+                scrollToTop={false}
+                favoriteRecipes={favoriteRecipes}
+                setFavoriteRecipes={setFavoriteRecipes}
+              />
             </li>
           ))}
         </ul>
