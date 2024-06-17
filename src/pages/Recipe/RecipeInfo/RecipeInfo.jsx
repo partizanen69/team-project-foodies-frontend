@@ -5,7 +5,7 @@ import { RecipeCreatedBy } from '../RecipeCreatedBy/RecipeCreatedBy';
 import { RecipePreparation } from '../RecipePreparation/RecipePreparation';
 import s from './RecipeInfo.module.scss';
 
-export const RecipeInfo = ({ recipe }) => {
+export const RecipeInfo = ({ recipe, favoriteRecipes, setFavoriteRecipes }) => {
   return (
     <div className={s.recipe_info_wrap}>
       <div className={s.thumb_wrap}>
@@ -28,7 +28,11 @@ export const RecipeInfo = ({ recipe }) => {
         <Ingredients ingredients={recipe.ingredients} />
         <RecipePreparation instructions={recipe.instructions} />
         <div className={s.add_favorite_wrap}>
-          <AddFavoriteBtn recipeId={recipe._id} />
+          <AddFavoriteBtn
+            recipeId={recipe._id}
+            favoriteRecipes={favoriteRecipes}
+            setFavoriteRecipes={setFavoriteRecipes}
+          />
         </div>
       </div>
     </div>
