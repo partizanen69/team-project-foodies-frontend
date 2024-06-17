@@ -28,11 +28,13 @@ const ProfilePage = () => {
     <Container className={s.main_container}>
       <PathInfo currentPageName="profile" />
 
-      <MainTitle>Profile</MainTitle>
-      <Subtitle>
-        Reveal your culinary art, share your favorite recipe and create
-        gastronomic masterpieces with us.
-      </Subtitle>
+      <div className={s.head_content}>
+        <MainTitle>Profile</MainTitle>
+        <Subtitle>
+          Reveal your culinary art, share your favorite recipe and create
+          gastronomic masterpieces with us.
+        </Subtitle>
+      </div>
 
       <div className={s.main_content}>
         <ProfileInfo userId={id} isOwnProfile={isOwnProfile} />

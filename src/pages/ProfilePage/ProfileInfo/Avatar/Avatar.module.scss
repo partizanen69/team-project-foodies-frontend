@@ -39,3 +39,10 @@
   stroke-miterlimit: 4;
   stroke-width: 3px;
 }
+
+@media screen and (min-width: 768px) {
+  .profile_avatar {
+    width: 120px;
+    height: 120px;
+  }
+}

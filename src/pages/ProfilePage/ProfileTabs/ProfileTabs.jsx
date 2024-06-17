@@ -9,51 +9,53 @@ const ProfileTabs = ({ userId, isOwnProfile }) => {
 
   return (
     <div className={s.tabs_container}>
-      <ul className={s.tabs_list}>
-        <li className={s.tab_item}>
-          <NavLink
-            to={`/user/${userId}/recipies`}
-            state={{ from: location }}
-            className={getNavLinkClass}
-          >
-            {isOwnProfile ? 'MY RECIPES' : 'RECIPES'}
-          </NavLink>
-        </li>
-
-        {isOwnProfile && (
+      <div className={s.overflow_container}>
+        <ul className={s.tabs_list}>
           <li className={s.tab_item}>
             <NavLink
-              to={`/user/${userId}/favorites`}
+              to={`/user/${userId}/recipies`}
               state={{ from: location }}
               className={getNavLinkClass}
             >
-              MY FAVORITES
+              {isOwnProfile ? 'MY RECIPES' : 'RECIPES'}
             </NavLink>
           </li>
-        )}
 
-        <li className={s.tab_item}>
-          <NavLink
-            to={`/user/${userId}/followers`}
-            state={{ from: location }}
-            className={getNavLinkClass}
-          >
-            FOLLOWERS
-          </NavLink>
-        </li>
+          {isOwnProfile && (
+            <li className={s.tab_item}>
+              <NavLink
+                to={`/user/${userId}/favorites`}
+                state={{ from: location }}
+                className={getNavLinkClass}
+              >
+                MY FAVORITES
+              </NavLink>
+            </li>
+          )}
 
-        {isOwnProfile && (
           <li className={s.tab_item}>
             <NavLink
-              to={`/user/${userId}/following`}
+              to={`/user/${userId}/followers`}
               state={{ from: location }}
               className={getNavLinkClass}
             >
-              FOLLOWING
+              FOLLOWERS
             </NavLink>
           </li>
-        )}
-      </ul>
+
+          {isOwnProfile && (
+            <li className={s.tab_item}>
+              <NavLink
+                to={`/user/${userId}/following`}
+                state={{ from: location }}
+                className={getNavLinkClass}
+              >
+                FOLLOWING
+              </NavLink>
+            </li>
+          )}
+        </ul>
+      </div>
       <Outlet />
     </div>
   );
