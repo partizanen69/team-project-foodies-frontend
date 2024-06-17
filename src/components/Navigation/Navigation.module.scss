@@ -65,6 +65,15 @@
     height: 28px;
   }
 
+  .header_close_icon {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: $bg-primary-color;
+  }
+
   .logo {
     @include font-styles(20px, 800, 1.2);
     color: $bg-primary-color;

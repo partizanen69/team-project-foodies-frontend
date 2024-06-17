@@ -36,6 +36,16 @@
     }
   }
 
+  .add_recipe_form_time_icon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: $dark-text;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .add_recipe_form_time_input {
     text-align: center;
     width: 47px;
