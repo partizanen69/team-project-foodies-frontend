@@ -56,7 +56,7 @@ const RecipeItem = ({ recipe, isFavorite }) => {
 RecipeItem.propTypes = {
   recipe: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     description: PropTypes.string,
     thumb: PropTypes.string,
   }).isRequired,
