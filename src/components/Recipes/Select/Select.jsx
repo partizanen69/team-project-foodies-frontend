@@ -37,6 +37,12 @@ const Select = ({ options = [], value, onChange }) => {
     }
   };
 
+  const onClearSelect = (event) => {
+    event.stopPropagation();
+    setSelectedValue(value);
+    onChange({});
+  }
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -57,9 +63,14 @@ const Select = ({ options = [], value, onChange }) => {
         ref={buttonRef}
         tabIndex={0}
       >
+        <span className={`${cl.iconWrapper} ${selectedValue === value ? cl.isHidden : ''}`}>
+          <svg className={cl.iconClear} onClick={onClearSelect}>
+            <use xlinkHref={`${icons}#${'icon-clear'}`}></use>
+          </svg>
+        </span>
         <span className={cl.selectValue}>{selectedValue}</span>
         <span className={cl.iconWrapper}>
-          <svg className={cl.arrow}>
+          <svg className={cl.icon}>
             <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
           </svg>
         </span>
