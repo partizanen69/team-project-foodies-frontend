@@ -7,5 +7,5 @@ export const getCategories = async ({
 } = {}) => {
   const params = all ? {} : { page, limit };
   const result = await axios.get('/categories', { params });
-  return result.data;
+  return result.data.slice().sort((a, b) => a.name.localeCompare(b.name));
 };
