@@ -69,7 +69,8 @@ const AddIngredient = ({
                         {ingredientsList.map((ingredient) => (
                           <div
                             key={ingredient._id}
-                            className={`${s.ingredient_select__dropdown_item} ${selectedIngredient && selectedIngredient._id === ingredient._id ? s.ingredient_selected : ''}`}
+                            className={`${s.ingredient_select__dropdown_item} ${selectedIngredient
+                              && selectedIngredient._id === ingredient._id ? s.ingredient_selected : ''}`}
                             onClick={() => {
                               handleSelect(ingredient);
                               field.onChange(ingredient._id);
@@ -123,6 +124,5 @@ const AddIngredient = ({
     </div>
   );
 };
-
 
 export default AddIngredient;

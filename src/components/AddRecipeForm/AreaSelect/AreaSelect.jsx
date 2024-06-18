@@ -37,27 +37,24 @@ const AreaSelect = ({ control, areas, errors }) => {
                   Select an area
                 </span>
               )}
-              <span>
-                <svg className={s.area_select_dropdown_icon}>
-                  {isOpen
-                    ? <Icon
-                      name={'icon-chevron-down'}
-                      className={s.area_select_dropdown_icon}
-                    />
-                    : <Icon
-                      name={'icon-arrow-drop-down'}
-                      className={s.area_select_dropdown_icon}
-                    />
-                  }
-                </svg>
-              </span>
+              {isOpen
+                ? <Icon
+                  name={'icon-chevron-down'}
+                  className={s.area_select_dropdown_icon}
+                />
+                : <Icon
+                  name={'icon-arrow-drop-down'}
+                  className={s.area_select_dropdown_icon}
+                />
+              }
             </div>
             {isOpen && (
               <div className={s.area_select_option}>
                 {areas.map((area) => (
                   <div
                     key={area._id}
-                    className={`${s.area_select__dropdown_item} ${selectedArea && selectedArea._id === area._id ? s.area_selected : ''}`}
+                    className={`${s.area_select__dropdown_item} ${selectedArea
+                      && selectedArea._id === area._id ? s.area_selected : ''}`}
                     onClick={() => {
                       handleSelect(area);
                       field.onChange(area._id);
