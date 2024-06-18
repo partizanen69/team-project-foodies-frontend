@@ -10,7 +10,7 @@ const pages = {
 const initialState = {
   pageName: pages.recipies,
   page: 1,
-  limit: 10,
+  limit: 9,
   favorites: 0,
   list: [],
   isLoading: false,

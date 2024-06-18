@@ -65,6 +65,11 @@ const UserCard = props => {
     recipes,
   } = props.user;
   const [followingState, setFollowingState] = useState(isFollowing);
+  const [avatar, setAvatar] = useState(avatarURL);
+
+  useEffect(() => {
+    setAvatar(getAvatarSrc(avatarURL));
+  }, [avatarURL]);
 
   const follow = () => {
     (async () => {
@@ -141,8 +146,11 @@ const UserCard = props => {
           <div className={s.wrapper}>
             <img
               className={s.avatar}
-              src={getAvatarSrc(avatarURL)}
+              src={avatar}
               alt="user avatar"
+              onError={() =>
+                setAvatar(`${process.env.PUBLIC_URL}/avatar-placeholder.svg`)
+              }
             />
             <div>
               <h3 className={s.name}>{name}</h3>
