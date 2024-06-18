@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
@@ -16,6 +16,16 @@ const AddIngredient = ({
   addIngredient,
   handleMeasureChange,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIngredient, setselectedIngredient] = useState(null);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleSelect = (ingredient) => {
+    setselectedIngredient(ingredient);
+    setIsOpen(false);
+  };
+
   return (
     <div className={s.add_recipe_form_ingredients}>
       <Controller
@@ -24,41 +34,56 @@ const AddIngredient = ({
         render={({ field }) => (
           <div className={s.add_recipe_form_ingredient_input}>
             <AddRecipeFormLabel>Ingredients</AddRecipeFormLabel>
-
             <div className={s.add_recipe_form_ingredient_select_wrap}>
-              <div className={s.add_recipe_form_ingredient_select_wrapper}>
-                <select
-                  {...field}
-                  className={`${s.add_recipe_form_ingredient_input_select} ${
-                    field.value === ''
-                      ? s.ingredient_placeholder
-                      : s.ingredient_selected
-                  }`}
-                >
-                  <option
-                    key="default"
-                    value=""
-                    className={s.add_recipe_form_ingredient_input_option}
-                  >
-                    Add the ingredient
-                  </option>
-                  {ingredientsList.map(ingredient => (
-                    <option
-                      key={ingredient._id}
-                      value={ingredient._id}
-                      className={
-                        s.add_recipe_form_ingredient_input_ingredient_option
-                      }
+              <Controller
+                name="area"
+                control={control}
+                render={({ field }) => (
+                  <div className={s.ingredient_select_wrapper}>
+                    <div
+                      className={`${s.ingredient_select} ${isOpen ? s.ingredient_is_open : ''}`}
+                      onClick={toggleDropdown}
                     >
-                      {ingredient.name}
-                    </option>
-                  ))}
-                </select>
-                <Icon
-                  name={'icon-arrow-drop-down'}
-                  className={s.add_recipe_select_dropdown_icon}
-                />
-              </div>
+                      {selectedIngredient ? (
+                        <span className={s.ingredient_selected_text}>
+                          {selectedIngredient.name}
+                        </span>
+                      ) : (
+                        <span className={s.ingredient_placeholder}>
+                          Add the ingredient
+                        </span>
+                      )}
+                      {isOpen ?
+                        <Icon
+                          name={'icon-chevron-down'}
+                          className={s.add_recipe_select_dropdown_icon}
+                        />
+                        : <Icon
+                          name={'icon-arrow-drop-down'}
+                          className={s.add_recipe_select_dropdown_icon}
+                        />}
+                        
+                    </div>
+                    {isOpen && (
+                      <div className={s.ingredient_select_option}>
+                        {ingredientsList.map((ingredient) => (
+                          <div
+                            key={ingredient._id}
+                            className={`${s.ingredient_select__dropdown_item} ${selectedIngredient && selectedIngredient._id === ingredient._id ? s.ingredient_selected : ''}`}
+                            onClick={() => {
+                              handleSelect(ingredient);
+                              field.onChange(ingredient._id);
+                            }}
+                          >
+                            {ingredient.name}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              />
+              
               <input
                 type="text"
                 {...register('measure')}
@@ -98,5 +123,6 @@ const AddIngredient = ({
     </div>
   );
 };
+
 
 export default AddIngredient;
