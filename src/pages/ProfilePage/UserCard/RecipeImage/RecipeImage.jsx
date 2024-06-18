@@ -4,7 +4,7 @@ import { getImageSrc } from 'api/api.utils';
 
 const RecipeImage = props => {
   const recipe = props.recipe;
-  const [image, setImage] = useState(recipe.thum);
+  const [image, setImage] = useState(recipe?.thumb);
 
   useEffect(() => {
     setImage(getImageSrc(recipe?.thumb));
@@ -12,7 +12,14 @@ const RecipeImage = props => {
 
   return (
     <li key={recipe._id}>
-      <img className={s.recipe_image} src={getImageSrc(image)} alt="" />
+      <img
+        className={s.recipe_image}
+        src={image}
+        onError={() =>
+          setImage(`${process.env.PUBLIC_URL}/image-placeholder.svg`)
+        }
+        alt={recipe.title}
+      />
     </li>
   );
 };
