@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import icons from '../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './Navigation.module.scss';
 
 const Navigation = ({ isSidebarOpen, closeSidebar }) => {
@@ -39,9 +39,7 @@ const Navigation = ({ isSidebarOpen, closeSidebar }) => {
               type="button"
               className={s.header_btn}
             >
-              <svg className={s.header_close_icon}>
-                <use xlinkHref={`${icons}#${'icon-close'}`} x="2" y="2"></use>
-              </svg>
+              <Icon name={'icon-close'} className={s.header_close_icon} />
             </button>
           </div>
           <div className={s.nav__link_wrapper}>

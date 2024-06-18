@@ -64,4 +64,8 @@
   .add_recipe_form_description {
     gap: 47px;
   }
+
+  .add_recipe_form_description_input {
+    @include font-styles(16px, 500, 1.5);
+  }
 }

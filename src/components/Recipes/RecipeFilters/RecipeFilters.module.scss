@@ -3,6 +3,7 @@
 .recipeFilters {
   display: grid;
   height: fit-content;
+  gap: 14px;
 
   @media screen and (min-width: 375px) and (max-width: 767.99p) {
     grid-template-columns: repeat(1, minmax(343px, 1fr));

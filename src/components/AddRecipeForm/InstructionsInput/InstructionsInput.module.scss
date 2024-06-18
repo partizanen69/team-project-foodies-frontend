@@ -78,4 +78,8 @@
     margin-top: 80px;
     margin-bottom: 80px;
   }
+
+  .add_recipe_form_instructions_input {
+    @include font-styles(16px, 500, 1.5);
+  }
 }

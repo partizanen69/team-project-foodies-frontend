@@ -35,7 +35,7 @@ const ImageUpload = ({ handleImageChange, imagePreview, errors }) => (
         </label>
       </div>
     )}
-    <ErrorMessage error={errors?.image} />
+    {!imagePreview && <ErrorMessage error={errors?.image} />}
   </div>
 );
 

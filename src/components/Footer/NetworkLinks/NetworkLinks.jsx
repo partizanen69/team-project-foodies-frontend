@@ -1,6 +1,6 @@
-import { Icon } from "../../Icons/Icons";
-import { networkLinks } from "./data";
-import styles from "./NetworkLinks.module.scss";
+import RoundButton from 'components/RoundButton/RoundButton';
+import { networkLinks } from './data';
+import styles from './NetworkLinks.module.scss';
 
 export const NetworkLinks = () => (
   <ul className={styles.networkLinks}>
@@ -12,7 +12,11 @@ export const NetworkLinks = () => (
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <Icon id={id} width={20} height={20} />
+          <RoundButton
+            iconName={`icon-${id}`}
+            className={'network-link-button'}
+            iconClassName={'network-link-icon'}
+          />
         </a>
       </li>
     ))}

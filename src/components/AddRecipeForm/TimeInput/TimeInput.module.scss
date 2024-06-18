@@ -13,10 +13,6 @@
     gap: 12px;
     cursor: pointer;
 
-    &:hover .add_recipe_form_time_button {
-      border: 1px solid rgba(5, 5, 5, 1);
-    }
-
     .add_recipe_form_time_button {
       display: flex;
       justify-content: center;
@@ -71,6 +67,10 @@
         width: 24px;
         height: 24px;
       }
+    }
+
+    .add_recipe_form_time_input {
+      @include font-styles(16px, 500, 1.5);
     }
   }
 }
