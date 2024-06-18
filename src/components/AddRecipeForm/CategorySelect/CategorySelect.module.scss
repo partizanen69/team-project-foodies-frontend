@@ -113,6 +113,10 @@
     height: 56px;
   }
 
+  .category_select {
+    @include font-styles(16px, 500, 1.5);
+  }
+
   .category_select_option {
     @include font-styles(16px, 500, 1.5);
     max-height: 326px;

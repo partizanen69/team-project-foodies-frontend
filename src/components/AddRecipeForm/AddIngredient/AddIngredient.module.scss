@@ -178,8 +178,16 @@
     margin-bottom: 40px;
   }
 
+  .ingredient_select {
+    @include font-styles(16px, 500, 1.5);
+  }
+
   .ingredient_select_option {
     max-height: 206px;
+    @include font-styles(16px, 500, 1.5);
+  }
+
+  .add_recipe_form_ingredient_input_measure {
     @include font-styles(16px, 500, 1.5);
   }
 }
