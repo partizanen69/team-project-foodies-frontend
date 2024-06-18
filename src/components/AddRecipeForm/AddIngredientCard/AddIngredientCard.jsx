@@ -40,3 +40,4 @@ const AddIngredientCard = ({ removeIngredientCard, ingredientCards }) => {
 };
 
 export default AddIngredientCard;
+
