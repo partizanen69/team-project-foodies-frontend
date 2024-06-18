@@ -52,6 +52,18 @@ const listSlice = createSlice({
     removeFromList: (state, action) => {
       state.list = state.list.filter(recipe => recipe._id !== action.payload);
     },
+    renewList: (state, action) => {
+      const newList = action.payload;
+      const newListIds = newList.map(item => item._id);
+      const oldFilteredList = state.list.filter(item =>
+        newListIds.includes(item._id)
+      );
+      const oldListIds = state.list.map(item => item._id);
+      const newFilteredList = newList.filter(
+        item => !oldListIds.includes(item._id)
+      );
+      state.list = [...oldFilteredList, ...newFilteredList];
+    },
     setLimit: (state, action) => {
       state.limit = action.payload;
     },
@@ -71,6 +83,7 @@ export const {
   setFollowers,
   setIsLoading,
   removeFromList,
+  renewList,
   setLimit,
   setTotalUsers,
 } = listSlice.actions;

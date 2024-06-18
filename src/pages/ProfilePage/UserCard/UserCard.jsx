@@ -9,6 +9,7 @@ import {
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  renewList,
   setFollowing,
   setList,
   setPage,
@@ -116,13 +117,13 @@ const UserCard = props => {
             page: currentPage,
             limit,
           });
-          dispatch(setList(data.following));
+          dispatch(renewList(data.following));
           const newTotalUsers = totalUsers - 1;
           dispatch(setTotalUsers(totalUsers - 1));
 
           if (
-            newTotalUsers % limit === 0 &&
-            newTotalUsers / limit < totalUsers / limit
+            newTotalUsers <= limit * (currentPage - 1) &&
+            newTotalUsers !== 0
           ) {
             dispatch(setPage(currentPage - 1));
           }
