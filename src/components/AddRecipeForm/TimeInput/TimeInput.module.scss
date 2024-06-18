@@ -13,10 +13,6 @@
     gap: 12px;
     cursor: pointer;
 
-    &:hover .add_recipe_form_time_button {
-      border: 1px solid rgba(5, 5, 5, 1);
-    }
-
     .add_recipe_form_time_button {
       display: flex;
       justify-content: center;
