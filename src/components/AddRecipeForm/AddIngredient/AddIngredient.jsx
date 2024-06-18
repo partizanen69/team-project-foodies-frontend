@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import icons from '../../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './AddIngredient.module.scss';
 
 const AddIngredient = ({
@@ -54,9 +54,10 @@ const AddIngredient = ({
                     </option>
                   ))}
                 </select>
-                <svg className={s.add_recipe_select_dropdown_icon}>
-                  <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
-                </svg>
+                <Icon
+                  name={'icon-arrow-drop-down'}
+                  className={s.add_recipe_select_dropdown_icon}
+                />
               </div>
               <input
                 type="text"
@@ -86,9 +87,10 @@ const AddIngredient = ({
               }}
             >
               <span>Add ingredient </span>
-              <svg className={s.add_recipe_form_ingredient_input_button_icon}>
-                  <use xlinkHref={`${icons}#${'icon-plus'}`}></use>
-                </svg>
+              <Icon
+                name={'icon-plus'}
+                className={s.add_recipe_form_ingredient_input_button_icon}
+              />
             </button>
           </div>
         )}

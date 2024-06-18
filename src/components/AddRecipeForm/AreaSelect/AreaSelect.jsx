@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import icons from '../../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './AreaSelect.module.scss';
 
 const AreaSelect = ({ control, areas, errors }) => (
@@ -29,9 +29,7 @@ const AreaSelect = ({ control, areas, errors }) => (
             ))}
           </select>
           <span>
-            <svg className={s.area_select_dropdown_icon}>
-              <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
-            </svg>
+            <Icon name={'icon-arrow-drop-down'} className={s.area_select_dropdown_icon}/>
           </span>
         </div>
       )}

@@ -5,7 +5,7 @@ import Container from 'components/Container/Container';
 import { findTestimonials } from 'api/testimonials';
 
 import styles from './Testimonials.module.scss';
-import { Icon } from '../Icons/Icons';
+import Icon from 'components/Icon/Icon';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -29,7 +29,6 @@ export const Testimonials = () => {
   return (
     <Container>
       <div className={styles.testimonial_container}>
-        {/* <div className={styles.testimonials_title_wrapper}> */}
 
         {testimonials.length > 0 && (
           <>
@@ -54,13 +53,7 @@ export const Testimonials = () => {
                   className={styles.swiperSlide}
                   key={`${el._id}-${el.index}`}
                 >
-                  <Icon
-                    id={'icon-quote'}
-                    className={styles.icon}
-                    width={24}
-                    height={24}
-                  />
-
+                  <Icon name={"icon-quote"} className={styles.icon}/>
                   <p className={styles.description}>{el.testimonial}</p>
                   <h4 className={styles.owner}>{el.owner.name}</h4>
                 </SwiperSlide>

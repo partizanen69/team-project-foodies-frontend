@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 import AddRecipeFormLabel from '../AddRecipeFormLabel/AddRecipeFormLabel';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import icons from '../../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './CategorySelect.module.scss';
 
 const CategorySelect = ({ control, categories, errors }) => (
@@ -28,9 +28,7 @@ const CategorySelect = ({ control, categories, errors }) => (
               </option>
             ))}
           </select>
-          <svg className={s.category_select_dropdown_icon}>
-            <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
-          </svg>
+          <Icon name={'icon-arrow-drop-down'} className={s.category_select_dropdown_icon}/>
         </div>
       )}
     />

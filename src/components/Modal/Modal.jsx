@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import icons from '../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './Modal.module.scss';
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -26,9 +26,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     <div className={s.modal_overlay} onClick={onClose}>
       <div className={s.modal_content} onClick={e => e.stopPropagation()}>
         <button className={s.modal_close} onClick={onClose}>
-          <svg className={s.modal_close_icon}>
-            <use xlinkHref={`${icons}#${'icon-close'}`}></use>
-          </svg>
+          <Icon name={'icon-close'} className={s.modal_close_icon}/>
         </button>
         {children}
       </div>
