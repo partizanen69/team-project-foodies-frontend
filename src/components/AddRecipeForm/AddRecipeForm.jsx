@@ -13,7 +13,7 @@ import { getIngredientsList } from '../../api/ingredients';
 import { showError } from '../../api/api.utils';
 import { addNewRecipe } from '../../api/recipes';
 
-import { Icon } from '../Icons/Icons';
+import RoundButton from 'components/RoundButton/RoundButton';
 import ImageUpload from './ImageUpload/ImageUpload';
 import TitleInput from './TitleInput/TitleInput';
 import DescriptionInput from './DescriptionInput/DescriptionInput';
@@ -233,17 +233,7 @@ const AddRecipeForm = () => {
           />
 
           <div className={s.add_recipe_form_actions}>
-            <button
-              className={s.add_recipe_form_close_button}
-              onClick={() => window.location.reload()}
-            >
-              <Icon
-                width={'20px'}
-                height={'20px'}
-                id={'trash'}
-                className={s.add_recipe_form_close_icon}
-              />
-            </button>
+            <RoundButton iconName={'icon-trash'} onClick={() => window.location.reload()} className={'delete-button'} iconClassName={'delete-icon'}/>
             <button className={s.add_recipe_form_publish_button} type="submit">
               Publish
             </button>

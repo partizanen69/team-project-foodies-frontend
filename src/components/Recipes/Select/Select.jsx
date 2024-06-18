@@ -2,7 +2,7 @@
 import cl from './select.module.scss';
 import { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import icons from '../../../assets/icons/icons.svg'
+import Icon from 'components/Icon/Icon';
 
 const Select = ({ options = [], value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,11 +37,11 @@ const Select = ({ options = [], value, onChange }) => {
     }
   };
 
-  const onClearSelect = (event) => {
+  const onClearSelect = event => {
     event.stopPropagation();
     setSelectedValue(value);
     onChange({});
-  }
+  };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -63,16 +63,20 @@ const Select = ({ options = [], value, onChange }) => {
         ref={buttonRef}
         tabIndex={0}
       >
-        <span className={`${cl.iconWrapper} ${selectedValue === value ? cl.isHidden : ''}`}>
-          <svg className={cl.iconClear} onClick={onClearSelect}>
-            <use xlinkHref={`${icons}#${'icon-clear'}`}></use>
-          </svg>
+        <span
+          className={`${cl.iconWrapper} ${
+            selectedValue === value ? cl.isHidden : ''
+          }`}
+        >
+          <Icon
+            name={'icon-clear'}
+            className={cl.iconClear}
+            onClick={onClearSelect}
+          />
         </span>
         <span className={cl.selectValue}>{selectedValue}</span>
         <span className={cl.iconWrapper}>
-          <svg className={cl.icon}>
-            <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
-          </svg>
+          <Icon name={'icon-arrow-drop-down'} className={cl.icon} />
         </span>
       </button>
       {isOpen && (

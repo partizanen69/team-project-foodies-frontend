@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAvatarSrc } from '../../api/api.utils';
-import icons from '../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 import s from './Header.module.scss';
 
 const Navigation = lazy(() => import('../Navigation/Navigation'));
@@ -88,9 +88,7 @@ const Header = ({ openModal }) => {
               </span>
               <div className={s.name_wrapper}>
                 {user && <p className={s.profile_bar_name}>{user.name}</p>}
-                <svg className={s.arrow}>
-                  <use xlinkHref={`${icons}#${'icon-arrow-drop-down'}`}></use>
-                </svg>
+                <Icon name={'icon-arrow-drop-down'} className={s.arrow} />
               </div>
             </div>
             <button
@@ -98,9 +96,10 @@ const Header = ({ openModal }) => {
               onClick={openSidebar}
               className={s.burger_btn}
             >
-              <svg className={isMainPage ? s.burger_icon : s.burger_icon__dark}>
-                <use xlinkHref={`${icons}#${'icon-burger-bar'}`}></use>
-              </svg>
+              <Icon
+                name={'icon-burger-bar'}
+                className={isMainPage ? s.burger_icon : s.burger_icon__dark}
+              />
             </button>
 
             {isDropDownShown && (
@@ -117,11 +116,10 @@ const Header = ({ openModal }) => {
                     onClick={() => openModal('log out')}
                   >
                     LOG OUT
-                    <svg className={s.icon_arrow_up_right}>
-                      <use
-                        xlinkHref={`${icons}#${'icon-arrow-up-right'}`}
-                      ></use>
-                    </svg>
+                    <Icon
+                      name={'icon-arrow-up-right'}
+                      className={s.icon_arrow_up_right}
+                    />
                   </button>
                 </div>
               </div>
