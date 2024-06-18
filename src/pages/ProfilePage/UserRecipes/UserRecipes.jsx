@@ -7,11 +7,13 @@ import {
   selectList,
   selectListLoading,
   selectPage,
+  selectRecipes,
 } from '../../../redux/selectors';
 import {
   setIsLoading,
   setList,
   setPage,
+  setRecipes,
 } from '../../../redux/reducers/listReducer';
 import ListItems from '../ListItems/ListItems';
 import ListPagination from '../ListPagination/ListPagination';
@@ -27,9 +29,9 @@ const UserRecipes = () => {
   const [isOwnProfile, setIsOwnProfile] = useState(false);
   const isLoading = useSelector(selectListLoading);
   const limit = useSelector(selectLimit);
-  const recipes = useSelector(selectList);
+  const recipesList = useSelector(selectList);
   const currentPage = useSelector(selectPage);
-  const [totalRecipes, setTotalRecipes] = useState(0);
+  const recipesCount = useSelector(selectRecipes);
 
   useEffect(() => {}, [dispatch]);
 
@@ -58,7 +60,7 @@ const UserRecipes = () => {
             limit: limit,
           });
           dispatch(setList(result.recipes));
-          setTotalRecipes(result.total);
+          dispatch(setRecipes(result.total));
         }
       } catch (error) {
         showError(error.message);
@@ -72,10 +74,14 @@ const UserRecipes = () => {
     <>
       {isLoading ? (
         <Loader />
-      ) : recipes.length > 0 ? (
+      ) : recipesList.length > 0 ? (
         <>
-          <ListItems isRecipeCard={true} list={recipes} isFavorite={false} />
-          {totalRecipes && <ListPagination total={totalRecipes} />}
+          <ListItems
+            isRecipeCard={true}
+            list={recipesList}
+            isFavorite={false}
+          />
+          {recipesCount && <ListPagination total={recipesCount} />}
         </>
       ) : (
         <p className={s.empty_text}>

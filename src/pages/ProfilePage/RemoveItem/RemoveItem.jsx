@@ -1,21 +1,25 @@
 import { showError } from 'api/api.utils';
-import { deleteRecipe, removeRecipeFromFavorites } from 'api/recipes';
+import {
+  deleteRecipe,
+  getFavoriteRecipes,
+  getUserRecipes,
+  removeRecipeFromFavorites,
+} from 'api/recipes';
 import RoundButton from 'components/RoundButton/RoundButton';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   removeFromList,
+  renewList,
   setFavorites,
   setPage,
+  setRecipes,
 } from '../../../redux/reducers/listReducer';
-import {
-  selectFavorites,
-  selectPage,
-  selectPageLimit,
-} from '../../../redux/selectors';
+import { selectPage, selectPageLimit } from '../../../redux/selectors';
+import { useParams } from 'react-router-dom';
 
 const RemoveItem = ({ recipeId, isFavorite = false }) => {
   const dispatch = useDispatch();
-  const totalFavorites = useSelector(selectFavorites);
+  const { id } = useParams();
   const currentPage = useSelector(selectPage);
   const limit = useSelector(selectPageLimit);
 
@@ -24,12 +28,19 @@ const RemoveItem = ({ recipeId, isFavorite = false }) => {
       await removeRecipeFromFavorites({ recipeId });
 
       dispatch(removeFromList(recipeId));
-      const newTotalFavorites = totalFavorites - 1;
+
+      const result = await getFavoriteRecipes({
+        page: currentPage,
+        limit,
+      });
+      console.log(result);
+      dispatch(renewList(result.recipes));
+      const newTotalFavorites = result.total;
       dispatch(setFavorites(newTotalFavorites));
 
       if (
-        newTotalFavorites % limit === 0 &&
-        newTotalFavorites / limit < totalFavorites / limit
+        newTotalFavorites <= limit * (currentPage - 1) &&
+        newTotalFavorites !== 0
       ) {
         dispatch(setPage(currentPage - 1));
       }
@@ -44,6 +55,22 @@ const RemoveItem = ({ recipeId, isFavorite = false }) => {
 
       await deleteRecipe(recipeId);
       dispatch(removeFromList(recipeId));
+
+      const result = await getUserRecipes({
+        owner: id,
+        page: currentPage,
+        limit: limit,
+      });
+      dispatch(renewList(result.recipes));
+      const newTotalRecipes = result.total;
+      dispatch(setRecipes(newTotalRecipes));
+
+      if (
+        newTotalRecipes <= limit * (currentPage - 1) &&
+        newTotalRecipes !== 0
+      ) {
+        dispatch(setPage(currentPage - 1));
+      }
     } catch (err) {
       showError(err.message);
     }

@@ -4,10 +4,12 @@ import {
   selectFavorites,
   selectFollowers,
   selectFollowing,
+  selectRecipes,
 } from '../../../../redux/selectors';
 
 const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
   const favorites = useSelector(selectFavorites);
+  const recipes = useSelector(selectRecipes);
   const following = useSelector(selectFollowing);
   const followers = useSelector(selectFollowers);
 
@@ -23,9 +25,7 @@ const DetailsList = ({ userDetails, isLoading, isOwnProfile }) => {
       <li className={s.details_list_item}>
         <p className={s.item_key}>Added recipes: </p>
         <span className={s.item_value}>
-          {isLoading || !userDetails.recipesCount
-            ? 0
-            : userDetails.recipesCount}
+          {isLoading || !recipes ? 0 : recipes}
         </span>
       </li>
 

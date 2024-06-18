@@ -19,6 +19,7 @@ import {
   setFollowers,
   setFollowing,
   setList,
+  setRecipes,
 } from '../../../redux/reducers/listReducer';
 import DetailsList from './DetailsList/DetailsList';
 import { Avatar } from './Avatar/Avatar';
@@ -124,6 +125,7 @@ const ProfileInfo = ({ userId, isOwnProfile }) => {
 
         const data = await getUserDetailsById({ id: userId });
         setUserDetails(data);
+        dispatch(setRecipes(data.recipesCount));
         dispatch(setFavorites(data.favorites));
         dispatch(setFollowers(data.followersCount));
         dispatch(setFollowing(data.followingCount));
