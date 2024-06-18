@@ -84,5 +84,8 @@
       <path d="M12 5V19"/>
       <path d="M5 12H19"/>
     </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 32 32">
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 20l8-8 8 8"></path>
+    </symbol>
   </defs>
 </svg>

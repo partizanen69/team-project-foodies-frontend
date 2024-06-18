@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-foodies-frontend/static/css/main.1159c762.css",
-    "main.js": "/team-project-foodies-frontend/static/js/main.3708df57.js",
+    "main.js": "/team-project-foodies-frontend/static/js/main.8755af23.js",
     "static/css/169.03d6298d.chunk.css": "/team-project-foodies-frontend/static/css/169.03d6298d.chunk.css",
     "static/js/169.2cf50cae.chunk.js": "/team-project-foodies-frontend/static/js/169.2cf50cae.chunk.js",
     "static/css/1.5c2649cd.chunk.css": "/team-project-foodies-frontend/static/css/1.5c2649cd.chunk.css",
@@ -10,8 +10,8 @@
     "static/js/595.d0f3bc97.chunk.js": "/team-project-foodies-frontend/static/js/595.d0f3bc97.chunk.js",
     "static/css/755.3ab73c15.chunk.css": "/team-project-foodies-frontend/static/css/755.3ab73c15.chunk.css",
     "static/js/755.8d42402d.chunk.js": "/team-project-foodies-frontend/static/js/755.8d42402d.chunk.js",
-    "static/css/460.22025b84.chunk.css": "/team-project-foodies-frontend/static/css/460.22025b84.chunk.css",
-    "static/js/460.c3d43d3f.chunk.js": "/team-project-foodies-frontend/static/js/460.c3d43d3f.chunk.js",
+    "static/css/460.7e11f8b4.chunk.css": "/team-project-foodies-frontend/static/css/460.7e11f8b4.chunk.css",
+    "static/js/460.914bebf8.chunk.js": "/team-project-foodies-frontend/static/js/460.914bebf8.chunk.js",
     "static/css/536.a61b5c2e.chunk.css": "/team-project-foodies-frontend/static/css/536.a61b5c2e.chunk.css",
     "static/js/536.52dadbac.chunk.js": "/team-project-foodies-frontend/static/js/536.52dadbac.chunk.js",
     "static/css/886.5c7596d8.chunk.css": "/team-project-foodies-frontend/static/css/886.5c7596d8.chunk.css",
@@ -36,10 +36,10 @@
     "static/media/hero-food.png": "/team-project-foodies-frontend/static/media/hero-food.68b7a552d97d291a744a.png",
     "static/media/hero-desert@2x.png": "/team-project-foodies-frontend/static/media/hero-desert@2x.c81afe2a181a1e022dd2.png",
     "static/media/hero-desert.png": "/team-project-foodies-frontend/static/media/hero-desert.d0295535aca7f8a13dcb.png",
-    "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.a7b765e08619e5504383ee609e09da2e.svg",
+    "static/media/icons.svg": "/team-project-foodies-frontend/static/media/icons.dd9c5408e0b4a82dbecdb3830870367e.svg",
     "index.html": "/team-project-foodies-frontend/index.html",
     "main.1159c762.css.map": "/team-project-foodies-frontend/static/css/main.1159c762.css.map",
-    "main.3708df57.js.map": "/team-project-foodies-frontend/static/js/main.3708df57.js.map",
+    "main.8755af23.js.map": "/team-project-foodies-frontend/static/js/main.8755af23.js.map",
     "169.03d6298d.chunk.css.map": "/team-project-foodies-frontend/static/css/169.03d6298d.chunk.css.map",
     "169.2cf50cae.chunk.js.map": "/team-project-foodies-frontend/static/js/169.2cf50cae.chunk.js.map",
     "1.5c2649cd.chunk.css.map": "/team-project-foodies-frontend/static/css/1.5c2649cd.chunk.css.map",
@@ -48,8 +48,8 @@
     "595.d0f3bc97.chunk.js.map": "/team-project-foodies-frontend/static/js/595.d0f3bc97.chunk.js.map",
     "755.3ab73c15.chunk.css.map": "/team-project-foodies-frontend/static/css/755.3ab73c15.chunk.css.map",
     "755.8d42402d.chunk.js.map": "/team-project-foodies-frontend/static/js/755.8d42402d.chunk.js.map",
-    "460.22025b84.chunk.css.map": "/team-project-foodies-frontend/static/css/460.22025b84.chunk.css.map",
-    "460.c3d43d3f.chunk.js.map": "/team-project-foodies-frontend/static/js/460.c3d43d3f.chunk.js.map",
+    "460.7e11f8b4.chunk.css.map": "/team-project-foodies-frontend/static/css/460.7e11f8b4.chunk.css.map",
+    "460.914bebf8.chunk.js.map": "/team-project-foodies-frontend/static/js/460.914bebf8.chunk.js.map",
     "536.a61b5c2e.chunk.css.map": "/team-project-foodies-frontend/static/css/536.a61b5c2e.chunk.css.map",
     "536.52dadbac.chunk.js.map": "/team-project-foodies-frontend/static/js/536.52dadbac.chunk.js.map",
     "886.5c7596d8.chunk.css.map": "/team-project-foodies-frontend/static/css/886.5c7596d8.chunk.css.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.1159c762.css",
-    "static/js/main.3708df57.js"
+    "static/js/main.8755af23.js"
   ]
 }
