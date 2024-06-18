@@ -1,5 +1,4 @@
 import Container from '../Container/Container';
-// import Logo from "../Loader/Loader";
 import { NetworkLinks } from './NetworkLinks/NetworkLinks';
 import { CopyRight } from "./CopyRight/CopyRight";
 import  Logo from './Logo/Logo';

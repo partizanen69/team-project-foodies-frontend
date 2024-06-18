@@ -1,5 +1,5 @@
 import React from 'react';
-import icons from '../../../assets/icons/icons.svg';
+import Icon from 'components/Icon/Icon';
 
 import s from './AddIngredientCard.module.scss';
 
@@ -24,9 +24,7 @@ const AddIngredientCard = ({ removeIngredientCard, ingredientCards }) => {
             onClick={() => removeIngredientCard(index)}
             className={s.add_recipe_form_close_button}
           >
-            <svg className={s.add_recipe_form_close_icon}>
-              <use xlinkHref={`${icons}#${'icon-close'}`}></use>
-            </svg>
+            <Icon name={'icon-close'} className={s.add_recipe_form_close_icon}/>
           </button>
         </div>
       ))}

@@ -27,6 +27,18 @@
   }
 }
 
+.delete-button {
+  width: 48px;
+  height: 48px;
+  border-color: $light-dark-stroke-button;
+}
+
+.network-link-button {
+  width: 36px;
+  height: 36px;
+  border-color: $light-dark-semistroke;
+}
+
 .icon {
   width: 16px;
   height: 16px;
@@ -34,16 +46,14 @@
   fill: $dark-text;
 }
 
-@media screen and (min-width: 768px) {
-  .button {
-    width: 42px;
-    height: 42px;
-  }
+.delete-icon {
+  width: 20px;
+  height: 20px;
+}
 
-  .icon {
-    width: 18px;
-    height: 18px;
-  }
+.network-link-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .favorite {
@@ -60,5 +70,27 @@
   &:hover,
   &:focus {
     border-style: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .delete-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .network-link-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
   }
 }
