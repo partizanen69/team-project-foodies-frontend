@@ -78,11 +78,7 @@ const AddIngredient = ({
                 className={s.add_recipe_form_ingredient_input_measure}
                 onChange={handleMeasureChange}
               />
-              {errors?.ingredients && !isTyping && (
-                <ErrorMessage error={errors?.ingredients} />
-              )}
             </div>
-
             <button
               className={s.add_recipe_form_ingredient_input_button}
               type="button"
@@ -103,8 +99,11 @@ const AddIngredient = ({
               <Icon
                 name={'icon-plus'}
                 className={s.add_recipe_form_ingredient_input_button_icon}
-              />
+              />             
             </button>
+            {errors?.ingredients && !isTyping && (
+              <ErrorMessage error={errors?.ingredients} />
+            )}
           </div>
         )}
       />
