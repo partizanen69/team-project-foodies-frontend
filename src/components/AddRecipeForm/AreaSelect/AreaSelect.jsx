@@ -11,7 +11,7 @@ const AreaSelect = ({ control, areas, errors }) => {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleSelect = (area) => {
+  const handleSelect = area => {
     setSelectedArea(area);
     setIsOpen(false);
   };
@@ -33,31 +33,33 @@ const AreaSelect = ({ control, areas, errors }) => {
                   {selectedArea.name}
                 </span>
               ) : (
-                <span className={s.area_placeholder}>
-                  Select an area
-                </span>
+                <span className={s.area_placeholder}>Select an area</span>
               )}
-              {isOpen
-                ? <Icon
+              {isOpen ? (
+                <Icon
                   name={'icon-chevron-down'}
                   className={s.area_select_dropdown_icon}
                 />
-                : <Icon
+              ) : (
+                <Icon
                   name={'icon-arrow-drop-down'}
                   className={s.area_select_dropdown_icon}
                 />
-              }
+              )}
             </div>
             {isOpen && (
               <div className={s.area_select_option}>
-                {areas.map((area) => (
+                {areas.map(area => (
                   <div
                     key={area._id}
-                    className={`${s.area_select__dropdown_item} ${selectedArea
-                      && selectedArea._id === area._id ? s.area_selected : ''}`}
+                    className={`${s.area_select__dropdown_item} ${
+                      selectedArea && selectedArea._id === area._id
+                        ? s.area_selected
+                        : ''
+                    }`}
                     onClick={() => {
                       handleSelect(area);
-                      field.onChange(area._id);
+                      field.onChange(area.name);
                     }}
                   >
                     {area.name}

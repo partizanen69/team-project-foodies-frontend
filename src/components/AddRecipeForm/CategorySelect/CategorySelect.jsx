@@ -11,7 +11,7 @@ const CategorySelect = ({ control, categories, errors }) => {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleSelect = (category) => {
+  const handleSelect = category => {
     setSelectedCategory(category);
     setIsOpen(false);
   };
@@ -25,7 +25,9 @@ const CategorySelect = ({ control, categories, errors }) => {
         render={({ field }) => (
           <div className={s.category_select_wrapper}>
             <div
-              className={`${s.category_select} ${isOpen ? s.category_is_open : ''}`}
+              className={`${s.category_select} ${
+                isOpen ? s.category_is_open : ''
+              }`}
               onClick={toggleDropdown}
             >
               {selectedCategory ? (
@@ -37,27 +39,31 @@ const CategorySelect = ({ control, categories, errors }) => {
                   Select a category
                 </span>
               )}
-              {isOpen
-                ? <Icon
+              {isOpen ? (
+                <Icon
                   name={'icon-chevron-down'}
                   className={s.category_select_dropdown_icon}
                 />
-                : <Icon
+              ) : (
+                <Icon
                   name={'icon-arrow-drop-down'}
                   className={s.category_select_dropdown_icon}
                 />
-              }
+              )}
             </div>
             {isOpen && (
               <div className={s.category_select_option}>
-                {categories.map((category) => (
+                {categories.map(category => (
                   <div
                     key={category._id}
-                    className={`${s.category_select__dropdown_item} ${selectedCategory
-                      && selectedCategory._id === category._id ? s.category_selected : ''}`}
+                    className={`${s.category_select__dropdown_item} ${
+                      selectedCategory && selectedCategory._id === category._id
+                        ? s.category_selected
+                        : ''
+                    }`}
                     onClick={() => {
                       handleSelect(category);
-                      field.onChange(category._id);
+                      field.onChange(category.name);
                     }}
                   >
                     {category.name}
