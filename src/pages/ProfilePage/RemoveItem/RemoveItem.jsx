@@ -6,16 +6,19 @@ import {
   removeFromList,
   setFavorites,
   setPage,
+  setRecipes,
 } from '../../../redux/reducers/listReducer';
 import {
   selectFavorites,
   selectPage,
   selectPageLimit,
+  selectRecipes,
 } from '../../../redux/selectors';
 
 const RemoveItem = ({ recipeId, isFavorite = false }) => {
   const dispatch = useDispatch();
   const totalFavorites = useSelector(selectFavorites);
+  const totalRecipes = useSelector(selectRecipes);
   const currentPage = useSelector(selectPage);
   const limit = useSelector(selectPageLimit);
 
@@ -44,6 +47,15 @@ const RemoveItem = ({ recipeId, isFavorite = false }) => {
 
       await deleteRecipe(recipeId);
       dispatch(removeFromList(recipeId));
+      const newTotalRecipes = totalRecipes - 1;
+      dispatch(setRecipes(newTotalRecipes));
+
+      if (
+        newTotalRecipes % limit === 0 &&
+        newTotalRecipes / limit < totalRecipes / limit
+      ) {
+        dispatch(setPage(currentPage - 1));
+      }
     } catch (err) {
       showError(err.message);
     }

@@ -12,6 +12,7 @@ const initialState = {
   page: 1,
   limit: 9,
   favorites: 0,
+  recipes: 0,
   list: [],
   isLoading: false,
   error: null,
@@ -35,6 +36,9 @@ const listSlice = createSlice({
     },
     setFavorites: (state, action) => {
       state.favorites = action.payload;
+    },
+    setRecipes: (state, action) => {
+      state.recipes = action.payload;
     },
     setFollowing: (state, action) => {
       state.following = action.payload;
@@ -62,11 +66,12 @@ export const {
   setPage,
   setPageName,
   setFavorites,
+  setRecipes,
+  setFollowing,
+  setFollowers,
   setIsLoading,
   removeFromList,
   setLimit,
   setTotalUsers,
-  setFollowing,
-  setFollowers,
 } = listSlice.actions;
 export default listSlice.reducer;
