@@ -95,12 +95,19 @@ export const login = (email, password) => async dispatch => {
 export const register = (name, email, password) => async dispatch => {
   dispatch(registerRequest());
   try {
-    await axios.post('/users/register', {
+    const response = await axios.post('/users/register', {
       name,
       email,
       password,
     });
-    toast.success('Registration was successful. Please sign in');
+
+    const { user, token } = response.data; 
+
+    localStorage.setItem('jwt-token', token);
+
+    dispatch(loginSuccess(user, token));
+
+    toast.success('Registration was successful. You are now logged in.');
   } catch (error) {
     dispatch(registerFailure(error.response.data.message || error.message));
     toast.error(error.response.data.message || error.message);
