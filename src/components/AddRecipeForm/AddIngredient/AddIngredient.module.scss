@@ -177,4 +177,9 @@
     gap: 19px;
     margin-bottom: 40px;
   }
+
+  .ingredient_select_option {
+    max-height: 206px;
+    @include font-styles(16px, 500, 1.5);
+  }
 }
