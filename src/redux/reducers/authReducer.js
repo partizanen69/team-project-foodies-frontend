@@ -29,14 +29,13 @@ const authReducer = (state = initialState, action) => {
     case FETCH_CURRENT_USER_REQUEST:
       return { ...state, loading: true, error: null };
     case LOGIN_SUCCESS:
+    case REGISTER_SUCCESS:
       return {
         ...state,
         loading: false,
         user: action.payload.user,
         token: action.payload.token,
       };
-    case REGISTER_SUCCESS:
-      return { ...state, loading: false, user: action.payload };
     case LOGIN_FAILURE:
     case REGISTER_FAILURE:
     case FETCH_CURRENT_USER_FAILURE:
@@ -73,7 +72,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          avatarUrl: action.payload.avatarURL,
+          avatarURL: action.payload.avatarURL,
         },
       };
     default:
