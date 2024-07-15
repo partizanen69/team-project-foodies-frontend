@@ -1,4 +1,11 @@
-# [Image alt](./public/favicon.ico) Foodies App Frontend
+<div align="center" id="top"> 
+  <img src="./public/favicon.ico" alt="Foodies App" width="60"/>
+
+&#xa0;
+
+</div>
+
+<h1 align="center">Foodies App</h1>
 
 ## Description:
 
