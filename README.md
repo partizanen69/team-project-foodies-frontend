@@ -1,112 +1,100 @@
-# React homework template
+# [Image alt](./public/favicon.ico) Foodies App Frontend
 
-Цей проект був створений за допомогою
-[Create React App](https://github.com/facebook/create-react-app). Для знайомства
-і налаштування додаткових можливостей
-[звернися до документації](https://facebook.github.io/create-react-app/docs/getting-started).
+## Description:
 
-## Створення репозиторію за шаблоном
+[Foodies App](https://partizanen69.github.io/team-project-foodies-frontend/) is
+a website for creating and managing recipes. Website fully responsive design,
+oriented to any device (mobile, tablet, desktop).
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення репозиторію
-свого проєкта. Для цього натисни на кнопку `«Use this template»` і вибери опцію
-`«Create a new repository»`, як показано на зображенні.
+<div style="display: flex; align-items: flex-start; gap: 10px">
+  <img src="./public/readme/main.png" width="400" height="1024" title="welcome" />
+  <img src="./public/readme/category_desserts.png" width="400" height="1144" title="main" />
+</div>
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+### Features:
 
-На наступному кроці відкриється сторінка створення нового репозиторію. Заповни поле
-його імені, переконайся що репозиторій публічний, після чого натисни кнопку
-`«Create repository from template»`.
+- Registration and Login: user have the option to register and login (used:
+  name, email, password)
+- User have the option to choose/change his profile
+- Create/delete your own recipe. View your own recipe collection and other
+  users' recipe collections
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+  <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 10px;">
+    <img src="./public/readme/add_recipe.png" width="400" height="530" title="welcome" />
+    <img src="./public/readme/profile_my recipes.png" width="400" height="580" title="main" />
+  </div>
 
-Після того як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як
-показано на зображенні.
+- Browse recipes by category, and filter recipes by arreas, category, and
+  ingredient.
+- View testimonials
+- Add/remove recipes from favorites
+- Follow the profiles of other users and view the followers of your own profile
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+<div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 10px;">
+  <img src="./public/readme/profile_followers.png" width="400" height="530" title="welcome" />
+  <img src="./public/readme/profile_following.png" width="400" height="580" title="main" />
+</div>
 
-Проскроливши сторінку до самого кінця, у секції `«Workflow permissions»` вибери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це
-необхідно для автоматизації процесу деплою проєкту.
+## Technologies Used:
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+### FrontEnd:
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів і папок
-репозиторію-шаблону. Далі працюй із ним як із будь-яким іншим особистим репозиторієм,
-клонуй його собі на комп'ютер, пиши код, роби комміти і відправляй їх на
-GitHub.
+- **HTML/CSS**
+- **JavaScript**
+- **Axios**
+- **React**
+- **React-router-dom**
+- **ReduxToolkit**
+- **React-hook-form**
+- **React-icons**
+- **React-loader-spinner**
+- **SASS**
+- **Yup**
+- **Swiper**
+- **Web-vitals**
 
-## Підготовка до роботи
+### BackEnd
 
-1. Переконайся що на комп'ютері встановлено LTS-версія Node.js.
-   [Завантаж і встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проєкту командою `npm install`.
-3. Запусти режим розробки, виконавши команду `npm start`.
-4. Перейди в браузері за адресою [http://localhost:3000](http://localhost:3000).
-   Ця сторінка буде автоматично перезавантажуватися після збереження змін у файлах проєкту.
+- **Node.js**
+- **Express**
+- **Mongoose**
+- **Swagger**
+- **Bcrypt**
+- **Dotenv**
+- **Cloudinary**
+- **Cors**
+- **Jimp**
+- **Joi**
+- **Jsonwebtoken**
+- **Morgan**
+- **Multer**
+- **Gravatar**
+- **Nanoid**
+- **Yamljs**
 
-## Деплой
+### Swagger documentation:
 
-Продакшн версія проєкту буде автоматично проходити лінтинг, збиратися і
-деплоїтися на GitHub Pages, у гілку `gh-pages`, щоразу, коли оновлюється
-гілка `main`. Наприклад, після прямого пушу або прийнятого пул-реквесту. Для цього
-необхідно у файлі `package.json` відредагувати поле `homepage`, замінивши
-`your_username` і `your_repo_name` на свої, і відправити зміни на GitHub.
+Swagger UI for documenting and visualizing the API using
+[Swagger documentation](http://localhost:3000/api/docs/).
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+### Backend repository:
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) і
-виставити роздачу продакшн-версії файлів із папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+[foodies-backend](https://github.com/partizanen69/team-project-foodies-backend).
 
-![GitHub Pages settings](./assets/repo-settings.png)
+## Developers
 
-### Статус деплоя
+The development of this project was led by:
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
-
-- **Жовтий колір** - виконується збірка і деплой проєкту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, сборки або деплою сталася помилка.
-
-Детальнішу інформацію про статус можна подивитися, клікнувши на іконку, і
-у вікні, що випадає, перейти за посиланням `Details`.
-
-![Deployment status](./assets/deploy-status.png)
-
-### Жива сторінка
-
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися
-за адресою, вказаною у відредагованій властивості `homepage`. Наприклад, ось
-посилання на живу версію для цього репозиторію
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Якщо відкривається порожня сторінка, переконайся, що у вкладці `Console` немає помилок
-пов'язаних із неправильними шляхами до CSS і JS файлів проєкту (**404**). Швидше 
-за все у тебе неправильне значення властивості `homepage` у файлі `package.json`.
-
-### Маршрутизація
-
-Якщо додаток використовує бібліотеку `react-router-dom` для маршрутизації,
-необхідно додатково налаштувати компонент `<BrowserRouter>`, передавши у пропе
-`basename` точну назву твого репозиторію. Слеш на початку рядка обов'язковий.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Як це працює
-
-![How it works](./assets/how-it-works.png)
-
-1. Після кожного пушу в гілку `main` GitHub-репозиторія, запускається спеціальний
-   скрипт (GitHub Action) з файла `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується і
-   проходить лінтинг і збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн-версія файлів проєкту
-   відправляється в гілку `gh-pages`. В іншому випадку, в лозі виконання
-   скрипта буде вказано в чому проблема.
+- [Oleksii Ablitsov](https://github.com/partizanen69)- Team lead & Fullstack
+  developer
+- [Maryna Korbet](https://github.com/Maryna-Korbet)- Scrum master & Fullstack
+  developer
+- [Oleksii Ostafiichuk](https://github.com/OstafiichukO) - Fullstack developer
+- [Nataliia Smalchenko](https://github.com/nataliia-smalchenko) - Fullstack
+  developer
+- [Mykola Ovchynnik](https://github.com/mykola-ovchynnik) - Fullstack developer
+- [Anton Kashnykov](https://github.com/KashnykovAnton) - Fullstack developer
+- [Serhii Tarasenko](https://github.com/stdev33?tab=repositories) - Fullstack
+  developer
+- [Irina Bazhinova](https://github.com/Iris2030) - Fullstack developer
+- [Olena Panchenko](https://github.com/marychka2335) - Fullstack developer
